@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dgkt5v86mtksq"]
+
+[ext_resource type="PackedScene" uid="uid://jumhiux358g4" path="res://scenes/thruster.tscn" id="1_q631a"]
+[ext_resource type="Script" uid="uid://b56rwoxbea5uc" path="res://scripts/thrust_component.gd" id="2_2gnfn"]
+
+[node name="ship" type="Node2D" unique_id=1286375347]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=565066144]
+position = Vector2(323, 253)
+
+[node name="thruster" parent="RigidBody2D" unique_id=771294080 instance=ExtResource("1_q631a")]
+position = Vector2(255, 126)
+
+[node name="Polygon2D" type="Polygon2D" parent="RigidBody2D" unique_id=1239022585]
+position = Vector2(109, -3)
+polygon = PackedVector2Array(91, 114, 198, 114, 144, 17)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RigidBody2D" unique_id=340029970]
+position = Vector2(200, 111)
+polygon = PackedVector2Array(0, 0, 106.595, 0, 53.295, -96.94)
+
+[node name="ThrustComponent" type="Node" parent="." unique_id=2059109377 node_paths=PackedStringArray("ship")]
+script = ExtResource("2_2gnfn")
+ship = NodePath("../RigidBody2D")

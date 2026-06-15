@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bi41uq7814i3g"]
+
+[ext_resource type="Texture2D" uid="uid://c3ptjsobd7yf1" path="res://icon.svg" id="1_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://dgkt5v86mtksq" path="res://scenes/ship.tscn" id="2_lnu2h"]
+
+[node name="game" type="Node2D" unique_id=1786468234]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1082950888]
+position = Vector2(578, 326.5)
+scale = Vector2(9.015625, 5.070312)
+texture = ExtResource("1_yqjtg")
+
+[node name="ship" parent="." unique_id=1286375347 instance=ExtResource("2_lnu2h")]
+
+[node name="Camera2D" type="Camera2D" parent="ship" unique_id=152877024]
+position = Vector2(577, 322)
