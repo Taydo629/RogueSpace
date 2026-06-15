@@ -1,24 +1,33 @@
 [gd_scene format=3 uid="uid://dgkt5v86mtksq"]
 
-[ext_resource type="PackedScene" uid="uid://jumhiux358g4" path="res://scenes/thruster.tscn" id="1_q631a"]
+[ext_resource type="Script" uid="uid://xywfn6rwbhoo" path="res://scripts/ship.gd" id="1_4tobq"]
 [ext_resource type="Script" uid="uid://b56rwoxbea5uc" path="res://scripts/thrust_component.gd" id="2_2gnfn"]
+[ext_resource type="Script" uid="uid://b4s37vng55ppc" path="res://scripts/gyro_component.gd" id="4_tfsc7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2gnfn"]
+size = Vector2(80, 104)
 
 [node name="ship" type="Node2D" unique_id=1286375347]
+script = ExtResource("1_4tobq")
 
 [node name="RigidBody2D" type="RigidBody2D" parent="." unique_id=565066144]
-position = Vector2(323, 253)
+gravity_scale = 0.0
 
-[node name="thruster" parent="RigidBody2D" unique_id=771294080 instance=ExtResource("1_q631a")]
-position = Vector2(255, 126)
+[node name="Polygon2D" type="Polygon2D" parent="RigidBody2D" unique_id=335194293]
+scale = Vector2(0.679694, 1)
+polygon = PackedVector2Array(-58.881065, -52.93801, -58.881073, 0.68211365, -58.881065, 52.661987, 58.818947, 52.661987, 58.818947, -52.93801)
+uv = PackedVector2Array(-175.48108, -21.038017, -178.78107, 85.66199, -63.281067, 85.66199, -61.081055, -19.938011)
 
-[node name="Polygon2D" type="Polygon2D" parent="RigidBody2D" unique_id=1239022585]
-position = Vector2(109, -3)
-polygon = PackedVector2Array(91, 114, 198, 114, 144, 17)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" unique_id=1879323786]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_2gnfn")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RigidBody2D" unique_id=340029970]
-position = Vector2(200, 111)
-polygon = PackedVector2Array(0, 0, 106.595, 0, 53.295, -96.94)
+[node name="Camera2D" type="Camera2D" parent="RigidBody2D" unique_id=1604184409]
 
 [node name="ThrustComponent" type="Node" parent="." unique_id=2059109377 node_paths=PackedStringArray("ship")]
 script = ExtResource("2_2gnfn")
+ship = NodePath("../RigidBody2D")
+
+[node name="GyroComponent" type="Node" parent="." unique_id=331417349 node_paths=PackedStringArray("ship")]
+script = ExtResource("4_tfsc7")
 ship = NodePath("../RigidBody2D")

@@ -1,16 +1,21 @@
 [gd_scene format=3 uid="uid://bi41uq7814i3g"]
 
-[ext_resource type="Texture2D" uid="uid://c3ptjsobd7yf1" path="res://icon.svg" id="1_yqjtg"]
+[ext_resource type="Script" uid="uid://b7is6gknyl6cr" path="res://scripts/game.gd" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://dgkt5v86mtksq" path="res://scenes/ship.tscn" id="2_lnu2h"]
+[ext_resource type="Texture2D" uid="uid://7311c1hg8dft" path="res://assets/Space-Background-Image-2-1024x682.jpg" id="2_yqjtg"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lnu2h"]
+texture = ExtResource("2_yqjtg")
 
 [node name="game" type="Node2D" unique_id=1786468234]
+script = ExtResource("1_lnu2h")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1082950888]
-position = Vector2(578, 326.5)
-scale = Vector2(9.015625, 5.070312)
-texture = ExtResource("1_yqjtg")
+[node name="BG" type="Panel" parent="." unique_id=519927403]
+z_index = -1
+offset_left = -850.0
+offset_top = -642.0
+offset_right = 957.0
+offset_bottom = 659.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_lnu2h")
 
 [node name="ship" parent="." unique_id=1286375347 instance=ExtResource("2_lnu2h")]
-
-[node name="Camera2D" type="Camera2D" parent="ship" unique_id=152877024]
-position = Vector2(577, 322)

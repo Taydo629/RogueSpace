@@ -1,18 +1,11 @@
 [gd_scene format=3 uid="uid://jumhiux358g4"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_x6buh"]
-size = Vector2(58, 30)
+[ext_resource type="Script" uid="uid://cufw8altjxdqo" path="res://scripts/thruster.gd" id="1_vbl7p"]
 
 [node name="thruster" type="Node2D" unique_id=771294080 groups=["thruster"]]
+script = ExtResource("1_vbl7p")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=277642428]
-position = Vector2(-1, 0)
-
-[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D" unique_id=943382449]
-position = Vector2(1, 0)
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=943382449]
 color = Color(0.808519, 0.15714917, 0.29420826, 1)
 offset = Vector2(-253, -126)
 polygon = PackedVector2Array(237, 111, 222, 142, 283, 142, 268, 111)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1084021246]
-shape = SubResource("RectangleShape2D_x6buh")
