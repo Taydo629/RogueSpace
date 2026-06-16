@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cbies401v0c4e"]
+
+[node name="Hull" type="Node2D" unique_id=1289661948]
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=804824012]
+position = Vector2(-32, -32)
+polygon = PackedVector2Array(0, 0, 64, 0, 64, 64, 0, 64)
+uv = PackedVector2Array(-348.28302, -29.521019, -7.2574463, -27.572304, -7.2574463, 186.78668, -352.18048, 177.04309)

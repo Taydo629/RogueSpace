@@ -5,7 +5,8 @@
 [node name="thruster" type="Node2D" unique_id=771294080 groups=["thruster"]]
 script = ExtResource("1_vbl7p")
 
-[node name="Polygon2D" type="Polygon2D" parent="." unique_id=943382449]
-color = Color(0.808519, 0.15714917, 0.29420826, 1)
-offset = Vector2(-253, -126)
-polygon = PackedVector2Array(237, 111, 222, 142, 283, 142, 268, 111)
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=560278180]
+position = Vector2(-32, -32)
+color = Color(0.45452422, 0.45452428, 0.45452422, 1)
+polygon = PackedVector2Array(16, 0, 48, 0, 56, 16, 8, 16)
+uv = PackedVector2Array(-253, -47, -198, -46, -181, 3, -279, 3)
