@@ -35,3 +35,10 @@ texture = ExtResource("5_5bfys")
 expand_mode = 2
 script = ExtResource("6_7twq4")
 scene = ExtResource("7_5fvha")
+
+[node name="Button" type="Button" parent="." unique_id=1029952404]
+offset_left = 904.0
+offset_top = 568.0
+offset_right = 968.0
+offset_bottom = 599.0
+text = "Build"

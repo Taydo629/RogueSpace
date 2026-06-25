@@ -6,6 +6,14 @@ var parts_array: Array
 var selected_part: Node
 var current_slot: int
 
+var grid: Array = [[null,null,null,null,null],
+				[null,null,null,null,null],
+				[null,null,null,null,null],
+				[null,null,null,null,null],
+				[null,null,null,null,null]]
+var y_range: Array = [192,448]
+var x_range: Array = [448,704]
+
 func _ready() -> void:
 	parts_array = h_box_container.get_children()
 	parts_array[0].z_index = 0
@@ -39,7 +47,46 @@ func _process(delta: float) -> void:
 	# Get the grid position so that parts are on a grid.
 	var mouse_pos = get_global_mouse_position() + Vector2(32,32)
 	var pos = Vector2(mouse_pos.x -fmod(mouse_pos.x, 64),mouse_pos.y -fmod(mouse_pos.y, 64))
+	if x_range[1] <= pos.x:
+		pos.x = x_range[1]
+	if x_range[0] >= pos.x:
+		pos.x = x_range[0]
+	if y_range[1] <= pos.y:
+		pos.y = y_range[1]
+	if y_range[0] >= pos.y:
+		pos.y = y_range[0]
 	
 	selected_part.position = pos
 	
+	if Input.is_action_just_pressed("left_click"):
+		var relative_pos = pos - Vector2(x_range[0],y_range[0])
+		place_part(relative_pos)
+	if Input.is_action_just_pressed("right_click"):
+		var relative_pos = pos - Vector2(x_range[0],y_range[0])
+		remove_part(relative_pos)
+
+func place_part(pos: Vector2):
+	var x_grid = pos.x / 64
+	var y_grid = pos.y / 64
+	if grid[x_grid][y_grid] == null:
+		grid[x_grid][y_grid] = selected_part
+		new_part()
+	else:
+		print("Grid is occupied!")
+
+func remove_part(pos: Vector2):
+	var x_grid = pos.x / 64
+	var y_grid = pos.y / 64
+	if grid[x_grid][y_grid] == null:
+		print("Grid is already empty!")
+	else:
+		grid[x_grid][y_grid].queue_free()
+		grid[x_grid][y_grid] = null
+
+func new_part():
+	if current_slot == 1:
+		selected_part = parts_array[0].get_item().instantiate()
+	if current_slot == 2:
+		selected_part = parts_array[1].get_item().instantiate()
+	add_child(selected_part)
 	
