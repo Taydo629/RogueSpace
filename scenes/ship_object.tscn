@@ -10,8 +10,9 @@ size = Vector2(80, 104)
 gravity_scale = 0.0
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=590899059]
+position = Vector2(0, -5)
 scale = Vector2(0.679694, 1)
-polygon = PackedVector2Array(-58.881065, -52.93801, -58.881073, 0.68211365, -58.881065, 52.661987, 58.818947, 52.661987, 58.818947, -52.93801)
+polygon = PackedVector2Array(-58.850014, -51, -58.881065, 52.661987, 58.818947, 52.661987, 58.850014, -51)
 uv = PackedVector2Array(-175.48108, -21.038017, -178.78107, 85.66199, -63.281067, 85.66199, -61.081055, -19.938011)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=401411698]

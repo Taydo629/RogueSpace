@@ -16,7 +16,7 @@ func _physics_process(_delta: float) -> void:
 		for node in thrusters:
 			if not node is Node2D:
 				continue
-				
+			node.cpu_particles_2d.emitting = true
 			# 1. Calculate the local offset from the ship's origin to the thruster
 			# global_transform.affine_inverse() converts a global position into the ship's local space
 			var local_offset = ship.global_transform.affine_inverse() * node.global_position
@@ -29,4 +29,8 @@ func _physics_process(_delta: float) -> void:
 			# 3. Apply the force at the local offset
 			ship.add_constant_force(global_force, local_offset)
 	else:
+		for node in thrusters:
+			if not node is Node2D:
+				continue
+			node.cpu_particles_2d.emitting = false
 		ship.constant_force = Vector2.ZERO

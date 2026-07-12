@@ -2,6 +2,10 @@
 
 [ext_resource type="Script" uid="uid://cufw8altjxdqo" path="res://scripts/thruster.gd" id="1_vbl7p"]
 
+[sub_resource type="Gradient" id="Gradient_vbl7p"]
+interpolation_mode = 2
+colors = PackedColorArray(0.8685565, 0.34853408, 0.08988374, 1, 0.8406243, 0.9297722, 0, 1)
+
 [node name="thruster" type="Node2D" unique_id=771294080 groups=["thruster"]]
 script = ExtResource("1_vbl7p")
 
@@ -10,3 +14,23 @@ position = Vector2(-32, -32)
 color = Color(0.45452422, 0.45452428, 0.45452422, 1)
 polygon = PackedVector2Array(16, 0, 48, 0, 56, 16, 8, 16)
 uv = PackedVector2Array(-253, -47, -198, -46, -181, 3, -279, 3)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=343893656]
+z_index = -1
+position = Vector2(0, -16)
+emitting = false
+amount = 20
+lifetime = 0.8
+speed_scale = 1.5
+explosiveness = 0.05
+randomness = 0.2
+lifetime_randomness = 0.5
+local_coords = true
+emission_shape = 1
+emission_sphere_radius = 16.21
+spread = 180.0
+angular_velocity_min = 10.0
+angular_velocity_max = 100.0
+scale_amount_min = 6.0
+scale_amount_max = 10.0
+color_ramp = SubResource("Gradient_vbl7p")
