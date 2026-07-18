@@ -20,6 +20,7 @@ func init_ship():
 				add_child(part)
 				add_child(colider)
 				part.position = Vector2(x,y)
+				part.rotation_degrees = j[3]
 				colider.position = Vector2(x,y)
 	center_of_mass_mode = RigidBody2D.CENTER_OF_MASS_MODE_AUTO
 	if gyro_component:
