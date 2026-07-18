@@ -31,6 +31,7 @@ func _process(delta: float) -> void:
 		selected_instance.queue_free()
 		parts_array[0].z_index = 0
 		parts_array[1].z_index = -1
+		parts_array[2].z_index = -1
 		selected_part = parts_array[0].get_item()
 		selected_instance = selected_part.instantiate()
 		add_child(selected_instance)
@@ -39,10 +40,20 @@ func _process(delta: float) -> void:
 		selected_instance.queue_free()
 		parts_array[0].z_index = -1
 		parts_array[1].z_index = 0
+		parts_array[2].z_index = -1
 		selected_part = parts_array[1].get_item()
 		selected_instance = selected_part.instantiate()
 		add_child(selected_instance)
 		current_slot = 2
+	if Input.is_action_just_pressed("slot3") and current_slot != 3:
+		selected_instance.queue_free()
+		parts_array[0].z_index = -1
+		parts_array[1].z_index = -1
+		parts_array[2].z_index = 0
+		selected_part = parts_array[2].get_item()
+		selected_instance = selected_part.instantiate()
+		add_child(selected_instance)
+		current_slot = 3
 	
 	# Handle part rotation
 	if Input.is_action_just_pressed("e"):
@@ -94,6 +105,9 @@ func new_part():
 		selected_instance = selected_part.instantiate()
 	if current_slot == 2:
 		selected_part = parts_array[1].get_item()
+		selected_instance = selected_part.instantiate()
+	if current_slot == 3:
+		selected_part = parts_array[2].get_item()
 		selected_instance = selected_part.instantiate()
 	add_child(selected_instance)
 

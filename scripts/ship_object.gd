@@ -1,6 +1,8 @@
 class_name ShipObject extends RigidBody2D
+
 @onready var thrust_component: ThrustComponent = $ThrustComponent
 @onready var gyro_component: GyroComponent = $GyroComponent
+@onready var gun_component: GunComponent = $GunComponent
 
 var x_min = -160
 var y_min = -160
@@ -26,3 +28,4 @@ func init_ship():
 	if gyro_component:
 		gyro_component.active_ship = self
 	thrust_component.update_thrusters()
+	gun_component.update_guns()

@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://bcaoegg5tnt85" path="res://scripts/ship_object.gd" id="1_jbipx"]
 [ext_resource type="Script" uid="uid://b56rwoxbea5uc" path="res://scripts/thrust_component.gd" id="1_su8us"]
 [ext_resource type="Script" uid="uid://b4s37vng55ppc" path="res://scripts/gyro_component.gd" id="2_jbipx"]
+[ext_resource type="Script" uid="uid://co7e5vyfrukdv" path="res://scripts/gun_component.gd" id="4_26rvf"]
+[ext_resource type="PackedScene" uid="uid://sufhro00r1n7" path="res://scenes/bullet.tscn" id="5_8rhnt"]
 
 [node name="ShipObject" type="RigidBody2D" unique_id=870574960]
 gravity_scale = 0.0
@@ -16,3 +18,13 @@ ship = NodePath("..")
 
 [node name="GyroComponent" type="Node" parent="." unique_id=1272975539]
 script = ExtResource("2_jbipx")
+
+[node name="GunComponent" type="Node" parent="." unique_id=302324681 node_paths=PackedStringArray("ship")]
+script = ExtResource("4_26rvf")
+ship = NodePath("..")
+bullet = ExtResource("5_8rhnt")
+
+[node name="Timer" type="Timer" parent="." unique_id=714703760]
+wait_time = 0.5
+
+[connection signal="timeout" from="Timer" to="GunComponent" method="_on_timer_timeout"]
