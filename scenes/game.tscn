@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b7is6gknyl6cr" path="res://scripts/game.gd" id="1_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://7311c1hg8dft" path="res://assets/Space-Background-Image-2-1024x682.jpg" id="2_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://cf1du3owblsrl" path="res://scenes/ship_object.tscn" id="3_lnu2h"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lnu2h"]
 texture = ExtResource("2_yqjtg")
@@ -16,3 +17,8 @@ offset_top = -642.0
 offset_right = 957.0
 offset_bottom = 659.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_lnu2h")
+
+[node name="ShipObject" parent="." unique_id=870574960 instance=ExtResource("3_lnu2h")]
+
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
+[connection signal="ready" from="." to="." method="_on_ready"]

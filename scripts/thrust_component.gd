@@ -10,6 +10,9 @@ func _ready() -> void:
 	# tree before this component runs.
 	thrusters = get_tree().get_nodes_in_group("thruster")
 
+func update_thrusters() -> void:
+	thrusters = get_tree().get_nodes_in_group("thruster")
+
 func _physics_process(_delta: float) -> void:
 	
 	if Input.is_action_pressed("thrust"):
