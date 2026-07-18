@@ -25,6 +25,6 @@ ship = NodePath("..")
 bullet = ExtResource("5_8rhnt")
 
 [node name="Timer" type="Timer" parent="." unique_id=714703760]
-wait_time = 0.5
+wait_time = 0.2
 
 [connection signal="timeout" from="Timer" to="GunComponent" method="_on_timer_timeout"]
