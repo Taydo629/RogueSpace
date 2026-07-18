@@ -9,10 +9,16 @@ var muzzle_offset: Vector2 = Vector2(0,-32)
 var gun_ready: bool = true
 
 func _ready() -> void:
-	guns = get_tree().get_nodes_in_group("gun")
+	var temp_guns = get_tree().get_nodes_in_group("gun")
+	for i in temp_guns:
+		if i.get_parent() == get_parent():
+			guns.append(i)
 
 func update_guns() -> void:
-	guns = get_tree().get_nodes_in_group("gun")
+	var temp_guns = get_tree().get_nodes_in_group("gun")
+	for i in temp_guns:
+		if i.get_parent() == get_parent():
+			guns.append(i)
 
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_pressed("left_click") and gun_ready:

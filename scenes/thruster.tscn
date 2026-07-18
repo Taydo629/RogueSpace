@@ -6,6 +6,9 @@
 interpolation_mode = 2
 colors = PackedColorArray(0.8685565, 0.34853408, 0.08988374, 1, 0.8406243, 0.9297722, 0, 1)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vbl7p"]
+size = Vector2(32, 16)
+
 [node name="thruster" type="Node2D" unique_id=771294080 groups=["thruster"]]
 script = ExtResource("1_vbl7p")
 
@@ -34,3 +37,9 @@ angular_velocity_max = 100.0
 scale_amount_min = 6.0
 scale_amount_max = 10.0
 color_ramp = SubResource("Gradient_vbl7p")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1599821065]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=354201334]
+position = Vector2(0, -24)
+shape = SubResource("RectangleShape2D_vbl7p")

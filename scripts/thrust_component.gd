@@ -6,12 +6,16 @@ class_name ThrustComponent extends Node
 var thrusters : Array
 
 func _ready() -> void:
-	# Small tip: Defer this slightly or ensure thrusters are in the scene 
-	# tree before this component runs.
-	thrusters = get_tree().get_nodes_in_group("thruster")
+	var temp_thrusters = get_tree().get_nodes_in_group("thruster")
+	for i in temp_thrusters:
+		if i.get_parent() == get_parent():
+			thrusters.append(i)
 
 func update_thrusters() -> void:
-	thrusters = get_tree().get_nodes_in_group("thruster")
+	var temp_thrusters = get_tree().get_nodes_in_group("thruster")
+	for i in temp_thrusters:
+		if i.get_parent() == get_parent():
+			thrusters.append(i)
 
 func _physics_process(_delta: float) -> void:
 	

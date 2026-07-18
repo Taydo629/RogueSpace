@@ -1,8 +1,16 @@
 [gd_scene format=3 uid="uid://cbies401v0c4e"]
 
-[node name="Hull" type="Node2D" unique_id=1289661948]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ls6jt"]
+size = Vector2(64, 64)
+
+[node name="hull" type="Node2D" unique_id=1289661948]
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=804824012]
 position = Vector2(-32, -32)
 polygon = PackedVector2Array(0, 0, 64, 0, 64, 64, 0, 64)
 uv = PackedVector2Array(-348.28302, -29.521019, -7.2574463, -27.572304, -7.2574463, 186.78668, -352.18048, 177.04309)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=800039488]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=281869432]
+shape = SubResource("RectangleShape2D_ls6jt")
