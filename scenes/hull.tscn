@@ -5,7 +5,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ls6jt"]
 size = Vector2(64, 64)
 
-[node name="hull" type="Node2D" unique_id=1751675047]
+[node name="hull" type="RigidBody2D" unique_id=1866166875]
+freeze = true
 script = ExtResource("1_mv7wv")
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=804824012]

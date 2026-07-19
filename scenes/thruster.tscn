@@ -9,7 +9,8 @@ colors = PackedColorArray(0.8685565, 0.34853408, 0.08988374, 1, 0.8406243, 0.929
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vbl7p"]
 size = Vector2(32, 16)
 
-[node name="thruster" type="Node2D" unique_id=771294080 groups=["thruster"]]
+[node name="thruster" type="RigidBody2D" unique_id=845600484 groups=["thruster"]]
+freeze = true
 script = ExtResource("1_vbl7p")
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=560278180]

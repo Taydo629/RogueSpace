@@ -25,7 +25,6 @@ func _physics_process(_delta: float) -> void:
 		for node in guns:
 			if not node is Node2D:
 				continue
-			print(node.rotation_degrees)
 			var gun_direction = Vector2.UP.rotated(node.rotation)
 			var new_bullet:StaticBody2D = bullet.instantiate()
 			if node.scale == Vector2(-1,1):
