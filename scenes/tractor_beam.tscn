@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bmppj8nctpawu"]
+
+[sub_resource type="Gradient" id="Gradient_f384s"]
+colors = PackedColorArray(7.315874e-06, 0.73193437, 0.9951952, 1, 1, 1, 1, 1)
+
+[node name="TractorBeam" type="Node2D" unique_id=1731899263]
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1057629506]
+color = Color(0.68307734, 0.6830774, 0.68307734, 1)
+polygon = PackedVector2Array(-32, 40, -32, 32, -24, 24, 24, 24, 32, 32, 32, 40)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Polygon2D" unique_id=831891369]
+position = Vector2(0, -192)
+emitting = false
+amount = 20
+lifetime = 0.65
+emission_ring_inner_radius = 8.0
+emission_ring_radius = 32.0
+scale_amount_max = 8.0
+color_ramp = SubResource("Gradient_f384s")
