@@ -14,6 +14,7 @@ position = Vector2(0, -192)
 emitting = false
 amount = 20
 lifetime = 0.65
+emission_shape = 6
 emission_ring_inner_radius = 8.0
 emission_ring_radius = 32.0
 scale_amount_max = 8.0
