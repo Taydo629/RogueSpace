@@ -28,6 +28,8 @@ func init_ship():
 				colider.position = Vector2(x,y)
 				add_child(part)
 				add_child(colider)
+				part.colider = colider
+				
 	center_of_mass_mode = RigidBody2D.CENTER_OF_MASS_MODE_AUTO
 	if gyro_component:
 		gyro_component.active_ship = self

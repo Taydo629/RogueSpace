@@ -3,26 +3,12 @@
 [ext_resource type="Script" uid="uid://diilc2lajhv0u" path="res://scripts/ship_building.gd" id="1_mmh4e"]
 [ext_resource type="Texture2D" uid="uid://d2eronkpe7nyd" path="res://assets/Hull.png" id="2_5r5f6"]
 [ext_resource type="Script" uid="uid://crb6vxc22lpl8" path="res://scripts/hull_ui.gd" id="3_v7wnp"]
+[ext_resource type="PackedScene" uid="uid://cbies401v0c4e" path="res://scenes/hull.tscn" id="4_v7wnp"]
 [ext_resource type="Texture2D" uid="uid://cbqqgjxuknwxd" path="res://assets/Thruster.png" id="5_5bfys"]
 [ext_resource type="Script" uid="uid://d3d7td4ch2a7p" path="res://scripts/thrust_ui.gd" id="6_7twq4"]
 [ext_resource type="PackedScene" uid="uid://jumhiux358g4" path="res://scenes/thruster.tscn" id="7_5fvha"]
 [ext_resource type="Texture2D" uid="uid://c3veeunyicgoe" path="res://assets/gun.png" id="7_5r5f6"]
 [ext_resource type="PackedScene" uid="uid://bqwwb8ff2mpkk" path="res://scenes/gun.tscn" id="8_v7wnp"]
-
-[sub_resource type="PackedScene" id="PackedScene_y4axm"]
-_bundled = {
-"conn_count": 0,
-"conns": PackedInt32Array(),
-"editable_instances": [],
-"id_paths": [],
-"names": PackedStringArray("Hull", "Node2D", "Polygon2D", "position", "polygon", "uv"),
-"node_count": 2,
-"node_ids": PackedInt32Array(1289661948, 804824012),
-"node_paths": [],
-"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 0, 0, 0, 0, 2, 2, -1, 3, 3, 0, 4, 1, 5, 2, 0),
-"variants": [Vector2(-32, -32), PackedVector2Array(0, 0, 64, 0, 64, 64, 0, 64), PackedVector2Array(-348.28302, -29.521019, -7.2574463, -27.572304, -7.2574463, 186.78668, -352.18048, 177.04309)],
-"version": 3
-}
 
 [node name="ShipBuilding" type="Node2D" unique_id=1130231238]
 script = ExtResource("1_mmh4e")
@@ -42,7 +28,7 @@ layout_mode = 2
 texture = ExtResource("2_5r5f6")
 expand_mode = 2
 script = ExtResource("3_v7wnp")
-scene = SubResource("PackedScene_y4axm")
+scene = ExtResource("4_v7wnp")
 
 [node name="ThrusterUI" type="TextureRect" parent="PanelContainer/HBoxContainer" unique_id=1622025735]
 z_index = -1
