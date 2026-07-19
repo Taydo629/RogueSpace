@@ -1,0 +1,155 @@
+# Small test ship
+ship_graph = {
+		"root": {
+			"part": hull,
+			"colider": null,
+			"grid_pos": Vector2(3,1),
+			"rotation": 0,
+			"mirrored": false,
+			"neighbors": ["2"]
+		},
+		"2": {
+			"part": hull,
+			"colider": null,
+			"grid_pos": Vector2(3,2),
+			"rotation": 0,
+			"mirrored": false,
+			"neighbors": ["root","3","4","5"]
+		},
+		"3": {
+			"part": gun,
+			"colider": null,
+			"grid_pos": Vector2(2,2),
+			"rotation": 0,
+			"mirrored": true,
+			"neighbors": ["2"]
+		},
+		"4": {
+			"part": gun,
+			"colider": null,
+			"grid_pos": Vector2(4,2),
+			"rotation": 0,
+			"mirrored": false,
+			"neighbors": ["2"]
+		},
+		"5": {
+			"part": thruster,
+			"colider": null,
+			"grid_pos": Vector2(3,3),
+			"rotation": 0,
+			"mirrored": false,
+			"neighbors": ["2"]
+		}
+	}
+
+# Long ship_test
+ship_graph = {
+		"root": {
+			"part": hull,
+			"colider": null,
+			"grid_pos": Vector2(3,1),
+			"rotation": 0,
+			"mirrored": false,
+			"neighbors": ["2"]
+		},
+		"2": {
+			"part": hull,
+			"colider": null,
+			"grid_pos": Vector2(3,2),
+			"rotation": 0,
+			"mirrored": false,
+			"neighbors": ["root","3"]
+		},
+		"3": {
+			"part": hull,
+			"colider": null,
+			"grid_pos": Vector2(3,3),
+			"rotation": 0,
+			"mirrored": false,
+			"neighbors": ["3","4"]
+		},
+		"4": {
+			"part": hull,
+			"colider": null,
+			"grid_pos": Vector2(3,4),
+			"rotation": 0,
+			"mirrored": false,
+			"neighbors": ["3","5"]
+		},
+		"5": {
+			"part": hull,
+			"colider": null,
+			"grid_pos": Vector2(3,5),
+			"rotation": 0,
+			"mirrored": false,
+			"neighbors": ["4"]
+		}
+	}
+	
+# Larger testship
+ship_graph = {
+		"root": {
+			"part": hull,
+			"colider": null,
+			"grid_pos": Vector2(3,1),
+			"rotation": 0,
+			"mirrored": false,
+			"neighbors": ["2","3"]
+		},
+		"2": {
+			"part": hull,
+			"colider": null,
+			"grid_pos": Vector2(4,1),
+			"rotation": 0,
+			"mirrored": false,
+			"neighbors": ["root","4"]
+		},
+		"3": {
+			"part": hull,
+			"colider": null,
+			"grid_pos": Vector2(3,2),
+			"rotation": 0,
+			"mirrored": false,
+			"neighbors": ["root","4","5"]
+		},
+		"4": {
+			"part": hull,
+			"colider": null,
+			"grid_pos": Vector2(4,2),
+			"rotation": 0,
+			"mirrored": false,
+			"neighbors": ["2","3","6"]
+		},
+		"5": {
+			"part": hull,
+			"colider": null,
+			"grid_pos": Vector2(3,3),
+			"rotation": 0,
+			"mirrored": false,
+			"neighbors": ["3","6","7"]
+		},
+		"6": {
+			"part": hull,
+			"colider": null,
+			"grid_pos": Vector2(4,3),
+			"rotation": 0,
+			"mirrored": false,
+			"neighbors": ["4","5","8"]
+		},
+		"7": {
+			"part": hull,
+			"colider": null,
+			"grid_pos": Vector2(3,4),
+			"rotation": 0,
+			"mirrored": false,
+			"neighbors": ["5","8"]
+		},
+		"8": {
+			"part": hull,
+			"colider": null,
+			"grid_pos": Vector2(4,4),
+			"rotation": 0,
+			"mirrored": false,
+			"neighbors": ["6","7"]
+		}
+	}
