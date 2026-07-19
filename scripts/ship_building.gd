@@ -8,7 +8,7 @@ var selected_instance: Node
 var selected_part_rotation: int
 var current_slot: int
 var part_oob: bool = false
-
+var mirrored: bool = false
 var grid: Array = [[null,null,null,null,null],
 				[null,null,null,null,null],
 				[null,null,null,null,null],
@@ -55,6 +55,15 @@ func _process(delta: float) -> void:
 		add_child(selected_instance)
 		current_slot = 3
 	
+	# Handle part mirroring
+	if Input.is_action_just_pressed("mirror"):
+		if mirrored:
+			selected_instance.scale = Vector2(1,1)
+			mirrored = false
+		else:
+			selected_instance.scale = Vector2(-1,1)
+			mirrored = true
+	
 	# Handle part rotation
 	if Input.is_action_just_pressed("e"):
 		selected_instance.rotation_degrees += 90
@@ -85,7 +94,7 @@ func place_part(pos: Vector2):
 	var x_grid = pos.x / 64
 	var y_grid = pos.y / 64
 	if grid[x_grid][y_grid] == null:
-		grid[x_grid][y_grid] = [selected_part,x_grid,y_grid,selected_instance.rotation_degrees,selected_instance]
+		grid[x_grid][y_grid] = [selected_part,x_grid,y_grid,selected_instance.rotation_degrees,mirrored,selected_instance]
 		new_part()
 	else:
 		print("Grid is occupied!")
@@ -96,7 +105,7 @@ func remove_part(pos: Vector2):
 	if grid[x_grid][y_grid] == null:
 		print("Grid is already empty!")
 	else:
-		grid[x_grid][y_grid][4].queue_free()
+		grid[x_grid][y_grid][5].queue_free()
 		grid[x_grid][y_grid] = null
 
 func new_part():

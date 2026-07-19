@@ -25,14 +25,18 @@ func _physics_process(_delta: float) -> void:
 		for node in guns:
 			if not node is Node2D:
 				continue
-			var gun_direction = Vector2.UP.rotated(node.global_rotation)
+			print(node.rotation_degrees)
+			var gun_direction = Vector2.UP.rotated(node.rotation)
 			var new_bullet:StaticBody2D = bullet.instantiate()
-			new_bullet.global_position = (node.global_position + muzzle_offset.rotated(node.global_rotation))
-			new_bullet.rotation = ship.rotation
+			if node.scale == Vector2(-1,1):
+				new_bullet.global_position = (node.global_position + (-1 * muzzle_offset).rotated(node.global_rotation))
+			else:
+				new_bullet.global_position = (node.global_position + muzzle_offset.rotated(node.global_rotation))
+			new_bullet.rotation = ship.rotation + node.rotation
 			add_child(new_bullet)
 			timer.start()
 			gun_ready = false
-			
+
 func _on_timer_timeout() -> void:
 	# Cooldown ended gun is ready again
 	gun_ready = true

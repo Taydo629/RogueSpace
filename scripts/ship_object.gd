@@ -19,11 +19,15 @@ func init_ship():
 				var colider = preload("res://scenes/part_colider.tscn").instantiate()
 				var x = x_min + j[1] * 64
 				var y = y_min + j[2] * 64
-				add_child(part)
-				add_child(colider)
 				part.position = Vector2(x,y)
 				part.rotation_degrees = j[3]
+				# Handle part mirroring
+				if j[4]:
+					part.scale = Vector2(-1,1)
+					colider.scale = Vector2(-1,1)
 				colider.position = Vector2(x,y)
+				add_child(part)
+				add_child(colider)
 	center_of_mass_mode = RigidBody2D.CENTER_OF_MASS_MODE_AUTO
 	if gyro_component:
 		gyro_component.active_ship = self
