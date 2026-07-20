@@ -2,9 +2,7 @@ extends Node2D
 
 @onready var h_box_container: HBoxContainer = $PanelContainer/HBoxContainer
 
-var parts_array: Array
-var selected_part: PackedScene
-var selected_instance: Node
+var root_present: bool = false
 var selected_part_rotation: int
 var current_slot: int
 var part_oob: bool = false
@@ -17,43 +15,15 @@ var grid: Array = [[null,null,null,null,null],
 var y_range: Array = [192,448]
 var x_range: Array = [448,704]
 
+var ship_graph: Dictionary = {}
+
+var increment: int = 1
+
 func _ready() -> void:
-	parts_array = h_box_container.get_children()
-	parts_array[0].z_index = 0
-	current_slot = 1
-	selected_part = parts_array[0].get_item()
-	selected_instance = selected_part.instantiate()
-	add_child(selected_instance)
+	h_box_container.init_hotbar()
 
 func _process(delta: float) -> void:
-	# Make selected part highlighted
-	if Input.is_action_just_pressed("slot1") and current_slot != 1:
-		selected_instance.queue_free()
-		parts_array[0].z_index = 0
-		parts_array[1].z_index = -1
-		parts_array[2].z_index = -1
-		selected_part = parts_array[0].get_item()
-		selected_instance = selected_part.instantiate()
-		add_child(selected_instance)
-		current_slot = 1
-	if Input.is_action_just_pressed("slot2") and current_slot != 2:
-		selected_instance.queue_free()
-		parts_array[0].z_index = -1
-		parts_array[1].z_index = 0
-		parts_array[2].z_index = -1
-		selected_part = parts_array[1].get_item()
-		selected_instance = selected_part.instantiate()
-		add_child(selected_instance)
-		current_slot = 2
-	if Input.is_action_just_pressed("slot3") and current_slot != 3:
-		selected_instance.queue_free()
-		parts_array[0].z_index = -1
-		parts_array[1].z_index = -1
-		parts_array[2].z_index = 0
-		selected_part = parts_array[2].get_item()
-		selected_instance = selected_part.instantiate()
-		add_child(selected_instance)
-		current_slot = 3
+	var selected_instance = h_box_container.selected_instance
 	
 	# Handle part mirroring
 	if Input.is_action_just_pressed("mirror"):
@@ -94,8 +64,27 @@ func place_part(pos: Vector2):
 	var x_grid = pos.x / 64
 	var y_grid = pos.y / 64
 	if grid[x_grid][y_grid] == null:
-		grid[x_grid][y_grid] = [selected_part,x_grid,y_grid,selected_instance.rotation_degrees,mirrored,selected_instance]
-		new_part()
+		var node_dict = {
+			"part": h_box_container.selected_part,
+			"colider": null,
+			"grid_pos": Vector2(x_grid,y_grid),
+			"rotation": h_box_container.selected_instance.rotation_degrees,
+			"mirrored": mirrored,
+			"neighbors": [],
+			"instance": h_box_container.selected_instance
+		}
+		var key: String
+		if h_box_container.selected_part.name != "core":
+			key = str(increment)
+			increment += 1
+		else:
+			if root_present == true:
+				print("Unable to place core part as one has already been placed!")
+				return
+			root_present = true
+			key = "root"
+		grid[x_grid][y_grid] = {key: node_dict}
+		h_box_container.new_part()
 	else:
 		print("Grid is occupied!")
 
@@ -105,21 +94,74 @@ func remove_part(pos: Vector2):
 	if grid[x_grid][y_grid] == null:
 		print("Grid is already empty!")
 	else:
-		grid[x_grid][y_grid][5].queue_free()
-		grid[x_grid][y_grid] = null
-
-func new_part():
-	if current_slot == 1:
-		selected_part = parts_array[0].get_item()
-		selected_instance = selected_part.instantiate()
-	if current_slot == 2:
-		selected_part = parts_array[1].get_item()
-		selected_instance = selected_part.instantiate()
-	if current_slot == 3:
-		selected_part = parts_array[2].get_item()
-		selected_instance = selected_part.instantiate()
-	add_child(selected_instance)
+		var key = grid[x_grid][y_grid].keys()[0]
+		if key == "root":
+			root_present = false
+		grid[x_grid][y_grid].get(key).get("instance").queue_free()
+		grid[x_grid][y_grid] = null 
 
 func _on_build_button_pressed() -> void:
-	ShipInfo.update_ship(grid)
+	clear_graph()
+	if not root_present:
+		print("Root node not found unable to build ship!")
+		return
+	var i = 1
+	# Search for nodes neighbors by traversing the grid
+	for row in grid:
+		for cell in row:
+			if cell != null:
+				var key: String = cell.keys()[0]
+				var coords_to_search: Array = []
+				var node_coord = cell.get(key).get("grid_pos")
+				if node_coord.y > 0:
+					coords_to_search.append(Vector2(node_coord.x,node_coord.y-1))
+				if node_coord.y < len(grid)-1:
+					coords_to_search.append(Vector2(node_coord.x,node_coord.y+1))
+				if node_coord.x > 0:
+					coords_to_search.append(Vector2(node_coord.x-1,node_coord.y))
+				if node_coord.x < len(grid[0])-1:
+					coords_to_search.append(Vector2(node_coord.x+1,node_coord.y))
+				for coords in coords_to_search:
+					if grid[coords.x][coords.y] != null:
+						cell.get(key).get("neighbors").append(grid[coords.x][coords.y].keys()[0])
+				ship_graph.merge(cell)
+	
+	# Evaluate how many nodes are able to be traversed from the root node
+	var nodes_to_visit = []
+	var visited_nodes = []
+	var root_node = ship_graph.get("root")
+	nodes_to_visit.append_array(root_node.neighbors)
+	var search_complete = false
+	while not search_complete:
+		if nodes_to_visit == []:
+			search_complete = true
+		else:
+			var current_node_key = nodes_to_visit[0]
+			visited_nodes.append(current_node_key)
+			nodes_to_visit.append_array(ship_graph.get(current_node_key).neighbors)
+			nodes_to_visit.erase(current_node_key)
+			for node in visited_nodes:
+				nodes_to_visit.erase(node)
+	
+	# If nodes traversable from root is not equal to the number of nodes
+	# means there is a disconnect!
+	# Need to clear the neighbors of all node
+	if len(visited_nodes) != len(ship_graph.keys()):
+		print("One or more parts is not attached to anything else!")
+		return
+	
+	# Nice to have for debug
+	#print(ship_graph)
+	#print(" ")
+	#print(" ")
+	#print(" ")
+	
+	ShipInfo.update_ship(ship_graph)
 	get_tree().change_scene_to_file("res://scenes/game.tscn")
+func clear_graph() -> void:
+	for row in grid:
+		for cell in row:
+			if cell != null:
+				var key: String = cell.keys()[0]
+				cell.get(key).set("neighbors",[])
+				ship_graph = {}

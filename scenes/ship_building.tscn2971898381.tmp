@@ -1,0 +1,114 @@
+[gd_scene format=3 uid="uid://nofp6gunbxci"]
+
+[ext_resource type="Script" uid="uid://diilc2lajhv0u" path="res://scripts/ship_building.gd" id="1_mmh4e"]
+[ext_resource type="Script" uid="uid://b5b3jksvhv4gj" path="res://scripts/h_box_container.gd" id="2_7twq4"]
+[ext_resource type="Script" uid="uid://ddu62dgkeau1i" path="res://scripts/hotbar_ui.gd" id="11_5fvha"]
+[ext_resource type="Resource" uid="uid://rp4s55105tbn" path="res://data/Parts/hull.tres" id="12_l6pu8"]
+[ext_resource type="Resource" uid="uid://b4k0ewhy4bwpf" path="res://data/Parts/thruster.tres" id="13_hp4g4"]
+[ext_resource type="Resource" uid="uid://bs8ufgr7qnr1y" path="res://data/Parts/gun.tres" id="14_xwxvt"]
+[ext_resource type="Resource" uid="uid://dxn6vqjt4j07d" path="res://data/Parts/core.tres" id="15_4nitx"]
+
+[node name="ShipBuilding" type="Node2D" unique_id=1130231238]
+script = ExtResource("1_mmh4e")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=2021687994]
+offset_left = 342.0
+offset_top = 533.0
+offset_right = 867.0
+offset_bottom = 633.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer" unique_id=1603753712]
+layout_mode = 2
+script = ExtResource("2_7twq4")
+
+[node name="HotbarUI" type="TextureRect" parent="PanelContainer/HBoxContainer" unique_id=1693379518]
+layout_mode = 2
+expand_mode = 2
+script = ExtResource("11_5fvha")
+part = ExtResource("12_l6pu8")
+
+[node name="HotbarUI2" type="TextureRect" parent="PanelContainer/HBoxContainer" unique_id=1206812091]
+layout_mode = 2
+expand_mode = 2
+script = ExtResource("11_5fvha")
+part = ExtResource("13_hp4g4")
+
+[node name="HotbarUI3" type="TextureRect" parent="PanelContainer/HBoxContainer" unique_id=1702216949]
+layout_mode = 2
+expand_mode = 2
+script = ExtResource("11_5fvha")
+part = ExtResource("14_xwxvt")
+
+[node name="HotbarUI4" type="TextureRect" parent="PanelContainer/HBoxContainer" unique_id=1945137743]
+layout_mode = 2
+expand_mode = 2
+script = ExtResource("11_5fvha")
+part = ExtResource("15_4nitx")
+
+[node name="Button" type="Button" parent="." unique_id=1029952404]
+offset_left = 904.0
+offset_top = 568.0
+offset_right = 968.0
+offset_bottom = 599.0
+text = "Build"
+
+[node name="Polygon2D2" type="Polygon2D" parent="." unique_id=870627732]
+z_index = -2
+position = Vector2(0, 64)
+color = Color(0.00014991526, 0.022543963, 0.19706637, 1)
+polygon = PackedVector2Array(0, -64, 0, 584, 1152, 584, 1152, -64)
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1511285350]
+z_index = -1
+position = Vector2(0, 64)
+color = Color(0.25162134, 0.3003648, 0.39442158, 1)
+polygon = PackedVector2Array(416, 96, 416, 416, 736, 416, 736, 96)
+
+[node name="Line2D" type="Line2D" parent="Polygon2D" unique_id=15081955]
+points = PackedVector2Array(480, 96, 480, 416)
+width = 1.0
+default_color = Color(0.24840015, 0.24840018, 0.24840015, 1)
+
+[node name="Line2D2" type="Line2D" parent="Polygon2D" unique_id=422784874]
+position = Vector2(64, 0)
+points = PackedVector2Array(480, 96, 480, 416)
+width = 1.0
+default_color = Color(0.24840015, 0.24840018, 0.24840015, 1)
+
+[node name="Line2D3" type="Line2D" parent="Polygon2D" unique_id=641754941]
+position = Vector2(128, 0)
+points = PackedVector2Array(480, 96, 480, 416)
+width = 1.0
+default_color = Color(0.24840015, 0.24840018, 0.24840015, 1)
+
+[node name="Line2D4" type="Line2D" parent="Polygon2D" unique_id=527234840]
+position = Vector2(192, 0)
+points = PackedVector2Array(480, 96, 480, 416)
+width = 1.0
+default_color = Color(0.24840015, 0.24840018, 0.24840015, 1)
+
+[node name="Line2D5" type="Line2D" parent="Polygon2D" unique_id=73454596]
+position = Vector2(192, 0)
+points = PackedVector2Array(224, 160, 544, 160)
+width = 1.0
+default_color = Color(0.24840015, 0.24840018, 0.24840015, 1)
+
+[node name="Line2D6" type="Line2D" parent="Polygon2D" unique_id=868461528]
+position = Vector2(192, 64)
+points = PackedVector2Array(224, 160, 544, 160)
+width = 1.0
+default_color = Color(0.24840015, 0.24840018, 0.24840015, 1)
+
+[node name="Line2D7" type="Line2D" parent="Polygon2D" unique_id=1918520017]
+position = Vector2(192, 128)
+points = PackedVector2Array(224, 160, 544, 160)
+width = 1.0
+default_color = Color(0.24840015, 0.24840018, 0.24840015, 1)
+
+[node name="Line2D8" type="Line2D" parent="Polygon2D" unique_id=2089856699]
+position = Vector2(192, 192)
+points = PackedVector2Array(224, 160, 544, 160)
+width = 1.0
+default_color = Color(0.24840015, 0.24840018, 0.24840015, 1)
+
+[connection signal="pressed" from="Button" to="." method="_on_build_button_pressed"]

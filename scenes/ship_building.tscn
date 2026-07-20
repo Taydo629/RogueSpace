@@ -1,14 +1,12 @@
 [gd_scene format=3 uid="uid://nofp6gunbxci"]
 
 [ext_resource type="Script" uid="uid://diilc2lajhv0u" path="res://scripts/ship_building.gd" id="1_mmh4e"]
-[ext_resource type="Texture2D" uid="uid://d2eronkpe7nyd" path="res://assets/Hull.png" id="2_5r5f6"]
-[ext_resource type="Script" uid="uid://crb6vxc22lpl8" path="res://scripts/hull_ui.gd" id="3_v7wnp"]
-[ext_resource type="PackedScene" uid="uid://cbies401v0c4e" path="res://scenes/hull.tscn" id="4_v7wnp"]
-[ext_resource type="Texture2D" uid="uid://cbqqgjxuknwxd" path="res://assets/Thruster.png" id="5_5bfys"]
-[ext_resource type="Script" uid="uid://d3d7td4ch2a7p" path="res://scripts/thrust_ui.gd" id="6_7twq4"]
-[ext_resource type="PackedScene" uid="uid://jumhiux358g4" path="res://scenes/thruster.tscn" id="7_5fvha"]
-[ext_resource type="Texture2D" uid="uid://c3veeunyicgoe" path="res://assets/gun.png" id="7_5r5f6"]
-[ext_resource type="PackedScene" uid="uid://bqwwb8ff2mpkk" path="res://scenes/gun.tscn" id="8_v7wnp"]
+[ext_resource type="Script" uid="uid://b5b3jksvhv4gj" path="res://scripts/h_box_container.gd" id="2_7twq4"]
+[ext_resource type="Script" uid="uid://ddu62dgkeau1i" path="res://scripts/hotbar_ui.gd" id="11_5fvha"]
+[ext_resource type="Resource" uid="uid://rp4s55105tbn" path="res://data/Parts/hull.tres" id="12_l6pu8"]
+[ext_resource type="Resource" uid="uid://b4k0ewhy4bwpf" path="res://data/Parts/thruster.tres" id="13_hp4g4"]
+[ext_resource type="Resource" uid="uid://bs8ufgr7qnr1y" path="res://data/Parts/gun.tres" id="14_xwxvt"]
+[ext_resource type="Resource" uid="uid://dxn6vqjt4j07d" path="res://data/Parts/core.tres" id="15_4nitx"]
 
 [node name="ShipBuilding" type="Node2D" unique_id=1130231238]
 script = ExtResource("1_mmh4e")
@@ -21,30 +19,31 @@ offset_bottom = 633.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer" unique_id=1603753712]
 layout_mode = 2
+script = ExtResource("2_7twq4")
 
-[node name="HullUI" type="TextureRect" parent="PanelContainer/HBoxContainer" unique_id=1739593718]
-z_index = -1
+[node name="HotbarUI" type="TextureRect" parent="PanelContainer/HBoxContainer" unique_id=1693379518]
 layout_mode = 2
-texture = ExtResource("2_5r5f6")
 expand_mode = 2
-script = ExtResource("3_v7wnp")
-scene = ExtResource("4_v7wnp")
+script = ExtResource("11_5fvha")
+part = ExtResource("12_l6pu8")
 
-[node name="ThrusterUI" type="TextureRect" parent="PanelContainer/HBoxContainer" unique_id=1622025735]
-z_index = -1
+[node name="HotbarUI2" type="TextureRect" parent="PanelContainer/HBoxContainer" unique_id=1206812091]
 layout_mode = 2
-texture = ExtResource("5_5bfys")
 expand_mode = 2
-script = ExtResource("6_7twq4")
-scene = ExtResource("7_5fvha")
+script = ExtResource("11_5fvha")
+part = ExtResource("13_hp4g4")
 
-[node name="GunUI" type="TextureRect" parent="PanelContainer/HBoxContainer" unique_id=1451609473]
-z_index = -1
+[node name="HotbarUI3" type="TextureRect" parent="PanelContainer/HBoxContainer" unique_id=1702216949]
 layout_mode = 2
-texture = ExtResource("7_5r5f6")
 expand_mode = 2
-script = ExtResource("6_7twq4")
-scene = ExtResource("8_v7wnp")
+script = ExtResource("11_5fvha")
+part = ExtResource("14_xwxvt")
+
+[node name="HotbarUI4" type="TextureRect" parent="PanelContainer/HBoxContainer" unique_id=1945137743]
+layout_mode = 2
+expand_mode = 2
+script = ExtResource("11_5fvha")
+part = ExtResource("15_4nitx")
 
 [node name="Button" type="Button" parent="." unique_id=1029952404]
 offset_left = 904.0
