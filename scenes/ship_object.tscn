@@ -14,8 +14,10 @@ zoom = Vector2(0.75, 0.75)
 
 [node name="ThrustComponent" parent="." unique_id=2035186996 node_paths=PackedStringArray("ship") instance=ExtResource("2_26rvf")]
 ship = NodePath("..")
+thrust_power = 6.0
 
 [node name="GyroComponent" parent="." unique_id=1587976536 instance=ExtResource("3_8rhnt")]
+gyro_strength = 30000.0
 
 [node name="GunComponent" parent="." unique_id=1399658564 node_paths=PackedStringArray("ship") instance=ExtResource("4_26rvf")]
 ship = NodePath("..")
