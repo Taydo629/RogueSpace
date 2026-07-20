@@ -21,6 +21,12 @@ offset_bottom = 633.0
 layout_mode = 2
 script = ExtResource("2_7twq4")
 
+[node name="HotbarUI4" type="TextureRect" parent="PanelContainer/HBoxContainer" unique_id=1945137743]
+layout_mode = 2
+expand_mode = 2
+script = ExtResource("11_5fvha")
+part = ExtResource("15_4nitx")
+
 [node name="HotbarUI" type="TextureRect" parent="PanelContainer/HBoxContainer" unique_id=1693379518]
 layout_mode = 2
 expand_mode = 2
@@ -38,12 +44,6 @@ layout_mode = 2
 expand_mode = 2
 script = ExtResource("11_5fvha")
 part = ExtResource("14_xwxvt")
-
-[node name="HotbarUI4" type="TextureRect" parent="PanelContainer/HBoxContainer" unique_id=1945137743]
-layout_mode = 2
-expand_mode = 2
-script = ExtResource("11_5fvha")
-part = ExtResource("15_4nitx")
 
 [node name="Button" type="Button" parent="." unique_id=1029952404]
 offset_left = 904.0

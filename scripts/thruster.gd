@@ -5,11 +5,11 @@ var thrust_direction: Vector2 = Vector2.UP
 var activation_key: String
 @onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
 @export var max_health: int = 100
-var colider: CollisionShape2D
+var colider: CollisionPolygon2D
 var health: int
 var dict_key: String
 
-const PART_COLIDER = preload("uid://c6gm41ys28u2w")
+const PART_COLIDER = preload("uid://1k6s26tooh6e")
 
 signal part_destroyed
 

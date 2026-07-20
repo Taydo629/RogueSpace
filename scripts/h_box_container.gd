@@ -9,6 +9,11 @@ var selected_instance: Node
 func init_hotbar() -> void:
 	parts_array = get_children()
 	parts_array[0].z_index = 0
+	for i in range(len(parts_array)):
+		if i == 0:
+			parts_array[i].z_index = 0
+		else:
+			parts_array[i].z_index = -1
 	current_slot = 0
 	selected_part = parts_array[0].get_part()
 	selected_instance = selected_part.scene.instantiate()

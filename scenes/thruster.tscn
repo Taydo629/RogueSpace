@@ -41,6 +41,6 @@ color_ramp = SubResource("Gradient_vbl7p")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1599821065]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=354201334]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" unique_id=1144204156]
 position = Vector2(0, -24)
 shape = SubResource("RectangleShape2D_vbl7p")

@@ -6,7 +6,7 @@ var health: int
 var colider: CollisionShape2D
 var dict_key: String
 
-const PART_COLIDER = preload("uid://c6gm41ys28u2w")
+const PART_COLIDER = preload("uid://d0dggj0ghuve3")
 
 signal part_destroyed
 

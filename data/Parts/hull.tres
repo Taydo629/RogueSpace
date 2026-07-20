@@ -2,11 +2,13 @@
 
 [ext_resource type="Script" uid="uid://dfxnbigy6na68" path="res://data/parts.gd" id="1_4q4pp"]
 [ext_resource type="Texture2D" uid="uid://d2eronkpe7nyd" path="res://assets/Hull.png" id="1_12q6g"]
+[ext_resource type="PackedScene" uid="uid://d0dggj0ghuve3" path="res://scenes/square_colider.tscn" id="1_hn3f4"]
 [ext_resource type="PackedScene" uid="uid://cbies401v0c4e" path="res://scenes/hull.tscn" id="2_hn3f4"]
 
 [resource]
 script = ExtResource("1_4q4pp")
 name = "hull"
 scene = ExtResource("2_hn3f4")
+collider = ExtResource("1_hn3f4")
 image = ExtResource("1_12q6g")
 metadata/_custom_type_script = "uid://dfxnbigy6na68"

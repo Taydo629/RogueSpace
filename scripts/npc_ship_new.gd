@@ -7,6 +7,7 @@ var x_min = -160
 var y_min = -160
 var parts: Array
 var ship_graph: Dictionary
+@onready var gun_component: GunComponent = $GunComponent
 
 func _ready() -> void:
 	ship_graph = {
@@ -19,7 +20,7 @@ func _ready() -> void:
 			"neighbors": ["2","3"]
 		},
 		"2": {
-			"part": hull,
+			"part": gun,
 			"colider": null,
 			"grid_pos": Vector2(4,1),
 			"rotation": 0,
@@ -81,7 +82,7 @@ func init_ship():
 	for key in ship_graph.keys():
 		var node = ship_graph.get(key)
 		var part = node.part.scene.instantiate()
-		var colider = preload("res://scenes/part_colider.tscn").instantiate()
+		var colider = node.part.collider.instantiate()
 		var x = x_min + node.grid_pos.x * 64
 		var y = y_min + node.grid_pos.y * 64
 		node.part = part
@@ -96,9 +97,19 @@ func init_ship():
 		add_child(colider)
 		part.colider = colider
 		part.dict_key = key
+	init_components()
+
+func init_components() -> void:
+	center_of_mass_mode = RigidBody2D.CENTER_OF_MASS_MODE_AUTO
+	#if gyro_component:
+		#gyro_component.active_ship = self
+	#thrust_component.update_thrusters()
+	gun_component.update_guns()
 
 func part_destroyed(graph_key:String):
 	var destroyed_node = ship_graph.get(graph_key)
+	print(destroyed_node)
+	print(graph_key)
 	for neighbor_key in destroyed_node.neighbors:
 		var neighbor = ship_graph.get(neighbor_key)
 		for key in neighbor.neighbors:

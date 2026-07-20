@@ -1,10 +1,9 @@
 [gd_scene format=3 uid="uid://cf1du3owblsrl"]
 
 [ext_resource type="Script" uid="uid://bcaoegg5tnt85" path="res://scripts/ship_object.gd" id="1_jbipx"]
-[ext_resource type="Script" uid="uid://b56rwoxbea5uc" path="res://scripts/thrust_component.gd" id="1_su8us"]
-[ext_resource type="Script" uid="uid://b4s37vng55ppc" path="res://scripts/gyro_component.gd" id="2_jbipx"]
-[ext_resource type="Script" uid="uid://co7e5vyfrukdv" path="res://scripts/gun_component.gd" id="4_26rvf"]
-[ext_resource type="PackedScene" uid="uid://sufhro00r1n7" path="res://scenes/bullet.tscn" id="5_8rhnt"]
+[ext_resource type="PackedScene" uid="uid://mc5jy4pg7ebq" path="res://scenes/thrust_component.tscn" id="2_26rvf"]
+[ext_resource type="PackedScene" uid="uid://qobdfhr074v8" path="res://scenes/gyro_component.tscn" id="3_8rhnt"]
+[ext_resource type="PackedScene" uid="uid://dxpt87tasd6e1" path="res://scenes/gun_component.tscn" id="4_26rvf"]
 
 [node name="ShipObject" type="RigidBody2D" unique_id=870574960]
 gravity_scale = 0.0
@@ -13,20 +12,10 @@ script = ExtResource("1_jbipx")
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2103113105]
 zoom = Vector2(0.75, 0.75)
 
-[node name="ThrustComponent" type="Node" parent="." unique_id=1842787105 node_paths=PackedStringArray("ship")]
-script = ExtResource("1_su8us")
+[node name="ThrustComponent" parent="." unique_id=2035186996 node_paths=PackedStringArray("ship") instance=ExtResource("2_26rvf")]
 ship = NodePath("..")
 
-[node name="GyroComponent" type="Node" parent="." unique_id=1272975539]
-script = ExtResource("2_jbipx")
-gyro_strength = 100000.0
+[node name="GyroComponent" parent="." unique_id=1587976536 instance=ExtResource("3_8rhnt")]
 
-[node name="GunComponent" type="Node" parent="." unique_id=302324681 node_paths=PackedStringArray("ship")]
-script = ExtResource("4_26rvf")
+[node name="GunComponent" parent="." unique_id=1399658564 node_paths=PackedStringArray("ship") instance=ExtResource("4_26rvf")]
 ship = NodePath("..")
-bullet = ExtResource("5_8rhnt")
-
-[node name="Timer" type="Timer" parent="." unique_id=714703760]
-wait_time = 0.15
-
-[connection signal="timeout" from="Timer" to="GunComponent" method="_on_timer_timeout"]

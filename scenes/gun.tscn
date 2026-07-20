@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://03qn2gj7nft5" path="res://scripts/gun.gd" id="1_x77fm"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_k27wv"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x77fm"]
 size = Vector2(40, 64)
 
 [node name="gun" type="RigidBody2D" unique_id=1284626529 groups=["gun"]]
@@ -15,6 +15,6 @@ polygon = PackedVector2Array(-32, 16, -32, 32, -8, 32, 0, 16, 8, 0, 8, -32, -8, 
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1661174657]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=976933264]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1781484443]
 position = Vector2(-12, 0)
-shape = SubResource("RectangleShape2D_k27wv")
+shape = SubResource("RectangleShape2D_x77fm")
