@@ -61,6 +61,9 @@ func _process(delta: float) -> void:
 		remove_part(relative_pos)
 
 func place_part(pos: Vector2):
+	if h_box_container.selected_part not in Inventory.inventory:
+		print("You do not have this part!")
+		return
 	var x_grid = pos.x / 64
 	var y_grid = pos.y / 64
 	if grid[x_grid][y_grid] == null:
@@ -84,6 +87,7 @@ func place_part(pos: Vector2):
 			root_present = true
 			key = "root"
 		grid[x_grid][y_grid] = {key: node_dict}
+		Inventory.remove_item(h_box_container.selected_part)
 		h_box_container.new_part()
 	else:
 		print("Grid is occupied!")
@@ -98,6 +102,7 @@ func remove_part(pos: Vector2):
 		if key == "root":
 			root_present = false
 		grid[x_grid][y_grid].get(key).get("instance").queue_free()
+		Inventory.add_item(grid[x_grid][y_grid].get(key).get("part"))
 		grid[x_grid][y_grid] = null 
 
 func _on_build_button_pressed() -> void:
@@ -158,6 +163,7 @@ func _on_build_button_pressed() -> void:
 	
 	ShipInfo.update_ship(ship_graph)
 	get_tree().change_scene_to_file("res://scenes/game.tscn")
+
 func clear_graph() -> void:
 	for row in grid:
 		for cell in row:
