@@ -3,6 +3,7 @@ class_name ShipObject extends RigidBody2D
 @onready var thrust_component: ThrustComponent = $ThrustComponent
 @onready var gyro_component: GyroComponent = $GyroComponent
 @onready var gun_component: GunComponent = $GunComponent
+@onready var tractorbeam_component: TractorbeamComponent = $TractorbeamComponent
 
 var x_min = -160
 var y_min = -160
@@ -18,14 +19,15 @@ func init_ship():
 		var colider = node.part.collider.instantiate()
 		var x = x_min + node.grid_pos.x * 64
 		var y = y_min + node.grid_pos.y * 64
-		node.part = part
+		#node.part = part
 		node.colider = colider
 		part.position = Vector2(x,y)
+		colider.position = Vector2(x,y)
 		part.rotation_degrees = node.rotation
+		colider.rotation_degrees = node.rotation
 		if node.mirrored:
 			part.scale = Vector2(-1,1)
 			colider.scale = Vector2(-1,1)
-		colider.position = Vector2(x,y)
 		add_child(part)
 		add_child(colider)
 		part.colider = colider
@@ -39,6 +41,7 @@ func init_components() -> void:
 		gyro_component.active_ship = self
 	thrust_component.update_thrusters()
 	gun_component.update_guns()
+	tractorbeam_component.update_tractorbeam()
 
 func part_destroyed(graph_key:String):
 	var ship_graph = ShipInfo.ship_graph
@@ -101,6 +104,5 @@ func check_integrity(removed_key: String) -> void:
 					part.part.reparent(get_parent())
 					part.part.detached()
 					has_detached = true
-				
-				
+	
 	init_components()

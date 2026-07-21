@@ -108,8 +108,6 @@ func init_components() -> void:
 
 func part_destroyed(graph_key:String):
 	var destroyed_node = ship_graph.get(graph_key)
-	print(destroyed_node)
-	print(graph_key)
 	for neighbor_key in destroyed_node.neighbors:
 		var neighbor = ship_graph.get(neighbor_key)
 		for key in neighbor.neighbors:

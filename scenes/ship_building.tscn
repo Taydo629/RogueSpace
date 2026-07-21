@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://diilc2lajhv0u" path="res://scripts/ship_building.gd" id="1_mmh4e"]
 [ext_resource type="Script" uid="uid://b5b3jksvhv4gj" path="res://scripts/h_box_container.gd" id="2_7twq4"]
+[ext_resource type="Resource" uid="uid://nxtyhwldok2c" path="res://data/Parts/tractor_beam.tres" id="8_5r5f6"]
 [ext_resource type="Script" uid="uid://ddu62dgkeau1i" path="res://scripts/hotbar_ui.gd" id="11_5fvha"]
 [ext_resource type="Resource" uid="uid://rp4s55105tbn" path="res://data/Parts/hull.tres" id="12_l6pu8"]
 [ext_resource type="Resource" uid="uid://b4k0ewhy4bwpf" path="res://data/Parts/thruster.tres" id="13_hp4g4"]
@@ -44,6 +45,12 @@ layout_mode = 2
 expand_mode = 2
 script = ExtResource("11_5fvha")
 part = ExtResource("14_xwxvt")
+
+[node name="HotbarUI5" type="TextureRect" parent="PanelContainer/HBoxContainer" unique_id=1611549248]
+layout_mode = 2
+expand_mode = 2
+script = ExtResource("11_5fvha")
+part = ExtResource("8_5r5f6")
 
 [node name="Button" type="Button" parent="." unique_id=1029952404]
 offset_left = 904.0

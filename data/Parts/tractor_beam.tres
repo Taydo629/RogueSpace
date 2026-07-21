@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Part" format=3 uid="uid://nxtyhwldok2c"]
+
+[ext_resource type="PackedScene" uid="uid://cwrgd2ogtl6hd" path="res://scenes/tractor_beam_collider.tscn" id="1_mtvwk"]
+[ext_resource type="Texture2D" uid="uid://pef7qu3o521a" path="res://assets/Tractor_beam.png" id="1_mxndn"]
+[ext_resource type="Script" uid="uid://dfxnbigy6na68" path="res://data/parts.gd" id="1_nhdpj"]
+[ext_resource type="PackedScene" uid="uid://bmppj8nctpawu" path="res://scenes/tractor_beam.tscn" id="2_mtvwk"]
+
+[resource]
+script = ExtResource("1_nhdpj")
+name = "tractor_beam"
+scene = ExtResource("2_mtvwk")
+collider = ExtResource("1_mtvwk")
+image = ExtResource("1_mxndn")
+metadata/_custom_type_script = "uid://dfxnbigy6na68"

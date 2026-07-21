@@ -4,10 +4,13 @@ var inventory: Array
 var number_of_hull: int = 6
 var number_of_thruster: int = 3
 var number_of_gun: int = 2
+var number_of_tractor_beam: int = 1
+
 const CORE = preload("uid://dxn6vqjt4j07d")
 const GUN = preload("uid://bs8ufgr7qnr1y")
 const HULL = preload("uid://rp4s55105tbn")
 const THRUSTER = preload("uid://b4k0ewhy4bwpf")
+const TRACTOR_BEAM = preload("uid://nxtyhwldok2c")
 
 
 func _ready() -> void:
@@ -21,11 +24,15 @@ func _ready() -> void:
 			add_item(THRUSTER)
 		if i < number_of_hull:
 			add_item(HULL)
+		if i < number_of_tractor_beam:
+			add_item(TRACTOR_BEAM)
 		i += 1
-	print(inventory)
 
 func add_item(part: Part) -> void:
 	inventory.append(part)
+	#print("test")
+	#print(len(inventory))
+	#print(inventory)
 
 func remove_item(part: Part) -> void:
 	inventory.erase(part)

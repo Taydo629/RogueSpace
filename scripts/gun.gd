@@ -7,6 +7,8 @@ var colider: CollisionPolygon2D
 var dict_key: String
 
 const PART_COLIDER = preload("uid://diy5darnyar01")
+#part resource
+var part = load("res://data/Parts/gun.tres")
 
 signal part_destroyed
 

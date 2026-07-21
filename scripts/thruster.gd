@@ -8,6 +8,8 @@ var activation_key: String
 var colider: CollisionPolygon2D
 var health: int
 var dict_key: String
+#part resource
+var part = load("res://data/Parts/thruster.tres")
 
 const PART_COLIDER = preload("uid://1k6s26tooh6e")
 

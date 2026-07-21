@@ -4,6 +4,8 @@ extends Node2D
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("build_menu"):
+		for key in ShipInfo.ship_graph.keys():
+			Inventory.add_item(ShipInfo.ship_graph.get(key).get("part"))
 		get_tree().change_scene_to_file("res://scenes/ship_building.tscn")
 
 # This triggers when the scene enters the main scene.

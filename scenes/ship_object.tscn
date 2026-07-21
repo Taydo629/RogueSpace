@@ -4,8 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://mc5jy4pg7ebq" path="res://scenes/thrust_component.tscn" id="2_26rvf"]
 [ext_resource type="PackedScene" uid="uid://qobdfhr074v8" path="res://scenes/gyro_component.tscn" id="3_8rhnt"]
 [ext_resource type="PackedScene" uid="uid://dxpt87tasd6e1" path="res://scenes/gun_component.tscn" id="4_26rvf"]
+[ext_resource type="Script" uid="uid://weqgcpew6a4w" path="res://scripts/tractorbeam_component.gd" id="5_8rhnt"]
 
-[node name="ShipObject" type="RigidBody2D" unique_id=870574960]
+[node name="ShipObject" type="RigidBody2D" unique_id=870574960 groups=["player_ship"]]
 gravity_scale = 0.0
 script = ExtResource("1_jbipx")
 
@@ -21,3 +22,6 @@ gyro_strength = 30000.0
 
 [node name="GunComponent" parent="." unique_id=1399658564 node_paths=PackedStringArray("ship") instance=ExtResource("4_26rvf")]
 ship = NodePath("..")
+
+[node name="TractorbeamComponent" type="Node" parent="." unique_id=173814999]
+script = ExtResource("5_8rhnt")
