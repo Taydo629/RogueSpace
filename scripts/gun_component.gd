@@ -10,20 +10,23 @@ var gun_ready: bool = true
 var timer: Timer
 
 func _ready() -> void:
-	var temp_guns = get_tree().get_nodes_in_group("gun")
-	for i in temp_guns:
-		if i.get_parent() == get_parent():
-			guns.append(i)
+	var siblings = get_parent().get_children()
+	for sibling in siblings:
+		if sibling.is_in_group("gun"):
+			print(sibling)
+			guns.append(sibling)
 	timer = Timer.new()
 	add_child(timer)
 	timer.timeout.connect(_on_timer_timeout)
 	timer.wait_time = fire_rate
 
 func update_guns() -> void:
-	var temp_guns = get_tree().get_nodes_in_group("gun")
-	for i in temp_guns:
-		if i.get_parent() == get_parent():
-			guns.append(i)
+	guns = []
+	var siblings = get_parent().get_children()
+	for sibling in siblings:
+		if sibling.is_in_group("gun"):
+			print(sibling)
+			guns.append(sibling)
 
 func fire() -> void:
 	if gun_ready:

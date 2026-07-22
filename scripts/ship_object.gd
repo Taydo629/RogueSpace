@@ -47,6 +47,8 @@ func init_components() -> void:
 func part_destroyed(graph_key:String):
 	var ship_graph = ShipInfo.ship_graph
 	var destroyed_node = ship_graph.get(graph_key)
+	print("player_ship")
+	print(destroyed_node)
 	for neighbor_key in destroyed_node.neighbors:
 		var neighbor = ship_graph.get(neighbor_key)
 		for key in neighbor.neighbors:

@@ -140,15 +140,17 @@ func init_ship():
 		node.instance = part
 		node.colider = colider
 		part.position = Vector2(x,y)
+		colider.position = Vector2(x,y)
 		part.rotation_degrees = node.rotation
+		colider.rotation_degrees = node.rotation
 		if node.mirrored:
 			part.scale = Vector2(-1,1)
 			colider.scale = Vector2(-1,1)
-		colider.position = Vector2(x,y)
 		add_child(part)
 		add_child(colider)
 		part.colider = colider
 		part.dict_key = key
+				
 	init_components()
 
 func init_components() -> void:
@@ -160,6 +162,8 @@ func init_components() -> void:
 
 func part_destroyed(graph_key:String):
 	var destroyed_node = ship_graph.get(graph_key)
+	print("enemy_ship")
+	print(destroyed_node)
 	for neighbor_key in destroyed_node.neighbors:
 		var neighbor = ship_graph.get(neighbor_key)
 		for key in neighbor.neighbors:
@@ -179,7 +183,6 @@ func check_integrity(removed_key: String) -> void:
 			part.instance.reparent(get_parent())
 			part.instance.detached()
 			has_detached = true
-			init_components()
 	else:
 		for key in ship_graph.keys():
 			var part = ship_graph.get(key)
