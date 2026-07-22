@@ -20,8 +20,8 @@ func init_ship():
 		var colider = node.part.collider.instantiate()
 		var x = x_min + node.grid_pos.x * 64
 		var y = y_min + node.grid_pos.y * 64
-		#node.part = part
-		#node.colider = colider
+		node.instance = part
+		node.colider = colider
 		part.position = Vector2(x,y)
 		colider.position = Vector2(x,y)
 		part.rotation_degrees = node.rotation
@@ -64,16 +64,16 @@ func check_integrity(removed_key: String) -> void:
 			# Currently when root is destroyed all remaining parts are detached
 			# Infuture this could randomly destroy some parts when this happens
 			var part = ship_graph.get(key)
-			part.part.reparent(get_parent())
-			part.part.detached()
+			part.instance.reparent(get_parent())
+			part.instance.detached()
 			has_detached = true
 	else:
 		for key in ship_graph.keys():
 			var part = ship_graph.get(key)
 			if part.neighbors == []:
 				print("part is not connected to any other parts.")
-				part.part.reparent(get_parent())
-				part.part.detached()
+				part.instance.reparent(get_parent())
+				part.instance.detached()
 				has_detached = true
 		
 		# Following is to search if a colection of parts have been severed
@@ -102,8 +102,8 @@ func check_integrity(removed_key: String) -> void:
 				if key not in visited_nodes:
 					var part = ship_graph.get(key)
 					print("part is no longer connected to root.")
-					part.part.reparent(get_parent())
-					part.part.detached()
+					part.instance.reparent(get_parent())
+					part.instance.detached()
 					has_detached = true
 	
 	init_components()
