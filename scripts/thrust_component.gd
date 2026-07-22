@@ -6,16 +6,18 @@ class_name ThrustComponent extends Node
 var thrusters : Array
 
 func _ready() -> void:
-	var temp_thrusters = get_tree().get_nodes_in_group("thruster")
-	for i in temp_thrusters:
-		if i.get_parent() == get_parent():
-			thrusters.append(i)
+	var siblings = get_parent().get_children()
+	for sibling in siblings:
+		if sibling.is_in_group("thruster"):
+			thrusters.append(sibling)
 
 func update_thrusters() -> void:
-	var temp_thrusters = get_tree().get_nodes_in_group("thruster")
-	for i in temp_thrusters:
-		if i.get_parent() == get_parent():
-			thrusters.append(i)
+	thrusters = []
+	var siblings = get_parent().get_children()
+	for sibling in siblings:
+		if sibling.is_in_group("thruster"):
+			print(sibling)
+			thrusters.append(sibling)
 
 func thrusters_on() -> void:
 	for node in thrusters:

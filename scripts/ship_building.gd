@@ -160,7 +160,6 @@ func _on_build_button_pressed() -> void:
 	#print(" ")
 	#print(" ")
 	#print(" ")
-	
 	ShipInfo.update_ship(ship_graph)
 	get_tree().change_scene_to_file("res://scenes/game.tscn")
 

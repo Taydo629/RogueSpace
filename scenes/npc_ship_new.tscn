@@ -5,12 +5,46 @@
 [ext_resource type="Resource" uid="uid://b4k0ewhy4bwpf" path="res://data/Parts/thruster.tres" id="3_qitrw"]
 [ext_resource type="Resource" uid="uid://bs8ufgr7qnr1y" path="res://data/Parts/gun.tres" id="4_wg8qu"]
 [ext_resource type="PackedScene" uid="uid://dxpt87tasd6e1" path="res://scenes/gun_component.tscn" id="5_qitrw"]
+[ext_resource type="Resource" uid="uid://dxn6vqjt4j07d" path="res://data/Parts/core.tres" id="5_wg8qu"]
+[ext_resource type="PackedScene" uid="uid://qobdfhr074v8" path="res://scenes/gyro_component.tscn" id="7_txqfp"]
+[ext_resource type="PackedScene" uid="uid://mc5jy4pg7ebq" path="res://scenes/thrust_component.tscn" id="8_cgh7x"]
+[ext_resource type="PackedScene" uid="uid://cbt1q0semqunw" path="res://scenes/enemy_ai_input_component.tscn" id="9_5xuyp"]
+[ext_resource type="Script" uid="uid://cca2mi4ivk7le" path="res://scripts/enemy_ai_input_component.gd" id="10_75fqi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5xuyp"]
+radius = 704.0
 
 [node name="NPC_ship_new" type="RigidBody2D" unique_id=1313879842]
+linear_damp = 1.0
+angular_damp = 2.0
 script = ExtResource("1_gc48e")
 hull = ExtResource("2_5567t")
 thruster = ExtResource("3_qitrw")
 gun = ExtResource("4_wg8qu")
+core = ExtResource("5_wg8qu")
 
 [node name="GunComponent" parent="." unique_id=1399658564 node_paths=PackedStringArray("ship") instance=ExtResource("5_qitrw")]
 ship = NodePath("..")
+
+[node name="GyroComponent" parent="." unique_id=1587976536 instance=ExtResource("7_txqfp")]
+gyro_strength = 5000.0
+
+[node name="ThrustComponent" parent="." unique_id=2035186996 instance=ExtResource("8_cgh7x")]
+
+[node name="EnemyAIInputComponent" parent="." unique_id=315667873 instance=ExtResource("9_5xuyp")]
+script = ExtResource("10_75fqi")
+
+[node name="VisionArea" type="Area2D" parent="." unique_id=1916676230]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VisionArea" unique_id=1458237216]
+shape = SubResource("CircleShape2D_5xuyp")
+
+[node name="FireArea" type="Area2D" parent="." unique_id=1778357749]
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="FireArea" unique_id=22073715]
+polygon = PackedVector2Array(-128, 0, 128, 0, 384, -704, 0, -896, -384, -704)
+
+[connection signal="body_entered" from="VisionArea" to="EnemyAIInputComponent" method="_on_vision_area_body_entered"]
+[connection signal="body_exited" from="VisionArea" to="EnemyAIInputComponent" method="_on_vision_area_body_exited"]
+[connection signal="body_entered" from="FireArea" to="EnemyAIInputComponent" method="_on_fire_area_body_entered"]
+[connection signal="body_exited" from="FireArea" to="EnemyAIInputComponent" method="_on_fire_area_body_exited"]

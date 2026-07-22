@@ -25,7 +25,7 @@ func take_damage(damage: int) -> void:
 		if colider != null:
 			colider.queue_free()
 		colider = null
-		queue_free()
+		call_deferred("queue_free")
 	else:
 		health = new_health
 

@@ -1,0 +1,110 @@
+{ 
+    "11": { 
+        "part": gun, 
+        "colider": null, 
+        "grid_pos": Vector2(1.0, 1.0), 
+        "rotation": 0.0, 
+        "mirrored": true, 
+        "neighbors": ["5", "3"], 
+        "instance": null 
+    }, 
+    "5": { 
+        "part": hull, 
+        "colider": null, 
+        "grid_pos": Vector2(1.0, 2.0), 
+        "rotation": 0.0, 
+        "mirrored": false, 
+        "neighbors": ["11", "6", "4"], 
+        "instance": null
+    }, 
+    "6": { 
+        "part": hull, 
+        "colider": null, 
+        "grid_pos": Vector2(1.0, 3.0), 
+        "rotation": 0.0, 
+        "mirrored": false, 
+        "neighbors": ["5", "14", "13"], 
+        "instance": null 
+    }, 
+    "14": { 
+        "part": thruster, 
+        "colider": null, 
+        "grid_pos": Vector2(1.0, 4.0), 
+        "rotation": 0.0, 
+        "mirrored": false, 
+        "neighbors": ["6"], 
+        "instance": null 
+    }, 
+    "root": { 
+        "part": core, 
+        "colider": null, 
+        "grid_pos": Vector2(2.0, 0.0), 
+        "rotation": 0.0, 
+        "mirrored": false, 
+        "neighbors": ["3"], 
+        "instance": null 
+    }, 
+    "3": { 
+        "part": hull, 
+        "colider": null, 
+        "grid_pos": Vector2(2.0, 1.0), 
+        "rotation": 0.0, 
+        "mirrored": false, 
+        "neighbors": ["root", "4", "11", "12"], 
+        "instance": null
+    }, 
+    "4": { 
+        "part": hull, 
+        "colider": null, 
+        "grid_pos": Vector2(2.0, 2.0), 
+        "rotation": 0.0, 
+        "mirrored": false, 
+        "neighbors": ["3", "13", "5", "7"], 
+        "instance": null 
+    }, 
+    "13": { 
+        "part": thruster, 
+        "colider": null, 
+        "grid_pos": Vector2(2.0, 3.0), 
+        "rotation": 0.0, 
+        "mirrored": false, 
+        "neighbors": ["4", "6", "8"], 
+        "instance": null
+    }, 
+    "12": { 
+        "part": gun, 
+        "colider": null, 
+        "grid_pos": Vector2(3.0, 1.0), 
+        "rotation": 0.0, 
+        "mirrored": false, 
+        "neighbors": ["7", "3"], 
+        "instance": null
+    }, 
+    "7": { 
+        "part": hull, 
+        "colider": null, 
+        "grid_pos": Vector2(3.0, 2.0), 
+        "rotation": 0.0, 
+        "mirrored": false, 
+        "neighbors": ["12", "8", "4"], 
+        "instance": null
+    }, 
+    "8": { 
+        "part": hull, 
+        "colider": null, 
+        "grid_pos": Vector2(3.0, 3.0), 
+        "rotation": 0.0, 
+        "mirrored": false, 
+        "neighbors": ["7", "15", "13"], 
+        "instance": null
+    }, 
+    "15": { 
+        "part": thruster, 
+        "colider": null, 
+        "grid_pos": Vector2(3.0, 4.0), 
+        "rotation": 0.0, 
+        "mirrored": false, 
+        "neighbors": ["8"], 
+        "instance": null
+    } 
+}

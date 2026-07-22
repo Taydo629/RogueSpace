@@ -3,79 +3,128 @@ extends RigidBody2D
 @export var hull: Part
 @export var thruster: Part
 @export var gun: Part
-var x_min = -160
-var y_min = -160
+@export var core: Part
+var x_min = -128
+var y_min = -128
 var parts: Array
 var ship_graph: Dictionary
 @onready var gun_component: GunComponent = $GunComponent
+@onready var gyro_component: GyroComponent = $GyroComponent
+@onready var thrust_component: ThrustComponent = $ThrustComponent
+@onready var vision_area: Area2D = $VisionArea
 
 func _ready() -> void:
-	ship_graph = {
-		"root": {
-			"part": hull,
-			"colider": null,
-			"grid_pos": Vector2(3,1),
-			"rotation": 0,
-			"mirrored": false,
-			"neighbors": ["2","3"]
-		},
-		"2": {
-			"part": gun,
-			"colider": null,
-			"grid_pos": Vector2(4,1),
-			"rotation": 0,
-			"mirrored": false,
-			"neighbors": ["root","4"]
-		},
-		"3": {
-			"part": hull,
-			"colider": null,
-			"grid_pos": Vector2(3,2),
-			"rotation": 0,
-			"mirrored": false,
-			"neighbors": ["root","4","5"]
-		},
-		"4": {
-			"part": hull,
-			"colider": null,
-			"grid_pos": Vector2(4,2),
-			"rotation": 0,
-			"mirrored": false,
-			"neighbors": ["2","3","6"]
-		},
-		"5": {
-			"part": hull,
-			"colider": null,
-			"grid_pos": Vector2(3,3),
-			"rotation": 0,
-			"mirrored": false,
-			"neighbors": ["3","6","7"]
-		},
-		"6": {
-			"part": hull,
-			"colider": null,
-			"grid_pos": Vector2(4,3),
-			"rotation": 0,
-			"mirrored": false,
-			"neighbors": ["4","5","8"]
-		},
-		"7": {
-			"part": hull,
-			"colider": null,
-			"grid_pos": Vector2(3,4),
-			"rotation": 0,
-			"mirrored": false,
-			"neighbors": ["5","8"]
-		},
-		"8": {
-			"part": hull,
-			"colider": null,
-			"grid_pos": Vector2(4,4),
-			"rotation": 0,
-			"mirrored": false,
-			"neighbors": ["6","7"]
-		}
-	}
+	ship_graph = { 
+					"11": { 
+						"part": gun, 
+						"colider": null, 
+						"grid_pos": Vector2(1.0, 1.0), 
+						"rotation": 0.0, 
+						"mirrored": true, 
+						"neighbors": ["5", "3"], 
+						"instance": null 
+					}, 
+					"5": { 
+						"part": hull, 
+						"colider": null, 
+						"grid_pos": Vector2(1.0, 2.0), 
+						"rotation": 0.0, 
+						"mirrored": false, 
+						"neighbors": ["11", "6", "4"], 
+						"instance": null
+					}, 
+					"6": { 
+						"part": hull, 
+						"colider": null, 
+						"grid_pos": Vector2(1.0, 3.0), 
+						"rotation": 0.0, 
+						"mirrored": false, 
+						"neighbors": ["5", "14", "13"], 
+						"instance": null 
+					}, 
+					"14": { 
+						"part": thruster, 
+						"colider": null, 
+						"grid_pos": Vector2(1.0, 4.0), 
+						"rotation": 0.0, 
+						"mirrored": false, 
+						"neighbors": ["6"], 
+						"instance": null 
+					}, 
+					"root": { 
+						"part": core, 
+						"colider": null, 
+						"grid_pos": Vector2(2.0, 0.0), 
+						"rotation": 0.0, 
+						"mirrored": false, 
+						"neighbors": ["3"], 
+						"instance": null 
+					}, 
+					"3": { 
+						"part": hull, 
+						"colider": null, 
+						"grid_pos": Vector2(2.0, 1.0), 
+						"rotation": 0.0, 
+						"mirrored": false, 
+						"neighbors": ["root", "4", "11", "12"], 
+						"instance": null
+					}, 
+					"4": { 
+						"part": hull, 
+						"colider": null, 
+						"grid_pos": Vector2(2.0, 2.0), 
+						"rotation": 0.0, 
+						"mirrored": false, 
+						"neighbors": ["3", "13", "5", "7"], 
+						"instance": null 
+					}, 
+					"13": { 
+						"part": thruster, 
+						"colider": null, 
+						"grid_pos": Vector2(2.0, 3.0), 
+						"rotation": 0.0, 
+						"mirrored": false, 
+						"neighbors": ["4", "6", "8"], 
+						"instance": null
+					}, 
+					"12": { 
+						"part": gun, 
+						"colider": null, 
+						"grid_pos": Vector2(3.0, 1.0), 
+						"rotation": 0.0, 
+						"mirrored": false, 
+						"neighbors": ["7", "3"], 
+						"instance": null
+					}, 
+					"7": { 
+						"part": hull, 
+						"colider": null, 
+						"grid_pos": Vector2(3.0, 2.0), 
+						"rotation": 0.0, 
+						"mirrored": false, 
+						"neighbors": ["12", "8", "4"], 
+						"instance": null
+					}, 
+					"8": { 
+						"part": hull, 
+						"colider": null, 
+						"grid_pos": Vector2(3.0, 3.0), 
+						"rotation": 0.0, 
+						"mirrored": false, 
+						"neighbors": ["7", "15", "13"], 
+						"instance": null
+					}, 
+					"15": { 
+						"part": thruster, 
+						"colider": null, 
+						"grid_pos": Vector2(3.0, 4.0), 
+						"rotation": 0.0, 
+						"mirrored": false, 
+						"neighbors": ["8"], 
+						"instance": null
+					} 
+				}
+
 	init_ship()
 
 func init_ship():
@@ -85,6 +134,9 @@ func init_ship():
 		var colider = node.part.collider.instantiate()
 		var x = x_min + node.grid_pos.x * 64
 		var y = y_min + node.grid_pos.y * 64
+		if node.part.name == "core":
+#			# Set vision area to core position
+			vision_area.position = Vector2(x,y)
 		node.instance = part
 		node.colider = colider
 		part.position = Vector2(x,y)
@@ -101,9 +153,9 @@ func init_ship():
 
 func init_components() -> void:
 	center_of_mass_mode = RigidBody2D.CENTER_OF_MASS_MODE_AUTO
-	#if gyro_component:
-		#gyro_component.active_ship = self
-	#thrust_component.update_thrusters()
+	if gyro_component:
+		gyro_component.active_ship = self
+	thrust_component.update_thrusters()
 	gun_component.update_guns()
 
 func part_destroyed(graph_key:String):
@@ -127,6 +179,7 @@ func check_integrity(removed_key: String) -> void:
 			part.instance.reparent(get_parent())
 			part.instance.detached()
 			has_detached = true
+			init_components()
 	else:
 		for key in ship_graph.keys():
 			var part = ship_graph.get(key)
@@ -165,6 +218,5 @@ func check_integrity(removed_key: String) -> void:
 					part.instance.reparent(get_parent())
 					part.instance.detached()
 					has_detached = true
-				
-				
 	
+	init_components()

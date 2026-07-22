@@ -9,6 +9,7 @@
 
 [node name="ShipObject" type="RigidBody2D" unique_id=870574960 groups=["player_ship"]]
 gravity_scale = 0.0
+linear_damp = 1.0
 angular_damp = 2.0
 script = ExtResource("1_jbipx")
 

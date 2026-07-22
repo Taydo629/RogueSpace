@@ -22,7 +22,7 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_lnu2h")
 [node name="ShipObject" parent="." unique_id=870574960 instance=ExtResource("3_lnu2h")]
 
 [node name="NPC_ship_new" parent="." unique_id=1313879842 instance=ExtResource("4_lbhrr")]
-position = Vector2(168, -272)
+position = Vector2(1632, 1152)
 
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
 [connection signal="ready" from="." to="." method="_on_ready"]

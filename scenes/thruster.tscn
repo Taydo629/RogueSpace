@@ -11,6 +11,7 @@ size = Vector2(32, 16)
 
 [node name="thruster" type="RigidBody2D" unique_id=845600484 groups=["thruster"]]
 freeze = true
+linear_damp = 1.0
 script = ExtResource("1_vbl7p")
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=560278180]

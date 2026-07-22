@@ -13,6 +13,7 @@ radius = 24.0
 
 [node name="TractorBeam" type="RigidBody2D" unique_id=599359615 groups=["tractor_beam"]]
 freeze = true
+linear_damp = 1.0
 script = ExtResource("1_5evr5")
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=1057629506]
