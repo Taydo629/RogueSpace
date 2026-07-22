@@ -21,7 +21,7 @@ func init_ship():
 		var x = x_min + node.grid_pos.x * 64
 		var y = y_min + node.grid_pos.y * 64
 		#node.part = part
-		node.colider = colider
+		#node.colider = colider
 		part.position = Vector2(x,y)
 		colider.position = Vector2(x,y)
 		part.rotation_degrees = node.rotation

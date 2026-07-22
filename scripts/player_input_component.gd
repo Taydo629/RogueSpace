@@ -9,7 +9,6 @@ signal mouse_pos_changed
 
 func _ready() -> void:
 	var sibling_array: Array = get_parent().get_children()
-	print(sibling_array)
 	for sibling in sibling_array:
 		if sibling.has_method("fire"):
 			fire_guns.connect(sibling.fire)
@@ -23,7 +22,6 @@ func _ready() -> void:
 			deactivate_tractorbeam.connect(sibling.deactivate_tractorbeam)
 		if sibling.has_method("rotate_to"):
 			mouse_pos_changed.connect(sibling.rotate_to)
-	pass
 
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("left_click"):

@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://qobdfhr074v8" path="res://scenes/gyro_component.tscn" id="3_8rhnt"]
 [ext_resource type="PackedScene" uid="uid://dxpt87tasd6e1" path="res://scenes/gun_component.tscn" id="4_26rvf"]
 [ext_resource type="PackedScene" uid="uid://j8dgeq4a20qq" path="res://scenes/tractorbeam_component.tscn" id="5_8rhnt"]
-[ext_resource type="Script" uid="uid://c6wphei5efnbm" path="res://scripts/player_input_component.gd" id="6_8tmlb"]
+[ext_resource type="PackedScene" uid="uid://b1trjrbjjtre5" path="res://scenes/player_input_component.tscn" id="6_8tmlb"]
 
 [node name="ShipObject" type="RigidBody2D" unique_id=870574960 groups=["player_ship"]]
 gravity_scale = 0.0
@@ -27,5 +27,4 @@ ship = NodePath("..")
 
 [node name="TractorbeamComponent" parent="." unique_id=471176929 instance=ExtResource("5_8rhnt")]
 
-[node name="PlayerInputComponent" type="Node" parent="." unique_id=1939734975]
-script = ExtResource("6_8tmlb")
+[node name="PlayerInputComponent" parent="." unique_id=965550089 instance=ExtResource("6_8tmlb")]
