@@ -9,7 +9,7 @@ colors = PackedColorArray(7.315874e-06, 0.73193437, 0.9951952, 1, 1, 1, 1, 1)
 size = Vector2(64, 16)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5evr5"]
-radius = 40.0
+radius = 24.0
 
 [node name="TractorBeam" type="RigidBody2D" unique_id=599359615 groups=["tractor_beam"]]
 freeze = true
@@ -47,7 +47,7 @@ shape = SubResource("RectangleShape2D_5evr5")
 [node name="Pickup_area" type="Area2D" parent="." unique_id=997805360]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pickup_area" unique_id=1759513439]
-position = Vector2(0, -16)
+position = Vector2(0, 8)
 shape = SubResource("CircleShape2D_5evr5")
 
 [node name="Beam_area" type="Area2D" parent="." unique_id=643198015]
@@ -56,4 +56,5 @@ shape = SubResource("CircleShape2D_5evr5")
 polygon = PackedVector2Array(-24, 16, -64, -200, 64, -200, 24, 16)
 
 [connection signal="body_entered" from="Pickup_area" to="." method="_collect_part"]
-[connection signal="body_entered" from="Beam_area" to="." method="_attract_part"]
+[connection signal="body_entered" from="Beam_area" to="." method="_part_entered_beam"]
+[connection signal="body_exited" from="Beam_area" to="." method="_part_left_beam"]

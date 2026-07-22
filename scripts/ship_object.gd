@@ -4,9 +4,10 @@ class_name ShipObject extends RigidBody2D
 @onready var gyro_component: GyroComponent = $GyroComponent
 @onready var gun_component: GunComponent = $GunComponent
 @onready var tractorbeam_component: TractorbeamComponent = $TractorbeamComponent
+@onready var player_input_component: Node = $PlayerInputComponent
 
-var x_min = -160
-var y_min = -160
+var x_min = -128
+var y_min = -128
 
 func _ready() -> void:
 	pass
@@ -106,3 +107,6 @@ func check_integrity(removed_key: String) -> void:
 					has_detached = true
 	
 	init_components()
+
+func _physics_process(delta: float) -> void:
+	pass

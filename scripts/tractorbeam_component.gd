@@ -22,8 +22,8 @@ func update_tractorbeam() -> void:
 		if i.get_parent() == get_parent():
 			tractorbeams.append(i)
 
-func _physics_process(_delta: float) -> void:
-	if Input.is_action_pressed("right_click") and tractorbeam_ready:
+func activate_tractorbeam() -> void:
+	if tractorbeam_ready:
 		for node in tractorbeams:
 			if node != null:
 				if not node is Node2D:
@@ -32,13 +32,14 @@ func _physics_process(_delta: float) -> void:
 				node.beam_active = true
 				timer.start()
 				tractorbeam_ready = false
-	if Input.is_action_just_released("right_click"):
-		for node in tractorbeams:
-			if node != null:
-				if not node is Node2D:
-					continue
-				# Tractor beam function here
-				node.beam_active = false
+
+func deactivate_tractorbeam() -> void:
+	for node in tractorbeams:
+		if node != null:
+			if not node is Node2D:
+				continue
+			# Tractor beam function here
+			node.beam_active = false
 
 func _on_timer_timeout() -> void:
 	# Cooldown ended gun is ready again

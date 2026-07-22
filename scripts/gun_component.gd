@@ -25,8 +25,8 @@ func update_guns() -> void:
 		if i.get_parent() == get_parent():
 			guns.append(i)
 
-func _physics_process(_delta: float) -> void:
-	if Input.is_action_pressed("left_click") and gun_ready:
+func fire() -> void:
+	if gun_ready:
 		for node in guns:
 			if node != null:
 				if not node is Node2D:
