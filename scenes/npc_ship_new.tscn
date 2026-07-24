@@ -15,7 +15,7 @@
 radius = 704.0
 
 [node name="NPC_ship_new" type="RigidBody2D" unique_id=1313879842]
-linear_damp = 1.0
+linear_damp = 2.0
 angular_damp = 2.0
 script = ExtResource("1_gc48e")
 hull = ExtResource("2_5567t")
@@ -25,14 +25,18 @@ core = ExtResource("5_wg8qu")
 
 [node name="GunComponent" parent="." unique_id=1399658564 node_paths=PackedStringArray("ship") instance=ExtResource("5_qitrw")]
 ship = NodePath("..")
+fire_rate = 0.5
 
 [node name="GyroComponent" parent="." unique_id=1587976536 instance=ExtResource("7_txqfp")]
-gyro_strength = 5000.0
+gyro_strength = 20000.0
 
-[node name="ThrustComponent" parent="." unique_id=2035186996 instance=ExtResource("8_cgh7x")]
+[node name="ThrustComponent" parent="." unique_id=2035186996 node_paths=PackedStringArray("ship") instance=ExtResource("8_cgh7x")]
+ship = NodePath("..")
 
-[node name="EnemyAIInputComponent" parent="." unique_id=315667873 instance=ExtResource("9_5xuyp")]
+[node name="EnemyAIInputComponent" parent="." unique_id=315667873 node_paths=PackedStringArray("thrust_component", "gyro_component") instance=ExtResource("9_5xuyp")]
 script = ExtResource("10_75fqi")
+thrust_component = NodePath("../ThrustComponent")
+gyro_component = NodePath("../GyroComponent")
 
 [node name="VisionArea" type="Area2D" parent="." unique_id=1916676230]
 
@@ -42,7 +46,7 @@ shape = SubResource("CircleShape2D_5xuyp")
 [node name="FireArea" type="Area2D" parent="." unique_id=1778357749]
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="FireArea" unique_id=22073715]
-polygon = PackedVector2Array(-128, 0, 128, 0, 384, -704, 0, -896, -384, -704)
+polygon = PackedVector2Array(-128, 0, 128, 0, 128, -832, -120, -832)
 
 [connection signal="body_entered" from="VisionArea" to="EnemyAIInputComponent" method="_on_vision_area_body_entered"]
 [connection signal="body_exited" from="VisionArea" to="EnemyAIInputComponent" method="_on_vision_area_body_exited"]

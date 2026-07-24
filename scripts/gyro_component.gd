@@ -17,7 +17,10 @@ var active_ship: RigidBody2D = null
 		#active_ship.constant_torque = 0
 
 func rotate_to(target_pos: Vector2) -> void:
-	var direction = (target_pos - get_parent().global_position).normalized()
-	var angle_diff = (-get_parent().transform.y).angle_to(direction)
+	var angle_diff = get_angle_to_target(target_pos)
 	if abs(angle_diff) >= 0.01:
 		get_parent().apply_torque(angle_diff * gyro_strength)
+
+func get_angle_to_target(target_pos: Vector2) -> float:
+	var direction = (target_pos - get_parent().global_position).normalized()
+	return (-get_parent().transform.y).angle_to(direction)

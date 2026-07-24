@@ -2,7 +2,7 @@ class_name GunComponent extends Node
 
 @export var ship : RigidBody2D
 @export var bullet : PackedScene
-@export var fire_rate : float = 0.15
+@export var fire_rate : float = 0.2
 
 var guns : Array
 var muzzle_offset: Vector2 = Vector2(0,-32)
