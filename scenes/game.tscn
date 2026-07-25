@@ -3,7 +3,9 @@
 [ext_resource type="Script" uid="uid://b7is6gknyl6cr" path="res://scripts/game.gd" id="1_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://7311c1hg8dft" path="res://assets/Space-Background-Image-2-1024x682.jpg" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://cf1du3owblsrl" path="res://scenes/ship_object.tscn" id="3_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://nq4gl5ptuuuv" path="res://scenes/player_ui.tscn" id="3_p57ef"]
 [ext_resource type="PackedScene" uid="uid://c4rflhs7u6xny" path="res://scenes/npc_ship_new.tscn" id="4_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://c8xodk0qkunlp" path="res://scenes/asteroid.tscn" id="5_iywne"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lnu2h"]
 texture = ExtResource("2_yqjtg")
@@ -22,7 +24,73 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_lnu2h")
 [node name="ShipObject" parent="." unique_id=870574960 instance=ExtResource("3_lnu2h")]
 
 [node name="NPC_ship_new" parent="." unique_id=1313879842 instance=ExtResource("4_lbhrr")]
-position = Vector2(1632, 1152)
+position = Vector2(4176, 2848)
+
+[node name="NPC_ship_new2" parent="." unique_id=321189701 instance=ExtResource("4_lbhrr")]
+position = Vector2(-6696, 2376)
+
+[node name="NPC_ship_new3" parent="." unique_id=773003101 instance=ExtResource("4_lbhrr")]
+position = Vector2(-2664, -4064)
+
+[node name="NPC_ship_new4" parent="." unique_id=1545372510 instance=ExtResource("4_lbhrr")]
+position = Vector2(5960, -3368)
+
+[node name="Environment" type="Node2D" parent="." unique_id=514364469]
+
+[node name="Asteroid" parent="Environment" unique_id=183550893 instance=ExtResource("5_iywne")]
+position = Vector2(-5168, -1224)
+rotation = -1.0471976
+
+[node name="Asteroid2" parent="Environment" unique_id=1577182936 instance=ExtResource("5_iywne")]
+position = Vector2(-1800, -2672)
+rotation = 1.8325958
+
+[node name="Asteroid3" parent="Environment" unique_id=1999275460 instance=ExtResource("5_iywne")]
+position = Vector2(-2512, 2000)
+
+[node name="Asteroid7" parent="Environment" unique_id=1134544526 instance=ExtResource("5_iywne")]
+position = Vector2(-5936, 4496)
+
+[node name="Asteroid8" parent="Environment" unique_id=797987562 instance=ExtResource("5_iywne")]
+position = Vector2(1040, 4216)
+rotation = 1.3089969
+
+[node name="Asteroid9" parent="Environment" unique_id=1199826406 instance=ExtResource("5_iywne")]
+position = Vector2(7424, 4736)
+rotation = 1.3089969
+
+[node name="Asteroid10" parent="Environment" unique_id=2062642004 instance=ExtResource("5_iywne")]
+position = Vector2(8072, 1144)
+rotation = -2.4438355
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="Asteroid11" parent="Environment" unique_id=837604604 instance=ExtResource("5_iywne")]
+position = Vector2(687.999, -5152.001)
+
+[node name="Asteroid12" parent="Environment" unique_id=416364274 instance=ExtResource("5_iywne")]
+position = Vector2(-7008, -4824)
+
+[node name="Asteroid4" parent="Environment" unique_id=1397680672 instance=ExtResource("5_iywne")]
+position = Vector2(2848, 1776)
+
+[node name="Asteroid5" parent="Environment" unique_id=406920261 instance=ExtResource("5_iywne")]
+position = Vector2(3608, -3096)
+rotation = -2.5493817
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="Asteroid6" parent="Environment" unique_id=140662066 instance=ExtResource("5_iywne")]
+position = Vector2(4152, -544.0001)
+rotation = -0.5235988
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1671896998]
+scale = Vector2(0.5, 0.5)
+transform = Transform2D(0.5, 0, 0, 0.5, 0, 0)
+
+[node name="PlayerUI" parent="CanvasLayer" unique_id=2136722435 instance=ExtResource("3_p57ef")]
+anchor_right = 2.0
+anchor_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
 [connection signal="ready" from="." to="." method="_on_ready"]

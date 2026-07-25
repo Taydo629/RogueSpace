@@ -3,6 +3,7 @@ extends RigidBody2D
 @export var thrust_force: int = 1
 var thrust_direction: Vector2 = Vector2.UP
 var activation_key: String
+@onready var polygon_2d: Polygon2D = $Polygon2D
 @onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
 @export var max_health: int = 100
 var colider: CollisionPolygon2D
@@ -31,6 +32,8 @@ func take_damage(damage: int) -> void:
 		queue_free()
 	else:
 		health = new_health
+		var damage_G_B_value = float(new_health)/float(max_health)
+		polygon_2d.color = Color(0.45,0.45*damage_G_B_value,0.45*damage_G_B_value,1)
 
 func detached() -> void:
 	if colider != null:

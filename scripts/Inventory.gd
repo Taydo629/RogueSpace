@@ -12,6 +12,7 @@ const HULL = preload("uid://rp4s55105tbn")
 const THRUSTER = preload("uid://b4k0ewhy4bwpf")
 const TRACTOR_BEAM = preload("uid://nxtyhwldok2c")
 
+signal item_pickup
 
 func _ready() -> void:
 	print("initialise starting items")
@@ -30,6 +31,7 @@ func _ready() -> void:
 
 func add_item(part: Part) -> void:
 	inventory.append(part)
+	item_pickup.emit(part)
 	#print("test")
 	#print(len(inventory))
 	#print(inventory)

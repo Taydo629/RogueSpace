@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://c8xodk0qkunlp"]
+
+[node name="Asteroid" type="StaticBody2D" unique_id=183550893]
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1304299826]
+color = Color(0.31061712, 0.31061712, 0.3106171, 1)
+polygon = PackedVector2Array(-96, -40, -184, 64, -96, 160, -32, 144, -8, 256, 88, 304, 232, 216, 184, 104, 320, 8, 240, -56, 216, -176, 56, -248, -104, -296, -224, -232, -200, -136, -136, -112)
+
+[node name="Polygon2D" type="Polygon2D" parent="Polygon2D" unique_id=70818476]
+color = Color(0.28485027, 0.28485027, 0.28485027, 1)
+polygon = PackedVector2Array(-112, -184, -104, -216, -80, -208, -72, -184, -88, -168)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Polygon2D" unique_id=1045198271]
+position = Vector2(95.999985, 111.99999)
+rotation = 0.61105806
+color = Color(0.28485027, 0.28485027, 0.28485027, 1)
+polygon = PackedVector2Array(-112, -184, -104, -216, -80, -208, -72, -184, -88, -168)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D" unique_id=2129401215]
+position = Vector2(-87.999985, 280)
+rotation = 0.61105806
+color = Color(0.28485027, 0.28485027, 0.28485027, 1)
+polygon = PackedVector2Array(-112, -184, -104, -216, -80, -208, -72, -184, -88, -168)
+
+[node name="Polygon2D4" type="Polygon2D" parent="Polygon2D" unique_id=955241936]
+position = Vector2(-16, 144)
+rotation = 0.61105806
+color = Color(0.28485027, 0.28485027, 0.28485027, 1)
+polygon = PackedVector2Array(-112, -184, -104, -216, -80, -208, -72, -184, -88, -168)
+
+[node name="Polygon2D5" type="Polygon2D" parent="Polygon2D" unique_id=812631028]
+position = Vector2(56, 400)
+rotation = 0.61105806
+color = Color(0.28485027, 0.28485027, 0.28485027, 1)
+polygon = PackedVector2Array(-112, -184, -104, -216, -80, -208, -72, -184, -88, -168)
+
+[node name="Polygon2D6" type="Polygon2D" parent="Polygon2D" unique_id=975818848]
+position = Vector2(103.999985, 232)
+rotation = 0.61105806
+color = Color(0.28485027, 0.28485027, 0.28485027, 1)
+polygon = PackedVector2Array(-112, -184, -104, -216, -80, -208, -72, -184, -88, -168)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=520718539]
+polygon = PackedVector2Array(240, -56, 216, -176, 56, -248, -104, -296, -224, -232, -200, -136, -136, -112, -96, -40, -184, 64, -96, 160, -32, 144, -8, 256, 88, 304, 232, 216, 184, 104, 320, 8)

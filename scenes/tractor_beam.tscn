@@ -15,6 +15,7 @@ radius = 24.0
 freeze = true
 linear_damp = 1.0
 script = ExtResource("1_5evr5")
+max_health = 150
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=1057629506]
 position = Vector2(0, -8)

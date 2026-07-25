@@ -41,7 +41,6 @@ func _process(delta: float) -> void:
 		if target != null:
 			target_pos = target.global_position
 			var angle_to_target: float = abs(gyro_component.get_angle_to_target(target_pos))
-			print(distance_to_target())
 			if angle_to_target <= 0.1*PI and distance_to_target() >= 700:
 				activate_thrusters.emit()
 			else:

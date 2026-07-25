@@ -1,10 +1,11 @@
 extends RigidBody2D
 
-@export var max_health: int = 100
+@export var max_health: int = 200
 
 var health: int
 var colider: CollisionShape2D
 var dict_key: String
+@onready var polygon_2d: Polygon2D = $Polygon2D
 
 const PART_COLIDER = preload("uid://d0dggj0ghuve3")
 #part resource
@@ -28,6 +29,8 @@ func take_damage(damage: int) -> void:
 		queue_free()
 	else:
 		health = new_health
+		var damage_G_B_value = float(new_health)/float(max_health)
+		polygon_2d.color = Color(1,damage_G_B_value,damage_G_B_value,1)
 
 func detached() -> void:
 	if colider != null:

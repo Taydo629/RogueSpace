@@ -9,9 +9,10 @@ size = Vector2(40, 64)
 freeze = true
 linear_damp = 1.0
 script = ExtResource("1_x77fm")
+max_health = 150
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=1444284456]
-color = Color(0.14577913, 0.18097389, 0.27069473, 1)
+color = Color(0.23529412, 0.23529412, 0.23529412, 1)
 polygon = PackedVector2Array(-32, 16, -32, 32, -8, 32, 0, 16, 8, 0, 8, -32, -8, -32, -8, 0, -16, 16)
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1661174657]

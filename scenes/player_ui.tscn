@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://nq4gl5ptuuuv"]
+
+[ext_resource type="Script" uid="uid://bgsosccfdxhq" path="res://scripts/player_ui.gd" id="1_sk4pr"]
+[ext_resource type="Script" uid="uid://bqqe7u1h368pq" path="res://scripts/pickup_ui.gd" id="2_48xfa"]
+
+[node name="PlayerUI" type="Control" unique_id=2136722435]
+layout_mode = 3
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_sk4pr")
+
+[node name="Help_info" type="VBoxContainer" parent="." unique_id=1773222403]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -368.0
+offset_top = -84.0
+offset_right = -31.0
+offset_bottom = 72.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Help_info" unique_id=1394162406]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Mouse to aim ship"
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="Help_info" unique_id=2003330009]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Left click to fire weapons"
+horizontal_alignment = 2
+
+[node name="Label3" type="Label" parent="Help_info" unique_id=1653645852]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Right click to activate tractor beam"
+horizontal_alignment = 2
+
+[node name="Label4" type="Label" parent="Help_info" unique_id=1177881855]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Space to use thrusters"
+horizontal_alignment = 2
+
+[node name="Label5" type="Label" parent="Help_info" unique_id=46697706]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "I to enter inventory"
+horizontal_alignment = 2
+
+[node name="Pickup_UI" type="HBoxContainer" parent="." unique_id=1226227845]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.998
+anchor_bottom = 0.998
+offset_left = 64.0
+offset_top = -86.70404
+offset_right = 448.0
+offset_bottom = 0.29595947
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("2_48xfa")
+
+[node name="TextureRect" type="TextureRect" parent="Pickup_UI" unique_id=1556733239]
+layout_mode = 2
+expand_mode = 2
+
+[node name="Label" type="Label" parent="Pickup_UI" unique_id=1506945768]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "
+"
