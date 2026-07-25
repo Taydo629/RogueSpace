@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://jumhiux358g4"]
 
 [ext_resource type="Script" uid="uid://cufw8altjxdqo" path="res://scripts/thruster.gd" id="1_vbl7p"]
+[ext_resource type="AudioStream" uid="uid://slipmgqm5lvd" path="res://assets/Hit.wav" id="2_x6buh"]
 
 [sub_resource type="Gradient" id="Gradient_vbl7p"]
 interpolation_mode = 2
@@ -48,3 +49,7 @@ color_ramp = SubResource("Gradient_vbl7p")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" unique_id=1144204156]
 position = Vector2(0, -24)
 shape = SubResource("RectangleShape2D_vbl7p")
+
+[node name="Hit_sound" type="AudioStreamPlayer2D" parent="." unique_id=558150619]
+stream = ExtResource("2_x6buh")
+volume_db = -5.0

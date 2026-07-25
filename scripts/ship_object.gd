@@ -5,6 +5,10 @@ class_name ShipObject extends RigidBody2D
 @onready var gun_component: GunComponent = $GunComponent
 @onready var tractorbeam_component: TractorbeamComponent = $TractorbeamComponent
 @onready var player_input_component: Node = $PlayerInputComponent
+const ENEMY_DIRECTION_HUD = preload("uid://8o6kdkj546o3")
+
+var enemy_direction_notifiers: Array
+var enemy_array: Array = []
 
 var x_min = -128
 var y_min = -128
@@ -35,6 +39,7 @@ func init_ship():
 		part.dict_key = key
 				
 	init_components()
+	init_hud()
 
 func init_components() -> void:
 	center_of_mass_mode = RigidBody2D.CENTER_OF_MASS_MODE_AUTO
@@ -44,18 +49,27 @@ func init_components() -> void:
 	gun_component.update_guns()
 	tractorbeam_component.update_tractorbeam()
 
+func init_hud() -> void:
+	var siblings = get_parent().get_children()
+	for sibling in siblings:
+		if sibling.is_in_group("enemy"):
+			var new_hud_indicator = ENEMY_DIRECTION_HUD.instantiate()
+			add_child(new_hud_indicator)
+			enemy_array.append({"node": sibling, "hud_indicator": new_hud_indicator})
+
 func part_destroyed(graph_key:String):
 	var ship_graph = ShipInfo.ship_graph
 	var destroyed_node = ship_graph.get(graph_key)
 	print("player_ship")
 	print(destroyed_node)
-	for neighbor_key in destroyed_node.neighbors:
-		var neighbor = ship_graph.get(neighbor_key)
-		for key in neighbor.neighbors:
-			if key == graph_key:
-				neighbor.neighbors.erase(key)
-	ship_graph.erase(graph_key)
-	call_deferred("check_integrity",graph_key)
+	if destroyed_node != null:
+		for neighbor_key in destroyed_node.neighbors:
+			var neighbor = ship_graph.get(neighbor_key)
+			for key in neighbor.neighbors:
+				if key == graph_key:
+					neighbor.neighbors.erase(key)
+		ship_graph.erase(graph_key)
+		call_deferred("check_integrity",graph_key)
 
 func check_integrity(removed_key: String) -> void:
 	var ship_graph = ShipInfo.ship_graph
@@ -111,5 +125,19 @@ func check_integrity(removed_key: String) -> void:
 	
 	init_components()
 
-func _physics_process(delta: float) -> void:
-	pass
+func _process(delta: float) -> void:
+	if len(enemy_array) > 0:
+		for enemy in enemy_array:
+			var enemy_node = enemy.get("node")
+			var enemy_hud = enemy.get("hud_indicator")
+			if enemy_node == null:
+				enemy_array.erase(enemy)
+				enemy_hud.queue_free()
+			else:
+				if global_position.distance_to(enemy_node.global_position) <= 600:
+					enemy_hud.visible = false
+				else:
+					enemy_hud.visible = true
+				var direction = (enemy_node.global_position - global_position).normalized()
+				enemy_hud.rotation = (-transform.y).angle_to(direction)
+	

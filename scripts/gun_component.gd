@@ -3,6 +3,7 @@ class_name GunComponent extends Node
 @export var ship : RigidBody2D
 @export var bullet : PackedScene
 @export var fire_rate : float = 0.2
+@onready var gun_sound: AudioStreamPlayer2D = $"../Gun_sound"
 
 var guns : Array
 var muzzle_offset: Vector2 = Vector2(0,-32)
@@ -42,6 +43,7 @@ func fire() -> void:
 					new_bullet.global_position = (node.global_position + muzzle_offset.rotated(node.global_rotation))
 				new_bullet.rotation = ship.rotation + node.rotation
 				add_child(new_bullet)
+				gun_sound.play()
 				timer.start()
 				gun_ready = false
 

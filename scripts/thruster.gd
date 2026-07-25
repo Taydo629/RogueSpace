@@ -5,6 +5,7 @@ var thrust_direction: Vector2 = Vector2.UP
 var activation_key: String
 @onready var polygon_2d: Polygon2D = $Polygon2D
 @onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
+@onready var hit_sound: AudioStreamPlayer2D = $Hit_sound
 @export var max_health: int = 100
 var colider: CollisionPolygon2D
 var health: int
@@ -23,6 +24,7 @@ func _ready() -> void:
 
 func take_damage(damage: int) -> void:
 	var new_health = health - damage
+	hit_sound.play()
 	
 	if new_health <= 0:
 		part_destroyed.emit(dict_key)

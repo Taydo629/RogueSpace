@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bmppj8nctpawu"]
 
 [ext_resource type="Script" uid="uid://dmgdx1aegsakg" path="res://scripts/tractor_beam.gd" id="1_5evr5"]
+[ext_resource type="AudioStream" uid="uid://slipmgqm5lvd" path="res://assets/Hit.wav" id="2_tyh0h"]
 
 [sub_resource type="Gradient" id="Gradient_f384s"]
 colors = PackedColorArray(7.315874e-06, 0.73193437, 0.9951952, 1, 1, 1, 1, 1)
@@ -56,6 +57,10 @@ shape = SubResource("CircleShape2D_5evr5")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Beam_area" unique_id=188645864]
 polygon = PackedVector2Array(-24, 16, -64, -200, 64, -200, 24, 16)
+
+[node name="Hit_sound" type="AudioStreamPlayer2D" parent="." unique_id=1924556070]
+stream = ExtResource("2_tyh0h")
+volume_db = -5.0
 
 [connection signal="body_entered" from="Pickup_area" to="." method="_collect_part"]
 [connection signal="body_entered" from="Beam_area" to="." method="_part_entered_beam"]

@@ -9,6 +9,7 @@ var dict_key: String
 var beam_active: bool = false
 var parts_in_beam: Array = []
 @onready var cpu_particles_2d: CPUParticles2D = $Polygon2D/CPUParticles2D
+@onready var hit_sound: AudioStreamPlayer2D = $Hit_sound
 #part resource
 var part = load("res://data/Parts/tractor_beam.tres")
 
@@ -25,8 +26,9 @@ func _physics_process(delta: float) -> void:
 	if beam_active:
 		cpu_particles_2d.emitting = true
 		for part in parts_in_beam:
-			var vector = global_position - part.global_position
-			part.constant_force = vector.normalized()*beam_strength
+			if part != null:
+				var vector = global_position - part.global_position
+				part.constant_force = vector.normalized()*beam_strength
 	else:
 		cpu_particles_2d.emitting = false
 
@@ -50,7 +52,7 @@ func _part_left_beam(body: Node2D) -> void:
 
 func take_damage(damage: int) -> void:
 	var new_health = health - damage
-	
+	hit_sound.play()
 	if new_health <= 0:
 		part_destroyed.emit(dict_key)
 		if colider != null:

@@ -183,6 +183,7 @@ func check_integrity(removed_key: String) -> void:
 			part.instance.reparent(get_parent())
 			part.instance.detached()
 			has_detached = true
+		queue_free()
 	else:
 		for key in ship_graph.keys():
 			var part = ship_graph.get(key)

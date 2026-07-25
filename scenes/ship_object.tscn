@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://dxpt87tasd6e1" path="res://scenes/gun_component.tscn" id="4_26rvf"]
 [ext_resource type="PackedScene" uid="uid://j8dgeq4a20qq" path="res://scenes/tractorbeam_component.tscn" id="5_8rhnt"]
 [ext_resource type="PackedScene" uid="uid://b1trjrbjjtre5" path="res://scenes/player_input_component.tscn" id="6_8tmlb"]
+[ext_resource type="AudioStream" uid="uid://bplhtgjfhvm1v" path="res://assets/Thruster.wav" id="7_5n4kb"]
+[ext_resource type="AudioStream" uid="uid://bv233ik2rda1q" path="res://assets/Fire.wav" id="8_q4pro"]
+[ext_resource type="AudioStream" uid="uid://b0ha8t1gxwv2a" path="res://assets/Destruction.wav" id="9_6eot7"]
 
 [node name="ShipObject" type="RigidBody2D" unique_id=870574960 groups=["player_ship"]]
 gravity_scale = 0.0
@@ -30,3 +33,14 @@ fire_rate = 0.15
 [node name="TractorbeamComponent" parent="." unique_id=471176929 instance=ExtResource("5_8rhnt")]
 
 [node name="PlayerInputComponent" parent="." unique_id=965550089 instance=ExtResource("6_8tmlb")]
+
+[node name="Thruster_sound" type="AudioStreamPlayer2D" parent="." unique_id=1941230321]
+stream = ExtResource("7_5n4kb")
+
+[node name="Gun_sound" type="AudioStreamPlayer2D" parent="." unique_id=2005766677]
+stream = ExtResource("8_q4pro")
+volume_db = -10.0
+
+[node name="Destruction_sound" type="AudioStreamPlayer2D" parent="." unique_id=585382332]
+stream = ExtResource("9_6eot7")
+volume_db = -5.0

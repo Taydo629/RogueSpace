@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cbies401v0c4e"]
 
 [ext_resource type="Script" uid="uid://s6by3jpkl7aa" path="res://scripts/hull.gd" id="1_mv7wv"]
+[ext_resource type="AudioStream" uid="uid://slipmgqm5lvd" path="res://assets/Hit.wav" id="2_k26o8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ls6jt"]
 size = Vector2(64, 64)
@@ -19,3 +20,7 @@ uv = PackedVector2Array(-348.28302, -29.521019, -7.2574463, -27.572304, -7.25744
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=281869432]
 shape = SubResource("RectangleShape2D_ls6jt")
+
+[node name="Hit_sound" type="AudioStreamPlayer2D" parent="." unique_id=1717138715]
+stream = ExtResource("2_k26o8")
+volume_db = -5.0

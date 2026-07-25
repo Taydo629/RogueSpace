@@ -2,6 +2,7 @@ class_name ThrustComponent extends Node
 
 @export var ship : RigidBody2D
 @export var thrust_power : float = 2
+@onready var thruster_sound: AudioStreamPlayer2D = $"../Thruster_sound"
 
 var thrusters : Array
 
@@ -37,6 +38,8 @@ func thrusters_on() -> void:
 			# 3. Apply the force at the local offset
 			#ship.add_constant_force(global_force, local_offset)
 			ship.add_constant_central_force(global_force)
+	if thruster_sound.playing == false:
+		thruster_sound.playing = true
 
 func thrusters_off() -> void:
 	for node in thrusters:
@@ -44,4 +47,7 @@ func thrusters_off() -> void:
 			if not node is Node2D:
 				continue
 			node.cpu_particles_2d.emitting = false
+			
 	ship.constant_force = Vector2.ZERO
+	if thruster_sound.playing == true:
+		thruster_sound.playing = false

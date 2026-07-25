@@ -6,6 +6,7 @@ var health: int
 var colider: CollisionPolygon2D
 var dict_key: String
 @onready var polygon_2d: Polygon2D = $Polygon2D
+@onready var hit_sound: AudioStreamPlayer2D = $Hit_sound
 
 const PART_COLIDER = preload("uid://diy5darnyar01")
 #part resource
@@ -20,7 +21,7 @@ func _ready() -> void:
 
 func take_damage(damage: int) -> void:
 	var new_health = health - damage
-	
+	hit_sound.play()
 	if new_health <= 0:
 		part_destroyed.emit(dict_key)
 		if colider != null:
