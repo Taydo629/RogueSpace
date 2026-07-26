@@ -17,6 +17,7 @@ var x_range: Array = [448,704]
 
 var ship_graph: Dictionary = {}
 
+# Increment used for generating graph keys
 var increment: int = 1
 
 signal inventory_changed
@@ -25,6 +26,24 @@ func _ready() -> void:
 	h_box_container.init_hotbar()
 	inventory_changed.connect(h_box_container.update_part_count)
 	inventory_changed.emit()
+	_init_grid()
+
+func _init_grid() -> void:
+	if not ShipInfo.ship_graph.is_empty():
+		var new_ship_graph = ShipInfo.ship_graph
+		for key in new_ship_graph.keys():
+			var node = new_ship_graph.get(key)
+			var new_key: String
+			if node.part.name != "core":
+				new_key = str(increment)
+				increment += 1
+			else:
+				new_key = "root"
+			var part_to_add = node.part.scene.instantiate()
+			part_to_add.position = Vector2(448,192) + (node.grid_pos * 64)
+			add_child(part_to_add)
+			node.instance = part_to_add
+			grid[node.grid_pos.x][node.grid_pos.y] = {new_key: node}
 
 func _process(delta: float) -> void:
 	var selected_instance = h_box_container.selected_instance
@@ -167,7 +186,9 @@ func _on_build_button_pressed() -> void:
 	#print(" ")
 	#print(" ")
 	ShipInfo.update_ship(ship_graph)
-	get_tree().change_scene_to_file("res://scenes/game.tscn")
+	get_parent().get_parent().init_player()
+	queue_free()
+	#get_tree().change_scene_to_file("res://scenes/game.tscn")
 
 func clear_graph() -> void:
 	for row in grid:

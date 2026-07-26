@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://dxn6vqjt4j07d" path="res://data/Parts/core.tres" id="15_4nitx"]
 
 [node name="ShipBuilding" type="Node2D" unique_id=1130231238]
+process_mode = 3
 script = ExtResource("1_mmh4e")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=2021687994]

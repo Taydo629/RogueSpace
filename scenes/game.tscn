@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bi41uq7814i3g"]
 
 [ext_resource type="Script" uid="uid://b7is6gknyl6cr" path="res://scripts/game.gd" id="1_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://c0nva578wdvmu" path="res://scenes/intro_guide.tscn" id="2_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://7311c1hg8dft" path="res://assets/Space-Background-Image-2-1024x682.jpg" id="2_yqjtg"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lnu2h"]
@@ -8,6 +9,9 @@ texture = ExtResource("2_yqjtg")
 
 [node name="game" type="Node2D" unique_id=1786468234]
 script = ExtResource("1_lnu2h")
+
+[node name="IntroGuide" parent="." unique_id=694562777 instance=ExtResource("2_lbhrr")]
+visible = false
 
 [node name="BG" type="Panel" parent="." unique_id=519927403]
 z_index = -1
@@ -18,6 +22,8 @@ offset_bottom = 6544.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_lnu2h")
 
 [node name="Environment" type="Node2D" parent="." unique_id=514364469]
+
+[node name="ShipbuildingLayer" type="CanvasLayer" parent="." unique_id=523767043]
 
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
 [connection signal="ready" from="." to="." method="_on_ready"]

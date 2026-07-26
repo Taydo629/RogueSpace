@@ -53,8 +53,5 @@ func new_part():
 
 func update_part_count():
 	for slot in parts_array:
-		var part_count: int = 0
-		for part in Inventory.inventory:
-			if part.name == slot.part.name:
-				part_count += 1
+		var part_count: int = Inventory.inventory.count(slot.part)
 		slot.update_count(part_count)

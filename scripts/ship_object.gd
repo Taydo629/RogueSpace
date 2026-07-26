@@ -62,6 +62,9 @@ func init_hud() -> void:
 			add_child(new_hud_indicator)
 			enemy_array.append({"node": sibling, "hud_indicator": new_hud_indicator})
 		if sibling.is_in_group("station"):
+			if station != {}:
+				print("Need to clear station")
+				station.hud_indicator.queue_free()
 			var new_hud_indicator = STATION_DIRECTION_HUD.instantiate()
 			new_hud_indicator.visible = false
 			add_child(new_hud_indicator)

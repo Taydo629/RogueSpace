@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bvlc506pxikp8"]
+
+[ext_resource type="PackedScene" uid="uid://nofp6gunbxci" path="res://scenes/ship_building.tscn" id="1_2vp6f"]
+
+[node name="ShipBuildingLayer" type="CanvasLayer" unique_id=1057659512]
+
+[node name="ShipBuilding" parent="." unique_id=1130231238 instance=ExtResource("1_2vp6f")]
+visible = false

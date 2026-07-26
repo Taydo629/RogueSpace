@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bwr1tqqvp0f7n" path="res://scripts/intro_guide.gd" id="1_6306c"]
 
 [node name="IntroGuide" type="Node2D" unique_id=694562777]
+z_index = 1
 script = ExtResource("1_6306c")
 
 [node name="Control" type="Control" parent="." unique_id=767710480]

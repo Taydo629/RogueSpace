@@ -5,6 +5,7 @@ var inventory_parts: Array = []
 @onready var buy_button: Button = $MarketContainer/ButtonContainer/BuyButton
 @onready var sell_button: Button = $MarketContainer/ButtonContainer/SellButton
 @onready var item_info: Label = $MarketContainer/ButtonContainer/ItemInfo
+@onready var j_b_info_label: Label = $"Jump and Build services/ButtonContainer/J_B_InfoLabel"
 const CORE = preload("uid://dxn6vqjt4j07d")
 const GUN = preload("uid://bs8ufgr7qnr1y")
 const HULL = preload("uid://rp4s55105tbn")
@@ -61,3 +62,21 @@ func _on_sell_button_pressed() -> void:
 					
 	else:
 		item_info.text = "No part selected!"
+
+func _on_jump_button_pressed() -> void:
+	var withdrawal_successful = Inventory.withdraw_from_wallet(100)
+	if not withdrawal_successful:
+		j_b_info_label.text = "Insufficient credits to jump!"
+		return
+	# Get game scene
+	get_parent().get_parent().get_parent().generate_level()
+	visible = false
+
+func _on_build_button_pressed() -> void:
+	var withdrawal_successful = Inventory.withdraw_from_wallet(50)
+	if not withdrawal_successful:
+		j_b_info_label.text = "Insufficient credits to build!"
+		return
+	# Get game scene
+	get_parent().get_parent().get_parent().open_ship_building()
+	visible = false
