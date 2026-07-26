@@ -3,6 +3,7 @@ extends Control
 @onready var h_box_container: HBoxContainer = $HBoxContainer
 @onready var direction_indicator: Control = $DirectionIndicator
 @onready var station_ui: TabContainer = $Station_UI
+@onready var credit_ui: Label = $CreditUI
 var player: ShipObject
 
 func _ready() -> void:
@@ -11,6 +12,11 @@ func _ready() -> void:
 	for sibling in siblings:
 		if sibling.is_in_group("player_ship"):
 			player = sibling
+	Inventory.credit_changed.connect(update_credit_ui)
+	update_credit_ui(Inventory.wallet)
+
+func update_credit_ui(wallet: int):
+	credit_ui.text = str("CR ", wallet)
 
 func item_pickup(part: Part) -> void:
 	h_box_container.pickup_notif(part)

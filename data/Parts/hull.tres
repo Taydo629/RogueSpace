@@ -11,4 +11,6 @@ name = "hull"
 scene = ExtResource("2_hn3f4")
 collider = ExtResource("1_hn3f4")
 image = ExtResource("1_12q6g")
+buy_price = 150
+sell_price = 50
 metadata/_custom_type_script = "uid://dfxnbigy6na68"

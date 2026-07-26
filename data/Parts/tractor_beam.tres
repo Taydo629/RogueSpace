@@ -11,4 +11,6 @@ name = "tractor_beam"
 scene = ExtResource("2_mtvwk")
 collider = ExtResource("1_mtvwk")
 image = ExtResource("1_mxndn")
+buy_price = 300
+sell_price = 100
 metadata/_custom_type_script = "uid://dfxnbigy6na68"

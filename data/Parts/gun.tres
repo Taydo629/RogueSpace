@@ -11,4 +11,6 @@ name = "gun"
 scene = ExtResource("2_5cbms")
 collider = ExtResource("1_5cbms")
 image = ExtResource("1_opjho")
+buy_price = 250
+sell_price = 150
 metadata/_custom_type_script = "uid://dfxnbigy6na68"

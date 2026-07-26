@@ -1,6 +1,7 @@
 extends Node
 
 var inventory: Array
+var wallet: int = 0
 var number_of_hull: int = 6
 var number_of_thruster: int = 3
 var number_of_gun: int = 2
@@ -13,6 +14,7 @@ const THRUSTER = preload("uid://b4k0ewhy4bwpf")
 const TRACTOR_BEAM = preload("uid://nxtyhwldok2c")
 
 signal item_pickup
+signal credit_changed
 
 func _ready() -> void:
 	print("initialise starting items")
@@ -38,3 +40,16 @@ func add_item(part: Part) -> void:
 
 func remove_item(part: Part) -> void:
 	inventory.erase(part)
+
+func deposit_to_wallet(credits: int) -> void:
+	wallet += credits
+	credit_changed.emit(wallet)
+
+func withdraw_from_wallet(credits: int) -> bool:
+	var new_balance = wallet - credits
+	if new_balance >= 0:
+		wallet = new_balance
+		credit_changed.emit(wallet)
+		return true
+	else:
+		return false
