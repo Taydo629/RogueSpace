@@ -50,3 +50,11 @@ func new_part():
 	selected_part = parts_array[current_slot].get_part()
 	selected_instance = selected_part.scene.instantiate()
 	ship_building.add_child(selected_instance)
+
+func update_part_count():
+	for slot in parts_array:
+		var part_count: int = 0
+		for part in Inventory.inventory:
+			if part.name == slot.part.name:
+				part_count += 1
+		slot.update_count(part_count)

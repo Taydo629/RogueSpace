@@ -12,6 +12,7 @@ var ship_graph: Dictionary
 @onready var gyro_component: GyroComponent = $GyroComponent
 @onready var thrust_component: ThrustComponent = $ThrustComponent
 @onready var vision_area: Area2D = $VisionArea
+@onready var destruction_sound: AudioStreamPlayer2D = $Destruction_sound
 
 func _ready() -> void:
 	ship_graph = { 
@@ -161,6 +162,7 @@ func init_components() -> void:
 	gun_component.update_guns()
 
 func part_destroyed(graph_key:String):
+	destruction_sound.play()
 	var destroyed_node = ship_graph.get(graph_key)
 	print("enemy_ship")
 	print(destroyed_node)

@@ -28,11 +28,31 @@ expand_mode = 2
 script = ExtResource("11_5fvha")
 part = ExtResource("15_4nitx")
 
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/HotbarUI4" unique_id=194306666]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -22.0
+offset_bottom = 23.0
+grow_horizontal = 0
+horizontal_alignment = 1
+
 [node name="HotbarUI" type="TextureRect" parent="PanelContainer/HBoxContainer" unique_id=1693379518]
 layout_mode = 2
 expand_mode = 2
 script = ExtResource("11_5fvha")
 part = ExtResource("12_l6pu8")
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/HotbarUI" unique_id=798958583]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -22.0
+offset_bottom = 23.0
+grow_horizontal = 0
+horizontal_alignment = 1
 
 [node name="HotbarUI2" type="TextureRect" parent="PanelContainer/HBoxContainer" unique_id=1206812091]
 layout_mode = 2
@@ -40,17 +60,47 @@ expand_mode = 2
 script = ExtResource("11_5fvha")
 part = ExtResource("13_hp4g4")
 
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/HotbarUI2" unique_id=1791252059]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -22.0
+offset_bottom = 23.0
+grow_horizontal = 0
+horizontal_alignment = 1
+
 [node name="HotbarUI3" type="TextureRect" parent="PanelContainer/HBoxContainer" unique_id=1702216949]
 layout_mode = 2
 expand_mode = 2
 script = ExtResource("11_5fvha")
 part = ExtResource("14_xwxvt")
 
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/HotbarUI3" unique_id=238248243]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -22.0
+offset_bottom = 23.0
+grow_horizontal = 0
+horizontal_alignment = 1
+
 [node name="HotbarUI5" type="TextureRect" parent="PanelContainer/HBoxContainer" unique_id=1611549248]
 layout_mode = 2
 expand_mode = 2
 script = ExtResource("11_5fvha")
 part = ExtResource("8_5r5f6")
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/HotbarUI5" unique_id=143532133]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -22.0
+offset_bottom = 23.0
+grow_horizontal = 0
+horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="." unique_id=1029952404]
 offset_left = 904.0

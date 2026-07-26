@@ -5,6 +5,7 @@ class_name ShipObject extends RigidBody2D
 @onready var gun_component: GunComponent = $GunComponent
 @onready var tractorbeam_component: TractorbeamComponent = $TractorbeamComponent
 @onready var player_input_component: Node = $PlayerInputComponent
+@onready var destruction_sound: AudioStreamPlayer2D = $Destruction_sound
 const ENEMY_DIRECTION_HUD = preload("uid://8o6kdkj546o3")
 
 var enemy_direction_notifiers: Array
@@ -58,6 +59,7 @@ func init_hud() -> void:
 			enemy_array.append({"node": sibling, "hud_indicator": new_hud_indicator})
 
 func part_destroyed(graph_key:String):
+	destruction_sound.play()
 	var ship_graph = ShipInfo.ship_graph
 	var destroyed_node = ship_graph.get(graph_key)
 	print("player_ship")

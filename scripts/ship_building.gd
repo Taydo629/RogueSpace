@@ -19,8 +19,12 @@ var ship_graph: Dictionary = {}
 
 var increment: int = 1
 
+signal inventory_changed
+
 func _ready() -> void:
 	h_box_container.init_hotbar()
+	inventory_changed.connect(h_box_container.update_part_count)
+	inventory_changed.emit()
 
 func _process(delta: float) -> void:
 	var selected_instance = h_box_container.selected_instance
@@ -89,6 +93,7 @@ func place_part(pos: Vector2):
 		grid[x_grid][y_grid] = {key: node_dict}
 		Inventory.remove_item(h_box_container.selected_part)
 		h_box_container.new_part()
+		inventory_changed.emit()
 	else:
 		print("Grid is occupied!")
 
@@ -104,6 +109,7 @@ func remove_part(pos: Vector2):
 		grid[x_grid][y_grid].get(key).get("instance").queue_free()
 		Inventory.add_item(grid[x_grid][y_grid].get(key).get("part"))
 		grid[x_grid][y_grid] = null 
+		inventory_changed.emit()
 
 func _on_build_button_pressed() -> void:
 	clear_graph()
