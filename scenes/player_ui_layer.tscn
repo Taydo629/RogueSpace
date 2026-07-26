@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://b7axk8e3fxsiw"]
+
+[ext_resource type="PackedScene" uid="uid://nq4gl5ptuuuv" path="res://scenes/player_ui.tscn" id="1_siy7k"]
+
+[node name="PlayerUILayer" type="CanvasLayer" unique_id=954430617]
+scale = Vector2(0.5, 0.5)
+transform = Transform2D(0.5, 0, 0, 0.5, 0, 0)
+
+[node name="PlayerUI" parent="." unique_id=2136722435 instance=ExtResource("1_siy7k")]
+anchors_preset = -1
+anchor_right = 2.0
+anchor_bottom = 2.0

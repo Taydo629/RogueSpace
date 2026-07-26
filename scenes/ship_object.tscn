@@ -10,6 +10,9 @@
 [ext_resource type="AudioStream" uid="uid://bv233ik2rda1q" path="res://assets/Fire.wav" id="8_q4pro"]
 [ext_resource type="AudioStream" uid="uid://b0ha8t1gxwv2a" path="res://assets/Destruction.wav" id="9_6eot7"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_6eot7"]
+radius = 320.0
+
 [node name="ShipObject" type="RigidBody2D" unique_id=870574960 groups=["player_ship"]]
 gravity_scale = 0.0
 linear_damp = 1.0
@@ -44,3 +47,11 @@ volume_db = -10.0
 [node name="Destruction_sound" type="AudioStreamPlayer2D" parent="." unique_id=585382332]
 stream = ExtResource("9_6eot7")
 volume_db = -5.0
+
+[node name="EventCollider" type="Area2D" parent="." unique_id=280983207]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EventCollider" unique_id=983793101]
+shape = SubResource("CircleShape2D_6eot7")
+
+[connection signal="body_entered" from="EventCollider" to="." method="_on_event_collider_body_entered"]
+[connection signal="body_exited" from="EventCollider" to="." method="_on_event_collider_body_exited"]

@@ -12,6 +12,7 @@ const STATION_DIRECTION_HUD = preload("uid://dfl6i5lki8rxw")
 var enemy_direction_notifiers: Array
 var enemy_array: Array = []
 var enemy_remaining: bool = true
+var docking_available: bool = false
 var station: Dictionary
 
 var x_min = -128
@@ -137,7 +138,6 @@ func check_integrity(removed_key: String) -> void:
 
 func _process(delta: float) -> void:
 	if len(enemy_array) != 0:
-		print(len(enemy_array))
 		for enemy in enemy_array:
 			var enemy_node = enemy.get("node")
 			var enemy_hud = enemy.get("hud_indicator")
@@ -155,7 +155,6 @@ func _process(delta: float) -> void:
 		enemy_remaining = false
 	
 	if not enemy_remaining:
-		print("station")
 		var station_node = station.get("node")
 		var station_hud = station.get("hud_indicator")
 		if station_hud.visible == false:
@@ -166,3 +165,11 @@ func _process(delta: float) -> void:
 			#station_hud.visible = true
 		var direction = (station_node.global_position - global_position).normalized()
 		station_hud.rotation = (-transform.y).angle_to(direction)
+
+func _on_event_collider_body_entered(body: Node2D) -> void:
+	if body.is_in_group("station") and not enemy_remaining:
+		docking_available = true
+
+func _on_event_collider_body_exited(body: Node2D) -> void:
+	if body.is_in_group("station") and not enemy_remaining:
+		docking_available = false
