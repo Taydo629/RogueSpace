@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://baad6rfav87i3"]
 
-[node name="Station" type="StaticBody2D" unique_id=1499069338]
+[node name="Station" type="StaticBody2D" unique_id=1499069338 groups=["station"]]
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=1046263372]
 polygon = PackedVector2Array(-64, -192, -64, 192, -48, 224, 48, 224, 64, 192, 64, -192, 48, -216, 48, -232, 80, -232, 104, -216, 320, -216, 344, -232, 344, -304, 320, -320, 104, -320, 80, -304, 48, -304, 48, -320, 64, -344, 64, -576, 48, -608, -48, -608, -64, -576, -64, -344, -48, -320, -48, -304, -80, -304, -104, -320, -320, -320, -352, -304, -352, -232, -320, -216, -104, -216, -80, -232, -48, -232, -48, -216)

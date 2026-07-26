@@ -7,9 +7,12 @@ class_name ShipObject extends RigidBody2D
 @onready var player_input_component: Node = $PlayerInputComponent
 @onready var destruction_sound: AudioStreamPlayer2D = $Destruction_sound
 const ENEMY_DIRECTION_HUD = preload("uid://8o6kdkj546o3")
+const STATION_DIRECTION_HUD = preload("uid://dfl6i5lki8rxw")
 
 var enemy_direction_notifiers: Array
 var enemy_array: Array = []
+var enemy_remaining: bool = true
+var station: Dictionary
 
 var x_min = -128
 var y_min = -128
@@ -52,12 +55,16 @@ func init_components() -> void:
 
 func init_hud() -> void:
 	var siblings = get_parent().get_children()
-	print(siblings)
 	for sibling in siblings:
 		if sibling.is_in_group("enemy"):
 			var new_hud_indicator = ENEMY_DIRECTION_HUD.instantiate()
 			add_child(new_hud_indicator)
 			enemy_array.append({"node": sibling, "hud_indicator": new_hud_indicator})
+		if sibling.is_in_group("station"):
+			var new_hud_indicator = STATION_DIRECTION_HUD.instantiate()
+			new_hud_indicator.visible = false
+			add_child(new_hud_indicator)
+			station = {"node": sibling, "hud_indicator": new_hud_indicator}
 
 func part_destroyed(graph_key:String):
 	destruction_sound.play()
@@ -129,7 +136,8 @@ func check_integrity(removed_key: String) -> void:
 	init_components()
 
 func _process(delta: float) -> void:
-	if len(enemy_array) > 0:
+	if len(enemy_array) != 0:
+		print(len(enemy_array))
 		for enemy in enemy_array:
 			var enemy_node = enemy.get("node")
 			var enemy_hud = enemy.get("hud_indicator")
@@ -143,4 +151,18 @@ func _process(delta: float) -> void:
 					enemy_hud.visible = true
 				var direction = (enemy_node.global_position - global_position).normalized()
 				enemy_hud.rotation = (-transform.y).angle_to(direction)
+	else:
+		enemy_remaining = false
 	
+	if not enemy_remaining:
+		print("station")
+		var station_node = station.get("node")
+		var station_hud = station.get("hud_indicator")
+		if station_hud.visible == false:
+			station_hud.visible = true
+		#if global_position.distance_to(station_node.global_position) <= 600:
+			#station_hud.visible = false
+		#else:
+			#station_hud.visible = true
+		var direction = (station_node.global_position - global_position).normalized()
+		station_hud.rotation = (-transform.y).angle_to(direction)
