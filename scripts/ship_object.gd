@@ -52,6 +52,7 @@ func init_components() -> void:
 
 func init_hud() -> void:
 	var siblings = get_parent().get_children()
+	print(siblings)
 	for sibling in siblings:
 		if sibling.is_in_group("enemy"):
 			var new_hud_indicator = ENEMY_DIRECTION_HUD.instantiate()

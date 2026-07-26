@@ -17,7 +17,7 @@ angular_damp = 2.0
 script = ExtResource("1_jbipx")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2103113105]
-zoom = Vector2(0.5, 0.5)
+zoom = Vector2(0.3, 0.3)
 
 [node name="ThrustComponent" parent="." unique_id=2035186996 node_paths=PackedStringArray("ship") instance=ExtResource("2_26rvf")]
 ship = NodePath("..")

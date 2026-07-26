@@ -2,11 +2,15 @@
 
 [ext_resource type="Script" uid="uid://bgsosccfdxhq" path="res://scripts/player_ui.gd" id="1_sk4pr"]
 [ext_resource type="Script" uid="uid://bqqe7u1h368pq" path="res://scripts/pickup_ui.gd" id="2_48xfa"]
+[ext_resource type="Script" uid="uid://c5dsmhtr8h0ob" path="res://scripts/inventory_ui.gd" id="3_48xfa"]
 
 [node name="PlayerUI" type="Control" unique_id=2136722435]
 layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_sk4pr")
 
 [node name="Help_info" type="VBoxContainer" parent="." unique_id=1773222403]
@@ -75,3 +79,23 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "
 "
+
+[node name="InventoryUI" type="FoldableContainer" parent="." unique_id=459072914]
+layout_mode = 1
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 424.0
+offset_bottom = 352.0
+focus_mode = 0
+folded = true
+title = "Inventory"
+title_alignment = 1
+script = ExtResource("3_48xfa")
+
+[node name="GridContainer" type="GridContainer" parent="InventoryUI" unique_id=1055271389]
+visible = false
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 3

@@ -1,6 +1,12 @@
 extends Node2D
 
 @onready var ship_object: ShipObject = $ShipObject
+const ASTEROID = preload("uid://c8xodk0qkunlp")
+const NPC_SHIP_NEW = preload("uid://c4rflhs7u6xny")
+const STATION = preload("uid://baad6rfav87i3")
+
+@onready var environment: Node2D = $Environment
+
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("build_menu"):
@@ -15,4 +21,25 @@ func _on_ready() -> void:
 		# Ship has not been initialised hence go to shipbuilding.
 		get_tree().change_scene_to_file("res://scenes/ship_building.tscn")
 	else:
+		generate_level()
 		ship_object.init_ship()
+
+func generate_level() -> void:
+	# Asteroid generation
+	var number_asteroid = randi_range(10,15)
+	for i in number_asteroid:
+		var asteroid_instance = ASTEROID.instantiate()
+		asteroid_instance.global_position = Vector2(randi_range(-8000,8000),randi_range(-8000,8000))
+		asteroid_instance.rotation = randf_range(0,2) * PI
+		environment.add_child(asteroid_instance)
+	# Spawn NPCs
+	var number_NPC = randi_range(3,6)
+	for i in number_NPC:
+		var npc_instance = NPC_SHIP_NEW.instantiate()
+		npc_instance.global_position = Vector2(randi_range(-8000,8000),randi_range(-8000,8000))
+		add_child(npc_instance)
+	# Spawn Station
+	var station_instance = STATION.instantiate()
+	station_instance.global_position = Vector2(randi_range(-8000,8000),randi_range(-8000,8000))
+	station_instance.rotation = randf_range(0,2) * PI
+	environment.add_child(station_instance)

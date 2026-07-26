@@ -68,7 +68,11 @@ func _process(delta: float) -> void:
 		target_coordinate.emit(target_pos)
 	else:
 		target_coordinate.emit(poi)
-
+	
+	# Target new poi if we approach close enough
+	if get_parent().global_position.distance_to(poi) <= 100:
+		find_new_poi()
+	
 func distance_to_target() -> float:
 	return get_parent().global_position.distance_to(target.global_position)
 

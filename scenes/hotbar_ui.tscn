@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://d1gia6ahj8i30"]
+
+[ext_resource type="Script" uid="uid://ddu62dgkeau1i" path="res://scripts/hotbar_ui.gd" id="1_e6kfb"]
+[ext_resource type="Resource" uid="uid://rp4s55105tbn" path="res://data/Parts/hull.tres" id="2_8vnii"]
+
+[node name="HotbarUI" type="TextureRect" unique_id=429409494]
+size_flags_horizontal = 3
+size_flags_vertical = 3
+expand_mode = 2
+stretch_mode = 4
+script = ExtResource("1_e6kfb")
+part = ExtResource("2_8vnii")
+
+[node name="Label" type="Label" parent="." unique_id=1031323374]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -22.0
+offset_bottom = 23.0
+grow_horizontal = 0
+horizontal_alignment = 1
