@@ -22,6 +22,7 @@ func _ready() -> void:
 	pass
 
 func init_ship():
+	print("Initialsing ship")
 	var ship_graph = ShipInfo.ship_graph
 	for key in ship_graph.keys():
 		var node = ship_graph.get(key)
@@ -58,6 +59,7 @@ func init_hud() -> void:
 	var siblings = get_parent().get_children()
 	for sibling in siblings:
 		if sibling.is_in_group("enemy"):
+			enemy_remaining = true
 			var new_hud_indicator = ENEMY_DIRECTION_HUD.instantiate()
 			add_child(new_hud_indicator)
 			enemy_array.append({"node": sibling, "hud_indicator": new_hud_indicator})
@@ -74,8 +76,6 @@ func part_destroyed(graph_key:String):
 	destruction_sound.play()
 	var ship_graph = ShipInfo.ship_graph
 	var destroyed_node = ship_graph.get(graph_key)
-	print("player_ship")
-	print(destroyed_node)
 	if destroyed_node != null:
 		for neighbor_key in destroyed_node.neighbors:
 			var neighbor = ship_graph.get(neighbor_key)

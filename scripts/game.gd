@@ -54,8 +54,8 @@ func generate_level() -> void:
 		asteroid_instance.rotation = randf_range(0,2) * PI
 		environment.add_child(asteroid_instance)
 	# Spawn NPCs
-	#var number_NPC = randi_range(0 + current_level,1 + current_level)
-	var number_NPC = 0
+	var number_NPC = randi_range(0 + current_level,1 + current_level)
+	#var number_NPC = 0
 	for i in number_NPC:
 		var npc_instance = NPC_SHIP_NEW.instantiate()
 		npc_instance.global_position = Vector2(randi_range(-8000,8000),randi_range(-8000,8000))
@@ -67,9 +67,9 @@ func generate_level() -> void:
 	station_instance.rotation = randf_range(0,2) * PI
 	add_child(station_instance)
 	if current_level > 1:
+		ship_object.get_tree().paused = false
 		ship_object.init_ship()
 		ship_object.global_position = Vector2.ZERO
-		ship_object.get_tree().paused = false
 	current_level += 1
 
 func init_player() -> void:
