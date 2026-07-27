@@ -79,4 +79,4 @@ func _on_build_button_pressed() -> void:
 		return
 	# Get game scene
 	get_parent().get_parent().get_parent().open_ship_building()
-	visible = false
+	get_parent().get_parent().visible = false

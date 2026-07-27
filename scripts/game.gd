@@ -9,10 +9,12 @@ const PLAYER_UI_LAYER = preload("uid://b7axk8e3fxsiw")
 const SHIP_BUILDING = preload("uid://nofp6gunbxci")
 
 @onready var shipbuilding_layer: CanvasLayer = $ShipbuildingLayer
-@onready var ship_building: Node2D = $CanvasLayer/ShipBuilding
 @onready var environment: Node2D = $Environment
 
 var current_level: int = 1
+var player_ui: CanvasLayer
+
+signal level_changed
 
 # This triggers when the scene enters the main scene.
 func _on_ready() -> void:
@@ -34,6 +36,7 @@ func open_ship_building() -> void:
 
 func generate_level() -> void:
 	print(current_level)
+	level_changed.emit(current_level)
 	if current_level > 1:
 		# Set player to start position
 		var old_enviornment = environment.get_children()
@@ -67,16 +70,16 @@ func generate_level() -> void:
 		ship_object.init_ship()
 		ship_object.global_position = Vector2.ZERO
 		ship_object.get_tree().paused = false
-	
+	current_level += 1
 
 func init_player() -> void:
-	if current_level == 1:
+	if ship_object == null:
 		# Instantiate player ship
 		ship_object = SHIP_OBJECT.instantiate()
 		add_child(ship_object)
 		ship_object.init_ship()
-		add_child(PLAYER_UI_LAYER.instantiate())
+		player_ui = PLAYER_UI_LAYER.instantiate()
+		add_child(player_ui)
 	else:
 		ship_object.init_ship()
 		ship_object.get_tree().paused = false
-	current_level += 1

@@ -4,6 +4,8 @@ extends Control
 @onready var direction_indicator: Control = $DirectionIndicator
 @onready var station_ui: TabContainer = $Station_UI
 @onready var credit_ui: Label = $CreditUI
+@onready var sector_label: Label = $SectorLabel
+
 var player: ShipObject
 
 func _ready() -> void:
@@ -13,7 +15,11 @@ func _ready() -> void:
 		if sibling.is_in_group("player_ship"):
 			player = sibling
 	Inventory.credit_changed.connect(update_credit_ui)
+	get_parent().get_parent().level_changed.connect(update_sector_label)
 	update_credit_ui(Inventory.wallet)
+
+func update_sector_label(level_num: int) -> void:
+	sector_label.text = str("Sector ", str(level_num))
 
 func update_credit_ui(wallet: int):
 	credit_ui.text = str("CR ", wallet)

@@ -164,13 +164,14 @@ func init_components() -> void:
 func part_destroyed(graph_key:String):
 	destruction_sound.play()
 	var destroyed_node = ship_graph.get(graph_key)
-	for neighbor_key in destroyed_node.neighbors:
-		var neighbor = ship_graph.get(neighbor_key)
-		for key in neighbor.neighbors:
-			if key == graph_key:
-				neighbor.neighbors.erase(key)
-	ship_graph.erase(graph_key)
-	call_deferred("check_integrity",graph_key)
+	if destroyed_node != null:
+		for neighbor_key in destroyed_node.neighbors:
+			var neighbor = ship_graph.get(neighbor_key)
+			for key in neighbor.neighbors:
+				if key == graph_key:
+					neighbor.neighbors.erase(key)
+		ship_graph.erase(graph_key)
+		call_deferred("check_integrity",graph_key)
 
 func check_integrity(removed_key: String) -> void:
 	var has_detached = false

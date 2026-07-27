@@ -9,7 +9,7 @@
 [ext_resource type="Resource" uid="uid://dxn6vqjt4j07d" path="res://data/Parts/core.tres" id="15_4nitx"]
 
 [node name="ShipBuilding" type="Node2D" unique_id=1130231238]
-process_mode = 3
+z_index = 1
 script = ExtResource("1_mmh4e")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=2021687994]
@@ -49,6 +49,7 @@ offset_bottom = 599.0
 text = "Build"
 
 [node name="Polygon2D2" type="Polygon2D" parent="." unique_id=870627732]
+visible = false
 z_index = -2
 position = Vector2(0, 64)
 color = Color(0.00014991526, 0.022543963, 0.19706637, 1)

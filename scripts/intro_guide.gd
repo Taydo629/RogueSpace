@@ -1,7 +1,8 @@
-extends Node2D
+extends Control
 
 @onready var rich_text_label: RichTextLabel = $Control/RichTextLabel
 @onready var texture_rect: TextureRect = $Control/TextureRect
+@onready var next_button: Button = $Control/NextButton
 
 var current_page: int = 1
 var guide_dict = {
@@ -58,6 +59,19 @@ var guide_dict = {
 		Once docking is available you will be able to access all services the station has to offer!\n
 		The station will be marked on your hud with the icon above once all enemies have been terminated.",
 		"icon": preload("uid://cfnjuioesg0ip")
+	},
+	"10" : {
+		"text": "The Station services.\n 
+		Most important service is the jump service!\n
+		In order to jump to the next sector and continue your journey you will need to pay a toll.\n
+		If you want to repair your battlescared ship you will need to pay for build services.\n
+		Lastly the market services is where you will be able to make money off of scavenged parts!\n
+		Note: As jumping to the next sector cost CR keep a close eye if you have enough to get to the next sector!",
+		"icon": null
+	},
+	"11" : {
+		"text": "Good luck on your travels Captain!",
+		"icon": null
 	}
 	
 }
@@ -73,5 +87,8 @@ func _on_next_button_pressed() -> void:
 		var page = guide_dict.get(str(current_page))
 		rich_text_label.text = page.text
 		texture_rect.texture = page.icon
+		if str(current_page+1) not in guide_dict.keys():
+			next_button.text = "Exit guide"
 	else:
 		print("guide end")
+		get_parent().visible = false

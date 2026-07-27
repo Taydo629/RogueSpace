@@ -39,8 +39,14 @@ func _init_grid() -> void:
 				increment += 1
 			else:
 				new_key = "root"
+				root_present = true
 			var part_to_add = node.part.scene.instantiate()
 			part_to_add.position = Vector2(448,192) + (node.grid_pos * 64)
+			if not node.mirrored:
+				part_to_add.scale = Vector2(1,1)
+			else:
+				part_to_add.scale = Vector2(-1,1)
+			part_to_add.rotation_degrees = node.rotation
 			add_child(part_to_add)
 			node.instance = part_to_add
 			grid[node.grid_pos.x][node.grid_pos.y] = {new_key: node}
@@ -187,6 +193,7 @@ func _on_build_button_pressed() -> void:
 	#print(" ")
 	ShipInfo.update_ship(ship_graph)
 	get_parent().get_parent().init_player()
+	get_parent().get_parent().player_ui.visible = true
 	queue_free()
 	#get_tree().change_scene_to_file("res://scenes/game.tscn")
 

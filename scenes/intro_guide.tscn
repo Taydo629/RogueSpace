@@ -2,12 +2,13 @@
 
 [ext_resource type="Script" uid="uid://bwr1tqqvp0f7n" path="res://scripts/intro_guide.gd" id="1_6306c"]
 
-[node name="IntroGuide" type="Node2D" unique_id=694562777]
+[node name="IntroGuide" type="Control" unique_id=853896309]
 z_index = 1
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_6306c")
 
 [node name="Control" type="Control" parent="." unique_id=767710480]
-layout_mode = 3
 anchors_preset = 0
 offset_right = 1152.0
 offset_bottom = 648.0
