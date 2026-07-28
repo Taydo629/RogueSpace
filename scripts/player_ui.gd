@@ -1,7 +1,7 @@
 extends Control
 
-@onready var h_box_container: HBoxContainer = $HBoxContainer
-@onready var direction_indicator: Control = $DirectionIndicator
+@onready var pickup_ui: HBoxContainer = $Pickup_UI
+#@onready var direction_indicator: Control = $DirectionIndicator
 @onready var station_ui: TabContainer = $Station_UI
 @onready var credit_ui: Label = $CreditUI
 @onready var sector_label: Label = $SectorLabel
@@ -25,7 +25,7 @@ func update_credit_ui(wallet: int):
 	credit_ui.text = str("CR ", wallet)
 
 func item_pickup(part: Part) -> void:
-	h_box_container.pickup_notif(part)
+	pickup_ui.pickup_notif(part)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("e"):
