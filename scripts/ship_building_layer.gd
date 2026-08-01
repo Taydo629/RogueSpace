@@ -19,7 +19,6 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and instantiated_item != null:
 		move_part(event.position)
 	elif event is InputEventKey:
-		print(event)
 		if event.as_text_keycode() == "E" and event.pressed == true:
 			rotate_part(1)
 		elif event.as_text_keycode() == "Q" and event.pressed == true:
@@ -40,11 +39,10 @@ func move_part(position: Vector2) -> void:
 	instantiated_item.position = pos
 
 func rotate_part(direction: int) -> void:
-	print("rotating")
 	instantiated_item.rotate(0.5 * PI * direction)
 
 func mirror_part() -> void:
-	instantiated_item.scale *= Vector2(1,-1)
+	instantiated_item.scale *= Vector2(-1,1)
 
 func instantiate_part(part: Part) -> void:
 	instantiated_part = part
