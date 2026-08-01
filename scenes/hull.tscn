@@ -10,7 +10,6 @@ size = Vector2(64, 64)
 size = Vector2(64, 64)
 
 [node name="Hull" unique_id=2026258003 instance=ExtResource("1_mv7wv")]
-freeze = true
 script = ExtResource("2_k26o8")
 part_health = 100
 

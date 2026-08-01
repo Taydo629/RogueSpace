@@ -13,7 +13,6 @@ colors = PackedColorArray(7.315874e-06, 0.73193437, 0.9951952, 1, 1, 1, 1, 1)
 radius = 24.0
 
 [node name="BasePart" unique_id=2026258003 instance=ExtResource("1_tyh0h")]
-freeze = true
 script = ExtResource("1_5evr5")
 beam_strength = 500
 part_health = 100

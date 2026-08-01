@@ -27,12 +27,9 @@ func _input(event: InputEvent) -> void:
 		elif event.as_text_keycode() == "M":
 			mirror_part()
 	elif event is InputEventMouseButton and event.pressed == true:
-		print(event)
 		if event.button_index == 1:
-			print("place_part")
 			place_part()
 		elif event.button_index == 2:
-			print("remove_part")
 			remove_part()
 
 func place_part() -> void:

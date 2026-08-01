@@ -7,14 +7,13 @@ var max_health: int = 100
 
 var health: int
 var dict_key: String
+var is_detached: bool = false
 
 signal part_destroyed
 signal part_detached
 
 func _ready() -> void:
 	# Connect the parts destroyed signal to the player ship if possible.
-	if get_parent().has_method("part_destroyed"):
-		part_destroyed.connect(get_parent().part_destroyed)
 	health = max_health
 
 func take_damage(damage: int) -> void:
@@ -22,7 +21,10 @@ func take_damage(damage: int) -> void:
 	hit_sound.play()
 	
 	if new_health <= 0:
-		part_destroyed.emit(dict_key)
+		if get_parent().has_method("part_destroyed") and is_detached:
+			print("Destruction signal connected!")
+			part_destroyed.connect(get_parent().part_destroyed)
+			part_destroyed.emit(dict_key)
 		queue_free()
 	else:
 		health = new_health
@@ -39,5 +41,6 @@ func attached(new_key: String) -> void:
 	freeze = true
 
 func detached() -> void:
+	is_detached = true
 	part_detached.emit()
 	freeze = false

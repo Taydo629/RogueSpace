@@ -7,10 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://b87n71feakgwy" path="res://scenes/pause_menu_layer.tscn" id="3_ipu61"]
 [ext_resource type="PackedScene" uid="uid://bvlc506pxikp8" path="res://scenes/ship_building_layer.tscn" id="4_nqdth"]
 [ext_resource type="Script" uid="uid://dsfbrqvu3gvm4" path="res://scripts/player.gd" id="5_2l77h"]
-[ext_resource type="Script" uid="uid://defpmv0hoo6gb" path="res://scripts/building_component.gd" id="6_nqdth"]
+[ext_resource type="Script" uid="uid://defpmv0hoo6gb" path="res://scripts/part_component.gd" id="6_nqdth"]
 [ext_resource type="Script" uid="uid://c58qk6vgkjplg" path="res://scripts/movement_component.gd" id="7_5cypo"]
 [ext_resource type="Script" uid="uid://dc48qpbocvg14" path="res://scripts/weapon_component.gd" id="8_o6v7o"]
 [ext_resource type="Script" uid="uid://dk3b7620l0372" path="res://scripts/input_component.gd" id="9_wjob3"]
+[ext_resource type="PackedScene" uid="uid://cg526we3xlckp" path="res://scenes/debug_gun.tscn" id="12_o6v7o"]
 
 [node name="MainGame" type="Node2D" unique_id=956598129]
 script = ExtResource("1_d2op2")
@@ -33,6 +34,11 @@ script = ExtResource("1_s3esy")
 [node name="Player" type="RigidBody2D" parent="." unique_id=1059917111]
 script = ExtResource("5_2l77h")
 
+[node name="PlayerCamera" type="Camera2D" parent="Player" unique_id=1494444616]
+enabled = false
+
+[node name="DebugGun" parent="Player" unique_id=1831807821 instance=ExtResource("12_o6v7o")]
+
 [node name="PartComponent" type="Node" parent="Player" unique_id=1092362327]
 script = ExtResource("6_nqdth")
 
@@ -44,7 +50,3 @@ script = ExtResource("8_o6v7o")
 
 [node name="InputComponent" type="Node" parent="Player" unique_id=1163698195]
 script = ExtResource("9_wjob3")
-
-[node name="PlayerCamera" type="Camera2D" parent="Player" unique_id=1494444616]
-position = Vector2(0, -8)
-enabled = false

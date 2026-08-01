@@ -1,10 +1,10 @@
 [gd_scene format=3]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_cxr5p"]
-[ext_resource type="Script" path="res://scripts/building_component.gd" id="2_tdg3f"]
-[ext_resource type="Script" path="res://scripts/movement_component.gd" id="3_dtqjt"]
-[ext_resource type="Script" path="res://scripts/weapon_component.gd" id="4_5ncpa"]
-[ext_resource type="Script" path="res://scripts/input_component.gd" id="5_wi0c6"]
+[ext_resource type="Script" uid="uid://dsfbrqvu3gvm4" path="res://scripts/player.gd" id="1_cxr5p"]
+[ext_resource type="Script" uid="uid://defpmv0hoo6gb" path="res://scripts/part_component.gd" id="2_tdg3f"]
+[ext_resource type="Script" uid="uid://c58qk6vgkjplg" path="res://scripts/movement_component.gd" id="3_dtqjt"]
+[ext_resource type="Script" uid="uid://dc48qpbocvg14" path="res://scripts/weapon_component.gd" id="4_5ncpa"]
+[ext_resource type="Script" uid="uid://dk3b7620l0372" path="res://scripts/input_component.gd" id="5_wi0c6"]
 
 [node name="Player" type="RigidBody2D" unique_id=56054585]
 position = Vector2(576, 328)

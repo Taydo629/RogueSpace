@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://tqn70usw28ix"]
 
 [ext_resource type="Script" uid="uid://dsfbrqvu3gvm4" path="res://scripts/player.gd" id="1_qu4a1"]
-[ext_resource type="Script" uid="uid://defpmv0hoo6gb" path="res://scripts/building_component.gd" id="2_70d11"]
+[ext_resource type="Script" uid="uid://defpmv0hoo6gb" path="res://scripts/part_component.gd" id="2_70d11"]
 [ext_resource type="Script" uid="uid://c58qk6vgkjplg" path="res://scripts/movement_component.gd" id="3_cw2d6"]
 [ext_resource type="Script" uid="uid://dc48qpbocvg14" path="res://scripts/weapon_component.gd" id="4_khinc"]
 [ext_resource type="Script" uid="uid://dk3b7620l0372" path="res://scripts/input_component.gd" id="5_bruh7"]

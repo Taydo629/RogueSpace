@@ -10,7 +10,6 @@ size = Vector2(64, 64)
 size = Vector2(64, 64)
 
 [node name="Core" unique_id=2026258003 instance=ExtResource("1_5634n")]
-freeze = true
 script = ExtResource("2_hlf4f")
 part_health = 100
 
