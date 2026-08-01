@@ -19,20 +19,21 @@ thrust_force = 1
 part_health = 100
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea" parent_id_path=PackedInt32Array(991278418) index="0" unique_id=1890614803]
-position = Vector2(0, 16)
+position = Vector2(0, -16)
 shape = SubResource("RectangleShape2D_x6buh")
 
 [node name="Polygon2D" type="Polygon2D" parent="." index="2" unique_id=701049271]
+position = Vector2(0, -32)
 color = Color(0.3854925, 0.38549247, 0.38549247, 1)
 polygon = PackedVector2Array(-16, 0, 16, 0, 24, 8, 32, 32, -32, 32, -24, 8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3" unique_id=1505331381]
-position = Vector2(0, 16)
+position = Vector2(0, -16)
 shape = SubResource("RectangleShape2D_cp153")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="." index="4" unique_id=555381787]
 z_index = -1
-position = Vector2(0, 24)
+position = Vector2(0, -8)
 emitting = false
 amount = 30
 emission_shape = 1

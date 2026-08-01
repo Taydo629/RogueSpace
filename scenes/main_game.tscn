@@ -33,7 +33,7 @@ script = ExtResource("1_s3esy")
 [node name="Player" type="RigidBody2D" parent="." unique_id=1059917111]
 script = ExtResource("5_2l77h")
 
-[node name="BuildingComponent" type="Node" parent="Player" unique_id=1092362327]
+[node name="PartComponent" type="Node" parent="Player" unique_id=1092362327]
 script = ExtResource("6_nqdth")
 
 [node name="MovementComponent" type="Node" parent="Player" unique_id=630682640]
@@ -44,3 +44,7 @@ script = ExtResource("8_o6v7o")
 
 [node name="InputComponent" type="Node" parent="Player" unique_id=1163698195]
 script = ExtResource("9_wjob3")
+
+[node name="PlayerCamera" type="Camera2D" parent="Player" unique_id=1494444616]
+position = Vector2(0, -8)
+enabled = false

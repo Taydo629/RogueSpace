@@ -1,0 +1,27 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_cxr5p"]
+[ext_resource type="Script" path="res://scripts/building_component.gd" id="2_tdg3f"]
+[ext_resource type="Script" path="res://scripts/movement_component.gd" id="3_dtqjt"]
+[ext_resource type="Script" path="res://scripts/weapon_component.gd" id="4_5ncpa"]
+[ext_resource type="Script" path="res://scripts/input_component.gd" id="5_wi0c6"]
+
+[node name="Player" type="RigidBody2D" unique_id=56054585]
+position = Vector2(576, 328)
+sleeping = true
+script = ExtResource("1_cxr5p")
+
+[node name="PartComponent" type="Node" parent="." unique_id=1936806550]
+script = ExtResource("2_tdg3f")
+
+[node name="MovementComponent" type="Node" parent="." unique_id=511375988]
+script = ExtResource("3_dtqjt")
+
+[node name="WeaponComponent" type="Node" parent="." unique_id=1890007834]
+script = ExtResource("4_5ncpa")
+
+[node name="InputComponent" type="Node" parent="." unique_id=494362942]
+script = ExtResource("5_wi0c6")
+
+[node name="PlayerCamera" type="Camera2D" parent="." unique_id=1892835194]
+position = Vector2(0, -8)

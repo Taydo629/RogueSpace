@@ -5,26 +5,72 @@ extends CanvasLayer
 
 var instantiated_item: RigidBody2D
 var instantiated_part: Part
-
+var selected_item_idx: int
+var current_mouse_pos: Vector2 = Vector2.ZERO
 var y_range: Array = [128,512]
 var x_range: Array = [384,768]
+var building_dict: Dictionary = {}
 
-func _ready() -> void:
+signal build_complete
+
+func start_build() -> void:
 	update_partlist()
-
-func _process(delta: float) -> void:
-	pass
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and instantiated_item != null:
 		move_part(event.position)
-	elif event is InputEventKey:
-		if event.as_text_keycode() == "E" and event.pressed == true:
+	elif event is InputEventKey and event.pressed == true:
+		if event.as_text_keycode() == "E":
 			rotate_part(1)
-		elif event.as_text_keycode() == "Q" and event.pressed == true:
+		elif event.as_text_keycode() == "Q":
 			rotate_part(-1)
-		elif event.as_text_keycode() == "M" and event.pressed == true:
+		elif event.as_text_keycode() == "M":
 			mirror_part()
+	elif event is InputEventMouseButton and event.pressed == true:
+		print(event)
+		if event.button_index == 1:
+			print("place_part")
+			place_part()
+		elif event.button_index == 2:
+			print("remove_part")
+			remove_part()
+
+func place_part() -> void:
+	if current_mouse_pos != Vector2.ZERO:
+		var grid_pos: Vector2 = (Vector2(current_mouse_pos) - Vector2(x_range[0],y_range[0]) - Vector2(32,32))/64
+		if str(grid_pos) not in building_dict.keys():
+			var node_dict: Dictionary = {
+				"part": instantiated_part,
+				"instance": instantiated_item,
+				"grid_pos": grid_pos,
+				"rotation": instantiated_item.rotation,
+				"scale": instantiated_item.scale
+			}
+			building_dict.set(str(grid_pos),node_dict)
+			if check_part_owned(instantiated_part):
+				instantiate_part(instantiated_part)
+				Inventory.remove_item(instantiated_part)
+				item_info_label.text = str(Inventory.inventory.count(instantiated_part), " in inventory")
+		else:
+			print("A part is already placed here!")
+	else:
+		print("Mouse out of bounds!")
+
+func remove_part() -> void:
+	if current_mouse_pos != Vector2.ZERO:
+		var grid_pos: Vector2 = (Vector2(current_mouse_pos) - Vector2(x_range[0],y_range[0]) - Vector2(32,32))/64
+		if str(grid_pos) in building_dict.keys():
+			var node = building_dict.get(str(grid_pos))
+			node.instance.queue_free()
+			Inventory.add_item(node.part)
+			if node.part.name == get_selected_part_name():
+				item_info_label.text = str(Inventory.inventory.count(node.part), " in inventory")
+			building_dict.erase(str(grid_pos))
+			print("Part removed")
+		else:
+			print("No part to remove!")
+	else:
+		print("Mouse out of bounds!")
 
 func move_part(position: Vector2) -> void:
 	## Get the grid position so that parts are on a grid.
@@ -34,8 +80,10 @@ func move_part(position: Vector2) -> void:
 	if pos.x >= x_range[0] and pos.x <= x_range[1] and pos.y <= y_range[1] and pos.y >= y_range[0] :
 		instantiated_item.visible = true
 		instantiated_item.position = pos
+		current_mouse_pos = pos
 	else:
 		instantiated_item.visible = false
+		current_mouse_pos = Vector2.ZERO
 	instantiated_item.position = pos
 
 func rotate_part(direction: int) -> void:
@@ -62,6 +110,15 @@ func update_partlist() -> void:
 			item_list.add_item(part.name, part.image)
 			already_added_part.append(part)
 
+func get_selected_part_name() -> String:
+	return item_list.get_item_text(selected_item_idx)
+
+func check_part_owned(part: Part) -> bool:
+	if part in Inventory.inventory:
+		return true
+	else:
+		return false
+
 func update_partinfo(idx: int) -> Part:
 	var number_of_selected_part:int = 0
 	var selected_part_name: String = item_list.get_item_text(idx)
@@ -74,7 +131,33 @@ func update_partinfo(idx: int) -> Part:
 	item_info_label.text = str(number_of_selected_part, " in inventory")
 	return selected_part
 
+
+## Function to assign parts neighbors.
+##
+## If no neighbors are present or core part is missing will return false.
+## Otherwise will return true.
+func assign_neighbors() -> bool:
+	var core_present: bool = false
+	for current_node in building_dict.values():
+		if current_node.part.name == "core":
+			core_present = true
+		var possible_direction_array: Array[Vector2] = [Vector2(1,0),Vector2(0,1),Vector2(-1,0),Vector2(0,-1)]
+		var possible_neighbor_pos: Array = possible_direction_array.map(func(i): return i + current_node.grid_pos)
+		var neighbor_array: Array[String] = []
+		for neighbor_node in building_dict.values():
+			if neighbor_node.grid_pos in possible_neighbor_pos:
+				neighbor_array.append(str(neighbor_node.grid_pos))
+		if neighbor_array.is_empty():
+			print("Part has no neighbors!")
+			return false
+		current_node.set("neighbors", neighbor_array)
+	if not core_present:
+		print("Ship has no core!")
+		return false
+	return true
+
 func _on_item_list_item_selected(index: int) -> void:
+	selected_item_idx = index
 	var selected_part = update_partinfo(index)
 	
 	if selected_part != null:
@@ -82,3 +165,22 @@ func _on_item_list_item_selected(index: int) -> void:
 	else:
 		kill_selected_part()
 		instantiate_part(selected_part)
+
+func _on_build_button_pressed() -> void:
+	if building_dict.is_empty():
+		print("No parts are placed!")
+		return
+	if assign_neighbors():
+		ShipInfo.update_ship(building_dict, (y_range[1]-y_range[0])/64)
+		clear_build()
+		get_tree().paused = false
+		build_complete.emit()
+
+func clear_build() -> void:
+	for value in building_dict.values():
+		value.instance.queue_free()
+	building_dict = {}
+	var instantiated_item: RigidBody2D
+	instantiated_part = null
+	selected_item_idx = 0
+	current_mouse_pos = Vector2.ZERO

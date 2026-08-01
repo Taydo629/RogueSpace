@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://ce74wyeeg0ext" path="res://scripts/ship_building_layer.gd" id="1_2vp6f"]
 
 [node name="ShipBuildingLayer" type="CanvasLayer" unique_id=109807577]
+process_mode = 2
 script = ExtResource("1_2vp6f")
 
 [node name="Panel" type="Panel" parent="." unique_id=343043088]
@@ -78,7 +79,7 @@ text = "No part selected"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="ShipBuildingUI" unique_id=1465284840]
+[node name="BuildButton" type="Button" parent="ShipBuildingUI" unique_id=1465284840]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -307,3 +308,4 @@ offset = Vector2(-576, -320)
 polygon = PackedVector2Array(384, 128, 384, 512, 768, 512, 768, 128)
 
 [connection signal="item_selected" from="ShipBuildingUI/FoldableContainer/Control/ItemList" to="." method="_on_item_list_item_selected"]
+[connection signal="pressed" from="ShipBuildingUI/BuildButton" to="." method="_on_build_button_pressed"]

@@ -6,6 +6,7 @@ extends Node2D
 @onready var level_gen_component: LevelGenComponent = $LevelGenComponent
 @onready var menu_component: MenuComponent = $MenuComponent
 @onready var intro_guide: Control = $IntroGuide
+@onready var player: Player = $Player
 
 func _ready() -> void:
 	start_menu_layer.start.connect(start_game)
@@ -15,6 +16,7 @@ func _ready() -> void:
 	pause_menu_layer.option.connect(options)
 	pause_menu_layer.exit.connect(exit)
 	intro_guide.guide_end.connect(exit_guide)
+	ship_building_layer.build_complete.connect(exit_building)
 	
 func start_game() -> void:
 	print("Game Start!")
@@ -40,6 +42,12 @@ func exit_guide() -> void:
 func start_building() -> void:
 	print("Entering building")
 	ship_building_layer.visible = true
+	get_tree().paused = true
+	ship_building_layer.start_build()
+
+func exit_building() -> void:
+	print("Exited building")
+	ship_building_layer.visible = false
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("esc") and not start_menu_layer.visible:
