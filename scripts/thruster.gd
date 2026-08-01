@@ -1,47 +1,19 @@
-extends RigidBody2D
+extends BasePart
+
+var activation_key: String
+@onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
 
 @export var thrust_force: int = 1
-var thrust_direction: Vector2 = Vector2.UP
-var activation_key: String
-@onready var polygon_2d: Polygon2D = $Polygon2D
-@onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
-@onready var hit_sound: AudioStreamPlayer2D = $Hit_sound
-@export var max_health: int = 100
-var colider: CollisionPolygon2D
-var health: int
-var dict_key: String
-#part resource
-var part = load("res://data/Parts/thruster.tres")
-
-const PART_COLIDER = preload("uid://1k6s26tooh6e")
-
-signal part_destroyed
+@export var part_health: int = 100
 
 func _ready() -> void:
-	if get_parent().has_method("part_destroyed"):
-		part_destroyed.connect(get_parent().part_destroyed)
+	max_health = part_health
 	health = max_health
+	part_detached.connect(stop_particles)
 
-func take_damage(damage: int) -> void:
-	var new_health = health - damage
-	hit_sound.play()
-	
-	if new_health <= 0:
-		part_destroyed.emit(dict_key)
-		if colider != null:
-			colider.queue_free()
-		colider = null
-		queue_free()
-	else:
-		health = new_health
-		var damage_G_B_value = float(new_health)/float(max_health)
-		polygon_2d.color = Color(0.45,0.45*damage_G_B_value,0.45*damage_G_B_value,1)
+func stop_particles() -> void:
+	cpu_particles_2d.emitting = false
 
-func detached() -> void:
-	if colider != null:
-		colider.queue_free()
-		colider = null
-	var local_colider = PART_COLIDER.instantiate()
-	add_child(local_colider)
-	local_colider.global_position = global_position
-	freeze = false
+# Test function
+func test_damage():
+	take_damage(190)

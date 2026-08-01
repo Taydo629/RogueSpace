@@ -40,6 +40,14 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Next"
 
+[node name="QuitButton" type="Button" parent="Control" unique_id=1527141238]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 160.0
+offset_bottom = 64.0
+text = "Exit guide"
+
 [node name="TextureRect" type="TextureRect" parent="Control" unique_id=1355669323]
 layout_mode = 1
 anchors_preset = -1
@@ -57,3 +65,4 @@ color = Color(0.0930753, 0.09644758, 0.2294352, 1)
 polygon = PackedVector2Array(0, 0, 1152, 0, 1152, 648, 0, 648)
 
 [connection signal="pressed" from="Control/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="pressed" from="Control/QuitButton" to="." method="_on_quit_button_pressed"]

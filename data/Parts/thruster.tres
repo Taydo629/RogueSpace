@@ -1,7 +1,6 @@
 [gd_resource type="Resource" script_class="Part" format=3 uid="uid://b4k0ewhy4bwpf"]
 
 [ext_resource type="Script" uid="uid://dfxnbigy6na68" path="res://data/parts.gd" id="1_5xp6c"]
-[ext_resource type="PackedScene" uid="uid://1k6s26tooh6e" path="res://scenes/thruster_collider.tscn" id="1_mcja4"]
 [ext_resource type="Texture2D" uid="uid://cbqqgjxuknwxd" path="res://assets/Thruster.png" id="1_u85ot"]
 [ext_resource type="PackedScene" uid="uid://jumhiux358g4" path="res://scenes/thruster.tscn" id="2_mcja4"]
 
@@ -9,7 +8,6 @@
 script = ExtResource("1_5xp6c")
 name = "thruster"
 scene = ExtResource("2_mcja4")
-collider = ExtResource("1_mcja4")
 image = ExtResource("1_u85ot")
 buy_price = 300
 sell_price = 100

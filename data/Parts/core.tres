@@ -1,6 +1,5 @@
 [gd_resource type="Resource" script_class="Part" format=3 uid="uid://dxn6vqjt4j07d"]
 
-[ext_resource type="PackedScene" uid="uid://d0dggj0ghuve3" path="res://scenes/square_colider.tscn" id="1_7h4ah"]
 [ext_resource type="Script" uid="uid://dfxnbigy6na68" path="res://data/parts.gd" id="1_43rg0"]
 [ext_resource type="PackedScene" uid="uid://d2iy1wfm3hmvg" path="res://scenes/core.tscn" id="1_l7os8"]
 [ext_resource type="Texture2D" uid="uid://dwhx2m8ppv0ne" path="res://assets/core.png" id="1_mde3k"]
@@ -9,7 +8,6 @@
 script = ExtResource("1_43rg0")
 name = "core"
 scene = ExtResource("1_l7os8")
-collider = ExtResource("1_7h4ah")
 image = ExtResource("1_mde3k")
 buy_price = 200
 sell_price = 100

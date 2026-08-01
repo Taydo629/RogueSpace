@@ -1,26 +1,24 @@
 [gd_scene format=3 uid="uid://cbies401v0c4e"]
 
-[ext_resource type="Script" uid="uid://s6by3jpkl7aa" path="res://scripts/hull.gd" id="1_mv7wv"]
-[ext_resource type="AudioStream" uid="uid://slipmgqm5lvd" path="res://assets/Hit.wav" id="2_k26o8"]
+[ext_resource type="PackedScene" uid="uid://dplstcql0ly08" path="res://scenes/base_part.tscn" id="1_mv7wv"]
+[ext_resource type="Script" uid="uid://coh5tlx0utdxe" path="res://scripts/hull.gd" id="2_k26o8"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ls6jt"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k26o8"]
 size = Vector2(64, 64)
 
-[node name="hull" type="RigidBody2D" unique_id=1866166875]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_17y2j"]
+size = Vector2(64, 64)
+
+[node name="Hull" unique_id=2026258003 instance=ExtResource("1_mv7wv")]
 freeze = true
-linear_damp = 1.0
-script = ExtResource("1_mv7wv")
+script = ExtResource("2_k26o8")
+part_health = 100
 
-[node name="Polygon2D" type="Polygon2D" parent="." unique_id=804824012]
-position = Vector2(-32, -32)
-polygon = PackedVector2Array(0, 0, 64, 0, 64, 64, 0, 64)
-uv = PackedVector2Array(-348.28302, -29.521019, -7.2574463, -27.572304, -7.2574463, 186.78668, -352.18048, 177.04309)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea" parent_id_path=PackedInt32Array(991278418) index="0" unique_id=1183693982]
+shape = SubResource("RectangleShape2D_k26o8")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=800039488]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2" unique_id=1596297760]
+shape = SubResource("RectangleShape2D_17y2j")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=281869432]
-shape = SubResource("RectangleShape2D_ls6jt")
-
-[node name="Hit_sound" type="AudioStreamPlayer2D" parent="." unique_id=1717138715]
-stream = ExtResource("2_k26o8")
-volume_db = -5.0
+[node name="Polygon2D" type="Polygon2D" parent="." index="3" unique_id=1000906426]
+polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)

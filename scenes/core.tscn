@@ -1,27 +1,25 @@
 [gd_scene format=3 uid="uid://d2iy1wfm3hmvg"]
 
-[ext_resource type="Script" uid="uid://cvsk6fc8lm1td" path="res://scripts/core.gd" id="1_5634n"]
-[ext_resource type="AudioStream" uid="uid://slipmgqm5lvd" path="res://assets/Hit.wav" id="2_hlf4f"]
+[ext_resource type="PackedScene" uid="uid://dplstcql0ly08" path="res://scenes/base_part.tscn" id="1_5634n"]
+[ext_resource type="Script" uid="uid://cvsk6fc8lm1td" path="res://scripts/core.gd" id="2_hlf4f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5634n"]
+size = Vector2(64, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hlf4f"]
 size = Vector2(64, 64)
 
-[node name="core" type="RigidBody2D" unique_id=676704526]
+[node name="Core" unique_id=2026258003 instance=ExtResource("1_5634n")]
 freeze = true
-linear_damp = 1.0
-script = ExtResource("1_5634n")
+script = ExtResource("2_hlf4f")
+part_health = 100
 
-[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1167511333]
-position = Vector2(-32, -32)
-color = Color(0.24705882, 1, 1, 1)
-polygon = PackedVector2Array(0, 0, 64, 0, 64, 64, 0, 64)
-uv = PackedVector2Array(-348.28302, -29.521019, -7.2574463, -27.572304, -7.2574463, 186.78668, -352.18048, 177.04309)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea" parent_id_path=PackedInt32Array(991278418) index="0" unique_id=1998087249]
+shape = SubResource("RectangleShape2D_5634n")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=58386540]
+[node name="Polygon2D" type="Polygon2D" parent="." index="2" unique_id=1028683940]
+color = Color(0, 0.5294118, 1, 1)
+polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1439606864]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3" unique_id=1399363423]
 shape = SubResource("RectangleShape2D_hlf4f")
-
-[node name="Hit_sound" type="AudioStreamPlayer2D" parent="." unique_id=159557635]
-stream = ExtResource("2_hlf4f")
-volume_db = -5.0
