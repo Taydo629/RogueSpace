@@ -7,7 +7,6 @@ func initialise_ship() -> void:
 	for key in ShipInfo.ship_graph.keys():
 		var graph_node = ShipInfo.ship_graph.get(key).duplicate()
 		var new_part = graph_node.part.scene.instantiate()
-		print(graph_node.part.name)
 		graph_node.instance = new_part
 		new_dict.set(key, graph_node)
 		new_part.rotation = graph_node.rotation
@@ -15,9 +14,8 @@ func initialise_ship() -> void:
 		var off_set: Vector2 = ShipInfo.current_grid_dim/2 * Vector2(64,64)
 		new_part.position = graph_node.grid_pos * Vector2(64,64) - off_set
 		add_child(new_part)
-		new_part.dict_key = key
+		new_part.attach(key)
 	ShipInfo.ship_graph = new_dict
-	print(ShipInfo.ship_graph)
 
 func part_destroyed(graph_key:String):
 	#destruction_sound.play()
@@ -36,9 +34,7 @@ func find_core() -> String:
 	var ship_graph = ShipInfo.ship_graph
 	var core_key: String
 	for key in ship_graph.keys():
-		print(key)
 		var node = ship_graph.get(key)
-		print(node.part.name)
 		if node.part.name == "core":
 			core_key = key
 	return core_key
@@ -56,6 +52,7 @@ func check_integrity(removed_key: String) -> void:
 			var part = ship_graph.get(key)
 			part.instance.detached()
 			has_detached = true
+		print("Emitting the part_removed Signal")
 		part_removed.emit()
 		return
 	else:
@@ -96,5 +93,5 @@ func check_integrity(removed_key: String) -> void:
 					#part.instance.reparent(get_parent())
 					part.instance.detached()
 					has_detached = true
-	
-	part_removed.emit()
+		print("Emitting the part_removed Signal")
+		part_removed.emit()

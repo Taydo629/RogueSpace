@@ -21,10 +21,7 @@ func take_damage(damage: int) -> void:
 	hit_sound.play()
 	
 	if new_health <= 0:
-		if get_parent().has_method("part_destroyed") and is_detached:
-			print("Destruction signal connected!")
-			part_destroyed.connect(get_parent().part_destroyed)
-			part_destroyed.emit(dict_key)
+		part_destroyed.emit(dict_key)
 		queue_free()
 	else:
 		health = new_health
@@ -36,9 +33,10 @@ func take_damage(damage: int) -> void:
 			part_color = Color(0.53, 0.03, 0.0, 1.0)
 		polygon_2d.color = part_color
 
-func attached(new_key: String) -> void:
+func attach(new_key: String) -> void:
 	dict_key = new_key
 	freeze = true
+	part_destroyed.connect(get_parent().part_destroyed)
 
 func detached() -> void:
 	is_detached = true

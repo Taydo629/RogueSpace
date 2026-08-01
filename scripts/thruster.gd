@@ -1,4 +1,4 @@
-extends BasePart
+class_name Thruster extends BasePart
 
 var activation_key: String
 @onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D

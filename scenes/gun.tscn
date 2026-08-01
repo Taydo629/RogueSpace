@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_og67c"]
 size = Vector2(40, 64)
 
-[node name="Gun" unique_id=2026258003 instance=ExtResource("1_x77fm")]
+[node name="Gun" unique_id=2026258003 groups=["gun"] instance=ExtResource("1_x77fm")]
 script = ExtResource("2_og67c")
 part_health = 100
 

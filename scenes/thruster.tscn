@@ -12,7 +12,7 @@ size = Vector2(48, 32)
 [sub_resource type="Gradient" id="Gradient_x6buh"]
 colors = PackedColorArray(1, 0, 0, 1, 1, 0.80784315, 0.12941177, 1)
 
-[node name="Thruster" unique_id=2026258003 instance=ExtResource("1_vbl7p")]
+[node name="Thruster" unique_id=2026258003 groups=["thruster"] instance=ExtResource("1_vbl7p")]
 script = ExtResource("2_x6buh")
 thrust_force = 1
 part_health = 100

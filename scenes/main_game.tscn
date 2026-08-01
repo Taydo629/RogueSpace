@@ -12,9 +12,21 @@
 [ext_resource type="Script" uid="uid://dc48qpbocvg14" path="res://scripts/weapon_component.gd" id="8_o6v7o"]
 [ext_resource type="Script" uid="uid://dk3b7620l0372" path="res://scripts/input_component.gd" id="9_wjob3"]
 [ext_resource type="PackedScene" uid="uid://cg526we3xlckp" path="res://scenes/debug_gun.tscn" id="12_o6v7o"]
+[ext_resource type="Texture2D" uid="uid://7311c1hg8dft" path="res://assets/Space-Background-Image-2-1024x682.jpg" id="13_wjob3"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8xp80"]
+texture = ExtResource("13_wjob3")
 
 [node name="MainGame" type="Node2D" unique_id=956598129]
 script = ExtResource("1_d2op2")
+
+[node name="BG" type="Panel" parent="." unique_id=591426073]
+z_index = -2
+offset_left = -8088.0
+offset_top = -8192.0
+offset_right = 8176.0
+offset_bottom = 8184.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_8xp80")
 
 [node name="IntroGuide" parent="." unique_id=853896309 instance=ExtResource("2_5cypo")]
 visible = false
