@@ -1,0 +1,240 @@
+{
+	"(1.0, 1.0)": {
+		"grid_pos": "(1.0, 1.0)",
+		"instance": "@RigidBody2D@67:<RigidBody2D#354401912693>",
+		"neighbors": [
+			"(2.0, 1.0)",
+			"(1.0, 2.0)"
+		],
+		"part": "(res://data/Parts/gun.tres):<Resource#-9223372006035028500>",
+		"rotation": 0.0,
+		"scale": "(-1.0, 1.0)"
+	},
+	"(1.0, 2.0)": {
+		"grid_pos": "(1.0, 2.0)",
+		"instance": "@RigidBody2D@58:<RigidBody2D#313650054983>",
+		"neighbors": [
+			"(2.0, 2.0)",
+			"(1.0, 3.0)",
+			"(1.0, 1.0)"
+		],
+		"part": "(res://data/Parts/hull.tres):<Resource#-9223372005061949970>",
+		"rotation": 0.0,
+		"scale": "(1.0, 1.0)"
+	},
+	"(1.0, 3.0)": {
+		"grid_pos": "(1.0, 3.0)",
+		"instance": "@RigidBody2D@37:<RigidBody2D#207769044555>",
+		"neighbors": [
+			"(1.0, 4.0)",
+			"(2.0, 3.0)",
+			"(1.0, 2.0)"
+		],
+		"part": "(res://data/Parts/hull.tres):<Resource#-9223372005061949970>",
+		"rotation": 0.0,
+		"scale": "(1.0, 1.0)"
+	},
+	"(1.0, 4.0)": {
+		"grid_pos": "(1.0, 4.0)",
+		"instance": "@RigidBody2D@38:<RigidBody2D#212215006931>",
+		"neighbors": [
+			"(1.0, 3.0)",
+			"(1.0, 5.0)",
+			"(2.0, 4.0)"
+		],
+		"part": "(res://data/Parts/hull.tres):<Resource#-9223372005061949970>",
+		"rotation": 0.0,
+		"scale": "(1.0, 1.0)"
+	},
+	"(1.0, 5.0)": {
+		"grid_pos": "(1.0, 5.0)",
+		"instance": "Thruster:<RigidBody2D#288266126967>",
+		"neighbors": [
+			"(1.0, 4.0)"
+		],
+		"part": "(res://data/Parts/thruster.tres):<Resource#-9223372004072094223>",
+		"rotation": 0.0,
+		"scale": "(1.0, 1.0)"
+	},
+	"(2.0, 0.0)": {
+		"grid_pos": "(2.0, 0.0)",
+		"instance": "@RigidBody2D@45:<RigidBody2D#223355078226>",
+		"neighbors": [
+			"(2.0, 1.0)",
+			"(3.0, 0.0)"
+		],
+		"part": "(res://data/Parts/hull.tres):<Resource#-9223372005061949970>",
+		"rotation": 0.0,
+		"scale": "(1.0, 1.0)"
+	},
+	"(2.0, 1.0)": {
+		"grid_pos": "(2.0, 1.0)",
+		"instance": "@RigidBody2D@35:<RigidBody2D#204866586405>",
+		"neighbors": [
+			"(2.0, 2.0)",
+			"(2.0, 0.0)",
+			"(3.0, 1.0)",
+			"(1.0, 1.0)"
+		],
+		"part": "(res://data/Parts/hull.tres):<Resource#-9223372005061949970>",
+		"rotation": 0.0,
+		"scale": "(1.0, 1.0)"
+	},
+	"(2.0, 2.0)": {
+		"grid_pos": "(2.0, 2.0)",
+		"instance": "@RigidBody2D@34:<RigidBody2D#202081568509>",
+		"neighbors": [
+			"(2.0, 1.0)",
+			"(2.0, 3.0)",
+			"(1.0, 2.0)",
+			"(3.0, 2.0)"
+		],
+		"part": "(res://data/Parts/hull.tres):<Resource#-9223372005061949970>",
+		"rotation": 0.0,
+		"scale": "(1.0, 1.0)"
+	},
+	"(2.0, 3.0)": {
+		"grid_pos": "(2.0, 3.0)",
+		"instance": "@RigidBody2D@39:<RigidBody2D#215184574235>",
+		"neighbors": [
+			"(2.0, 2.0)",
+			"(1.0, 3.0)",
+			"(3.0, 3.0)",
+			"(2.0, 4.0)"
+		],
+		"part": "(res://data/Parts/hull.tres):<Resource#-9223372005061949970>",
+		"rotation": 0.0,
+		"scale": "(1.0, 1.0)"
+	},
+	"(2.0, 4.0)": {
+		"grid_pos": "(2.0, 4.0)",
+		"instance": "@RigidBody2D@63:<RigidBody2D#341181466434>",
+		"neighbors": [
+			"(1.0, 4.0)",
+			"(2.0, 3.0)",
+			"(3.0, 4.0)"
+		],
+		"part": "(res://data/Parts/thruster.tres):<Resource#-9223372004072094223>",
+		"rotation": 0.0,
+		"scale": "(1.0, 1.0)"
+	},
+	"(3.0, 0.0)": {
+		"grid_pos": "(3.0, 0.0)",
+		"instance": "@RigidBody2D@46:<RigidBody2D#227431941891>",
+		"neighbors": [
+			"(2.0, 0.0)",
+			"(3.0, 1.0)"
+		],
+		"part": "(res://data/Parts/hull.tres):<Resource#-9223372005061949970>",
+		"rotation": 0.0,
+		"scale": "(1.0, 1.0)"
+	},
+	"(3.0, 1.0)": {
+		"grid_pos": "(3.0, 1.0)",
+		"instance": "@RigidBody2D@52:<RigidBody2D#262009784139>",
+		"neighbors": [
+			"(2.0, 1.0)",
+			"(3.0, 0.0)",
+			"(3.0, 2.0)",
+			"(4.0, 1.0)"
+		],
+		"part": "(res://data/Parts/hull.tres):<Resource#-9223372005061949970>",
+		"rotation": 0.0,
+		"scale": "(1.0, 1.0)"
+	},
+	"(3.0, 2.0)": {
+		"grid_pos": "(3.0, 2.0)",
+		"instance": "Core:<RigidBody2D#329101870931>",
+		"neighbors": [
+			"(2.0, 2.0)",
+			"(3.0, 1.0)",
+			"(4.0, 2.0)",
+			"(3.0, 3.0)"
+		],
+		"part": "(res://data/Parts/core.tres):<Resource#-9223372007662418453>",
+		"rotation": 0.0,
+		"scale": "(1.0, 1.0)"
+	},
+	"(3.0, 3.0)": {
+		"grid_pos": "(3.0, 3.0)",
+		"instance": "@RigidBody2D@60:<RigidBody2D#319203313349>",
+		"neighbors": [
+			"(2.0, 3.0)",
+			"(4.0, 3.0)",
+			"(3.0, 2.0)",
+			"(3.0, 4.0)"
+		],
+		"part": "(res://data/Parts/hull.tres):<Resource#-9223372005061949970>",
+		"rotation": 0.0,
+		"scale": "(1.0, 1.0)"
+	},
+	"(3.0, 4.0)": {
+		"grid_pos": "(3.0, 4.0)",
+		"instance": "@RigidBody2D@64:<RigidBody2D#344637572698>",
+		"neighbors": [
+			"(4.0, 4.0)",
+			"(3.0, 3.0)",
+			"(2.0, 4.0)"
+		],
+		"part": "(res://data/Parts/thruster.tres):<Resource#-9223372004072094223>",
+		"rotation": 0.0,
+		"scale": "(1.0, 1.0)"
+	},
+	"(4.0, 1.0)": {
+		"grid_pos": "(4.0, 1.0)",
+		"instance": "BaseWeapon:<RigidBody2D#349855287055>",
+		"neighbors": [
+			"(3.0, 1.0)",
+			"(4.0, 2.0)"
+		],
+		"part": "(res://data/Parts/gun.tres):<Resource#-9223372006035028500>",
+		"rotation": 0.0,
+		"scale": "(1.0, 1.0)"
+	},
+	"(4.0, 2.0)": {
+		"grid_pos": "(4.0, 2.0)",
+		"instance": "@RigidBody2D@59:<RigidBody2D#316384741040>",
+		"neighbors": [
+			"(4.0, 3.0)",
+			"(3.0, 2.0)",
+			"(4.0, 1.0)"
+		],
+		"part": "(res://data/Parts/hull.tres):<Resource#-9223372005061949970>",
+		"rotation": 0.0,
+		"scale": "(1.0, 1.0)"
+	},
+	"(4.0, 3.0)": {
+		"grid_pos": "(4.0, 3.0)",
+		"instance": "@RigidBody2D@43:<RigidBody2D#220066744028>",
+		"neighbors": [
+			"(4.0, 4.0)",
+			"(4.0, 2.0)",
+			"(3.0, 3.0)"
+		],
+		"part": "(res://data/Parts/hull.tres):<Resource#-9223372005061949970>",
+		"rotation": 0.0,
+		"scale": "(1.0, 1.0)"
+	},
+	"(4.0, 4.0)": {
+		"grid_pos": "(4.0, 4.0)",
+		"instance": "@RigidBody2D@44:<RigidBody2D#222197450419>",
+		"neighbors": [
+			"(4.0, 3.0)",
+			"(4.0, 5.0)",
+			"(3.0, 4.0)"
+		],
+		"part": "(res://data/Parts/hull.tres):<Resource#-9223372005061949970>",
+		"rotation": 0.0,
+		"scale": "(1.0, 1.0)"
+	},
+	"(4.0, 5.0)": {
+		"grid_pos": "(4.0, 5.0)",
+		"instance": "@RigidBody2D@56:<RigidBody2D#291906782848>",
+		"neighbors": [
+			"(4.0, 4.0)"
+		],
+		"part": "(res://data/Parts/thruster.tres):<Resource#-9223372004072094223>",
+		"rotation": 0.0,
+		"scale": "(1.0, 1.0)"
+	}
+}

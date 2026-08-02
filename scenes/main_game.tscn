@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://g7i7nqney7q"]
 
 [ext_resource type="Script" uid="uid://dlqbmcwkrm6rx" path="res://scripts/main_game.gd" id="1_d2op2"]
-[ext_resource type="Script" uid="uid://dc24imjf6sjnx" path="res://scripts/levelgeneration_component.gd" id="1_s3esy"]
 [ext_resource type="PackedScene" uid="uid://c8hlhmo4ds1i4" path="res://scenes/start_menu_ui.tscn" id="2_0rdsr"]
 [ext_resource type="PackedScene" uid="uid://c0nva578wdvmu" path="res://scenes/intro_guide.tscn" id="2_5cypo"]
 [ext_resource type="PackedScene" uid="uid://b87n71feakgwy" path="res://scenes/pause_menu_layer.tscn" id="3_ipu61"]
 [ext_resource type="PackedScene" uid="uid://bvlc506pxikp8" path="res://scenes/ship_building_layer.tscn" id="4_nqdth"]
+[ext_resource type="PackedScene" uid="uid://dyxopugemdibc" path="res://scenes/level_gen_component.tscn" id="7_nqdth"]
 [ext_resource type="PackedScene" uid="uid://tqn70usw28ix" path="res://scenes/Player.tscn" id="8_70vka"]
 [ext_resource type="PackedScene" uid="uid://coku1cfatytpr" path="res://scenes/wall.tscn" id="9_2l77h"]
 [ext_resource type="PackedScene" uid="uid://cbies401v0c4e" path="res://scenes/hull.tscn" id="10_nqdth"]
@@ -37,8 +37,7 @@ visible = false
 [node name="ShipBuildingLayer" parent="." unique_id=109807577 instance=ExtResource("4_nqdth")]
 visible = false
 
-[node name="LevelGenComponent" type="Node" parent="." unique_id=1260904526]
-script = ExtResource("1_s3esy")
+[node name="LevelGenComponent" parent="." unique_id=1697448056 instance=ExtResource("7_nqdth")]
 
 [node name="Player" parent="." unique_id=2138094422 instance=ExtResource("8_70vka")]
 

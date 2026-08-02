@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ce74wyeeg0ext" path="res://scripts/ship_building_layer.gd" id="1_2vp6f"]
 
 [node name="ShipBuildingLayer" type="CanvasLayer" unique_id=109807577]
-process_mode = 2
+process_mode = 3
 script = ExtResource("1_2vp6f")
 
 [node name="Panel" type="Panel" parent="." unique_id=343043088]

@@ -17,12 +17,14 @@ func _ready() -> void:
 	pause_menu_layer.exit.connect(exit)
 	intro_guide.guide_end.connect(exit_guide)
 	ship_building_layer.build_complete.connect(exit_building)
-	
+
+
+
 func start_game() -> void:
 	print("Game Start!")
 	start_menu_layer.visible = false
 	intro_guide.visible = true
-	
+
 func resume_game() -> void:
 	print("Game resumed!")
 	get_tree().paused = false

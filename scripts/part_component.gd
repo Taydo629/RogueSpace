@@ -13,6 +13,7 @@ func initialise_ship() -> void:
 	var new_dict: Dictionary = {}
 	for key in ship_graph.keys():
 		var graph_node = ship_graph.get(key).duplicate()
+		print(graph_node)
 		var new_part: BasePart = graph_node.part.scene.instantiate()
 		new_part.parent = parent
 		graph_node.instance = new_part

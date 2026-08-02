@@ -170,15 +170,21 @@ func _on_build_button_pressed() -> void:
 		return
 	if assign_neighbors():
 		ShipInfo.initialise_ship(building_dict, (y_range[1]-y_range[0])/64)
-		clear_build()
-		get_tree().paused = false
-		build_complete.emit()
+		clear_build_and_exit()
 
-func clear_build() -> void:
-	for value in building_dict.values():
-		value.instance.queue_free()
-	building_dict = {}
-	var instantiated_item: RigidBody2D
+func clear_build_and_exit() -> void:
+	# First clear any reference of part nodes
+	if is_instance_valid(instantiated_item):
+		instantiated_item.queue_free()
+		instantiated_item = null
 	instantiated_part = null
 	selected_item_idx = 0
 	current_mouse_pos = Vector2.ZERO
+	
+	# Then remove part nodes
+	for child in get_children():
+		if child is RigidBody2D:
+			child.queue_free()
+	
+	get_tree().paused = false
+	build_complete.emit()
