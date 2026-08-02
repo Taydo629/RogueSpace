@@ -14,7 +14,7 @@ colors = PackedColorArray(1, 0, 0, 1, 1, 0.80784315, 0.12941177, 1)
 
 [node name="Thruster" unique_id=2026258003 groups=["thruster"] instance=ExtResource("1_vbl7p")]
 script = ExtResource("2_x6buh")
-thrust_force = 1000
+thrust_force = 10
 part_health = 100
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea" parent_id_path=PackedInt32Array(991278418) index="0" unique_id=1890614803]

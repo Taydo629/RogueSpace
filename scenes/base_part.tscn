@@ -4,6 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://slipmgqm5lvd" path="res://assets/Hit.wav" id="2_bg554"]
 
 [node name="BasePart" type="RigidBody2D" unique_id=2026258003]
+linear_damp = 1.0
 script = ExtResource("1_j4jjp")
 
 [node name="Hit_sound" type="AudioStreamPlayer2D" parent="." unique_id=148902925]

@@ -13,7 +13,6 @@ func initalise_movement() -> void:
 	for node in ship_graph.values():
 		if node.instance.is_in_group("thruster"):
 			thrusters.append(node.instance)
-	activate_thrusters()
 
 func activate_thrusters() -> void:
 	for thruster in thrusters:
@@ -32,6 +31,14 @@ func activate_thrusters() -> void:
 		
 		# Currently using more simplified method of thrust
 		player.add_constant_central_force(global_force)
+
+func deactivate_thrusters() -> void:
+	for thruster in thrusters:
+		thruster.cpu_particles_2d.emitting = false
+			
+	player.constant_force = Vector2.ZERO
+	#if thruster_sound.playing == true:
+		#thruster_sound.playing = false
 
 func rotate_to(target_pos: Vector2) -> void:
 	var angle_diff = get_angle_to_target(target_pos)

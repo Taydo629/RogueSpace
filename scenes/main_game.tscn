@@ -43,7 +43,7 @@ script = ExtResource("1_s3esy")
 [node name="Player" parent="." unique_id=2138094422 instance=ExtResource("8_70vka")]
 
 [node name="Hull" parent="." unique_id=2026258003 instance=ExtResource("10_nqdth")]
-position = Vector2(0, -160)
+position = Vector2(-8, -368)
 
 [node name="Wall" parent="." unique_id=510841446 instance=ExtResource("9_2l77h")]
-position = Vector2(8, -328)
+position = Vector2(0, -504)
