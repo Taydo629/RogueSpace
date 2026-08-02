@@ -191,13 +191,7 @@ func _on_build_button_pressed() -> void:
 		print("No parts are placed!")
 		return
 	if assign_neighbors():
-		save_dict_var(building_dict, SAVE_DIR)
+		var res = NPCGraph.new()
+		res.graph = building_dict
+		ResourceSaver.save(res, str(SAVE_DIR,"graph.res"))
 		get_tree().quit()
-
-func save_dict_var(dict: Dictionary, dir: String) -> void:
-	var path: String = str(dir, "new_graph.txt")
-	var file = FileAccess.open(path, FileAccess.WRITE)
-	if file:
-		# Encodes the dictionary directly to a GDScript text format
-		file.store_string(var_to_str(dict))
-		file.close()

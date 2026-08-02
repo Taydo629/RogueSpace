@@ -17,8 +17,7 @@ func _ready() -> void:
 	pause_menu_layer.exit.connect(exit)
 	intro_guide.guide_end.connect(exit_guide)
 	ship_building_layer.build_complete.connect(exit_building)
-
-
+	level_gen_component.generate_level()
 
 func start_game() -> void:
 	print("Game Start!")

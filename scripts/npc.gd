@@ -23,6 +23,7 @@ func init_ship() -> void:
 
 func reinitialise_components() -> void:
 	print("Re-initialise components")
+	print(part_component.ship_graph)
 	ship_graph = part_component.ship_graph
 	movement_component.initalise_movement(ship_graph)
 	weapon_component.initalise_weapons(ship_graph)

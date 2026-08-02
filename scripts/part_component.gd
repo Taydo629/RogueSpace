@@ -36,17 +36,18 @@ func initialise_ship() -> void:
 	graph_changed.emit()
 
 func part_destroyed(graph_key:String):
-	#destruction_sound.play()
-	var destroyed_node = ship_graph.get(graph_key)
-	destroyed_node.collider.queue_free()
-	if destroyed_node != null:
-		for neighbor_key in destroyed_node.neighbors:
-			var neighbor = ship_graph.get(neighbor_key)
-			for key in neighbor.neighbors:
-				if key == graph_key:
-					neighbor.neighbors.erase(key)
-		ship_graph.erase(graph_key)
-		call_deferred("check_integrity",graph_key)
+	if graph_key in ship_graph:
+		#destruction_sound.play()
+		var destroyed_node = ship_graph.get(graph_key)
+		destroyed_node.collider.queue_free()
+		if destroyed_node != null:
+			for neighbor_key in destroyed_node.neighbors:
+				var neighbor = ship_graph.get(neighbor_key)
+				for key in neighbor.neighbors:
+					if key == graph_key:
+						neighbor.neighbors.erase(key)
+			ship_graph.erase(graph_key)
+			call_deferred("check_integrity",graph_key)
 
 func find_core() -> String:
 	var core_key: String
@@ -55,7 +56,6 @@ func find_core() -> String:
 		if node.part.name == "core":
 			core_key = key
 	return core_key
-	
 
 func check_integrity(removed_key: String) -> void:
 	var has_detached = false
@@ -66,8 +66,10 @@ func check_integrity(removed_key: String) -> void:
 			# Currently when root is destroyed all remaining parts are detached
 			# Infuture this could randomly destroy some parts when this happens
 			var part = ship_graph.get(key)
+			part.collider.queue_free()
 			part.instance.detached()
 			has_detached = true
+		ship_graph.clear()
 		print("Emitting the part_removed Signal")
 		graph_changed.emit()
 		return
@@ -75,8 +77,10 @@ func check_integrity(removed_key: String) -> void:
 		for key in ship_graph.keys():
 			var part = ship_graph.get(key)
 			if part.neighbors == []:
+				ship_graph.erase(key)
 				print("part is not connected to any other parts.")
 				#part.instance.reparent(get_parent())
+				part.collider.queue_free()
 				part.instance.detached()
 				has_detached = true
 		
@@ -105,8 +109,10 @@ func check_integrity(removed_key: String) -> void:
 			for key in ship_graph.keys():
 				if key not in visited_nodes:
 					var part = ship_graph.get(key)
+					ship_graph.erase(key)
 					print("part is no longer connected to root.")
 					#part.instance.reparent(get_parent())
+					part.collider.queue_free()
 					part.instance.detached()
 					has_detached = true
 		print("Emitting the part_removed Signal")
