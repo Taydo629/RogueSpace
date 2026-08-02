@@ -1,5 +1,6 @@
 class_name MovementComponent extends Node
 
+@export var gyro_strength: float = 10000.0
 var player: Player
 var thrusters : Array[Thruster]
 
@@ -30,5 +31,13 @@ func activate_thrusters() -> void:
 		#ship.add_constant_force(global_force, local_offset)
 		
 		# Currently using more simplified method of thrust
-		print(player)
 		player.add_constant_central_force(global_force)
+
+func rotate_to(target_pos: Vector2) -> void:
+	var angle_diff = get_angle_to_target(target_pos)
+	if abs(angle_diff) >= 0.01:
+		player.apply_torque(angle_diff * gyro_strength)
+
+func get_angle_to_target(target_pos: Vector2) -> float:
+	var direction = (target_pos - player.global_position).normalized()
+	return (-player.transform.y).angle_to(direction)

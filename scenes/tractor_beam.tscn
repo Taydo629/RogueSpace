@@ -21,7 +21,7 @@ part_health = 100
 position = Vector2(0, 24)
 shape = SubResource("RectangleShape2D_3qunh")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2" unique_id=1751981152]
+[node name="Collider" type="CollisionShape2D" parent="." index="2" unique_id=1751981152]
 position = Vector2(0, 24)
 shape = SubResource("RectangleShape2D_3qunh")
 

@@ -1,4 +1,6 @@
-class_name PartComponent extends Node
+class_name PartComponent extends Node2D
+
+@onready var player: Player = $".."
 
 signal part_removed
 
@@ -14,13 +16,22 @@ func initialise_ship() -> void:
 		var off_set: Vector2 = ShipInfo.current_grid_dim/2 * Vector2(64,64)
 		new_part.position = graph_node.grid_pos * Vector2(64,64) - off_set
 		add_child(new_part)
-		new_part.attach(key)
+		# Handle collider instatiation.
+		var new_collider = new_part.attach(key)
+		new_collider.rotation = graph_node.rotation
+		new_collider.scale = graph_node.scale
+		var collider_off_set: Vector2 = off_set - new_collider.position.rotated(graph_node.rotation)
+		new_collider.position = graph_node.grid_pos * Vector2(64,64) - collider_off_set
+		graph_node.set("collider", new_collider)
+		# Add collider to parent rigidbody so that it can behave properly
+		player.add_child(new_collider)
 	ShipInfo.ship_graph = new_dict
 
 func part_destroyed(graph_key:String):
 	#destruction_sound.play()
 	var ship_graph = ShipInfo.ship_graph
 	var destroyed_node = ship_graph.get(graph_key)
+	destroyed_node.collider.queue_free()
 	if destroyed_node != null:
 		for neighbor_key in destroyed_node.neighbors:
 			var neighbor = ship_graph.get(neighbor_key)

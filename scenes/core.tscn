@@ -20,5 +20,5 @@ shape = SubResource("RectangleShape2D_5634n")
 color = Color(0, 0.5294118, 1, 1)
 polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3" unique_id=1399363423]
+[node name="Collider" type="CollisionShape2D" parent="." index="3" unique_id=1399363423]
 shape = SubResource("RectangleShape2D_hlf4f")

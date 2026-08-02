@@ -14,7 +14,7 @@ colors = PackedColorArray(1, 0, 0, 1, 1, 0.80784315, 0.12941177, 1)
 
 [node name="Thruster" unique_id=2026258003 groups=["thruster"] instance=ExtResource("1_vbl7p")]
 script = ExtResource("2_x6buh")
-thrust_force = 1
+thrust_force = 1000
 part_health = 100
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea" parent_id_path=PackedInt32Array(991278418) index="0" unique_id=1890614803]
@@ -26,7 +26,7 @@ position = Vector2(0, -32)
 color = Color(0.3854925, 0.38549247, 0.38549247, 1)
 polygon = PackedVector2Array(-16, 0, 16, 0, 24, 8, 32, 32, -32, 32, -24, 8)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3" unique_id=1505331381]
+[node name="Collider" type="CollisionShape2D" parent="." index="3" unique_id=1505331381]
 position = Vector2(0, -16)
 shape = SubResource("RectangleShape2D_cp153")
 

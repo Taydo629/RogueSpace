@@ -4,6 +4,7 @@ var max_health: int = 100
 
 @onready var hit_sound: AudioStreamPlayer2D = $Hit_sound
 @onready var polygon_2d: Polygon2D = $Polygon2D
+@onready var collider: CollisionShape2D = $Collider
 
 var health: int
 var dict_key: String
@@ -33,12 +34,19 @@ func take_damage(damage: int) -> void:
 			part_color = Color(0.53, 0.03, 0.0, 1.0)
 		polygon_2d.color = part_color
 
-func attach(new_key: String) -> void:
+## Function used when attaching a part to a ship
+##
+## The function returns the collision shape to be used
+func attach(new_key: String) -> CollisionShape2D:
+	var new_collider: CollisionShape2D = collider.duplicate()
+	collider.disabled = true
 	dict_key = new_key
 	freeze = true
 	part_destroyed.connect(get_parent().part_destroyed)
+	return(new_collider)
 
 func detached() -> void:
+	collider.disabled = false
 	is_detached = true
 	part_detached.emit()
 	freeze = false
