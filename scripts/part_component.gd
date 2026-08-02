@@ -1,14 +1,18 @@
 class_name PartComponent extends Node2D
 
-@onready var player: Player = $".."
+var parent: RigidBody2D
 
 signal part_removed
+
+func _ready() -> void:
+	parent = get_parent()
 
 func initialise_ship() -> void:
 	var new_dict: Dictionary = {}
 	for key in ShipInfo.ship_graph.keys():
 		var graph_node = ShipInfo.ship_graph.get(key).duplicate()
-		var new_part = graph_node.part.scene.instantiate()
+		var new_part: BasePart = graph_node.part.scene.instantiate()
+		new_part.parent = parent
 		graph_node.instance = new_part
 		new_dict.set(key, graph_node)
 		new_part.rotation = graph_node.rotation
@@ -24,7 +28,7 @@ func initialise_ship() -> void:
 		new_collider.position = graph_node.grid_pos * Vector2(64,64) - collider_off_set
 		graph_node.set("collider", new_collider)
 		# Add collider to parent rigidbody so that it can behave properly
-		player.add_child(new_collider)
+		parent.add_child(new_collider)
 	ShipInfo.ship_graph = new_dict
 
 func part_destroyed(graph_key:String):

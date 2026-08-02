@@ -1,13 +1,12 @@
 [gd_scene format=3 uid="uid://sufhro00r1n7"]
 
-[ext_resource type="Script" uid="uid://ikpfuaa8r5q5" path="res://scripts/bullet.gd" id="1_mkf8s"]
+[ext_resource type="Script" uid="uid://ikpfuaa8r5q5" path="res://scripts/projectile.gd" id="1_c8fcr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h1aey"]
 size = Vector2(16, 20)
 
-[node name="Polygon2D" type="StaticBody2D" unique_id=444542411]
-script = ExtResource("1_mkf8s")
-speed = 700
+[node name="Projectile" type="StaticBody2D" unique_id=444542411]
+script = ExtResource("1_c8fcr")
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=561878264]
 color = Color(0.6322254, 1.9492954e-06, 3.3691526e-07, 1)

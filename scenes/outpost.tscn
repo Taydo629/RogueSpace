@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://de5ecusj6segb"]
 
 [ext_resource type="PackedScene" uid="uid://cbies401v0c4e" path="res://scenes/hull.tscn" id="1_3nu1c"]
-[ext_resource type="PackedScene" uid="uid://bqwwb8ff2mpkk" path="res://scenes/gun.tscn" id="2_t6ban"]
+[ext_resource type="PackedScene" uid="uid://bqwwb8ff2mpkk" path="res://scenes/base_weapon.tscn" id="2_t6ban"]
 [ext_resource type="PackedScene" uid="uid://jumhiux358g4" path="res://scenes/thruster.tscn" id="3_cpaoq"]
 
 [node name="Outpost" type="Node2D" unique_id=1916993026]

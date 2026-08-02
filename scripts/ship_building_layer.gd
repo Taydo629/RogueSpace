@@ -161,7 +161,8 @@ func _on_item_list_item_selected(index: int) -> void:
 		instantiate_part(selected_part)
 	else:
 		kill_selected_part()
-		instantiate_part(selected_part)
+		if check_part_owned(selected_part):
+			instantiate_part(selected_part)
 
 func _on_build_button_pressed() -> void:
 	if building_dict.is_empty():

@@ -9,6 +9,7 @@ var max_health: int = 100
 var health: int
 var dict_key: String
 var is_detached: bool = false
+var parent: RigidBody2D
 
 signal part_destroyed
 signal part_detached
