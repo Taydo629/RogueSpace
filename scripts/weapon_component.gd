@@ -6,9 +6,8 @@ var parent: RigidBody2D
 func _ready() -> void:
 	parent = get_parent()
 
-func initalise_weapons() -> void:
+func initalise_weapons(ship_graph: Dictionary) -> void:
 	weapons = []
-	var ship_graph = ShipInfo.ship_graph
 	for node in ship_graph.values():
 		if node.instance.is_in_group("weapon"):
 			weapons.append(node.instance)

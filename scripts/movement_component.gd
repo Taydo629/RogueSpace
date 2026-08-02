@@ -7,9 +7,8 @@ var thrusters : Array[Thruster]
 func _ready() -> void:
 	parent = get_parent()
 
-func initalise_movement() -> void:
+func initalise_movement(ship_graph: Dictionary) -> void:
 	thrusters = []
-	var ship_graph = ShipInfo.ship_graph
 	for node in ship_graph.values():
 		if node.instance.is_in_group("thruster"):
 			thrusters.append(node.instance)

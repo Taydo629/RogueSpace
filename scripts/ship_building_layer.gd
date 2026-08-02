@@ -169,7 +169,7 @@ func _on_build_button_pressed() -> void:
 		print("No parts are placed!")
 		return
 	if assign_neighbors():
-		ShipInfo.update_ship(building_dict, (y_range[1]-y_range[0])/64)
+		ShipInfo.initialise_ship(building_dict, (y_range[1]-y_range[0])/64)
 		clear_build()
 		get_tree().paused = false
 		build_complete.emit()
