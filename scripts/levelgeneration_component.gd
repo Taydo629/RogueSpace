@@ -38,7 +38,8 @@ func generate_level() -> void:
 	for i in number_of_npcs:
 		var NPC_instance = NPC.instantiate()
 		var NPC_ship = valid_npcs.pick_random()
-		NPC_instance.position = Vector2(randi_range(playable_bound_x.x,playable_bound_x.y),randi_range(playable_bound_y.x,playable_bound_y.y))
+		#NPC_instance.position = Vector2(randi_range(playable_bound_x.x,playable_bound_x.y),randi_range(playable_bound_y.x,playable_bound_y.y))
+		NPC_instance.position = Vector2(-200,0)
 		NPC_instance.ship_graph = NPC_ship.ship_graph.get_dictionary()
 		NPC_instance.grid_dim = NPC_ship.grid_size
 		add_child(NPC_instance)

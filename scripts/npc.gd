@@ -15,6 +15,7 @@ var grid_dim: int
 func _ready() -> void:
 	collision_shape_2d.shape.radius = detection_range
 	part_component.graph_changed.connect(reinitialise_components)
+	part_component.ship_destroyed.connect(destroy_ship)
 	npc_input_component.anchor_pos = global_position
 	npc_input_component.detection_area = detection_area
 	npc_input_component.wander_range = wander_range
@@ -35,3 +36,11 @@ func reinitialise_components() -> void:
 	ship_graph = part_component.ship_graph
 	movement_component.initalise_movement(ship_graph)
 	weapon_component.initalise_weapons(ship_graph)
+
+func destroy_ship() -> void:
+	print("Destroying ship")
+	for node in part_component.get_children():
+		# Reparent to node above i.e. Level generator
+		node.reparent(get_parent())
+	print("All parts removed from ship")
+	queue_free()

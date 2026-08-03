@@ -5,6 +5,7 @@ var grid_size: int
 var ship_graph: Dictionary
 
 signal graph_changed
+signal ship_destroyed
 
 func _ready() -> void:
 	parent = get_parent()
@@ -79,6 +80,7 @@ func check_integrity(removed_key: String) -> void:
 		ship_graph.clear()
 		print("Emitting the part_removed Signal")
 		graph_changed.emit()
+		ship_destroyed.emit()
 		return
 	else:
 		for key in ship_graph.keys():
