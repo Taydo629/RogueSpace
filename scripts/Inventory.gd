@@ -32,6 +32,7 @@ func _ready() -> void:
 		i += 1
 
 func add_item(part: Part) -> void:
+	print("part collected")
 	inventory.append(part)
 	item_pickup.emit(part)
 	#print("test")

@@ -17,6 +17,7 @@ func initialise_ship() -> void:
 		new_weight += graph_node.part.weight
 		var new_part: BasePart = graph_node.part.scene.instantiate()
 		new_part.parent = parent
+		new_part.part = graph_node.part
 		graph_node.instance = new_part
 		new_dict.set(key, graph_node)
 		new_part.rotation = graph_node.rotation

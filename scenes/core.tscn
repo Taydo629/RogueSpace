@@ -16,9 +16,9 @@ part_health = 100
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea" parent_id_path=PackedInt32Array(991278418) index="0" unique_id=1998087249]
 shape = SubResource("RectangleShape2D_5634n")
 
-[node name="Polygon2D" type="Polygon2D" parent="." index="2" unique_id=1028683940]
+[node name="Collider" type="CollisionShape2D" parent="." index="2" unique_id=1399363423]
+shape = SubResource("RectangleShape2D_hlf4f")
+
+[node name="Polygon2D" type="Polygon2D" parent="." index="3" unique_id=1028683940]
 color = Color(0, 0.5294118, 1, 1)
 polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
-
-[node name="Collider" type="CollisionShape2D" parent="." index="3" unique_id=1399363423]
-shape = SubResource("RectangleShape2D_hlf4f")

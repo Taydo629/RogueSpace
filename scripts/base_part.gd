@@ -10,6 +10,7 @@ var health: int
 var dict_key: String
 var is_detached: bool = false
 var parent: RigidBody2D
+var part: Part
 
 signal part_destroyed
 signal part_detached
