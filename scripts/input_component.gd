@@ -7,7 +7,7 @@ signal activate_tractorbeam
 signal deactivate_tractorbeam
 signal mouse_pos_changed
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_pressed("left_click"):
 		fire_guns.emit()
 	if Input.is_action_pressed("thrust"):

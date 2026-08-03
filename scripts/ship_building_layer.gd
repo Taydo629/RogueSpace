@@ -119,7 +119,7 @@ func check_part_owned(part: Part) -> bool:
 func update_partinfo(idx: int) -> Part:
 	var number_of_selected_part:int = 0
 	var selected_part_name: String = item_list.get_item_text(idx)
-	var selected_part: Part
+	var selected_part: Part = null
 	for part in Inventory.inventory:
 		if part.name == selected_part_name:
 			number_of_selected_part += 1

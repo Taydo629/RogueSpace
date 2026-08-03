@@ -28,15 +28,15 @@ func _ready() -> void:
 func fire_weapon(parent_node: RigidBody2D) -> void:
 	if gun_ready:
 		fire_sound.play()
-		var round = round_scene.instantiate()
+		var projectile = round_scene.instantiate()
 		# Initialise bullet with all required information
-		round.global_position = muzzle.global_position
-		round.rotation = parent_node.rotation
-		round.damage = weapon_damage
-		round.speed = round_speed
-		round.initial_velocity = parent_node.linear_velocity
-		round.parent = parent_node
-		live_rounds.add_child(round)
+		projectile.global_position = muzzle.global_position
+		projectile.rotation = parent_node.rotation
+		projectile.damage = weapon_damage
+		projectile.speed = round_speed
+		projectile.initial_velocity = parent_node.linear_velocity
+		projectile.parent = parent_node
+		live_rounds.add_child(projectile)
 		gun_ready = false
 		timer.start()
 

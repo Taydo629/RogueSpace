@@ -23,7 +23,7 @@ func initialise_ship() -> void:
 		new_dict.set(key, graph_node)
 		new_part.rotation = graph_node.rotation
 		new_part.scale = graph_node.scale
-		var off_set: Vector2 = grid_size/2 * Vector2(64,64)
+		var off_set: Vector2 = grid_size/2.0 * Vector2(64,64)
 		new_part.position = graph_node.grid_pos * Vector2(64,64) - off_set
 		add_child(new_part)
 		# Handle collider instatiation.
@@ -72,8 +72,7 @@ func check_integrity(removed_key: String) -> void:
 			# Currently when root is destroyed all remaining parts are detached
 			# Infuture this could randomly destroy some parts when this happens
 			var part = ship_graph.get(key)
-			# remove destroyed nodes weight from ship
-			parent.mass -= part.part.weight
+			# remove weight from ship is not needed as ship as a whole is now destroyed!
 			part.collider.queue_free()
 			part.instance.detached()
 			has_detached = true

@@ -4,7 +4,7 @@ extends Node2D
 @onready var pause_menu_layer: CanvasLayer = $PauseMenuLayer
 @onready var ship_building_layer: CanvasLayer = $ShipBuildingLayer
 @onready var level_gen_component: LevelGenComponent = $LevelGenComponent
-@onready var menu_component: MenuComponent = $MenuComponent
+#@onready var menu_component: MenuComponent = $MenuComponent
 @onready var intro_guide: Control = $IntroGuide
 @onready var player: Player = $Player
 
