@@ -19,10 +19,11 @@ func _physics_process(delta: float) -> void:
 
 func _on_collision_polygon_2d_area_entered(area: Area2D) -> void:
 	# Check if the colision is from the same parent.
-	if parent != area.get_parent().parent:
-		if area.get_parent().has_method("take_damage"):
-			area.get_parent().take_damage(damage)
-			queue_free()
+	if "parent" in area.get_parent():
+		if parent != area.get_parent().parent:
+			if area.get_parent().has_method("take_damage"):
+				area.get_parent().take_damage(damage)
+				queue_free()
 
 func cull() -> void:
 	queue_free()
