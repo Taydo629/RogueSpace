@@ -1,6 +1,6 @@
 class_name MovementComponent extends Node
 
-@export var gyro_strength: float = 10000.0
+@export var gyro_strength: float = 300000.0
 var parent: RigidBody2D
 var thrusters : Array[Thruster]
 

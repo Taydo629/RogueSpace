@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bmn28l2ks5e3r" path="res://scenes/weapon_component.tscn" id="4_cw2d6"]
 [ext_resource type="PackedScene" uid="uid://dpu8pdnvx3kqb" path="res://scenes/input_component.tscn" id="5_khinc"]
 
-[node name="Player" type="RigidBody2D" unique_id=2138094422]
+[node name="Player" type="RigidBody2D" unique_id=2138094422 groups=["player"]]
 sleeping = true
 linear_damp = 1.0
 angular_damp = 1.0

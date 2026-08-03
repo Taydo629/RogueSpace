@@ -11,9 +11,11 @@ func _ready() -> void:
 
 func initialise_ship() -> void:
 	var new_dict: Dictionary = {}
+	var new_weight: int = 0
 	for key in ship_graph.keys():
 		var graph_node = ship_graph.get(key).duplicate()
-		print(graph_node)
+		new_weight += graph_node.part.weight
+		print(graph_node.part.weight)
 		var new_part: BasePart = graph_node.part.scene.instantiate()
 		new_part.parent = parent
 		graph_node.instance = new_part
@@ -33,12 +35,17 @@ func initialise_ship() -> void:
 		# Add collider to parent rigidbody so that it can behave properly
 		parent.add_child(new_collider)
 	ship_graph = new_dict
+	print(parent.mass)
+	print(new_weight)
+	parent.mass = new_weight
 	graph_changed.emit()
 
 func part_destroyed(graph_key:String):
 	if graph_key in ship_graph:
 		#destruction_sound.play()
 		var destroyed_node = ship_graph.get(graph_key)
+		# remove destroyed nodes weight from ship
+		parent.mass -= destroyed_node.part.weight
 		destroyed_node.collider.queue_free()
 		if destroyed_node != null:
 			for neighbor_key in destroyed_node.neighbors:
@@ -66,6 +73,8 @@ func check_integrity(removed_key: String) -> void:
 			# Currently when root is destroyed all remaining parts are detached
 			# Infuture this could randomly destroy some parts when this happens
 			var part = ship_graph.get(key)
+			# remove destroyed nodes weight from ship
+			parent.mass -= part.part.weight
 			part.collider.queue_free()
 			part.instance.detached()
 			has_detached = true
@@ -77,6 +86,8 @@ func check_integrity(removed_key: String) -> void:
 		for key in ship_graph.keys():
 			var part = ship_graph.get(key)
 			if part.neighbors == []:
+				# remove destroyed nodes weight from ship
+				parent.mass -= part.part.weight
 				ship_graph.erase(key)
 				print("part is not connected to any other parts.")
 				#part.instance.reparent(get_parent())
@@ -109,6 +120,8 @@ func check_integrity(removed_key: String) -> void:
 			for key in ship_graph.keys():
 				if key not in visited_nodes:
 					var part = ship_graph.get(key)
+					# remove destroyed nodes weight from ship
+					parent.mass -= part.part.weight
 					ship_graph.erase(key)
 					print("part is no longer connected to root.")
 					#part.instance.reparent(get_parent())

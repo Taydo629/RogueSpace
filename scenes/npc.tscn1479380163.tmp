@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://dxth7s5bap4i5"]
+
+[ext_resource type="Script" uid="uid://37al12qjxhxt" path="res://scripts/npc.gd" id="1_nh2m4"]
+[ext_resource type="PackedScene" uid="uid://bn7tq5d2hxit6" path="res://scenes/part_component.tscn" id="2_4wlns"]
+[ext_resource type="PackedScene" uid="uid://caeqjr661qosk" path="res://scenes/movement_component.tscn" id="3_tl2vt"]
+[ext_resource type="PackedScene" uid="uid://bmn28l2ks5e3r" path="res://scenes/weapon_component.tscn" id="4_hwkja"]
+[ext_resource type="PackedScene" uid="uid://cnnwo4hjd2x6r" path="res://scenes/npc_input_component.tscn" id="5_4wlns"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n1a5j"]
+
+[node name="NPC" type="RigidBody2D" unique_id=355031547]
+linear_damp = 1.0
+angular_damp = 1.0
+script = ExtResource("1_nh2m4")
+
+[node name="PartComponent" parent="." unique_id=456244710 instance=ExtResource("2_4wlns")]
+
+[node name="MovementComponent" parent="." unique_id=894662683 instance=ExtResource("3_tl2vt")]
+
+[node name="WeaponComponent" parent="." unique_id=1177833148 instance=ExtResource("4_hwkja")]
+
+[node name="NPCInputComponent" parent="." unique_id=585118728 instance=ExtResource("5_4wlns")]
+
+[node name="DetectionArea" type="Area2D" parent="." unique_id=237740585]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=415182568]
+shape = SubResource("CircleShape2D_n1a5j")

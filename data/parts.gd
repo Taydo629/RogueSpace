@@ -6,3 +6,4 @@ extends Resource
 @export var image: Texture2D
 @export var buy_price: int
 @export var sell_price: int
+@export var weight: int

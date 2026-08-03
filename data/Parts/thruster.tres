@@ -11,4 +11,5 @@ scene = ExtResource("2_mcja4")
 image = ExtResource("1_u85ot")
 buy_price = 300
 sell_price = 100
+weight = 3
 metadata/_custom_type_script = "uid://dfxnbigy6na68"
