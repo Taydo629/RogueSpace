@@ -32,11 +32,11 @@ func init_input() -> void:
 	detection_area.body_entered.connect(_body_entered_detection_range)
 	detection_area.body_exited.connect(_body_exited_detection_range)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	target_processing()
 	var thrusters_on: bool = thruster_processing()
-	#if Input.is_action_pressed("left_click"):
-		#fire_guns.emit()
+	if trigger_proccessing():
+		fire_guns.emit()
 	if thrusters_on:
 		activate_thrusters.emit()
 	if not thrusters_on:
@@ -50,6 +50,7 @@ func _process(delta: float) -> void:
 func _body_entered_detection_range(body: Node2D) -> void:
 	# If body is player start set the target ship
 	if body.is_in_group("player"):
+		timer.stop()
 		target_ship = body
 		print("Player entered detection range!")
 
@@ -90,3 +91,15 @@ func thruster_processing() -> bool:
 		return true
 	else:
 		return false
+
+func trigger_proccessing() -> bool:
+	if target_ship != null:
+		var direction = (target_pos - get_parent().global_position).normalized()
+		var abs_angle_to_target: float = abs((-get_parent().transform.y).angle_to(direction))
+		if abs_angle_to_target < 0.5 * PI:
+			return true
+		else:
+			return false
+	else:
+		return false
+	

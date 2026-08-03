@@ -6,7 +6,7 @@ class_name BaseWeapon extends BasePart
 @export var round_scene: PackedScene
 @export var fire_rate : float = 0.2
 @export var weapon_damage: int = 10
-@export var round_speed: int = 500
+@export var round_speed: int = 750
 @onready var muzzle: Node2D = $Muzzle
 @onready var fire_sound: AudioStreamPlayer2D = $FireSound
 

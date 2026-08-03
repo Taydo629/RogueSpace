@@ -14,7 +14,7 @@ part_health = 100
 round_scene = ExtResource("3_lhsh2")
 fire_rate = 0.2
 weapon_damage = 10
-round_speed = 500
+round_speed = 750
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea" parent_id_path=PackedInt32Array(991278418) index="0" unique_id=1332612912]
 position = Vector2(-12, 0)

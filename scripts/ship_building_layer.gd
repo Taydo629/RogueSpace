@@ -186,5 +186,5 @@ func clear_build_and_exit() -> void:
 		if child is RigidBody2D:
 			child.queue_free()
 	
-	get_tree().paused = false
 	build_complete.emit()
+	get_tree().paused = false

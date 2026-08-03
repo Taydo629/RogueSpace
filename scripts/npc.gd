@@ -26,11 +26,9 @@ func _ready() -> void:
 	init_ship()
 
 func init_ship() -> void:
-	print(mass)
 	part_component.ship_graph = ship_graph
 	part_component.grid_size = grid_dim
 	part_component.initialise_ship()
-	print(mass)
 
 func reinitialise_components() -> void:
 	print("Re-initialise components")

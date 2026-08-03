@@ -15,7 +15,6 @@ func initialise_ship() -> void:
 	for key in ship_graph.keys():
 		var graph_node = ship_graph.get(key).duplicate()
 		new_weight += graph_node.part.weight
-		print(graph_node.part.weight)
 		var new_part: BasePart = graph_node.part.scene.instantiate()
 		new_part.parent = parent
 		graph_node.instance = new_part
@@ -35,8 +34,6 @@ func initialise_ship() -> void:
 		# Add collider to parent rigidbody so that it can behave properly
 		parent.add_child(new_collider)
 	ship_graph = new_dict
-	print(parent.mass)
-	print(new_weight)
 	parent.mass = new_weight
 	graph_changed.emit()
 
