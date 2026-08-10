@@ -7,8 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://bvlc506pxikp8" path="res://scenes/ship_building_layer.tscn" id="4_nqdth"]
 [ext_resource type="PackedScene" uid="uid://dyxopugemdibc" path="res://scenes/level_gen_component.tscn" id="7_nqdth"]
 [ext_resource type="PackedScene" uid="uid://tqn70usw28ix" path="res://scenes/Player.tscn" id="8_70vka"]
-[ext_resource type="PackedScene" uid="uid://coku1cfatytpr" path="res://scenes/wall.tscn" id="9_2l77h"]
-[ext_resource type="PackedScene" uid="uid://cbies401v0c4e" path="res://scenes/hull.tscn" id="10_nqdth"]
 [ext_resource type="Texture2D" uid="uid://7311c1hg8dft" path="res://assets/Space-Background-Image-2-1024x682.jpg" id="13_wjob3"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8xp80"]
@@ -39,10 +37,4 @@ visible = false
 
 [node name="LevelGenComponent" parent="." unique_id=1697448056 instance=ExtResource("7_nqdth")]
 
-[node name="Player" parent="." unique_id=2138094422 instance=ExtResource("8_70vka")]
-
-[node name="Hull" parent="." unique_id=2026258003 instance=ExtResource("10_nqdth")]
-position = Vector2(-8, -368)
-
-[node name="Wall" parent="." unique_id=510841446 instance=ExtResource("9_2l77h")]
-position = Vector2(0, -504)
+[node name="Player" parent="LevelGenComponent" unique_id=2138094422 instance=ExtResource("8_70vka")]

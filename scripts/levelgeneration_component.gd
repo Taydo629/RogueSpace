@@ -4,9 +4,10 @@ signal level_generated
 
 var level_number: int = 1
 var loaded_ships: Array[NPCShip] = []
-var playable_bound_x: Vector2 = Vector2.ZERO
-var playable_bound_y: Vector2 = Vector2.ZERO
+var playable_bound_x: Vector2 = Vector2(-7000,7000)
+var playable_bound_y: Vector2 = Vector2(-7000,7000)
 const NPC = preload("uid://dxth7s5bap4i5")
+const STATION = preload("uid://baad6rfav87i3")
 
 func _ready() -> void:
 	load_all_ships_from_folder("res://data/NPCShips/")
@@ -35,17 +36,22 @@ func generate_level() -> void:
 	# NPC spawning
 	var valid_npcs: Array[NPCShip] = get_valid_ships_for_current_level()
 	var number_of_npcs = 1 # randi_range(4, 8)
+	var npc_array: Array[RigidBody2D]
 	for i in number_of_npcs:
 		var NPC_instance = NPC.instantiate()
 		var NPC_ship = valid_npcs.pick_random()
-		#NPC_instance.position = Vector2(randi_range(playable_bound_x.x,playable_bound_x.y),randi_range(playable_bound_y.x,playable_bound_y.y))
-		NPC_instance.position = Vector2(-200,0)
+		NPC_instance.position = Vector2(randf_range(playable_bound_x.x,playable_bound_x.y),randf_range(playable_bound_y.x,playable_bound_y.y))
+		#NPC_instance.position = Vector2(-200,0)
 		NPC_instance.ship_graph = NPC_ship.ship_graph.get_dictionary()
 		NPC_instance.grid_dim = NPC_ship.grid_size
 		add_child(NPC_instance)
-	# code to generate level
+		npc_array.append(NPC_instance)
+	# Station spawining
+	var station_instance = STATION.instantiate()
+	station_instance.position = Vector2(randf_range(playable_bound_x.x,playable_bound_x.y),randf_range(playable_bound_y.x,playable_bound_y.y))
+	add_child(station_instance)
+	level_generated.emit(level_number, npc_array, station_instance)
 	level_number += 1
-	level_generated.emit()
 
 func get_valid_ships_for_current_level() -> Array[NPCShip]:
 	var valid_ships: Array[NPCShip]
