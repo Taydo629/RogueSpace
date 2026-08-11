@@ -1,0 +1,124 @@
+[gd_scene format=3 uid="uid://ds8t7yfbj4qfp"]
+
+[ext_resource type="Script" uid="uid://c4hjbltc78gv6" path="res://scripts/station_ui_layer.gd" id="1_8ba05"]
+
+[node name="StationUILayer" type="CanvasLayer" unique_id=1766307865]
+script = ExtResource("1_8ba05")
+
+[node name="Station_UI" type="TabContainer" parent="." unique_id=165835795]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 96.0
+offset_top = 96.0
+offset_right = -96.0
+offset_bottom = -104.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+current_tab = 1
+tab_0/title = "Market"
+tab_1/title = "Jump/Build Services"
+
+[node name="MarketContainer" type="VBoxContainer" parent="Station_UI" unique_id=71970720]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 0
+metadata/_tab_name = "Market"
+
+[node name="Market" type="ItemList" parent="Station_UI/MarketContainer" unique_id=294535537]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 20
+same_column_width = true
+fixed_icon_size = Vector2i(64, 64)
+
+[node name="ButtonContainer" type="HBoxContainer" parent="Station_UI/MarketContainer" unique_id=941660018]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="ItemInfo" type="Label" parent="Station_UI/MarketContainer/ButtonContainer" unique_id=1625991367]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="BuyButton" type="Button" parent="Station_UI/MarketContainer/ButtonContainer" unique_id=1895787090]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 20
+text = "Buy"
+
+[node name="SellButton" type="Button" parent="Station_UI/MarketContainer/ButtonContainer" unique_id=1250783184]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 20
+text = "Sell"
+
+[node name="JumpBuildServices" type="VBoxContainer" parent="Station_UI" unique_id=496147167]
+layout_mode = 2
+metadata/_tab_index = 1
+metadata/_tab_name = "Jump/Build Services"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Station_UI/JumpBuildServices" unique_id=506026168]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 20
+text = "The station would like to like to thank you for clearing this sector. 
+
+Please use our Jump/Building facilities at discounted prices!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonContainer" type="HBoxContainer" parent="Station_UI/JumpBuildServices" unique_id=294548461]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[node name="J_B_InfoLabel" type="Label" parent="Station_UI/JumpBuildServices/ButtonContainer" unique_id=1774219780]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+horizontal_alignment = 1
+
+[node name="JumpButton" type="Button" parent="Station_UI/JumpBuildServices/ButtonContainer" unique_id=644896317]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 20
+text = "Jump (CR 100)"
+
+[node name="BuildButton" type="Button" parent="Station_UI/JumpBuildServices/ButtonContainer" unique_id=1181355591]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 20
+text = "Build (CR 50)"
+
+[node name="ExitButton" type="Button" parent="." unique_id=1749310588]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 928.0
+offset_top = 32.0
+offset_right = -96.0
+offset_bottom = -552.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 20
+text = "Exit"
+
+[node name="CreditUI" type="Label" parent="." unique_id=594605634]
+anchors_preset = -1
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 152.0
+offset_bottom = 66.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[connection signal="item_selected" from="Station_UI/MarketContainer/Market" to="." method="_on_market_item_selected"]
+[connection signal="pressed" from="Station_UI/MarketContainer/ButtonContainer/BuyButton" to="." method="_on_buy_button_pressed"]
+[connection signal="pressed" from="Station_UI/MarketContainer/ButtonContainer/SellButton" to="." method="_on_sell_button_pressed"]
+[connection signal="pressed" from="Station_UI/JumpBuildServices/ButtonContainer/JumpButton" to="." method="_on_jump_button_pressed"]
+[connection signal="pressed" from="Station_UI/JumpBuildServices/ButtonContainer/BuildButton" to="." method="_on_build_button_pressed"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]

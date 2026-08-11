@@ -1,11 +1,11 @@
 extends TabContainer
 
-var inventory_parts: Array = []
-@onready var market: ItemList = $MarketContainer/Market
-@onready var buy_button: Button = $MarketContainer/ButtonContainer/BuyButton
-@onready var sell_button: Button = $MarketContainer/ButtonContainer/SellButton
-@onready var item_info: Label = $MarketContainer/ButtonContainer/ItemInfo
-@onready var j_b_info_label: Label = $"Jump and Build services/ButtonContainer/J_B_InfoLabel"
+var inventory_parts: Array[Part] = []
+@onready var market: ItemList = $Station_UI/MarketContainer/Market
+@onready var buy_button: Button = $Station_UI/MarketContainer/ButtonContainer/BuyButton
+@onready var sell_button: Button = $Station_UI/MarketContainer/ButtonContainer/SellButton
+@onready var item_info: Label = $Station_UI/MarketContainer/ButtonContainer/ItemInfo
+@onready var j_b_info_label: Label = $Station_UI/JumpBuildServices/ButtonContainer/J_B_InfoLabel
 const CORE = preload("uid://dxn6vqjt4j07d")
 const GUN = preload("uid://bs8ufgr7qnr1y")
 const HULL = preload("uid://rp4s55105tbn")
@@ -13,14 +13,29 @@ const THRUSTER = preload("uid://b4k0ewhy4bwpf")
 const TRACTOR_BEAM = preload("uid://nxtyhwldok2c")
 
 func _ready() -> void:
-	var core = CORE
-	var gun = GUN
-	var hull = HULL
-	var thruster = THRUSTER
-	var tractor_beam = TRACTOR_BEAM
-	inventory_parts = [core,gun,hull,thruster,tractor_beam]
+	load_all_parts_from_folder("res://data/Parts/")
 	for part in inventory_parts:
 		market.add_item(part.name, part.image)
+
+func load_all_parts_from_folder(path: String) -> void:
+	var dir = DirAccess.open(path)
+	if dir:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		
+		while file_name != "":
+			# Ignore subdirectories and non-resource files
+			if not dir.current_is_dir() and file_name.ends_with(".tres"):
+				var full_path = path + "/" + file_name
+				var part_resource = load(full_path) as Part
+				
+				if part_resource:
+					inventory_parts.append(part_resource)
+					
+			file_name = dir.get_next()
+		dir.list_dir_end()
+		
+	print("Total loaded parts: ", inventory_parts.size())
 
 func _on_market_item_selected(index: int) -> void:
 	var item_name = market.get_item_text(index)

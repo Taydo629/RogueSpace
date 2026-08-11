@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c0nva578wdvmu" path="res://scenes/intro_guide.tscn" id="2_5cypo"]
 [ext_resource type="PackedScene" uid="uid://b87n71feakgwy" path="res://scenes/pause_menu_layer.tscn" id="3_ipu61"]
 [ext_resource type="PackedScene" uid="uid://bvlc506pxikp8" path="res://scenes/ship_building_layer.tscn" id="4_nqdth"]
+[ext_resource type="PackedScene" uid="uid://ds8t7yfbj4qfp" path="res://scenes/station_ui_layer.tscn" id="7_2l77h"]
 [ext_resource type="PackedScene" uid="uid://dyxopugemdibc" path="res://scenes/level_gen_component.tscn" id="7_nqdth"]
 [ext_resource type="PackedScene" uid="uid://tqn70usw28ix" path="res://scenes/Player.tscn" id="8_70vka"]
 [ext_resource type="Texture2D" uid="uid://7311c1hg8dft" path="res://assets/Space-Background-Image-2-1024x682.jpg" id="13_wjob3"]
@@ -13,6 +14,7 @@
 texture = ExtResource("13_wjob3")
 
 [node name="MainGame" type="Node2D" unique_id=956598129]
+process_mode = 3
 script = ExtResource("1_d2op2")
 
 [node name="BG" type="Panel" parent="." unique_id=591426073]
@@ -33,8 +35,15 @@ process_mode = 2
 visible = false
 
 [node name="ShipBuildingLayer" parent="." unique_id=109807577 instance=ExtResource("4_nqdth")]
+process_mode = 4
+visible = false
+
+[node name="StationUILayer" parent="." unique_id=1766307865 instance=ExtResource("7_2l77h")]
+process_mode = 4
 visible = false
 
 [node name="LevelGenComponent" parent="." unique_id=1697448056 instance=ExtResource("7_nqdth")]
+process_mode = 3
 
 [node name="Player" parent="LevelGenComponent" unique_id=2138094422 instance=ExtResource("8_70vka")]
+process_mode = 1

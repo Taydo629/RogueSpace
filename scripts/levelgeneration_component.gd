@@ -33,9 +33,11 @@ func load_all_ships_from_folder(path: String) -> void:
 	print("Total loaded ships: ", loaded_ships.size())
 
 func generate_level() -> void:
+	# Clear the level before generating new one
+	clear_level()
 	# NPC spawning
 	var valid_npcs: Array[NPCShip] = get_valid_ships_for_current_level()
-	var number_of_npcs = 1 # randi_range(4, 8)
+	var number_of_npcs = randi_range(1, level_number)
 	var npc_array: Array[RigidBody2D]
 	for i in number_of_npcs:
 		var NPC_instance = NPC.instantiate()
@@ -59,3 +61,8 @@ func get_valid_ships_for_current_level() -> Array[NPCShip]:
 		if level_number >= ship.min_level and level_number <= ship.max_level:
 			valid_ships.append(ship)
 	return(valid_ships)
+
+func clear_level() -> void:
+	for child in get_children():
+		if child is not Player:
+			child.queue_free()

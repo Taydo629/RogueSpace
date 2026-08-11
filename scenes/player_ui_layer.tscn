@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b7axk8e3fxsiw"]
 
-[ext_resource type="Script" uid="uid://dbuidovl3es1n" path="res://scenes/player_ui_layer.gd" id="1_22xda"]
+[ext_resource type="Script" uid="uid://dbuidovl3es1n" path="res://scripts/player_ui_layer.gd" id="1_22xda"]
 [ext_resource type="Script" uid="uid://bqqe7u1h368pq" path="res://scripts/pickup_ui.gd" id="2_3wa7g"]
 [ext_resource type="Script" uid="uid://c5dsmhtr8h0ob" path="res://scripts/inventory_ui.gd" id="3_etm03"]
 

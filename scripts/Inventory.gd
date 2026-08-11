@@ -1,7 +1,7 @@
 extends Node
 
 var inventory: Array
-var wallet: int = 0
+var wallet: int = 1000
 var number_of_hull: int = 6
 var number_of_thruster: int = 3
 var number_of_gun: int = 2

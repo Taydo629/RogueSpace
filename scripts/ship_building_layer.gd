@@ -14,6 +14,11 @@ var building_dict: Dictionary = {}
 signal build_complete
 
 func start_build() -> void:
+	building_dict.clear()
+	item_list.clear()
+	for value in ShipInfo.ship_graph.values():
+		var part: Part = value.part
+		Inventory.add_item(part)
 	update_partlist()
 
 func _input(event: InputEvent) -> void:
@@ -84,10 +89,12 @@ func move_part(position: Vector2) -> void:
 	instantiated_item.position = pos
 
 func rotate_part(direction: int) -> void:
-	instantiated_item.rotate(0.5 * PI * direction)
+	if instantiated_item != null:
+		instantiated_item.rotate(0.5 * PI * direction)
 
 func mirror_part() -> void:
-	instantiated_item.scale *= Vector2(-1,1)
+	if instantiated_item != null:
+		instantiated_item.scale *= Vector2(-1,1)
 
 func instantiate_part(part: Part) -> void:
 	instantiated_part = part
@@ -96,9 +103,10 @@ func instantiate_part(part: Part) -> void:
 	add_child(instantiated_item)
 
 func kill_selected_part() -> void:
-	instantiated_item.queue_free()
-	instantiated_part = null
-	instantiated_item = null
+	if instantiated_item != null:
+		instantiated_item.queue_free()
+		instantiated_part = null
+		instantiated_item = null
 
 func update_partlist() -> void:
 	var already_added_part: Array[Part]

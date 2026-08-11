@@ -22,6 +22,7 @@ func _ready() -> void:
 	input_component.mouse_pos_changed.connect(movement_component.rotate_to)
 
 func init_ship(ship_graph, grid_dim) -> void:
+	clear_old_ship()
 	part_component.ship_graph = ship_graph
 	part_component.grid_size = grid_dim
 	player_camera.enabled = true
@@ -39,3 +40,10 @@ func new_level(level: int, new_npc_array: Array[RigidBody2D], new_station: Stati
 	station = new_station
 	player_ui_layer.update_sector_label(level)
 	player_ui_layer.update_hud()
+
+func clear_old_ship() -> void:
+	for collider in get_children():
+		if collider is CollisionShape2D:
+			collider.queue_free()
+	for part in part_component.get_children():
+		part.queue_free()
