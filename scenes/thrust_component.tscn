@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://mc5jy4pg7ebq"]
-
-[ext_resource type="Script" uid="uid://b56rwoxbea5uc" path="res://scripts/thrust_component.gd" id="1_08grq"]
-
-[node name="ThrustComponent" type="Node" unique_id=2035186996]
-script = ExtResource("1_08grq")
