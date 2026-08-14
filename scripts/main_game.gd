@@ -91,5 +91,5 @@ func _input(event: InputEvent) -> void:
 		player.player_ui_layer.visible = false
 		pause_menu_layer.visible = true
 		get_tree().paused = true
-	if event.is_action_pressed("e") and can_enter_station():
-		enter_station()
+	#if event.is_action_pressed("e") and can_enter_station():
+		#enter_station()

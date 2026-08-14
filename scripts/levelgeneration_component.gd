@@ -6,10 +6,12 @@ var level_number: int = 1
 var loaded_ships: Array[NPCShip] = []
 var playable_bound_x: Vector2 = Vector2(-7000,7000)
 var playable_bound_y: Vector2 = Vector2(-7000,7000)
+var main_game: Node2D
 const NPC = preload("uid://dxth7s5bap4i5")
 const STATION = preload("uid://baad6rfav87i3")
 
 func _ready() -> void:
+	main_game = get_parent()
 	load_all_ships_from_folder("res://data/NPCShips/")
 
 func load_all_ships_from_folder(path: String) -> void:
@@ -50,6 +52,7 @@ func generate_level() -> void:
 		npc_array.append(NPC_instance)
 	# Station spawining
 	var station_instance = STATION.instantiate()
+	station_instance.main_game = main_game
 	station_instance.position = Vector2(randf_range(playable_bound_x.x,playable_bound_x.y),randf_range(playable_bound_y.x,playable_bound_y.y))
 	add_child(station_instance)
 	level_generated.emit(level_number, npc_array, station_instance)

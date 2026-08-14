@@ -1,6 +1,13 @@
 [gd_scene format=3 uid="uid://baad6rfav87i3"]
 
+[ext_resource type="Script" uid="uid://cslia4tkfdvcd" path="res://scripts/station.gd" id="1_rod8h"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n1a5j"]
+radius = 632.0
+
 [node name="Station" type="StaticBody2D" unique_id=1499069338 groups=["station"]]
+process_mode = 1
+script = ExtResource("1_rod8h")
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=1046263372]
 polygon = PackedVector2Array(-64, -192, -64, 192, -48, 224, 48, 224, 64, 192, 64, -192, 48, -216, 48, -232, 80, -232, 104, -216, 320, -216, 344, -232, 344, -304, 320, -320, 104, -320, 80, -304, 48, -304, 48, -320, 64, -344, 64, -576, 48, -608, -48, -608, -64, -576, -64, -344, -48, -320, -48, -304, -80, -304, -104, -320, -320, -320, -352, -304, -352, -232, -320, -216, -104, -216, -80, -232, -48, -232, -48, -216)
@@ -66,3 +73,20 @@ polygon = PackedVector2Array(48, -352, 48, -256, 400, -256, 400, -352)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1242733111]
 polygon = PackedVector2Array(-56, 288, 56, 288, 128, 176, 480, 176, 480, 80, 64, 80, 64, -192, 104, -216, 320, -216, 344, -232, 344, -304, 320, -320, 104, -320, 64, -344, 64, -576, 48, -608, -48, -608, -64, -576, -64, -344, -104, -320, -320, -320, -352, -304, -352, -232, -320, -216, -104, -216, -64, -192, -64, 80, -480, 80, -480, 176, -128, 176)
+
+[node name="InteractionArea" type="Area2D" parent="." unique_id=105715704]
+position = Vector2(0, -128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=969341954]
+shape = SubResource("CircleShape2D_n1a5j")
+
+[node name="Label" type="Label" parent="." unique_id=1118245855]
+z_index = 5
+offset_left = -168.0
+offset_top = -688.0
+offset_right = 166.0
+offset_bottom = -633.0
+theme_override_font_sizes/font_size = 40
+text = "E to enter station"
+
+[connection signal="body_entered" from="InteractionArea" to="." method="_on_interaction_area_body_entered"]
