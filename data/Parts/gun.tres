@@ -1,16 +1,15 @@
 [gd_resource type="Resource" script_class="Part" format=3 uid="uid://bs8ufgr7qnr1y"]
 
 [ext_resource type="Script" uid="uid://dfxnbigy6na68" path="res://data/parts.gd" id="1_1bxkw"]
-[ext_resource type="PackedScene" uid="uid://diy5darnyar01" path="res://scenes/gun_collider.tscn" id="1_5cbms"]
 [ext_resource type="Texture2D" uid="uid://c3veeunyicgoe" path="res://assets/gun.png" id="1_opjho"]
-[ext_resource type="PackedScene" uid="uid://bqwwb8ff2mpkk" path="res://scenes/gun.tscn" id="2_5cbms"]
+[ext_resource type="PackedScene" uid="uid://bqwwb8ff2mpkk" path="res://scenes/base_weapon.tscn" id="2_5cbms"]
 
 [resource]
 script = ExtResource("1_1bxkw")
 name = "gun"
 scene = ExtResource("2_5cbms")
-collider = ExtResource("1_5cbms")
 image = ExtResource("1_opjho")
 buy_price = 250
 sell_price = 150
+weight = 2
 metadata/_custom_type_script = "uid://dfxnbigy6na68"

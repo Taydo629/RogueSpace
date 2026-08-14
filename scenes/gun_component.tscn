@@ -1,9 +1,0 @@
-[gd_scene format=3 uid="uid://dxpt87tasd6e1"]
-
-[ext_resource type="Script" uid="uid://co7e5vyfrukdv" path="res://scripts/gun_component.gd" id="1_eb11s"]
-[ext_resource type="PackedScene" uid="uid://sufhro00r1n7" path="res://scenes/bullet.tscn" id="2_k3o8e"]
-
-[node name="GunComponent" type="Node" unique_id=1399658564 node_paths=PackedStringArray("ship")]
-script = ExtResource("1_eb11s")
-ship = NodePath("")
-bullet = ExtResource("2_k3o8e")

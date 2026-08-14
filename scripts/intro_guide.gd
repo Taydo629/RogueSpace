@@ -76,6 +76,8 @@ var guide_dict = {
 	
 }
 
+signal guide_end
+
 func _ready() -> void:
 	var page = guide_dict.get(str(current_page))
 	rich_text_label.text = page.text
@@ -90,5 +92,7 @@ func _on_next_button_pressed() -> void:
 		if str(current_page+1) not in guide_dict.keys():
 			next_button.text = "Exit guide"
 	else:
-		print("guide end")
-		get_parent().visible = false
+		guide_end.emit()
+
+func _on_quit_button_pressed() -> void:
+	guide_end.emit()

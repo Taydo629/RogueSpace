@@ -1,7 +1,7 @@
 extends Node
 
 var inventory: Array
-var wallet: int = 0
+var wallet: int = 1000
 var number_of_hull: int = 6
 var number_of_thruster: int = 3
 var number_of_gun: int = 2
@@ -32,6 +32,7 @@ func _ready() -> void:
 		i += 1
 
 func add_item(part: Part) -> void:
+	print("part collected")
 	inventory.append(part)
 	item_pickup.emit(part)
 	#print("test")

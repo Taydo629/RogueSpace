@@ -1,12 +1,110 @@
 [gd_scene format=3 uid="uid://b7axk8e3fxsiw"]
 
-[ext_resource type="PackedScene" uid="uid://nq4gl5ptuuuv" path="res://scenes/player_ui.tscn" id="1_siy7k"]
+[ext_resource type="Script" uid="uid://dbuidovl3es1n" path="res://scripts/player_ui_layer.gd" id="1_22xda"]
+[ext_resource type="Script" uid="uid://bqqe7u1h368pq" path="res://scripts/pickup_ui.gd" id="2_3wa7g"]
+[ext_resource type="Script" uid="uid://c5dsmhtr8h0ob" path="res://scripts/inventory_ui.gd" id="3_etm03"]
 
 [node name="PlayerUILayer" type="CanvasLayer" unique_id=954430617]
 scale = Vector2(0.5, 0.5)
 transform = Transform2D(0.5, 0, 0, 0.5, 0, 0)
+script = ExtResource("1_22xda")
 
-[node name="PlayerUI" parent="." unique_id=2136722435 instance=ExtResource("1_siy7k")]
+[node name="Pickup_UI" type="HBoxContainer" parent="." unique_id=982166271]
 anchors_preset = -1
+anchor_top = 0.998
+anchor_bottom = 0.998
+offset_left = 64.0
+offset_top = -86.70404
+offset_right = 448.0
+offset_bottom = 0.29595947
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("2_3wa7g")
+
+[node name="TextureRect" type="TextureRect" parent="Pickup_UI" unique_id=604638611]
+layout_mode = 2
+expand_mode = 2
+
+[node name="Label" type="Label" parent="Pickup_UI" unique_id=1111231191]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "
+"
+
+[node name="InventoryUI" type="FoldableContainer" parent="." unique_id=1749301766]
+offset_left = 64.0
+offset_top = 40.0
+offset_right = 640.0
+offset_bottom = 352.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 24
+folded = true
+title = "Inventory"
+title_alignment = 1
+script = ExtResource("3_etm03")
+
+[node name="GridContainer" type="GridContainer" parent="InventoryUI" unique_id=2048117091]
+visible = false
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 3
+
+[node name="CreditUI" type="Label" parent="." unique_id=1459877796]
+anchors_preset = -1
+anchor_left = 2.0
 anchor_right = 2.0
-anchor_bottom = 2.0
+offset_left = -192.0
+offset_top = 64.0
+offset_right = -64.0
+offset_bottom = 106.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="SectorLabel" type="Label" parent="." unique_id=101790085]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -128.0
+offset_top = 96.0
+offset_right = 128.0
+offset_bottom = 165.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 50
+text = "Sector 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="." unique_id=2015772088]
+anchors_preset = -1
+anchor_left = 2.0
+anchor_top = 0.98800004
+anchor_right = 2.0
+anchor_bottom = 0.98800004
+offset_left = -448.0
+offset_top = -80.224
+offset_right = -64.0
+offset_bottom = 191.776
+grow_horizontal = 0
+
+[node name="KeyHelp" type="Label" parent="Panel" unique_id=618700062]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+theme_override_constants/line_spacing = 5
+theme_override_font_sizes/font_size = 28
+text = "Mouse: Aim ship
+Space: Thrusters
+LMB: Fire weapons
+RMB: Activate tractor beam
+Tab: Inventory"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="HUD" type="Node2D" parent="." unique_id=1476508476]
+position = Vector2(1152, 656)

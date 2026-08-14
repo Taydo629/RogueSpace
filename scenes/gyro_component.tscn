@@ -1,7 +1,0 @@
-[gd_scene format=3 uid="uid://qobdfhr074v8"]
-
-[ext_resource type="Script" uid="uid://b4s37vng55ppc" path="res://scripts/gyro_component.gd" id="1_5qmtc"]
-
-[node name="GyroComponent" type="Node" unique_id=1587976536]
-script = ExtResource("1_5qmtc")
-gyro_strength = 100000.0

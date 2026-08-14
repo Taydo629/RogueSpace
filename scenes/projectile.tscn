@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://sufhro00r1n7"]
+
+[ext_resource type="Script" uid="uid://ikpfuaa8r5q5" path="res://scripts/projectile.gd" id="1_c8fcr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h1aey"]
+size = Vector2(16, 20)
+
+[node name="Projectile" type="StaticBody2D" unique_id=444542411]
+script = ExtResource("1_c8fcr")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=561878264]
+color = Color(0.6322254, 1.9492954e-06, 3.3691526e-07, 1)
+polygon = PackedVector2Array(0, -24, -8, -8, -8, 8, 0, 24, 8, 8, 8, -8)
+
+[node name="CollisionPolygon2D" type="Area2D" parent="." unique_id=2059491915]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionPolygon2D" unique_id=508381592]
+shape = SubResource("RectangleShape2D_h1aey")
+
+[connection signal="area_entered" from="CollisionPolygon2D" to="." method="_on_collision_polygon_2d_area_entered"]
