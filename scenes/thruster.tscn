@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dplstcql0ly08" path="res://scenes/base_part.tscn" id="1_vbl7p"]
 [ext_resource type="Script" uid="uid://cy6135njba5v2" path="res://scripts/thruster.gd" id="2_x6buh"]
+[ext_resource type="AudioStream" uid="uid://bplhtgjfhvm1v" path="res://assets/Thruster.wav" id="3_cp153"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x6buh"]
 size = Vector2(48, 32)
@@ -45,3 +46,6 @@ initial_velocity_max = 600.0
 scale_amount_min = 2.0
 scale_amount_max = 10.0
 color_ramp = SubResource("Gradient_x6buh")
+
+[node name="ThrusterSound" type="AudioStreamPlayer2D" parent="." index="5" unique_id=1496086909]
+stream = ExtResource("3_cp153")

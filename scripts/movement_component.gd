@@ -16,6 +16,8 @@ func initalise_movement(ship_graph: Dictionary) -> void:
 func activate_thrusters() -> void:
 	for thruster in thrusters:
 		thruster.cpu_particles_2d.emitting = true
+		if not thruster.thruster_sound.playing:
+			thruster.thruster_sound.playing = true
 		# 1. Calculate the local offset from the ship's origin to the thruster
 		# global_transform.affine_inverse() converts a global position into the ship's local space
 		#var local_offset = parent.global_transform.affine_inverse() * thruster.global_position
@@ -34,6 +36,8 @@ func activate_thrusters() -> void:
 func deactivate_thrusters() -> void:
 	for thruster in thrusters:
 		thruster.cpu_particles_2d.emitting = false
+		if thruster.thruster_sound.playing:
+			thruster.thruster_sound.playing = false
 			
 	parent.constant_force = Vector2.ZERO
 	#if thruster_sound.playing == true:

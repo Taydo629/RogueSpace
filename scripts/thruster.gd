@@ -3,6 +3,7 @@ class_name Thruster extends BasePart
 # Not used but could be used in future for configurable control
 var activation_key: String
 @onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
+@onready var thruster_sound: AudioStreamPlayer2D = $ThrusterSound
 
 @export var thrust_force: int = 1
 @export var part_health: int = 100
