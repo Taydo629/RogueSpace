@@ -1,7 +1,8 @@
-extends CanvasLayer
+extends Control
 
 @onready var item_list: ItemList = $ShipBuildingUI/FoldableContainer/Control/ItemList
 @onready var item_info_label: Label = $ShipBuildingUI/FoldableContainer/Control/ItemInfoLabel
+@onready var texture_rect: ColorRect = $TextureRect
 
 var instantiated_item: RigidBody2D
 var instantiated_part: Part
@@ -13,6 +14,9 @@ var building_dict: Dictionary = {}
 
 signal build_complete
 
+func _ready() -> void:
+	start_build()
+
 func start_build() -> void:
 	building_dict.clear()
 	item_list.clear()
@@ -22,8 +26,10 @@ func start_build() -> void:
 	update_partlist()
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion and instantiated_item != null:
-		move_part(event.position)
+	if event is InputEventMouseMotion:
+		texture_rect.material.set_shader_parameter("mouse_pos", event.position)
+		if instantiated_item != null:
+			move_part(event.position)
 	elif event is InputEventKey and event.pressed == true:
 		if event.as_text_keycode() == "E":
 			rotate_part(1)
