@@ -15,6 +15,7 @@ var building_dict: Dictionary = {}
 signal build_complete
 
 func _ready() -> void:
+	print(texture_rect.position)
 	start_build()
 
 func start_build() -> void:
