@@ -7,19 +7,21 @@ extends Node2D
 @onready var station_ui_layer: CanvasLayer = $StationUILayer
 @onready var intro_guide: Control = $IntroGuide
 @onready var player: Player = $LevelGenComponent/Player
+@onready var ui_state_machine: StateMachine = $UIStateMachine
 
 func _ready() -> void:
-	start_menu_layer.start.connect(start_game)
-	start_menu_layer.option.connect(options)
-	start_menu_layer.exit.connect(exit)
-	pause_menu_layer.resume.connect(resume_game)
-	pause_menu_layer.option.connect(options)
-	pause_menu_layer.exit.connect(exit)
-	intro_guide.guide_end.connect(exit_guide)
-	station_ui_layer.exit_station.connect(exit_station)
-	station_ui_layer.enter_build.connect(start_building)
-	station_ui_layer.jump_to_new_level.connect(generate_level)
-	ship_building_layer.build_complete.connect(exit_building)
+	# Initialise state machine here
+	#start_menu_layer.start.connect(start_game)
+	#start_menu_layer.option.connect(options)
+	#start_menu_layer.exit.connect(exit)
+	#pause_menu_layer.resume.connect(resume_game)
+	#pause_menu_layer.option.connect(options)
+	#pause_menu_layer.exit.connect(exit)
+	#intro_guide.guide_end.connect(exit_guide)
+	#station_ui_layer.exit_station.connect(exit_station)
+	#station_ui_layer.enter_build.connect(start_building)
+	#station_ui_layer.jump_to_new_level.connect(generate_level)
+	#ship_building_layer.build_complete.connect(exit_building)
 	level_gen_component.level_generated.connect(player.new_level)
 	level_gen_component.generate_level()
 
