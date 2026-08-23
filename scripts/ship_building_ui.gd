@@ -1,17 +1,33 @@
-extends CanvasLayer
+class_name BuildUI extends Control
 
 @onready var item_list: ItemList = $ShipBuildingUI/FoldableContainer/Control/ItemList
 @onready var item_info_label: Label = $ShipBuildingUI/FoldableContainer/Control/ItemInfoLabel
+@onready var texture_rect: ColorRect = $TextureRect
+@onready var build_area: Polygon2D = $BuildArea
 
 var instantiated_item: RigidBody2D
 var instantiated_part: Part
 var selected_item_idx: int
 var current_mouse_pos: Vector2 = Vector2.ZERO
-var y_range: Array = [128,512]
-var x_range: Array = [384,768]
+var grid_dim: float = 5
+var grid_size: float = 64
+var y_range: Array
+var x_range: Array
 var building_dict: Dictionary = {}
 
 signal build_complete
+
+func init_ui() -> void:
+	texture_rect.material.set_shader_parameter("grid_size", grid_size)
+	var viewport_size: Vector2 = get_viewport_rect().size
+	var grid_centre_x: float = int((viewport_size.x/grid_size)/2) * grid_size
+	var grid_centre_y: float = int((viewport_size.y/grid_size)/2) * grid_size
+	build_area.scale = Vector2(grid_dim,grid_dim)
+	build_area.global_position = Vector2(grid_centre_x,grid_centre_y)
+	var grid_edge_dist_from_centre: float = grid_dim * grid_size / 2.0
+	y_range = [grid_centre_y - grid_edge_dist_from_centre, grid_centre_y + grid_edge_dist_from_centre]
+	x_range = [grid_centre_x - grid_edge_dist_from_centre, grid_centre_x + grid_edge_dist_from_centre]
+	#start_build()
 
 func start_build() -> void:
 	building_dict.clear()
@@ -22,8 +38,10 @@ func start_build() -> void:
 	update_partlist()
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion and instantiated_item != null:
-		move_part(event.position)
+	if event is InputEventMouseMotion:
+		texture_rect.material.set_shader_parameter("mouse_pos", event.position)
+		if instantiated_item != null:
+			move_part(event.position)
 	elif event is InputEventKey and event.pressed == true:
 		if event.as_text_keycode() == "E":
 			rotate_part(1)
@@ -77,7 +95,11 @@ func remove_part() -> void:
 func move_part(position: Vector2) -> void:
 	## Get the grid position so that parts are on a grid.
 	var mouse_pos = position
-	var pos = Vector2(mouse_pos.x -fmod(mouse_pos.x, 64),mouse_pos.y -fmod(mouse_pos.y, 64)) + Vector2(32,32)
+	# Get mouse pos and convert into grid coordinates
+	# Grid starts at 0 with half a grid hence adding half a grid to the mouse pos to offset.
+	# By subtracting the modulus we get snapping to the grid.
+	var pos = Vector2(mouse_pos.x + grid_size/2 - fmod(mouse_pos.x + grid_size/2, grid_size),
+						mouse_pos.y + grid_size/2 - fmod(mouse_pos.y + grid_size/2, grid_size))
 	# Handle parts positioning and handle when mouse pos is outside of building area.
 	if pos.x >= x_range[0] and pos.x <= x_range[1] and pos.y <= y_range[1] and pos.y >= y_range[0] :
 		instantiated_item.visible = true

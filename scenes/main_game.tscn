@@ -1,13 +1,17 @@
 [gd_scene format=3 uid="uid://g7i7nqney7q"]
 
 [ext_resource type="Script" uid="uid://dlqbmcwkrm6rx" path="res://scripts/main_game.gd" id="1_d2op2"]
-[ext_resource type="PackedScene" uid="uid://c8hlhmo4ds1i4" path="res://scenes/start_menu_ui.tscn" id="2_0rdsr"]
-[ext_resource type="PackedScene" uid="uid://c0nva578wdvmu" path="res://scenes/intro_guide.tscn" id="2_5cypo"]
-[ext_resource type="PackedScene" uid="uid://b87n71feakgwy" path="res://scenes/pause_menu_layer.tscn" id="3_ipu61"]
-[ext_resource type="PackedScene" uid="uid://bvlc506pxikp8" path="res://scenes/ship_building_layer.tscn" id="4_nqdth"]
-[ext_resource type="PackedScene" uid="uid://ds8t7yfbj4qfp" path="res://scenes/station_ui_layer.tscn" id="7_2l77h"]
+[ext_resource type="Script" uid="uid://car1u56qv04q6" path="res://scripts/state_machine.gd" id="4_5cypo"]
+[ext_resource type="Script" uid="uid://fs53e73vr78y" path="res://scripts/main_ui_layer.gd" id="4_o6v7o"]
+[ext_resource type="PackedScene" uid="uid://blx5bir57n83o" path="res://scenes/start_menu_ui.tscn" id="5_nqdth"]
+[ext_resource type="PackedScene" uid="uid://b7axk8e3fxsiw" path="res://scenes/player_ui.tscn" id="6_5cypo"]
 [ext_resource type="PackedScene" uid="uid://dyxopugemdibc" path="res://scenes/level_gen_component.tscn" id="7_nqdth"]
+[ext_resource type="PackedScene" uid="uid://deyud7bd4kyqi" path="res://scenes/pause_menu_ui.tscn" id="7_o6v7o"]
 [ext_resource type="PackedScene" uid="uid://tqn70usw28ix" path="res://scenes/player.tscn" id="8_70vka"]
+[ext_resource type="PackedScene" uid="uid://blofhoxjvbs5y" path="res://scenes/ship_building_ui.tscn" id="8_wjob3"]
+[ext_resource type="PackedScene" uid="uid://c0nva578wdvmu" path="res://scenes/guide_ui.tscn" id="9_5cypo"]
+[ext_resource type="PackedScene" uid="uid://ds8t7yfbj4qfp" path="res://scenes/station_ui.tscn" id="10_o6v7o"]
+[ext_resource type="PackedScene" uid="uid://c7woe6b2tkxna" path="res://scenes/sector_info.tscn" id="11_wjob3"]
 [ext_resource type="Texture2D" uid="uid://7311c1hg8dft" path="res://assets/Space-Background-Image-2-1024x682.jpg" id="13_wjob3"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8xp80"]
@@ -25,20 +29,41 @@ offset_right = 8176.0
 offset_bottom = 8184.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_8xp80")
 
-[node name="IntroGuide" parent="." unique_id=853896309 instance=ExtResource("2_5cypo")]
-visible = false
+[node name="MainUILayer" type="CanvasLayer" parent="." unique_id=1008782413]
+process_mode = 3
+script = ExtResource("4_o6v7o")
 
-[node name="StartMenuLayer" parent="." unique_id=1867863094 instance=ExtResource("2_0rdsr")]
+[node name="UIStateMachine" type="Node" parent="MainUILayer" unique_id=315885142]
+script = ExtResource("4_5cypo")
+is_log_enabled = true
 
-[node name="PauseMenuLayer" parent="." unique_id=964519202 instance=ExtResource("3_ipu61")]
-process_mode = 2
-visible = false
-
-[node name="ShipBuildingLayer" parent="." unique_id=109807577 instance=ExtResource("4_nqdth")]
+[node name="StartMenuUI" parent="MainUILayer" unique_id=867886566 instance=ExtResource("5_nqdth")]
 process_mode = 4
 visible = false
 
-[node name="StationUILayer" parent="." unique_id=1766307865 instance=ExtResource("7_2l77h")]
+[node name="PauseMenuUI" parent="MainUILayer" unique_id=2109095095 instance=ExtResource("7_o6v7o")]
+process_mode = 4
+visible = false
+
+[node name="PlayerUI" parent="MainUILayer" unique_id=343522777 instance=ExtResource("6_5cypo")]
+process_mode = 4
+visible = false
+
+[node name="ShipBuildingUI" parent="MainUILayer" unique_id=542883084 instance=ExtResource("8_wjob3")]
+process_mode = 4
+visible = false
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GuideUI" parent="MainUILayer" unique_id=853896309 instance=ExtResource("9_5cypo")]
+process_mode = 4
+visible = false
+
+[node name="StationUI" parent="MainUILayer" unique_id=2071674807 instance=ExtResource("10_o6v7o")]
+process_mode = 4
+visible = false
+
+[node name="SectorInfo" parent="MainUILayer" unique_id=943868874 instance=ExtResource("11_wjob3")]
 process_mode = 4
 visible = false
 

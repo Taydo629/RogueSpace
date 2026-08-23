@@ -1,0 +1,129 @@
+[gd_scene format=3 uid="uid://b7axk8e3fxsiw"]
+
+[ext_resource type="Script" uid="uid://bgsosccfdxhq" path="res://scripts/player_ui.gd" id="1_48xfa"]
+[ext_resource type="Script" uid="uid://bqqe7u1h368pq" path="res://scripts/pickup_ui.gd" id="2_8isll"]
+
+[node name="PlayerUI" type="Control" unique_id=343522777]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_48xfa")
+
+[node name="Pickup_UI" type="HBoxContainer" parent="." unique_id=792128960]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.998
+anchor_bottom = 0.998
+offset_left = 32.0
+offset_top = -118.70404
+offset_right = 288.0
+offset_bottom = -28.70404
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("2_8isll")
+
+[node name="TextureRect" type="TextureRect" parent="Pickup_UI" unique_id=1308613272]
+layout_mode = 2
+expand_mode = 2
+
+[node name="Label" type="Label" parent="Pickup_UI" unique_id=722774622]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "
+"
+
+[node name="CreditUI" type="Label" parent="." unique_id=720787230]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1087.0
+offset_top = 64.0
+offset_right = -64.0
+offset_bottom = -542.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="SectorLabel" type="Label" parent="." unique_id=934488149]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -64.0
+offset_top = 32.0
+offset_right = 64.0
+offset_bottom = 74.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "Sector 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="HelpPanel" type="Panel" parent="." unique_id=1801623801]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -272.0
+offset_top = -100.0
+offset_right = -32.0
+offset_bottom = 92.0
+grow_horizontal = 0
+
+[node name="KeyHelp" type="RichTextLabel" parent="HelpPanel" unique_id=1404367581]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.000023
+offset_top = 8.000008
+offset_right = -7.9999847
+offset_bottom = -8.000015
+grow_horizontal = 0
+text = "Mouse: Aim ship
+Space: Thrusters
+LMB: Fire weapons
+RMB: Activate tractor beam
+Tab: Inventory"
+horizontal_alignment = 2
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="HintPanel" type="Panel" parent="." unique_id=1898335165]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -96.0
+offset_top = 80.0
+offset_right = 96.0
+offset_bottom = 128.0
+grow_horizontal = 0
+
+[node name="KeyHelp" type="RichTextLabel" parent="HintPanel" unique_id=859163283]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.000023
+offset_top = 8.000008
+offset_right = -7.9999847
+offset_bottom = -8.000015
+grow_horizontal = 0
+text = "E to enter station"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="HUD" type="Node2D" parent="." unique_id=1522000529]
+position = Vector2(576, 320)

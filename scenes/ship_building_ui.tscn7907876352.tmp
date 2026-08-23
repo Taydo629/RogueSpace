@@ -1,33 +1,48 @@
-[gd_scene format=3 uid="uid://bvlc506pxikp8"]
+[gd_scene format=3 uid="uid://blofhoxjvbs5y"]
 
-[ext_resource type="Script" uid="uid://ce74wyeeg0ext" path="res://scripts/ship_building_layer.gd" id="1_2vp6f"]
+[ext_resource type="Script" uid="uid://ce74wyeeg0ext" path="res://scripts/ship_building_layer.gd" id="1_bkqmw"]
+[ext_resource type="Shader" uid="uid://cvvodjxutsgje" path="res://shaders/ship_building_ui.gdshader" id="2_ps2en"]
 
-[node name="ShipBuildingLayer" type="CanvasLayer" unique_id=109807577]
-process_mode = 2
-script = ExtResource("1_2vp6f")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n1a5j"]
+shader = ExtResource("2_ps2en")
+shader_parameter/grid_size = 64.0000029925
+shader_parameter/line_width = 0.800000038
+shader_parameter/line_default_a = 0.0
+shader_parameter/circle_size = 250.0
+shader_parameter/mouse_pos = Vector2(0, 0)
+
+[node name="ShipBuildingLayer" type="Control" unique_id=542883084]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_bkqmw")
 
 [node name="TextureRect" type="ColorRect" parent="." unique_id=2099780365]
 z_index = -3
+material = SubResource("ShaderMaterial_n1a5j")
+layout_mode = 1
 anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color(0.2082693, 0.17582169, 0.1635437, 1)
+offset_left = 1.0
+offset_right = 1153.0
+offset_bottom = 647.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(575, 324)
+color = Color(0.6955032, 0.6955031, 0.6955031, 1)
 
 [node name="Panel" type="Panel" parent="." unique_id=343043088]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -256.0
-offset_top = 32.0
-offset_right = -32.0
-offset_bottom = 168.0
-grow_horizontal = 0
+layout_mode = 1
+offset_left = 898.0
+offset_top = 66.0
+offset_right = 1122.0
+offset_bottom = 202.0
 
 [node name="KeyHelp" type="Label" parent="Panel" unique_id=1387154647]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = -2.0
 grow_horizontal = 0
 theme_override_constants/line_spacing = -10
 text = "Q: Rotate part anti-clockwise
@@ -38,7 +53,7 @@ RMB: Remove part"
 horizontal_alignment = 2
 
 [node name="ShipBuildingUI" type="Control" parent="." unique_id=1932583675]
-layout_mode = 3
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -94,16 +109,17 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -256.0
-offset_top = -136.0
-offset_right = -64.0
-offset_bottom = -72.0
+offset_left = 898.0
+offset_top = 552.0
+offset_right = 1090.0
+offset_bottom = 616.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 30
 text = "Build"
 
 [node name="Gridlines" type="Node2D" parent="." unique_id=622449412]
+visible = false
 
 [node name="Line2D" type="Line2D" parent="Gridlines" unique_id=357199032]
 z_index = -3
@@ -296,7 +312,7 @@ default_color = Color(0.5330367, 0.5330367, 0.5330367, 1)
 
 [node name="Line2D28" type="Line2D" parent="Gridlines" unique_id=1843444328]
 z_index = -3
-position = Vector2(1089, 577)
+position = Vector2(1090, 584)
 points = PackedVector2Array(64, 0, -1088, 0)
 width = 1.0
 default_color = Color(0.5330367, 0.5330367, 0.5330367, 1)

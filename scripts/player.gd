@@ -6,10 +6,10 @@ class_name Player extends RigidBody2D
 @onready var input_component: InputComponent = $InputComponent
 @onready var tractorbeam_component: TractorbeamComponent = $TractorbeamComponent
 @onready var player_camera: Camera2D = $PlayerCamera
-@onready var player_ui_layer: CanvasLayer = $PlayerUILayer
+#@onready var player_ui_layer: CanvasLayer = $PlayerUILayer
 
-var enemy_array: Array[RigidBody2D]
-var station: StaticBody2D
+#var enemy_array: Array[RigidBody2D]
+#var station: StaticBody2D
 
 func _ready() -> void:
 	ShipInfo.ship_updated.connect(init_ship)
@@ -35,11 +35,11 @@ func reinitialise_components() -> void:
 	weapon_component.initalise_weapons(ShipInfo.ship_graph)
 	tractorbeam_component.initalise_tractor_beams(ShipInfo.ship_graph)
 
-func new_level(level: int, new_npc_array: Array[RigidBody2D], new_station: StaticBody2D) -> void:
-	enemy_array = new_npc_array
-	station = new_station
-	player_ui_layer.update_sector_label(level)
-	player_ui_layer.update_hud()
+#func new_level(level: int, new_npc_array: Array[RigidBody2D], new_station: StaticBody2D) -> void:
+	#enemy_array = new_npc_array
+	#station = new_station
+	##player_ui_layer.update_sector_label(level)
+	##player_ui_layer.update_hud()
 
 func clear_old_ship() -> void:
 	for collider in get_children():
