@@ -39,16 +39,11 @@ is_log_enabled = true
 process_mode = 4
 visible = false
 
-[node name="PlayerUI" parent="MainUILayer" unique_id=404574131 instance=ExtResource("6_5cypo")]
+[node name="PauseMenuUI" parent="MainUILayer" unique_id=2109095095 instance=ExtResource("7_o6v7o")]
 process_mode = 4
 visible = false
-anchors_preset = 15
-offset_right = 0.0
-offset_bottom = 0.0
-grow_horizontal = 2
-grow_vertical = 2
 
-[node name="PauseMenuUI" parent="MainUILayer" unique_id=2109095095 instance=ExtResource("7_o6v7o")]
+[node name="PlayerUI" parent="MainUILayer" unique_id=343522777 instance=ExtResource("6_5cypo")]
 process_mode = 4
 visible = false
 
