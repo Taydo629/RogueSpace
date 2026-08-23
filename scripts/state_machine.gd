@@ -6,6 +6,7 @@ class_name StateMachine extends Node
 var is_running: bool = false
 
 var current_state: State
+var previous_state: State
 var states: Dictionary = {}
 var _parent_node_name: String
 
@@ -27,7 +28,8 @@ func start_machine(init_states: Array[State]) -> void:
 	
 	
 func _input(event: InputEvent) -> void:
-	current_state.input(event)
+	#current_state.input(event)
+	pass
 	
 	
 func _process(delta: float) -> void:
@@ -40,7 +42,7 @@ func _physics_process(delta: float) -> void:
 
 # Attempt a transition to the new state.
 # @param new_state The name of the new state to transition to.
-func transition(new_state_name: String) -> void:	
+func transition(new_state_name: String) -> void:
 	var new_state: State = states.get(new_state_name)
 	var current_state_name = current_state.get_state_name()
 
@@ -52,6 +54,7 @@ func transition(new_state_name: String) -> void:
 			print("[%s]: Exiting state \"%s\"" % [_parent_node_name, current_state_name])
 		
 		current_state.exit()
+		previous_state = current_state
 		current_state = states[new_state.get_state_name()]
 		
 		if is_log_enabled:

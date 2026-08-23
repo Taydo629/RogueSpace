@@ -1,8 +1,8 @@
-extends Control
+class_name GuideUI extends Control
 
-@onready var rich_text_label: RichTextLabel = $Control/RichTextLabel
-@onready var texture_rect: TextureRect = $Control/TextureRect
-@onready var next_button: Button = $Control/NextButton
+@onready var rich_text_label: RichTextLabel = $RichTextLabel
+@onready var texture_rect: TextureRect = $TextureRect
+@onready var next_button: Button = $NextButton
 
 var current_page: int = 1
 var guide_dict = {
@@ -78,7 +78,7 @@ var guide_dict = {
 
 signal guide_end
 
-func _ready() -> void:
+func init_ui() -> void:
 	var page = guide_dict.get(str(current_page))
 	rich_text_label.text = page.text
 	texture_rect.texture = page.icon

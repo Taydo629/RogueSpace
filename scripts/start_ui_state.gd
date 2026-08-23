@@ -1,0 +1,25 @@
+class_name StartUIState extends UIState
+
+static var state_name = "StartUIState"
+var main_menu_ui: StartMenu
+
+func get_state_name() -> String:
+	return state_name
+
+func enter() -> void:
+	state_machine.get_tree().paused = true
+	main_menu_ui = canvas_layer.start_menu_ui
+	main_menu_ui.visible = true
+	main_menu_ui.process_mode = Node.PROCESS_MODE_ALWAYS
+	main_menu_ui.start.connect(start_game)
+	main_menu_ui.guide.connect(guide)
+
+func exit() -> void:
+	main_menu_ui.visible = false
+	main_menu_ui.process_mode = Node.PROCESS_MODE_DISABLED
+
+func start_game() -> void:
+	state_machine.transition(BuildUIState.state_name)
+
+func guide() -> void:
+	state_machine.transition(GuideUIState.state_name)

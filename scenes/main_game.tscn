@@ -1,11 +1,15 @@
 [gd_scene format=3 uid="uid://g7i7nqney7q"]
 
 [ext_resource type="Script" uid="uid://dlqbmcwkrm6rx" path="res://scripts/main_game.gd" id="1_d2op2"]
-[ext_resource type="PackedScene" uid="uid://c0nva578wdvmu" path="res://scenes/intro_guide.tscn" id="2_5cypo"]
 [ext_resource type="Script" uid="uid://car1u56qv04q6" path="res://scripts/state_machine.gd" id="4_5cypo"]
 [ext_resource type="Script" uid="uid://fs53e73vr78y" path="res://scripts/main_ui_layer.gd" id="4_o6v7o"]
+[ext_resource type="PackedScene" uid="uid://blx5bir57n83o" path="res://scenes/start_menu_ui.tscn" id="5_nqdth"]
+[ext_resource type="PackedScene" uid="uid://b7axk8e3fxsiw" path="res://scenes/player_ui.tscn" id="6_5cypo"]
 [ext_resource type="PackedScene" uid="uid://dyxopugemdibc" path="res://scenes/level_gen_component.tscn" id="7_nqdth"]
+[ext_resource type="PackedScene" uid="uid://deyud7bd4kyqi" path="res://scenes/pause_menu_ui.tscn" id="7_o6v7o"]
 [ext_resource type="PackedScene" uid="uid://tqn70usw28ix" path="res://scenes/player.tscn" id="8_70vka"]
+[ext_resource type="PackedScene" uid="uid://blofhoxjvbs5y" path="res://scenes/ship_building_ui.tscn" id="8_wjob3"]
+[ext_resource type="PackedScene" uid="uid://c0nva578wdvmu" path="res://scenes/guide_ui.tscn" id="9_5cypo"]
 [ext_resource type="Texture2D" uid="uid://7311c1hg8dft" path="res://assets/Space-Background-Image-2-1024x682.jpg" id="13_wjob3"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8xp80"]
@@ -24,12 +28,38 @@ offset_bottom = 8184.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_8xp80")
 
 [node name="MainUILayer" type="CanvasLayer" parent="." unique_id=1008782413]
+process_mode = 3
 script = ExtResource("4_o6v7o")
 
 [node name="UIStateMachine" type="Node" parent="MainUILayer" unique_id=315885142]
 script = ExtResource("4_5cypo")
+is_log_enabled = true
 
-[node name="IntroGuide" parent="MainUILayer" unique_id=853896309 instance=ExtResource("2_5cypo")]
+[node name="StartMenuUI" parent="MainUILayer" unique_id=867886566 instance=ExtResource("5_nqdth")]
+process_mode = 4
+visible = false
+
+[node name="PlayerUI" parent="MainUILayer" unique_id=404574131 instance=ExtResource("6_5cypo")]
+process_mode = 4
+visible = false
+anchors_preset = 15
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PauseMenuUI" parent="MainUILayer" unique_id=2109095095 instance=ExtResource("7_o6v7o")]
+process_mode = 4
+visible = false
+
+[node name="ShipBuildingUI" parent="MainUILayer" unique_id=542883084 instance=ExtResource("8_wjob3")]
+process_mode = 4
+visible = false
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GuideUI" parent="MainUILayer" unique_id=853896309 instance=ExtResource("9_5cypo")]
+process_mode = 4
 visible = false
 
 [node name="LevelGenComponent" parent="." unique_id=1697448056 instance=ExtResource("7_nqdth")]

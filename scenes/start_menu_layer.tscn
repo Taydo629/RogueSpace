@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://c8hlhmo4ds1i4"]
+
+[ext_resource type="Script" uid="uid://6jiighlhecf3" path="res://scripts/start_menu_ui.gd" id="1_3ap8t"]
+
+[node name="StartMenuLayer" type="CanvasLayer" unique_id=1867863094]
+script = ExtResource("1_3ap8t")
+
+[node name="StartMenuUI" type="Control" parent="." unique_id=390658754]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="StartMenuUI" unique_id=1638094388]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -288.0
+offset_top = 64.0
+offset_right = 288.0
+offset_bottom = 192.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 60
+text = "RogueSpace"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StartMenuUI" unique_id=139457817]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -128.0
+offset_top = -328.0
+offset_right = 128.0
+offset_bottom = -72.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 20
+
+[node name="StartButton" type="Button" parent="StartMenuUI/VBoxContainer" unique_id=190769581]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 40
+text = "Start"
+
+[node name="OptionButton" type="Button" parent="StartMenuUI/VBoxContainer" unique_id=1690175498]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 40
+text = "Options"
+
+[node name="ExitButton" type="Button" parent="StartMenuUI/VBoxContainer" unique_id=349602808]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 40
+text = "Exit"
+
+[connection signal="pressed" from="StartMenuUI/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="StartMenuUI/VBoxContainer/OptionButton" to="." method="_on_option_button_pressed"]
+[connection signal="pressed" from="StartMenuUI/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

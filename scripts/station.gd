@@ -1,4 +1,4 @@
-extends StaticBody2D
+class_name Station extends StaticBody2D
 
 @onready var interaction_area: Area2D = $InteractionArea
 @onready var label: Label = $Label
@@ -7,9 +7,9 @@ var main_game: Node2D
 
 signal open_station_menu
 
-func _ready() -> void:
-	if main_game != null:
-		open_station_menu.connect(main_game.enter_station)
+#func _ready() -> void:
+	#if main_game != null:
+		#open_station_menu.connect(main_game.enter_station)
 
 func _process(delta: float) -> void:
 	if interaction_area.has_overlapping_bodies():

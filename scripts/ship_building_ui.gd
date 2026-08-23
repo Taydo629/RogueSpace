@@ -1,4 +1,4 @@
-extends Control
+class_name BuildUI extends Control
 
 @onready var item_list: ItemList = $ShipBuildingUI/FoldableContainer/Control/ItemList
 @onready var item_info_label: Label = $ShipBuildingUI/FoldableContainer/Control/ItemInfoLabel
@@ -17,8 +17,7 @@ var building_dict: Dictionary = {}
 
 signal build_complete
 
-func _ready() -> void:
-	get_tree().paused = true
+func init_ui() -> void:
 	texture_rect.material.set_shader_parameter("grid_size", grid_size)
 	var viewport_size: Vector2 = get_viewport_rect().size
 	var grid_centre_x: float = int((viewport_size.x/grid_size)/2) * grid_size
@@ -28,9 +27,7 @@ func _ready() -> void:
 	var grid_edge_dist_from_centre: float = grid_dim * grid_size / 2.0
 	y_range = [grid_centre_y - grid_edge_dist_from_centre, grid_centre_y + grid_edge_dist_from_centre]
 	x_range = [grid_centre_x - grid_edge_dist_from_centre, grid_centre_x + grid_edge_dist_from_centre]
-	print(y_range)
-	print(x_range)
-	start_build()
+	#start_build()
 
 func start_build() -> void:
 	building_dict.clear()
