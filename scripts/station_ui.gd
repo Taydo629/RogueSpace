@@ -1,21 +1,23 @@
-extends CanvasLayer
+class_name StationUI extends Control
 
 var inventory_parts: Array[Part] = []
-@onready var market: ItemList = $Station_UI/MarketContainer/Market
-@onready var buy_button: Button = $Station_UI/MarketContainer/ButtonContainer/BuyButton
-@onready var sell_button: Button = $Station_UI/MarketContainer/ButtonContainer/SellButton
-@onready var item_info: Label = $Station_UI/MarketContainer/ButtonContainer/ItemInfo
-@onready var j_b_info_label: Label = $Station_UI/JumpBuildServices/ButtonContainer/J_B_InfoLabel
+@onready var market: ItemList = $Station_UI_menu/MarketContainer/Market
+@onready var buy_button: Button = $Station_UI_menu/MarketContainer/ButtonContainer/BuyButton
+@onready var sell_button: Button = $Station_UI_menu/MarketContainer/ButtonContainer/SellButton
+@onready var item_info: Label = $Station_UI_menu/MarketContainer/ButtonContainer/ItemInfo
+@onready var j_b_info_label: Label = $Station_UI_menu/JumpBuildServices/ButtonContainer/J_B_InfoLabel
 @onready var credit_ui: Label = $CreditUI
 
 signal exit_station
 signal enter_build
 signal jump_to_new_level
 
-func _ready() -> void:
+func init_ui() -> void:
 	load_all_parts_from_folder("res://data/Parts/")
 	for part in inventory_parts:
 		market.add_item(part.name, part.image)
+	Inventory.credit_changed.connect(update_credit_ui)
+	update_credit_ui(Inventory.wallet)
 
 func load_all_parts_from_folder(path: String) -> void:
 	var dir = DirAccess.open(path)
@@ -36,10 +38,6 @@ func load_all_parts_from_folder(path: String) -> void:
 		dir.list_dir_end()
 		
 	print("Total loaded parts: ", inventory_parts.size())
-
-func enter_station() -> void:
-	Inventory.credit_changed.connect(update_credit_ui)
-	update_credit_ui(Inventory.wallet)
 
 func update_credit_ui(wallet: int):
 	credit_ui.text = str("CR ", wallet)

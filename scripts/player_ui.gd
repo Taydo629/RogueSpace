@@ -4,6 +4,7 @@ class_name PlayerUI extends Control
 #@onready var direction_indicator: Control = $DirectionIndicator
 @onready var credit_ui: Label = $CreditUI
 @onready var sector_label: Label = $SectorLabel
+@onready var hint_panel: Panel = $HintPanel
 @onready var hud: Node2D = $HUD
 
 var parent: MainUILayer
@@ -11,13 +12,15 @@ var player: Player
 var level_generator: LevelGenComponent
 
 var enemy_array: Array[npc]
-var station: Station
+var station: StaticBody2D
 
 var enemy_hud_indicators: Array[Dictionary]
 var station_hud_indicator: Dictionary
 
 const ENEMY_DIRECTION_HUD = preload("uid://8o6kdkj546o3")
 const STATION_DIRECTION_HUD = preload("uid://dfl6i5lki8rxw")
+
+signal enter_station
 
 func init_ui() -> void:
 	parent = get_parent()
@@ -75,10 +78,15 @@ func _process(_delta: float) -> void:
 				enemy_hud.rotation = (Vector2.UP).angle_to(direction)
 	elif not station_hud_indicator.is_empty():
 		var station_node = station_hud_indicator.get("node")
-		var station_hud = station_hud_indicator.get("indicator")
-		if player.global_position.distance_to(station_node.global_position) <= 1200:
-			station_hud.visible = false
-		else:
-			station_hud.visible = true
-		var direction = (station_node.global_position - player.global_position).normalized()
-		station_hud.rotation = (Vector2.UP).angle_to(direction)
+		if station_node != null:
+			var station_hud = station_hud_indicator.get("indicator")
+			if player.global_position.distance_to(station_node.global_position) <= 1200:
+				station_hud.visible = false
+				hint_panel.visible = true
+				if Input.is_action_just_pressed("e"):
+					enter_station.emit()
+			else:
+				station_hud.visible = true
+				hint_panel.visible = false
+			var direction = (station_node.global_position - player.global_position).normalized()
+			station_hud.rotation = (Vector2.UP).angle_to(direction)

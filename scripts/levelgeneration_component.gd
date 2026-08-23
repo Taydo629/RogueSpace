@@ -5,7 +5,7 @@ signal level_generated
 var level_number: int = 0
 var loaded_ships: Array[NPCShip] = []
 var current_enemy_array: Array[npc]
-var current_station: Station
+var current_station: StaticBody2D
 var playable_bound_x: Vector2 = Vector2(-7000,7000)
 var playable_bound_y: Vector2 = Vector2(-7000,7000)
 var main_game: Node2D
@@ -43,7 +43,8 @@ func generate_level() -> void:
 	clear_level()
 	# NPC spawning
 	var valid_npcs: Array[NPCShip] = get_valid_ships_for_current_level()
-	var number_of_npcs = randi_range(1, level_number)
+	#var number_of_npcs = randi_range(1, level_number)
+	var number_of_npcs = 0
 	var npc_array: Array[npc]
 	for i in number_of_npcs:
 		var NPC_instance = NPC.instantiate()
@@ -56,7 +57,6 @@ func generate_level() -> void:
 		npc_array.append(NPC_instance)
 	# Station spawining
 	var station_instance = STATION.instantiate()
-	station_instance.main_game = main_game
 	station_instance.position = Vector2(randf_range(playable_bound_x.x,playable_bound_x.y),randf_range(playable_bound_y.x,playable_bound_y.y))
 	add_child(station_instance)
 	current_enemy_array = npc_array

@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://tqn70usw28ix" path="res://scenes/player.tscn" id="8_70vka"]
 [ext_resource type="PackedScene" uid="uid://blofhoxjvbs5y" path="res://scenes/ship_building_ui.tscn" id="8_wjob3"]
 [ext_resource type="PackedScene" uid="uid://c0nva578wdvmu" path="res://scenes/guide_ui.tscn" id="9_5cypo"]
+[ext_resource type="PackedScene" uid="uid://ds8t7yfbj4qfp" path="res://scenes/station_ui.tscn" id="10_o6v7o"]
+[ext_resource type="PackedScene" uid="uid://c7woe6b2tkxna" path="res://scenes/sector_info.tscn" id="11_wjob3"]
 [ext_resource type="Texture2D" uid="uid://7311c1hg8dft" path="res://assets/Space-Background-Image-2-1024x682.jpg" id="13_wjob3"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8xp80"]
@@ -54,6 +56,14 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="GuideUI" parent="MainUILayer" unique_id=853896309 instance=ExtResource("9_5cypo")]
+process_mode = 4
+visible = false
+
+[node name="StationUI" parent="MainUILayer" unique_id=2071674807 instance=ExtResource("10_o6v7o")]
+process_mode = 4
+visible = false
+
+[node name="SectorInfo" parent="MainUILayer" unique_id=943868874 instance=ExtResource("11_wjob3")]
 process_mode = 4
 visible = false
 

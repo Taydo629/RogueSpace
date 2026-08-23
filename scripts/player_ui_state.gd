@@ -15,11 +15,15 @@ func enter() -> void:
 	player_ui = canvas_layer.player_ui
 	player_ui.process_mode = Node.PROCESS_MODE_ALWAYS
 	player_ui.visible = true
+	player_ui.enter_station.connect(enter_station)
 	player_ui.init_ui()
 
 func exit() -> void:
 	player_ui.process_mode = Node.PROCESS_MODE_DISABLED
 	player_ui.visible = false
+
+func enter_station() -> void:
+	state_machine.transition(StationUIState.state_name)
 
 func process(_delta: float) -> void:
 	if Input.is_action_just_pressed("esc"):
