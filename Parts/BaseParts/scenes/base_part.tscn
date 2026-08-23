@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dplstcql0ly08"]
+
+[ext_resource type="Script" uid="uid://dy03062o4x1cd" path="res://Parts/BaseParts/src/base_part.gd" id="1_j4jjp"]
+[ext_resource type="AudioStream" uid="uid://slipmgqm5lvd" path="res://assets/Hit.wav" id="2_bg554"]
+
+
+[node name="BasePart" type="RigidBody2D" unique_id=2026258003]
+linear_damp = 1.0
+script = ExtResource("1_j4jjp")
+
+[node name="Hit_sound" type="AudioStreamPlayer2D" parent="." unique_id=148902925]
+stream = ExtResource("2_bg554")
+volume_db = -5.0
+
+[node name="HurtArea" type="Area2D" parent="." unique_id=991278418]

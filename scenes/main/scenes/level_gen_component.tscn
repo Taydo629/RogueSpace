@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dyxopugemdibc"]
+
+[ext_resource type="Script" uid="uid://dc24imjf6sjnx" path="res://scenes/main/src/levelgeneration_component.gd" id="1_5mlh8"]
+
+
+[node name="LevelGenComponent" type="Node" unique_id=1697448056]
+script = ExtResource("1_5mlh8")
