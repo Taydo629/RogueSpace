@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://de5ecusj6segb"]
 
-[ext_resource type="PackedScene" uid="uid://cbies401v0c4e" path="res://Parts/Hull/scenes/hull.tscn" id="1_3nu1c"]
-[ext_resource type="PackedScene" uid="uid://bqwwb8ff2mpkk" path="res://Parts/BaseParts/scenes/base_weapon.tscn" id="2_t6ban"]
-[ext_resource type="PackedScene" uid="uid://jumhiux358g4" path="res://Parts/Thruster/scenes/thruster.tscn" id="3_cpaoq"]
+[ext_resource type="PackedScene" uid="uid://cbies401v0c4e" path="res://Parts/BaseParts/Hull/scenes/hull.tscn" id="1_3nu1c"]
+[ext_resource type="PackedScene" uid="uid://bqwwb8ff2mpkk" path="res://Parts/BaseParts/BaseWeapon/scenes/base_weapon.tscn" id="2_t6ban"]
+[ext_resource type="PackedScene" uid="uid://jumhiux358g4" path="res://Parts/BaseParts/Thruster/scenes/thruster.tscn" id="3_cpaoq"]
 
 
 [node name="Outpost" type="Node2D" unique_id=1916993026]

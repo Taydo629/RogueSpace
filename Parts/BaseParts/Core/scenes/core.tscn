@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d2iy1wfm3hmvg"]
 
 [ext_resource type="PackedScene" uid="uid://dplstcql0ly08" path="res://Parts/BaseParts/scenes/base_part.tscn" id="1_5634n"]
-[ext_resource type="Script" uid="uid://cvsk6fc8lm1td" path="res://Parts/Core/src/core.gd" id="2_hlf4f"]
+[ext_resource type="Script" uid="uid://cvsk6fc8lm1td" path="res://Parts/BaseParts/Core/src/core.gd" id="2_hlf4f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5634n"]
 size = Vector2(64, 64)

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bmppj8nctpawu"]
 
-[ext_resource type="Script" uid="uid://dmgdx1aegsakg" path="res://Parts/TractorBeam/src/tractor_beam.gd" id="1_5evr5"]
+[ext_resource type="Script" uid="uid://dmgdx1aegsakg" path="res://Parts/BaseParts/TractorBeam/src/tractor_beam.gd" id="1_5evr5"]
 [ext_resource type="PackedScene" uid="uid://dplstcql0ly08" path="res://Parts/BaseParts/scenes/base_part.tscn" id="1_tyh0h"]
 
 
