@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cg526we3xlckp"]
+
+[ext_resource type="Script" uid="uid://bluabw4sdkamn" path="res://Tools/debug_gun.gd" id="1_1j0s2"]
+
+
+[node name="DebugGun" type="Node2D" unique_id=1831807821]
+script = ExtResource("1_1j0s2")

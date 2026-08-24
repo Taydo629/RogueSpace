@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://c7woe6b2tkxna"]
+
+[ext_resource type="Script" uid="uid://ch03k48e6hrnv" path="res://UI/SectorInfo/src/sector_info.gd" id="1_ntx5u"]
+
+[node name="SectorInfo" type="Control" unique_id=943868874]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ntx5u")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=231032423]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -256.0
+offset_top = 128.0
+offset_right = 256.0
+offset_bottom = 384.0
+text = "Information regarding this sector."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="." unique_id=980882125]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -136.0
+offset_right = 64.0
+offset_bottom = -72.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Continue"
+
+[node name="BG" type="Polygon2D" parent="." unique_id=1226000808]
+z_index = -1
+color = Color(0.0930753, 0.09644758, 0.2294352, 1)
+polygon = PackedVector2Array(0, 0, 1152, 0, 1152, 648, 0, 648)
+
+[connection signal="pressed" from="ContinueButton" to="." method="_on_continue_button_pressed"]

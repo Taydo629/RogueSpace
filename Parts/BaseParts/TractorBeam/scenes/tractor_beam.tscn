@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://bmppj8nctpawu"]
+
+[ext_resource type="Script" uid="uid://dmgdx1aegsakg" path="res://Parts/BaseParts/TractorBeam/src/tractor_beam.gd" id="1_5evr5"]
+[ext_resource type="PackedScene" uid="uid://dplstcql0ly08" path="res://Parts/BaseParts/scenes/base_part.tscn" id="1_tyh0h"]
+
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3qunh"]
+size = Vector2(64, 16)
+
+[sub_resource type="Gradient" id="Gradient_hhuwe"]
+colors = PackedColorArray(7.315874e-06, 0.73193437, 0.9951952, 1, 1, 1, 1, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_np2xk"]
+radius = 24.0
+
+[node name="BasePart" unique_id=2026258003 groups=["tractor_beam"] instance=ExtResource("1_tyh0h")]
+script = ExtResource("1_5evr5")
+beam_strength = 500
+part_health = 100
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea" parent_id_path=PackedInt32Array(991278418) index="0" unique_id=324992558]
+position = Vector2(0, 24)
+shape = SubResource("RectangleShape2D_3qunh")
+
+[node name="Collider" type="CollisionShape2D" parent="." index="2" unique_id=1751981152]
+position = Vector2(0, 24)
+shape = SubResource("RectangleShape2D_3qunh")
+
+[node name="Polygon2D" type="Polygon2D" parent="." index="3" unique_id=1614886121]
+position = Vector2(0, -8)
+color = Color(0.68307734, 0.6830774, 0.68307734, 1)
+polygon = PackedVector2Array(-32, 40, -32, 32, -24, 24, 24, 24, 32, 32, 32, 40)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." index="4" unique_id=772173336]
+z_index = 2
+position = Vector2(0, -200)
+emitting = false
+amount = 40
+lifetime = 0.65
+local_coords = true
+emission_shape = 6
+emission_ring_inner_radius = 8.0
+emission_ring_radius = 32.0
+direction = Vector2(0, 1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 300.0
+scale_amount_max = 8.0
+color_ramp = SubResource("Gradient_hhuwe")
+
+[node name="Pickup_area" type="Area2D" parent="." index="5" unique_id=2079386816]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pickup_area" index="0" unique_id=1915897543]
+position = Vector2(0, 8)
+shape = SubResource("CircleShape2D_np2xk")
+
+[node name="Beam_area" type="Area2D" parent="." index="6" unique_id=1775849091]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Beam_area" index="0" unique_id=1319517571]
+polygon = PackedVector2Array(-24, 16, -64, -200, 64, -200, 24, 16)
+
+[connection signal="body_entered" from="Pickup_area" to="." method="_collect_part"]

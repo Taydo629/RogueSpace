@@ -1,0 +1,315 @@
+[gd_scene format=3 uid="uid://bdqj3ik3o1p8o"]
+
+[ext_resource type="Script" uid="uid://c8h4inpvpqwvk" path="res://Tools/ship_building_tool.gd" id="1_7whii"]
+
+
+[node name="ShipBuildingTool" type="CanvasLayer" unique_id=109807577]
+process_mode = 3
+script = ExtResource("1_7whii")
+
+[node name="PartContainer" type="Node2D" parent="." unique_id=1201235101]
+process_mode = 2
+
+[node name="Panel" type="Panel" parent="." unique_id=343043088]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -256.0
+offset_top = 32.0
+offset_right = -32.0
+offset_bottom = 168.0
+grow_horizontal = 0
+
+[node name="KeyHelp" type="Label" parent="Panel" unique_id=1387154647]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+text = "Q: Rotate part anti-clockwise
+E: Rotate part clockwise
+M: Mirror part
+LMB: Place part
+RMB: Remove part"
+horizontal_alignment = 2
+
+[node name="ShipBuildingUI" type="Control" parent="." unique_id=1932583675]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FoldableContainer" type="FoldableContainer" parent="ShipBuildingUI" unique_id=1146177033]
+layout_mode = 0
+offset_top = 576.0
+offset_right = 512.0
+offset_bottom = 834.0
+rotation = -1.5707964
+title = "Parts"
+title_alignment = 1
+
+[node name="Control" type="Control" parent="ShipBuildingUI/FoldableContainer" unique_id=1194157296]
+layout_mode = 2
+
+[node name="ItemList" type="ItemList" parent="ShipBuildingUI/FoldableContainer/Control" unique_id=1903116467]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 500.0
+offset_top = 4.000022
+offset_right = 212.0
+offset_bottom = 225.00003
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5707964
+fixed_icon_size = Vector2i(64, 64)
+
+[node name="ItemInfoLabel" type="Label" parent="ShipBuildingUI/FoldableContainer/Control" unique_id=174857658]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.008
+anchor_top = 0.026
+anchor_right = 0.119
+anchor_bottom = 1.0090001
+offset_left = 64.032
+offset_top = 0.09112835
+offset_right = 215.23888
+offset_bottom = -151.18588
+rotation = 1.5707964
+text = "No part selected"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BuildButton" type="Button" parent="ShipBuildingUI" unique_id=1465284840]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -256.0
+offset_top = -136.0
+offset_right = -64.0
+offset_bottom = -72.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = "Build"
+
+[node name="Gridlines" type="Node2D" parent="." unique_id=622449412]
+
+[node name="Line2D" type="Line2D" parent="Gridlines" unique_id=357199032]
+z_index = -3
+position = Vector2(1, 1)
+points = PackedVector2Array(64, 0, 64, 648)
+width = 1.0
+default_color = Color(0.5330367, 0.5330367, 0.5330367, 1)
+
+[node name="Line2D2" type="Line2D" parent="Gridlines" unique_id=1566719979]
+z_index = -3
+position = Vector2(65, 1)
+points = PackedVector2Array(64, 0, 64, 648)
+width = 1.0
+default_color = Color(0.5330367, 0.5330367, 0.5330367, 1)
+
+[node name="Line2D3" type="Line2D" parent="Gridlines" unique_id=1006993624]
+z_index = -3
+position = Vector2(129, 1)
+points = PackedVector2Array(64, 0, 64, 648)
+width = 1.0
+default_color = Color(0.5330367, 0.5330367, 0.5330367, 1)
+
+[node name="Line2D4" type="Line2D" parent="Gridlines" unique_id=383913702]
+z_index = -3
+position = Vector2(193, 1)
+points = PackedVector2Array(64, 0, 64, 648)
+width = 1.0
+default_color = Color(0.5330367, 0.5330367, 0.5330367, 1)
+
+[node name="Line2D5" type="Line2D" parent="Gridlines" unique_id=574972104]
+z_index = -3
+position = Vector2(257, 1)
+points = PackedVector2Array(64, 0, 64, 648)
+width = 1.0
+default_color = Color(0.5330367, 0.5330367, 0.5330367, 1)
+
+[node name="Line2D6" type="Line2D" parent="Gridlines" unique_id=1941801821]
+z_index = -3
+position = Vector2(321, 1)
+points = PackedVector2Array(64, 0, 64, 648)
+width = 1.0
+default_color = Color(0.5330367, 0.5330367, 0.5330367, 1)
+
+[node name="Line2D7" type="Line2D" parent="Gridlines" unique_id=248231376]
+z_index = -3
+position = Vector2(385, 1)
+points = PackedVector2Array(64, 0, 64, 648)
+width = 1.0
+default_color = Color(0.5330367, 0.5330367, 0.5330367, 1)
+
+[node name="Line2D8" type="Line2D" parent="Gridlines" unique_id=1818211291]
+z_index = -3
+position = Vector2(449, 1)
+points = PackedVector2Array(64, 0, 64, 648)
+width = 1.0
+default_color = Color(0.5330367, 0.5330367, 0.5330367, 1)
+
+[node name="Line2D9" type="Line2D" parent="Gridlines" unique_id=1244489384]
+z_index = -3
+position = Vector2(513, 1)
+points = PackedVector2Array(64, 0, 64, 648)
+width = 1.0
+default_color = Color(0.5330367, 0.5330367, 0.5330367, 1)
+
+[node name="Line2D10" type="Line2D" parent="Gridlines" unique_id=1863716217]
+z_index = -3
+position = Vector2(513, 1)
+points = PackedVector2Array(64, 0, 64, 648)
+width = 1.0
+default_color = Color(0.5330367, 0.5330367, 0.5330367, 1)
+
+[node name="Line2D11" type="Line2D" parent="Gridlines" unique_id=160947070]
+z_index = -3
+position = Vector2(577, 1)
+points = PackedVector2Array(64, 0, 64, 648)
+width = 1.0
+default_color = Color(0.5330367, 0.5330367, 0.5330367, 1)
+
+[node name="Line2D12" type="Line2D" parent="Gridlines" unique_id=85125071]
+z_index = -3
+position = Vector2(641, 1)
+points = PackedVector2Array(64, 0, 64, 648)
+width = 1.0
+default_color = Color(0.5330367, 0.5330367, 0.5330367, 1)
+
+[node name="Line2D13" type="Line2D" parent="Gridlines" unique_id=346394624]
+z_index = -3
+position = Vector2(705, 1)
+points = PackedVector2Array(64, 0, 64, 648)
+width = 1.0
+default_color = Color(0.5330367, 0.5330367, 0.5330367, 1)
+
+[node name="Line2D14" type="Line2D" parent="Gridlines" unique_id=580189920]
+z_index = -3
+position = Vector2(769, 1)
+points = PackedVector2Array(64, 0, 64, 648)
+width = 1.0
+default_color = Color(0.5330367, 0.5330367, 0.5330367, 1)
+
+[node name="Line2D15" type="Line2D" parent="Gridlines" unique_id=782910885]
+z_index = -3
+position = Vector2(833, 1)
+points = PackedVector2Array(64, 0, 64, 648)
+width = 1.0
+default_color = Color(0.5330367, 0.5330367, 0.5330367, 1)
+
+[node name="Line2D16" type="Line2D" parent="Gridlines" unique_id=1702754107]
+z_index = -3
+position = Vector2(897, 1)
+points = PackedVector2Array(64, 0, 64, 648)
+width = 1.0
+default_color = Color(0.5330367, 0.5330367, 0.5330367, 1)
+
+[node name="Line2D17" type="Line2D" parent="Gridlines" unique_id=601770334]
+z_index = -3
+position = Vector2(961, 1)
+points = PackedVector2Array(64, 0, 64, 648)
+width = 1.0
+default_color = Color(0.5330367, 0.5330367, 0.5330367, 1)
+
+[node name="Line2D18" type="Line2D" parent="Gridlines" unique_id=366355024]
+z_index = -3
+position = Vector2(1025, 1)
+points = PackedVector2Array(64, 0, 64, 648)
+width = 1.0
+default_color = Color(0.5330367, 0.5330367, 0.5330367, 1)
+
+[node name="Line2D19" type="Line2D" parent="Gridlines" unique_id=1210556444]
+z_index = -3
+position = Vector2(1089, 1)
+points = PackedVector2Array(64, 0, 64, 648)
+width = 1.0
+default_color = Color(0.5330367, 0.5330367, 0.5330367, 1)
+
+[node name="Line2D20" type="Line2D" parent="Gridlines" unique_id=1472121354]
+z_index = -3
+position = Vector2(1089, 65)
+points = PackedVector2Array(64, 0, -1088, 0)
+width = 1.0
+default_color = Color(0.5330367, 0.5330367, 0.5330367, 1)
+
+[node name="Line2D21" type="Line2D" parent="Gridlines" unique_id=1788300167]
+z_index = -3
+position = Vector2(1089, 129)
+points = PackedVector2Array(64, 0, -1088, 0)
+width = 1.0
+default_color = Color(0.5330367, 0.5330367, 0.5330367, 1)
+
+[node name="Line2D22" type="Line2D" parent="Gridlines" unique_id=2014307709]
+z_index = -3
+position = Vector2(1089, 193)
+points = PackedVector2Array(64, 0, -1088, 0)
+width = 1.0
+default_color = Color(0.5330367, 0.5330367, 0.5330367, 1)
+
+[node name="Line2D23" type="Line2D" parent="Gridlines" unique_id=137968514]
+z_index = -3
+position = Vector2(1089, 257)
+points = PackedVector2Array(64, 0, -1088, 0)
+width = 1.0
+default_color = Color(0.5330367, 0.5330367, 0.5330367, 1)
+
+[node name="Line2D24" type="Line2D" parent="Gridlines" unique_id=1371063308]
+z_index = -3
+position = Vector2(1089, 321)
+points = PackedVector2Array(64, 0, -1088, 0)
+width = 1.0
+default_color = Color(0.5330367, 0.5330367, 0.5330367, 1)
+
+[node name="Line2D25" type="Line2D" parent="Gridlines" unique_id=1188364407]
+z_index = -3
+position = Vector2(1089, 385)
+points = PackedVector2Array(64, 0, -1088, 0)
+width = 1.0
+default_color = Color(0.5330367, 0.5330367, 0.5330367, 1)
+
+[node name="Line2D26" type="Line2D" parent="Gridlines" unique_id=540159577]
+z_index = -3
+position = Vector2(1089, 449)
+points = PackedVector2Array(64, 0, -1088, 0)
+width = 1.0
+default_color = Color(0.5330367, 0.5330367, 0.5330367, 1)
+
+[node name="Line2D27" type="Line2D" parent="Gridlines" unique_id=1967610553]
+z_index = -3
+position = Vector2(1089, 513)
+points = PackedVector2Array(64, 0, -1088, 0)
+width = 1.0
+default_color = Color(0.5330367, 0.5330367, 0.5330367, 1)
+
+[node name="Line2D28" type="Line2D" parent="Gridlines" unique_id=1843444328]
+z_index = -3
+position = Vector2(1089, 577)
+points = PackedVector2Array(64, 0, -1088, 0)
+width = 1.0
+default_color = Color(0.5330367, 0.5330367, 0.5330367, 1)
+
+[node name="Line2D29" type="Line2D" parent="Gridlines" unique_id=274157579]
+z_index = -3
+position = Vector2(1088, 640)
+points = PackedVector2Array(64, 0, -1088, 0)
+width = 1.0
+default_color = Color(0.5330367, 0.5330367, 0.5330367, 1)
+
+[node name="BuildArea" type="Polygon2D" parent="." unique_id=1840386145]
+z_index = -2
+position = Vector2(576, 320)
+color = Color(0.28627452, 0.77254903, 0.9411765, 0.2)
+offset = Vector2(-576, -320)
+polygon = PackedVector2Array(384, 128, 384, 512, 768, 512, 768, 128)
+
+[connection signal="item_selected" from="ShipBuildingUI/FoldableContainer/Control/ItemList" to="." method="_on_item_list_item_selected"]
+[connection signal="pressed" from="ShipBuildingUI/BuildButton" to="." method="_on_build_button_pressed"]
