@@ -43,8 +43,8 @@ func generate_level() -> void:
 	clear_level()
 	# NPC spawning
 	var valid_npcs: Array[NPCShip] = get_valid_ships_for_current_level()
-	#var number_of_npcs = randi_range(1, level_number)
-	var number_of_npcs = 0
+	var number_of_npcs = randi_range(1, level_number)
+	#var number_of_npcs = 0
 	var npc_array: Array[npc]
 	for i in number_of_npcs:
 		var NPC_instance = NPC.instantiate()

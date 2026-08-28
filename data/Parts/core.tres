@@ -2,8 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dfxnbigy6na68" path="res://data/parts.gd" id="1_43rg0"]
 [ext_resource type="PackedScene" uid="uid://d2iy1wfm3hmvg" path="res://Parts/BaseParts/Core/scenes/core.tscn" id="1_l7os8"]
-[ext_resource type="Texture2D" uid="uid://dwhx2m8ppv0ne" path="res://assets/core.png" id="1_mde3k"]
-
+[ext_resource type="Texture2D" uid="uid://bliw4ys5quiil" path="res://assets/Bridge_sprite.png" id="1_mde3k"]
 
 [resource]
 script = ExtResource("1_43rg0")

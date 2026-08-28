@@ -2,13 +2,14 @@
 
 [ext_resource type="PackedScene" uid="uid://dplstcql0ly08" path="res://Parts/BaseParts/scenes/base_part.tscn" id="1_vbl7p"]
 [ext_resource type="Script" uid="uid://cy6135njba5v2" path="res://Parts/BaseParts/Thruster/src/thruster.gd" id="2_x6buh"]
+[ext_resource type="Texture2D" uid="uid://dtnth2ssektfx" path="res://assets/Thruster_sprite.png" id="3_6ee87"]
 [ext_resource type="AudioStream" uid="uid://bplhtgjfhvm1v" path="res://assets/Thruster.wav" id="3_cp153"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x6buh"]
-size = Vector2(48, 32)
+size = Vector2(64, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cp153"]
-size = Vector2(48, 32)
+size = Vector2(64, 64)
 
 [sub_resource type="Gradient" id="Gradient_x6buh"]
 colors = PackedColorArray(1, 0, 0, 1, 1, 0.80784315, 0.12941177, 1)
@@ -19,21 +20,19 @@ thrust_force = 50
 part_health = 100
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea" parent_id_path=PackedInt32Array(991278418) index="0" unique_id=1890614803]
-position = Vector2(0, -16)
 shape = SubResource("RectangleShape2D_x6buh")
 
 [node name="Polygon2D" type="Polygon2D" parent="." index="2" unique_id=701049271]
-position = Vector2(0, -32)
-color = Color(0.3854925, 0.38549247, 0.38549247, 1)
-polygon = PackedVector2Array(-16, 0, 16, 0, 24, 8, 32, 32, -32, 32, -24, 8)
+texture = ExtResource("3_6ee87")
+texture_offset = Vector2(32, 32)
+polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 
 [node name="Collider" type="CollisionShape2D" parent="." index="3" unique_id=1505331381]
-position = Vector2(0, -16)
 shape = SubResource("RectangleShape2D_cp153")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="." index="4" unique_id=555381787]
 z_index = -1
-position = Vector2(0, -8)
+position = Vector2(0, 16)
 emitting = false
 amount = 30
 emission_shape = 1

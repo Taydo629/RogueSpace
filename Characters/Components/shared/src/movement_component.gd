@@ -18,19 +18,13 @@ func activate_thrusters() -> void:
 		thruster.cpu_particles_2d.emitting = true
 		if not thruster.thruster_sound.playing:
 			thruster.thruster_sound.playing = true
-		# 1. Calculate the local offset from the ship's origin to the thruster
-		# global_transform.affine_inverse() converts a global position into the ship's local space
-		#var local_offset = parent.global_transform.affine_inverse() * thruster.global_position
-		
-		# 2. Calculate the force vector in GLOBAL space
-		# If your thruster's "forward" is its own local UP direction:
-		var thrust_direction = Vector2.UP.rotated(thruster.global_rotation)
+		var up_vector: Vector2
+		if thruster.scale == Vector2(-1,1):
+			up_vector = Vector2.DOWN
+		else:
+			up_vector = Vector2.UP
+		var thrust_direction = up_vector.rotated(thruster.global_rotation)
 		var global_force = thrust_direction * thruster.thrust_force
-		
-		# 3. Apply the force at the local offset
-		#parent.add_constant_force(global_force, local_offset)
-		
-		# Currently using more simplified method of thrust
 		parent.add_constant_central_force(global_force)
 
 func deactivate_thrusters() -> void:

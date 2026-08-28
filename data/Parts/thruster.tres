@@ -1,9 +1,8 @@
 [gd_resource type="Resource" script_class="Part" format=3 uid="uid://b4k0ewhy4bwpf"]
 
 [ext_resource type="Script" uid="uid://dfxnbigy6na68" path="res://data/parts.gd" id="1_5xp6c"]
-[ext_resource type="Texture2D" uid="uid://cbqqgjxuknwxd" path="res://assets/Thruster.png" id="1_u85ot"]
+[ext_resource type="Texture2D" uid="uid://dtnth2ssektfx" path="res://assets/Thruster_sprite.png" id="1_u85ot"]
 [ext_resource type="PackedScene" uid="uid://jumhiux358g4" path="res://Parts/BaseParts/Thruster/scenes/thruster.tscn" id="2_mcja4"]
-
 
 [resource]
 script = ExtResource("1_5xp6c")

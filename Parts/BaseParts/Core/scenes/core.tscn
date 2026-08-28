@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dplstcql0ly08" path="res://Parts/BaseParts/scenes/base_part.tscn" id="1_5634n"]
 [ext_resource type="Script" uid="uid://cvsk6fc8lm1td" path="res://Parts/BaseParts/Core/src/core.gd" id="2_hlf4f"]
+[ext_resource type="Texture2D" uid="uid://bliw4ys5quiil" path="res://assets/Bridge_sprite.png" id="3_pf624"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5634n"]
 size = Vector2(64, 64)
@@ -20,5 +21,6 @@ shape = SubResource("RectangleShape2D_5634n")
 shape = SubResource("RectangleShape2D_hlf4f")
 
 [node name="Polygon2D" type="Polygon2D" parent="." index="3" unique_id=1028683940]
-color = Color(0, 0.5294118, 1, 1)
+texture = ExtResource("3_pf624")
+texture_offset = Vector2(32, 32)
 polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)

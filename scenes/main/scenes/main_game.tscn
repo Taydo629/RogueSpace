@@ -12,22 +12,14 @@
 [ext_resource type="PackedScene" uid="uid://c0nva578wdvmu" path="res://UI/GuideUI/scene/guide_ui.tscn" id="9_5cypo"]
 [ext_resource type="PackedScene" uid="uid://ds8t7yfbj4qfp" path="res://UI/StationUI/scene/station_ui.tscn" id="10_o6v7o"]
 [ext_resource type="PackedScene" uid="uid://c7woe6b2tkxna" path="res://UI/SectorInfo/scene/sector_info.tscn" id="11_wjob3"]
-[ext_resource type="Texture2D" uid="uid://7311c1hg8dft" path="res://assets/Space-Background-Image-2-1024x682.jpg" id="13_wjob3"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8xp80"]
-texture = ExtResource("13_wjob3")
+[ext_resource type="Texture2D" uid="uid://dmdsrf5jlj5jk" path="res://assets/Space_BG.png" id="13_qy7f2"]
+[ext_resource type="Texture2D" uid="uid://b6qqpjtotmc0p" path="res://assets/Sun_sprite.png" id="14_4d5ma"]
+[ext_resource type="Texture2D" uid="uid://cegk085sa5e0e" path="res://assets/Rocky_planet_sprite.png" id="14_aly5s"]
+[ext_resource type="Texture2D" uid="uid://bkkmlju23hpuo" path="res://assets/2d_lights_and_shadows_neutral_point_light.webp" id="15_rxlyu"]
 
 [node name="MainGame" type="Node2D" unique_id=956598129]
 process_mode = 3
 script = ExtResource("1_d2op2")
-
-[node name="BG" type="Panel" parent="." unique_id=591426073]
-z_index = -2
-offset_left = -8088.0
-offset_top = -8192.0
-offset_right = 8176.0
-offset_bottom = 8184.0
-theme_override_styles/panel = SubResource("StyleBoxTexture_8xp80")
 
 [node name="MainUILayer" type="CanvasLayer" parent="." unique_id=1008782413]
 process_mode = 3
@@ -70,3 +62,54 @@ process_mode = 3
 
 [node name="Player" parent="LevelGenComponent" unique_id=2138094422 instance=ExtResource("8_70vka")]
 process_mode = 1
+
+[node name="Background" type="Node2D" parent="." unique_id=1890223868]
+z_index = -5
+
+[node name="Space" type="Parallax2D" parent="Background" unique_id=736096544]
+scroll_scale = Vector2(0.1, 0.1)
+repeat_size = Vector2(1920, 1080)
+repeat_times = 4
+
+[node name="Space" type="Sprite2D" parent="Background/Space" unique_id=1460360841]
+texture = ExtResource("13_qy7f2")
+
+[node name="Sun" type="Parallax2D" parent="Background" unique_id=1470027427]
+scroll_scale = Vector2(0.2, 0.2)
+
+[node name="Sun" type="Sprite2D" parent="Background/Sun" unique_id=987179957]
+position = Vector2(-2128, -1208)
+scale = Vector2(10, 10)
+texture = ExtResource("14_4d5ma")
+
+[node name="PointLight2D" type="PointLight2D" parent="Background/Sun" unique_id=481029091]
+position = Vector2(-2124, -1191.9999)
+scale = Vector2(20.21875, 19.437502)
+color = Color(0.87357354, 0.6782919, 0.12589192, 1)
+energy = 2.0
+texture = ExtResource("15_rxlyu")
+texture_scale = 1.3
+
+[node name="PlanetNear" type="Parallax2D" parent="Background" unique_id=1646218158]
+scroll_scale = Vector2(0.5, 0.5)
+
+[node name="Planet" type="Sprite2D" parent="Background/PlanetNear" unique_id=1611445449]
+position = Vector2(2911.9998, 1119.9999)
+scale = Vector2(6, 6)
+texture = ExtResource("14_aly5s")
+
+[node name="PlanetMid" type="Parallax2D" parent="Background" unique_id=1410389629]
+scroll_scale = Vector2(0.4, 0.4)
+
+[node name="Planet" type="Sprite2D" parent="Background/PlanetMid" unique_id=401766289]
+position = Vector2(992, 256)
+scale = Vector2(3, 3)
+texture = ExtResource("14_aly5s")
+
+[node name="PlanetFar" type="Parallax2D" parent="Background" unique_id=408329590]
+scroll_scale = Vector2(0.3, 0.3)
+scroll_offset = Vector2(-120, -432)
+
+[node name="Planet" type="Sprite2D" parent="Background/PlanetFar" unique_id=1935650754]
+position = Vector2(-184, -440)
+texture = ExtResource("14_aly5s")
