@@ -20,6 +20,11 @@ config/icon="res://icon.svg"
 ShipInfo="*uid://durrve7qq0oxc"
 Inventory="*uid://c37avumkds57"
 
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
 [input]
 
 thrust={
