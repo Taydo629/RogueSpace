@@ -3,6 +3,7 @@ class_name BasePart extends RigidBody2D
 @onready var hit_sound: AudioStreamPlayer2D = $Hit_sound
 @onready var polygon_2d: Polygon2D = $Polygon2D
 @onready var collider: CollisionShape2D = $Collider
+@onready var smoke_particles: CPUParticles2D = $SmokeParticles
 
 var max_health: int
 var health: int
@@ -32,6 +33,7 @@ func take_damage(damage: int) -> void:
 		var frac_hp = float(new_health)/float(max_health)
 		var part_color: Color = polygon_2d.color
 		if frac_hp < 0.5 and frac_hp >= 0.25:
+			smoke_particles.emitting = true
 			part_color = Color(0.89,0.4,0,1)
 		elif frac_hp < 0.25:
 			part_color = Color(0.53, 0.03, 0.0, 1.0)

@@ -2,7 +2,8 @@ class_name Thruster extends BasePart
 
 # Not used but could be used in future for configurable control
 var activation_key: String
-@onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
+@onready var thruster_particles: CPUParticles2D = $ThrusterParticles
+@onready var thruster_light: PointLight2D = $ThrusterParticles/ThrusterLight
 @onready var thruster_sound: AudioStreamPlayer2D = $ThrusterSound
 
 var thrust_force: int
@@ -17,7 +18,8 @@ func _ready() -> void:
 	
 
 func stop_particles() -> void:
-	cpu_particles_2d.emitting = false
+	thruster_particles.emitting = false
+	thruster_light.enabled = false
 
 # Test function
 func test_damage():

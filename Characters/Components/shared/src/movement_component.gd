@@ -15,7 +15,8 @@ func initalise_movement(ship_graph: Dictionary) -> void:
 
 func activate_thrusters() -> void:
 	for thruster in thrusters:
-		thruster.cpu_particles_2d.emitting = true
+		thruster.thruster_particles.emitting = true
+		thruster.thruster_light.enabled = true
 		if not thruster.thruster_sound.playing:
 			thruster.thruster_sound.playing = true
 		var up_vector: Vector2
@@ -29,7 +30,8 @@ func activate_thrusters() -> void:
 
 func deactivate_thrusters() -> void:
 	for thruster in thrusters:
-		thruster.cpu_particles_2d.emitting = false
+		thruster.thruster_particles.emitting = false
+		thruster.thruster_light.enabled = false
 		if thruster.thruster_sound.playing:
 			thruster.thruster_sound.playing = false
 			
