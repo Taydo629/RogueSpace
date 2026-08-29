@@ -69,7 +69,7 @@ z_index = -5
 [node name="Space" type="Parallax2D" parent="Background" unique_id=736096544]
 scroll_scale = Vector2(0.1, 0.1)
 repeat_size = Vector2(1920, 1080)
-repeat_times = 4
+repeat_times = 8
 
 [node name="Space" type="Sprite2D" parent="Background/Space" unique_id=1460360841]
 texture = ExtResource("13_qy7f2")

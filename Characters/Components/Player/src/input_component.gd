@@ -6,6 +6,8 @@ signal deactivate_thrusters
 signal activate_tractorbeam
 signal deactivate_tractorbeam
 signal mouse_pos_changed
+signal zoom_in
+signal zoom_out
 
 func _process(_delta: float) -> void:
 	if Input.is_action_pressed("left_click"):
@@ -18,4 +20,8 @@ func _process(_delta: float) -> void:
 		activate_tractorbeam.emit()
 	if Input.is_action_just_released("right_click"):
 		deactivate_tractorbeam.emit()
+	if Input.is_action_just_pressed("scroll_up"):
+		zoom_in.emit()
+	if Input.is_action_just_pressed("scroll_down"):
+		zoom_out.emit()
 	mouse_pos_changed.emit(get_parent().get_global_mouse_position())

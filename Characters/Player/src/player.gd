@@ -5,7 +5,7 @@ class_name Player extends RigidBody2D
 @onready var weapon_component: WeaponComponent = $WeaponComponent
 @onready var input_component: InputComponent = $InputComponent
 @onready var tractorbeam_component: TractorbeamComponent = $TractorbeamComponent
-@onready var player_camera: Camera2D = $PlayerCamera
+@onready var player_camera: PlayerCamera = $PlayerCamera
 #@onready var player_ui_layer: CanvasLayer = $PlayerUILayer
 
 #var enemy_array: Array[RigidBody2D]
@@ -20,6 +20,8 @@ func _ready() -> void:
 	input_component.activate_tractorbeam.connect(tractorbeam_component.activate)
 	input_component.deactivate_tractorbeam.connect(tractorbeam_component.deactivate)
 	input_component.mouse_pos_changed.connect(movement_component.rotate_to)
+	input_component.zoom_in.connect(player_camera.zoom_in)
+	input_component.zoom_out.connect(player_camera.zoom_out)
 
 func init_ship(ship_graph, grid_dim) -> void:
 	clear_old_ship()
