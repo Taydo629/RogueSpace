@@ -2,6 +2,7 @@ class_name Part
 extends Resource
 
 enum PART_TYPE{STRUCTURAL, WEAPON, THRUSTER}
+enum POSSIBLE_NEIGHBORS{UP, RIGHT, DOWN, LEFT, ALL}
 
 @export var name: String
 @export var scene: PackedScene
@@ -11,6 +12,7 @@ enum PART_TYPE{STRUCTURAL, WEAPON, THRUSTER}
 @export var weight: int
 @export var max_health: int
 @export var part_type: PART_TYPE
+@export var possible_neighbors: Array[POSSIBLE_NEIGHBORS]
 @export var thrust_force: int
 @export var fire_rate: float
 @export var damage: float

@@ -5,21 +5,20 @@ class_name BasePart extends RigidBody2D
 @onready var collider: CollisionShape2D = $Collider
 @onready var smoke_particles: CPUParticles2D = $SmokeParticles
 
-var max_health: int
+var max_health: int:
+	set(value):
+		max_health = value
+		health = max_health
 var health: int
 var dict_key: String
 var is_detached: bool = false
 var parent: RigidBody2D
-@export var part: Part
 
 signal part_destroyed
 signal part_detached
 
 func _ready() -> void:
-	# Connect the parts destroyed signal to the player ship if possible.
-	if part != null:
-		max_health = part.max_health
-		health = max_health
+	pass
 
 func take_damage(damage: int) -> void:
 	var new_health = health - damage
@@ -27,6 +26,7 @@ func take_damage(damage: int) -> void:
 	
 	if new_health <= 0:
 		part_destroyed.emit(dict_key)
+		collider.queue_free()
 		queue_free()
 	else:
 		health = new_health
@@ -42,15 +42,16 @@ func take_damage(damage: int) -> void:
 ## Function used when attaching a part to a ship
 ##
 ## The function returns the collision shape to be used
-func attach(new_key: String) -> CollisionShape2D:
-	var new_collider: CollisionShape2D = collider.duplicate()
-	collider.disabled = true
+func attach(new_key: String) -> void:
+	#var new_collider: CollisionShape2D = collider.duplicate()
+	collider.reparent(parent)
 	dict_key = new_key
 	freeze = true
 	part_destroyed.connect(get_parent().part_destroyed)
-	return(new_collider)
+	#return(new_collider)
 
 func detached() -> void:
+	collider.reparent(self)
 	collider.disabled = false
 	is_detached = true
 	part_detached.emit()

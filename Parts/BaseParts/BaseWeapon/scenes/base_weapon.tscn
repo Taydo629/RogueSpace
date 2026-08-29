@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://dplstcql0ly08" path="res://Parts/BaseParts/scenes/base_part.tscn" id="1_iod1e"]
 [ext_resource type="Script" uid="uid://03qn2gj7nft5" path="res://Parts/BaseParts/BaseWeapon/src/base_weapon.gd" id="2_iod1e"]
 [ext_resource type="AudioStream" uid="uid://bv233ik2rda1q" path="res://assets/Fire.wav" id="4_3ap3m"]
-[ext_resource type="Resource" uid="uid://bs8ufgr7qnr1y" path="res://data/Parts/gun.tres" id="4_hbf1n"]
 [ext_resource type="Texture2D" uid="uid://dah25nye2hp8a" path="res://assets/Gun_sprite.png" id="4_hgcxr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_og67c"]
@@ -11,8 +10,6 @@ size = Vector2(16, 48)
 
 [node name="BaseWeapon" unique_id=2026258003 groups=["weapon"] instance=ExtResource("1_iod1e")]
 script = ExtResource("2_iod1e")
-part_health = 100
-part = ExtResource("4_hbf1n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea" parent_id_path=PackedInt32Array(991278418) index="0" unique_id=1332612912]
 position = Vector2(0, 8)

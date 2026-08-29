@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://dplstcql0ly08" path="res://Parts/BaseParts/scenes/base_part.tscn" id="1_mv7wv"]
 [ext_resource type="Script" uid="uid://coh5tlx0utdxe" path="res://Parts/BaseParts/Hull/src/hull.gd" id="2_k26o8"]
-[ext_resource type="Resource" uid="uid://rp4s55105tbn" path="res://data/Parts/hull.tres" id="3_g1x3o"]
 [ext_resource type="Texture2D" uid="uid://by24fkoebq5jy" path="res://assets/Hull_sprite.png" id="3_qk1rq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k26o8"]
@@ -13,7 +12,6 @@ size = Vector2(64, 64)
 
 [node name="Hull" unique_id=2026258003 instance=ExtResource("1_mv7wv")]
 script = ExtResource("2_k26o8")
-part = ExtResource("3_g1x3o")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea" parent_id_path=PackedInt32Array(991278418) index="0" unique_id=1183693982]
 shape = SubResource("RectangleShape2D_k26o8")

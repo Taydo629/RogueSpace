@@ -15,6 +15,7 @@ sell_price = 150
 weight = 2
 max_health = 200
 part_type = 1
+possible_neighbors = Array[int]([2])
 fire_rate = 0.1
 damage = 6.0
 round_speed = 1400

@@ -6,13 +6,21 @@ class_name Player extends RigidBody2D
 @onready var input_component: InputComponent = $InputComponent
 @onready var tractorbeam_component: TractorbeamComponent = $TractorbeamComponent
 @onready var player_camera: PlayerCamera = $PlayerCamera
+var ship_graph: Dictionary :
+	set(value):
+		if value != ship_graph:
+			ship_graph = value
+			print("New graph incoming")
+			initialise_ship.emit()
+signal initialise_ship
 #@onready var player_ui_layer: CanvasLayer = $PlayerUILayer
 
 #var enemy_array: Array[RigidBody2D]
 #var station: StaticBody2D
 
 func _ready() -> void:
-	ShipInfo.ship_updated.connect(init_ship)
+	#ShipInfo.ship_updated.connect(init_ship)
+	initialise_ship.connect(init_ship)
 	part_component.graph_changed.connect(reinitialise_components)
 	input_component.fire_guns.connect(weapon_component.fire)
 	input_component.activate_thrusters.connect(movement_component.activate_thrusters)
@@ -23,19 +31,20 @@ func _ready() -> void:
 	input_component.zoom_in.connect(player_camera.zoom_in)
 	input_component.zoom_out.connect(player_camera.zoom_out)
 
-func init_ship(ship_graph, grid_dim) -> void:
-	clear_old_ship()
+func init_ship() -> void:
+	#clear_old_ship()
 	part_component.ship_graph = ship_graph
-	part_component.grid_size = grid_dim
+	#part_component.grid_size = grid_dim
 	player_camera.enabled = true
-	part_component.initialise_ship()
+	#part_component.initialise_ship()
+	reinitialise_components()
 
 func reinitialise_components() -> void:
 	print("Re-initialise components")
-	ShipInfo.update_ship(part_component.ship_graph)
-	movement_component.initalise_movement(ShipInfo.ship_graph)
-	weapon_component.initalise_weapons(ShipInfo.ship_graph)
-	tractorbeam_component.initalise_tractor_beams(ShipInfo.ship_graph)
+	#ShipInfo.update_ship(part_component.ship_graph)
+	movement_component.initalise_movement(ship_graph)
+	weapon_component.initalise_weapons(ship_graph)
+	tractorbeam_component.initalise_tractor_beams(ship_graph)
 
 #func new_level(level: int, new_npc_array: Array[RigidBody2D], new_station: StaticBody2D) -> void:
 	#enemy_array = new_npc_array

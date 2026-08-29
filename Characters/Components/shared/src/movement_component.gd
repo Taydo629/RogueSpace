@@ -20,7 +20,7 @@ func activate_thrusters() -> void:
 		if not thruster.thruster_sound.playing:
 			thruster.thruster_sound.playing = true
 		var up_vector: Vector2
-		if thruster.scale == Vector2(-1,1):
+		if thruster.scale == Vector2(1,-1):
 			up_vector = Vector2.DOWN
 		else:
 			up_vector = Vector2.UP

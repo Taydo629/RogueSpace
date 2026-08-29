@@ -2,17 +2,18 @@
 
 [ext_resource type="Script" uid="uid://dfxnbigy6na68" path="res://data/parts.gd" id="1_5xp6c"]
 [ext_resource type="Texture2D" uid="uid://dtnth2ssektfx" path="res://assets/Thruster_sprite.png" id="1_u85ot"]
-[ext_resource type="PackedScene" uid="uid://jumhiux358g4" path="res://Parts/BaseParts/Thruster/scenes/thruster.tscn" id="2_mcja4"]
+[ext_resource type="PackedScene" uid="uid://jumhiux358g4" path="res://Parts/BaseParts/Thruster/scenes/thruster.tscn" id="2_u85ot"]
 
 [resource]
 script = ExtResource("1_5xp6c")
 name = "thruster"
-scene = ExtResource("2_mcja4")
+scene = ExtResource("2_u85ot")
 image = ExtResource("1_u85ot")
 buy_price = 300
 sell_price = 100
 weight = 3
 max_health = 200
 part_type = 2
+possible_neighbors = Array[int]([0, 1, 2])
 thrust_force = 50
 metadata/_custom_type_script = "uid://dfxnbigy6na68"

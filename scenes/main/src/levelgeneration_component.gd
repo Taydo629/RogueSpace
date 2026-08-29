@@ -1,6 +1,6 @@
 class_name LevelGenComponent extends Node
 
-signal level_generated
+#signal level_generated
 
 var level_number: int = 0
 var loaded_ships: Array[NPCShip] = []

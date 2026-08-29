@@ -1,11 +1,9 @@
 class_name BaseWeapon extends BasePart
 
-@export var part_health: int = 100
-
 # Weapon related exports
 var round_scene: PackedScene
 var fire_rate : float
-var weapon_damage: int
+var weapon_damage: float
 var round_speed: int
 @onready var muzzle: Node2D = $Muzzle
 @onready var fire_sound: AudioStreamPlayer2D = $FireSound
@@ -17,18 +15,19 @@ var timer: Timer
 
 @onready var live_rounds: Node = $LiveRounds
 
-func _ready() -> void:
-	if part != null and part.part_type == part.PART_TYPE.WEAPON:
-		max_health = part.max_health
+var part:Part:
+	set(value):
+		max_health = value.max_health
 		health = max_health
+		weapon_damage = value.damage
+		round_speed = value.round_speed
+		round_scene = value.round_scene
+		fire_rate = value.fire_rate
 		timer = Timer.new()
 		add_child(timer)
 		timer.timeout.connect(_weapon_ready)
-		fire_rate = part.fire_rate
 		timer.wait_time = fire_rate
-		round_scene = part.round_scene
-		weapon_damage = part.damage
-		round_speed = part.round_speed
+		part = value
 
 func fire_weapon(parent_node: RigidBody2D) -> void:
 	if gun_ready:
@@ -36,7 +35,7 @@ func fire_weapon(parent_node: RigidBody2D) -> void:
 		var projectile = round_scene.instantiate()
 		# Initialise bullet with all required information
 		projectile.global_position = muzzle.global_position
-		projectile.rotation = parent_node.rotation
+		projectile.rotation = fmod(parent_node.rotation + rotation,2.0*PI)
 		projectile.damage = weapon_damage
 		projectile.speed = round_speed
 		projectile.initial_velocity = parent_node.linear_velocity

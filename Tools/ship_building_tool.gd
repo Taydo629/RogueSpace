@@ -1,16 +1,19 @@
-extends CanvasLayer
+class_name BuildUITool extends Control
 
-@onready var item_list: ItemList = $ShipBuildingUI/FoldableContainer/Control/ItemList
-@onready var item_info_label: Label = $ShipBuildingUI/FoldableContainer/Control/ItemInfoLabel
-@onready var part_container: Node2D = $PartContainer
+@onready var item_list: ItemList = $FoldableContainer/Control/ItemList
+@onready var item_info_label: Label = $FoldableContainer/Control/ItemInfoLabel
+@onready var texture_rect: ColorRect = $TextureRect
+@onready var build_area: Polygon2D = $BuildArea
 
 var loaded_parts: Array[Part] = []
 var instantiated_item: RigidBody2D
 var instantiated_part: Part
 var selected_item_idx: int
 var current_mouse_pos: Vector2 = Vector2.ZERO
-var y_range: Array = [128,512]
-var x_range: Array = [384,768]
+var grid_dim: float = 5
+var grid_size: float = 64
+var y_range: Array
+var x_range: Array
 var building_dict: Dictionary = {}
 
 const SAVE_DIR: String = "res://data/ShipGraphs/"
@@ -20,7 +23,8 @@ signal build_complete
 func _ready() -> void:
 	get_tree().paused = true
 	load_all_parts_from_folder("res://data/Parts/")
-	update_partlist()
+	init_ui()
+	start_build()
 
 func load_all_parts_from_folder(path: String) -> void:
 	var dir = DirAccess.open(path)
@@ -42,9 +46,28 @@ func load_all_parts_from_folder(path: String) -> void:
 		
 	print("Total loaded parts: ", loaded_parts.size())
 
+func init_ui() -> void:
+	texture_rect.material.set_shader_parameter("grid_size", grid_size)
+	var viewport_size: Vector2 = get_viewport_rect().size
+	var grid_centre_x: float = int((viewport_size.x/grid_size)/2) * grid_size
+	var grid_centre_y: float = int((viewport_size.y/grid_size)/2) * grid_size
+	build_area.scale = Vector2(grid_dim,grid_dim)
+	build_area.global_position = Vector2(grid_centre_x,grid_centre_y)
+	var grid_edge_dist_from_centre: float = grid_dim * grid_size / 2.0
+	y_range = [grid_centre_y - grid_edge_dist_from_centre, grid_centre_y + grid_edge_dist_from_centre]
+	x_range = [grid_centre_x - grid_edge_dist_from_centre, grid_centre_x + grid_edge_dist_from_centre]
+	#start_build()
+
+func start_build() -> void:
+	building_dict.clear()
+	item_list.clear()
+	update_partlist()
+
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion and instantiated_item != null:
-		move_part(event.position)
+	if event is InputEventMouseMotion:
+		texture_rect.material.set_shader_parameter("mouse_pos", event.position)
+		if instantiated_item != null:
+			move_part(event.position)
 	elif event is InputEventKey and event.pressed == true:
 		if event.as_text_keycode() == "E":
 			rotate_part(1)
@@ -65,14 +88,13 @@ func place_part() -> void:
 			var node_dict: Dictionary = {
 				"part": instantiated_part,
 				"instance": instantiated_item,
-				"grid_pos": grid_pos,
-				"rotation": instantiated_item.rotation,
-				"scale": instantiated_item.scale
+				"grid_pos": grid_pos
 			}
 			building_dict.set(str(grid_pos),node_dict)
 			if check_part_owned(instantiated_part):
 				instantiate_part(instantiated_part)
-				item_info_label.text = str("Inf in inventory")
+				Inventory.remove_item(instantiated_part)
+				item_info_label.text = str(Inventory.inventory.count(instantiated_part), " in inventory")
 		else:
 			print("A part is already placed here!")
 	else:
@@ -84,6 +106,9 @@ func remove_part() -> void:
 		if str(grid_pos) in building_dict.keys():
 			var node = building_dict.get(str(grid_pos))
 			node.instance.queue_free()
+			Inventory.add_item(node.part)
+			if node.part.name == get_selected_part_name():
+				item_info_label.text = str(Inventory.inventory.count(node.part), " in inventory")
 			building_dict.erase(str(grid_pos))
 			print("Part removed")
 		else:
@@ -94,7 +119,11 @@ func remove_part() -> void:
 func move_part(position: Vector2) -> void:
 	## Get the grid position so that parts are on a grid.
 	var mouse_pos = position
-	var pos = Vector2(mouse_pos.x -fmod(mouse_pos.x, 64),mouse_pos.y -fmod(mouse_pos.y, 64)) + Vector2(32,32)
+	# Get mouse pos and convert into grid coordinates
+	# Grid starts at 0 with half a grid hence adding half a grid to the mouse pos to offset.
+	# By subtracting the modulus we get snapping to the grid.
+	var pos = Vector2(mouse_pos.x + grid_size/2 - fmod(mouse_pos.x + grid_size/2, grid_size),
+						mouse_pos.y + grid_size/2 - fmod(mouse_pos.y + grid_size/2, grid_size))
 	# Handle parts positioning and handle when mouse pos is outside of building area.
 	if pos.x >= x_range[0] and pos.x <= x_range[1] and pos.y <= y_range[1] and pos.y >= y_range[0] :
 		instantiated_item.visible = true
@@ -106,21 +135,25 @@ func move_part(position: Vector2) -> void:
 	instantiated_item.position = pos
 
 func rotate_part(direction: int) -> void:
-	instantiated_item.rotate(0.5 * PI * direction)
+	if instantiated_item != null:
+		instantiated_item.rotate(0.5 * PI * direction)
 
 func mirror_part() -> void:
-	instantiated_item.scale *= Vector2(-1,1)
+	if instantiated_item != null:
+		instantiated_item.scale *= Vector2(-1,1)
 
 func instantiate_part(part: Part) -> void:
 	instantiated_part = part
 	instantiated_item = part.scene.instantiate()
+	instantiated_item.part = part
 	instantiated_item.visible = false
-	part_container.add_child(instantiated_item)
+	add_child(instantiated_item)
 
 func kill_selected_part() -> void:
-	instantiated_item.queue_free()
-	instantiated_part = null
-	instantiated_item = null
+	if instantiated_item != null:
+		instantiated_item.queue_free()
+		instantiated_part = null
+		instantiated_item = null
 
 func update_partlist() -> void:
 	var already_added_part: Array[Part]
@@ -141,13 +174,13 @@ func check_part_owned(part: Part) -> bool:
 func update_partinfo(idx: int) -> Part:
 	var number_of_selected_part:int = 0
 	var selected_part_name: String = item_list.get_item_text(idx)
-	var selected_part: Part
-	for part in loaded_parts:
+	var selected_part: Part = null
+	for part in Inventory.inventory:
 		if part.name == selected_part_name:
 			number_of_selected_part += 1
 			if selected_part == null:
 				selected_part = part
-	item_info_label.text = str("Inf in inventory")
+	item_info_label.text = str(number_of_selected_part, " in inventory")
 	return selected_part
 
 
@@ -160,7 +193,27 @@ func assign_neighbors() -> bool:
 	for current_node in building_dict.values():
 		if current_node.part.name == "core":
 			core_present = true
-		var possible_direction_array: Array[Vector2] = [Vector2(1,0),Vector2(0,1),Vector2(-1,0),Vector2(0,-1)]
+		var possible_direction_array: Array[Vector2] = []
+		print(current_node.part.name)
+		print(current_node.part.possible_neighbors)
+		if Part.POSSIBLE_NEIGHBORS.ALL in current_node.part.possible_neighbors:
+			possible_direction_array = [Vector2(1,0),Vector2(0,1),Vector2(-1,0),Vector2(0,-1)]
+		else:
+			for direction in current_node.part.possible_neighbors:
+				# If mirrored mirror neighbor
+				var mirror_vector: Vector2 = Vector2(1,1)
+				if current_node.instance.scale == Vector2(-1,1):
+					mirror_vector = Vector2(-1,1)
+				var part_rot_in_rads: float = current_node.instance.rotation
+				if direction == Part.POSSIBLE_NEIGHBORS.UP:
+					possible_direction_array.append((Vector2.UP * mirror_vector).rotated(part_rot_in_rads).snappedf(1))
+				elif direction == Part.POSSIBLE_NEIGHBORS.RIGHT:
+					possible_direction_array.append((Vector2.RIGHT * mirror_vector).rotated(part_rot_in_rads).snappedf(1))
+				elif direction == Part.POSSIBLE_NEIGHBORS.DOWN:
+					possible_direction_array.append((Vector2.DOWN * mirror_vector).rotated(part_rot_in_rads).snappedf(1))
+				elif direction == Part.POSSIBLE_NEIGHBORS.LEFT:
+					possible_direction_array.append((Vector2.LEFT * mirror_vector).rotated(part_rot_in_rads).snappedf(1))
+			print(possible_direction_array)
 		var possible_neighbor_pos: Array = possible_direction_array.map(func(i): return i + current_node.grid_pos)
 		var neighbor_array: Array[String] = []
 		for neighbor_node in building_dict.values():

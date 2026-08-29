@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://dmgdx1aegsakg" path="res://Parts/BaseParts/TractorBeam/src/tractor_beam.gd" id="1_5evr5"]
 [ext_resource type="PackedScene" uid="uid://dplstcql0ly08" path="res://Parts/BaseParts/scenes/base_part.tscn" id="1_tyh0h"]
 
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3qunh"]
 size = Vector2(64, 16)
 
@@ -16,7 +15,6 @@ radius = 24.0
 [node name="BasePart" unique_id=2026258003 groups=["tractor_beam"] instance=ExtResource("1_tyh0h")]
 script = ExtResource("1_5evr5")
 beam_strength = 500
-part_health = 100
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea" parent_id_path=PackedInt32Array(991278418) index="0" unique_id=324992558]
 position = Vector2(0, 24)

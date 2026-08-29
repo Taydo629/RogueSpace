@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://blofhoxjvbs5y"]
 
 [ext_resource type="Script" uid="uid://c0d2hed1gmp4k" path="res://UI/ShipBuildingUI/src/ship_building_ui.gd" id="1_ps2en"]
-[ext_resource type="Shader" uid="uid://cvvodjxutsgje" path="res://Shaders/ship_building_ui.gdshader" id="2_ps2en"]
+[ext_resource type="Shader" uid="uid://cvvodjxutsgje" path="res://shaders/ship_building_ui.gdshader" id="2_ps2en"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n1a5j"]
 shader = ExtResource("2_ps2en")
@@ -17,6 +17,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_ps2en")
 
 [node name="TextureRect" type="ColorRect" parent="." unique_id=2099780365]
@@ -61,15 +63,7 @@ LMB: Place part
 RMB: Remove part"
 horizontal_alignment = 2
 
-[node name="ShipBuildingUI" type="Control" parent="." unique_id=1932583675]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="FoldableContainer" type="FoldableContainer" parent="ShipBuildingUI" unique_id=1146177033]
+[node name="FoldableContainer" type="FoldableContainer" parent="." unique_id=1146177033]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -83,10 +77,10 @@ rotation = -1.5707964
 title = "Parts"
 title_alignment = 1
 
-[node name="Control" type="Control" parent="ShipBuildingUI/FoldableContainer" unique_id=1194157296]
+[node name="Control" type="Control" parent="FoldableContainer" unique_id=1194157296]
 layout_mode = 2
 
-[node name="ItemList" type="ItemList" parent="ShipBuildingUI/FoldableContainer/Control" unique_id=1903116467]
+[node name="ItemList" type="ItemList" parent="FoldableContainer/Control" unique_id=1903116467]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.123
@@ -101,7 +95,7 @@ grow_vertical = 2
 rotation = 1.5707964
 fixed_icon_size = Vector2i(64, 64)
 
-[node name="ItemInfoLabel" type="Label" parent="ShipBuildingUI/FoldableContainer/Control" unique_id=174857658]
+[node name="ItemInfoLabel" type="Label" parent="FoldableContainer/Control" unique_id=174857658]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.008
@@ -117,7 +111,7 @@ text = "No part selected"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BuildButton" type="Button" parent="ShipBuildingUI" unique_id=1465284840]
+[node name="BuildButton" type="Button" parent="." unique_id=1465284840]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -136,5 +130,5 @@ z_index = -2
 color = Color(0.28627452, 0.77254903, 0.9411765, 0.2)
 polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 
-[connection signal="item_selected" from="ShipBuildingUI/FoldableContainer/Control/ItemList" to="." method="_on_item_list_item_selected"]
-[connection signal="pressed" from="ShipBuildingUI/BuildButton" to="." method="_on_build_button_pressed"]
+[connection signal="item_selected" from="FoldableContainer/Control/ItemList" to="." method="_on_item_list_item_selected"]
+[connection signal="pressed" from="BuildButton" to="." method="_on_build_button_pressed"]

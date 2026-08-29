@@ -1,7 +1,6 @@
 class_name TractorBeam extends BasePart
 
 @export var beam_strength: int = 500
-@export var part_health: int = 100
 
 var beam_active: bool = false
 var parts_in_beam: Array = []
@@ -9,9 +8,13 @@ var parts_in_beam: Array = []
 @onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
 @onready var beam_area: Area2D = $Beam_area
 
+var part:Part:
+	set(value):
+		max_health = value.max_health
+		health = max_health
+		part = value
+
 func _ready() -> void:
-	max_health = part_health
-	health = max_health
 	part_detached.connect(stop_particles)
 
 func stop_particles() -> void:
