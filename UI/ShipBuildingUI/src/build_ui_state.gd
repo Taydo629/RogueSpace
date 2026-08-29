@@ -9,10 +9,10 @@ func get_state_name() -> String:
 func enter() -> void:
 	state_machine.get_tree().paused = true
 	build_menu_ui = canvas_layer.ship_building_ui
+	build_menu_ui.player = canvas_layer.player
 	build_menu_ui.visible = true
 	build_menu_ui.process_mode = Node.PROCESS_MODE_ALWAYS
 	if state_machine.previous_state.get_state_name() != PauseUIState.state_name:
-		print("hey")
 		build_menu_ui.init_ui()
 		build_menu_ui.start_build()
 	build_menu_ui.build_complete.connect(build_complete)

@@ -12,6 +12,7 @@ func initalise_movement(ship_graph: Dictionary) -> void:
 	for node in ship_graph.values():
 		if node.instance.is_in_group("thruster"):
 			thrusters.append(node.instance)
+			print(node.instance)
 
 func activate_thrusters() -> void:
 	for thruster in thrusters:
@@ -26,6 +27,7 @@ func activate_thrusters() -> void:
 			up_vector = Vector2.UP
 		var thrust_direction = up_vector.rotated(thruster.global_rotation)
 		var global_force = thrust_direction * thruster.thrust_force
+		print(thruster.thrust_force)
 		parent.add_constant_central_force(global_force)
 
 func deactivate_thrusters() -> void:

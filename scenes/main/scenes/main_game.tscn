@@ -42,8 +42,6 @@ visible = false
 [node name="ShipBuildingUI" parent="MainUILayer" unique_id=542883084 instance=ExtResource("8_wjob3")]
 process_mode = 4
 visible = false
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="GuideUI" parent="MainUILayer" unique_id=853896309 instance=ExtResource("9_5cypo")]
 process_mode = 4

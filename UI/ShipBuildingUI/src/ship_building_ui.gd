@@ -5,6 +5,7 @@ class_name BuildUI extends Control
 @onready var texture_rect: ColorRect = $TextureRect
 @onready var build_area: Polygon2D = $BuildArea
 
+var player: Player
 var instantiated_item: RigidBody2D
 var instantiated_part: Part
 var selected_item_idx: int
@@ -30,11 +31,14 @@ func init_ui() -> void:
 	#start_build()
 
 func start_build() -> void:
+	print(player.part_component.ship_graph)
 	building_dict.clear()
 	item_list.clear()
-	for value in ShipInfo.ship_graph.values():
-		var part: Part = value.part
-		Inventory.add_item(part)
+	#for value in ShipInfo.ship_graph.values():
+		#var part: Part = value.part
+		#Inventory.add_item(part)
+	for value in player.part_component.ship_graph.values():
+		value.instance.reparent(self)
 	update_partlist()
 
 func _input(event: InputEvent) -> void:
@@ -62,9 +66,7 @@ func place_part() -> void:
 			var node_dict: Dictionary = {
 				"part": instantiated_part,
 				"instance": instantiated_item,
-				"grid_pos": grid_pos,
-				"rotation": instantiated_item.rotation,
-				"scale": instantiated_item.scale
+				"grid_pos": grid_pos
 			}
 			building_dict.set(str(grid_pos),node_dict)
 			if check_part_owned(instantiated_part):
@@ -168,7 +170,25 @@ func assign_neighbors() -> bool:
 	for current_node in building_dict.values():
 		if current_node.part.name == "core":
 			core_present = true
-		var possible_direction_array: Array[Vector2] = [Vector2(1,0),Vector2(0,1),Vector2(-1,0),Vector2(0,-1)]
+		var possible_direction_array: Array[Vector2] = []
+		if Part.POSSIBLE_NEIGHBORS.ALL in current_node.part.possible_neighbors:
+			possible_direction_array = [Vector2(1,0),Vector2(0,1),Vector2(-1,0),Vector2(0,-1)]
+		else:
+			for direction in current_node.part.possible_neighbors:
+				# If mirrored mirror neighbor
+				var mirror_vector: Vector2 = Vector2(1,1)
+				if current_node.instance.scale == Vector2(-1,1):
+					mirror_vector = Vector2(-1,1)
+				var part_rot_in_rads: float = current_node.instance.rotation
+				if direction == Part.POSSIBLE_NEIGHBORS.UP:
+					possible_direction_array.append((Vector2.UP * mirror_vector).rotated(part_rot_in_rads).snappedf(1))
+				elif direction == Part.POSSIBLE_NEIGHBORS.RIGHT:
+					possible_direction_array.append((Vector2.RIGHT * mirror_vector).rotated(part_rot_in_rads).snappedf(1))
+				elif direction == Part.POSSIBLE_NEIGHBORS.DOWN:
+					possible_direction_array.append((Vector2.DOWN * mirror_vector).rotated(part_rot_in_rads).snappedf(1))
+				elif direction == Part.POSSIBLE_NEIGHBORS.LEFT:
+					possible_direction_array.append((Vector2.LEFT * mirror_vector).rotated(part_rot_in_rads).snappedf(1))
+			print(possible_direction_array)
 		var possible_neighbor_pos: Array = possible_direction_array.map(func(i): return i + current_node.grid_pos)
 		var neighbor_array: Array[String] = []
 		for neighbor_node in building_dict.values():
@@ -199,7 +219,18 @@ func _on_build_button_pressed() -> void:
 		print("No parts are placed!")
 		return
 	if assign_neighbors():
-		ShipInfo.initialise_ship(building_dict, (y_range[1]-y_range[0])/64)
+		print(building_dict)
+		player.mass = 0
+		for node_key in building_dict.keys():
+			var node = building_dict.get(node_key)
+			player.mass += node.part.weight
+			node.instance.parent = player
+			node.instance.reparent(player.part_component)
+			var off_set: Vector2 = (grid_dim-1    )/2.0 * Vector2(grid_size,grid_size)
+			node.instance.position = node.grid_pos * Vector2(grid_size,grid_size) - off_set
+			node.instance.attach(node_key)
+		player.ship_graph = building_dict
+		#ShipInfo.initialise_ship(building_dict, (y_range[1]-y_range[0])/64)
 		clear_build_and_exit()
 
 func clear_build_and_exit() -> void:

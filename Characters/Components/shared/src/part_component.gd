@@ -11,33 +11,35 @@ func _ready() -> void:
 	parent = get_parent()
 
 func initialise_ship() -> void:
-	var new_dict: Dictionary = {}
-	var new_weight: int = 0
-	for key in ship_graph.keys():
-		var graph_node = ship_graph.get(key).duplicate()
-		new_weight += graph_node.part.weight
-		var new_part: BasePart = graph_node.part.scene.instantiate()
-		new_part.parent = parent
-		new_part.part = graph_node.part
-		graph_node.instance = new_part
-		new_dict.set(key, graph_node)
-		new_part.rotation = graph_node.rotation
-		new_part.scale = graph_node.scale
-		var off_set: Vector2 = grid_size/2.0 * Vector2(64,64)
-		new_part.position = graph_node.grid_pos * Vector2(64,64) - off_set
-		add_child(new_part)
-		# Handle collider instatiation.
-		var new_collider = new_part.attach(key)
-		new_collider.rotation = graph_node.rotation
-		new_collider.scale = graph_node.scale
-		var collider_off_set: Vector2 = off_set - new_collider.position.rotated(graph_node.rotation)
-		new_collider.position = graph_node.grid_pos * Vector2(64,64) - collider_off_set
-		graph_node.set("collider", new_collider)
-		# Add collider to parent rigidbody so that it can behave properly
-		parent.add_child(new_collider)
-	ship_graph = new_dict
-	parent.mass = new_weight
-	graph_changed.emit()
+	print(grid_size)
+	#var new_dict: Dictionary = {}
+	#var new_weight: int = 0
+	#for key in ship_graph.keys():
+		#var graph_node = ship_graph.get(key).duplicate()
+		#new_weight += graph_node.part.weight
+		#var new_part: BasePart = graph_node.part.scene.instantiate()
+		#new_part.parent = parent
+		#new_part.part = graph_node.part
+		#graph_node.instance = new_part
+		#new_dict.set(key, graph_node)
+		#new_part.rotation = graph_node.rotation
+		#new_part.scale = graph_node.scale
+		#var off_set: Vector2 = grid_size/2.0 * Vector2(64,64)
+		#new_part.position = graph_node.grid_pos * Vector2(64,64) - off_set
+		#add_child(new_part)
+		## Handle collider instatiation.
+		#var new_collider = new_part.attach(key)
+		#new_collider.rotation = graph_node.rotation
+		#new_collider.scale = graph_node.scale
+		#var collider_off_set: Vector2 = off_set - new_collider.position.rotated(graph_node.rotation)
+		#new_collider.position = graph_node.grid_pos * Vector2(64,64) - collider_off_set
+		#graph_node.set("collider", new_collider)
+		## Add collider to parent rigidbody so that it can behave properly
+		#parent.add_child(new_collider)
+	#ship_graph = new_dict
+	#parent.mass = new_weight
+	#graph_changed.emit()
+	pass
 
 func part_destroyed(graph_key:String):
 	if graph_key in ship_graph:
