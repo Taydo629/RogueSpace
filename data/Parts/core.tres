@@ -12,4 +12,5 @@ image = ExtResource("1_mde3k")
 buy_price = 200
 sell_price = 100
 weight = 5
+max_health = 200
 metadata/_custom_type_script = "uid://dfxnbigy6na68"

@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dplstcql0ly08" path="res://Parts/BaseParts/scenes/base_part.tscn" id="1_vbl7p"]
 [ext_resource type="Script" uid="uid://cy6135njba5v2" path="res://Parts/BaseParts/Thruster/src/thruster.gd" id="2_x6buh"]
 [ext_resource type="Texture2D" uid="uid://dtnth2ssektfx" path="res://assets/Thruster_sprite.png" id="3_6ee87"]
+[ext_resource type="Resource" uid="uid://b4k0ewhy4bwpf" path="res://data/Parts/thruster.tres" id="3_63pye"]
 [ext_resource type="AudioStream" uid="uid://bplhtgjfhvm1v" path="res://assets/Thruster.wav" id="3_cp153"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x6buh"]
@@ -16,8 +17,7 @@ colors = PackedColorArray(1, 0, 0, 1, 1, 0.80784315, 0.12941177, 1)
 
 [node name="Thruster" unique_id=2026258003 groups=["thruster"] instance=ExtResource("1_vbl7p")]
 script = ExtResource("2_x6buh")
-thrust_force = 50
-part_health = 100
+part = ExtResource("3_63pye")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea" parent_id_path=PackedInt32Array(991278418) index="0" unique_id=1890614803]
 shape = SubResource("RectangleShape2D_x6buh")

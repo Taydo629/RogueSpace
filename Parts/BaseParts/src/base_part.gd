@@ -1,23 +1,24 @@
 class_name BasePart extends RigidBody2D
 
-var max_health: int = 100
-
 @onready var hit_sound: AudioStreamPlayer2D = $Hit_sound
 @onready var polygon_2d: Polygon2D = $Polygon2D
 @onready var collider: CollisionShape2D = $Collider
 
+var max_health: int
 var health: int
 var dict_key: String
 var is_detached: bool = false
 var parent: RigidBody2D
-var part: Part
+@export var part: Part
 
 signal part_destroyed
 signal part_detached
 
 func _ready() -> void:
 	# Connect the parts destroyed signal to the player ship if possible.
-	health = max_health
+	if part != null:
+		max_health = part.max_health
+		health = max_health
 
 func take_damage(damage: int) -> void:
 	var new_health = health - damage

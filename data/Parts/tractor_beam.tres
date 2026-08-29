@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://dfxnbigy6na68" path="res://data/parts.gd" id="1_nhdpj"]
 [ext_resource type="PackedScene" uid="uid://bmppj8nctpawu" path="res://Parts/BaseParts/TractorBeam/scenes/tractor_beam.tscn" id="2_mtvwk"]
 
-
 [resource]
 script = ExtResource("1_nhdpj")
 name = "tractor_beam"
@@ -13,4 +12,5 @@ image = ExtResource("1_mxndn")
 buy_price = 300
 sell_price = 100
 weight = 2
+max_health = 200
 metadata/_custom_type_script = "uid://dfxnbigy6na68"

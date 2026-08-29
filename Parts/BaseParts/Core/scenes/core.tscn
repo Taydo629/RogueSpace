@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dplstcql0ly08" path="res://Parts/BaseParts/scenes/base_part.tscn" id="1_5634n"]
 [ext_resource type="Script" uid="uid://cvsk6fc8lm1td" path="res://Parts/BaseParts/Core/src/core.gd" id="2_hlf4f"]
+[ext_resource type="Resource" uid="uid://dxn6vqjt4j07d" path="res://data/Parts/core.tres" id="3_jvcss"]
 [ext_resource type="Texture2D" uid="uid://bliw4ys5quiil" path="res://assets/Bridge_sprite.png" id="3_pf624"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5634n"]
@@ -12,7 +13,7 @@ size = Vector2(64, 64)
 
 [node name="Core" unique_id=2026258003 instance=ExtResource("1_5634n")]
 script = ExtResource("2_hlf4f")
-part_health = 100
+part = ExtResource("3_jvcss")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea" parent_id_path=PackedInt32Array(991278418) index="0" unique_id=1998087249]
 shape = SubResource("RectangleShape2D_5634n")

@@ -5,13 +5,16 @@ var activation_key: String
 @onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
 @onready var thruster_sound: AudioStreamPlayer2D = $ThrusterSound
 
-@export var thrust_force: int = 1
-@export var part_health: int = 100
+var thrust_force: int
 
 func _ready() -> void:
-	max_health = part_health
-	health = max_health
-	part_detached.connect(stop_particles)
+	# Connect the parts destroyed signal to the player ship if possible.
+	if part != null and part.part_type == part.PART_TYPE.THRUSTER:
+		max_health = part.max_health
+		health = max_health
+		thrust_force = part.thrust_force
+		part_detached.connect(stop_particles)
+	
 
 func stop_particles() -> void:
 	cpu_particles_2d.emitting = false
