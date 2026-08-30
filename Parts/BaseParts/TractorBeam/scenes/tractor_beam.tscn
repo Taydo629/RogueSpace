@@ -25,9 +25,7 @@ position = Vector2(0, 24)
 shape = SubResource("RectangleShape2D_3qunh")
 
 [node name="Polygon2D" type="Polygon2D" parent="." index="3" unique_id=1614886121]
-position = Vector2(0, -8)
-color = Color(0.68307734, 0.6830774, 0.68307734, 1)
-polygon = PackedVector2Array(-32, 40, -32, 32, -24, 24, 24, 24, 32, 32, 32, 40)
+polygon = PackedVector2Array(-32, 32, -32, -32, 32, -32, 32, 32)
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="." index="4" unique_id=772173336]
 z_index = 2
@@ -50,7 +48,6 @@ color_ramp = SubResource("Gradient_hhuwe")
 [node name="Pickup_area" type="Area2D" parent="." index="5" unique_id=2079386816]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pickup_area" index="0" unique_id=1915897543]
-position = Vector2(0, 8)
 shape = SubResource("CircleShape2D_np2xk")
 
 [node name="Beam_area" type="Area2D" parent="." index="6" unique_id=1775849091]

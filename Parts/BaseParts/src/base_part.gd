@@ -13,12 +13,15 @@ var health: int
 var dict_key: String
 var is_detached: bool = false
 var parent: RigidBody2D
+var sprite: Texture2D
 
 signal part_destroyed
 signal part_detached
 
 func _ready() -> void:
-	pass
+	if sprite != null:
+		polygon_2d.set_texture(sprite)
+		polygon_2d.texture_offset = Vector2(32,32)
 
 func take_damage(damage: int) -> void:
 	var new_health = health - damage

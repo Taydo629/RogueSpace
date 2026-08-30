@@ -17,6 +17,7 @@ var timer: Timer
 
 var part:Part:
 	set(value):
+		sprite = value.image
 		max_health = value.max_health
 		health = max_health
 		weapon_damage = value.damage

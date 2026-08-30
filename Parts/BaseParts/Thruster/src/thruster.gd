@@ -9,12 +9,16 @@ var activation_key: String
 var thrust_force: int
 var part:Part:
 	set(value):
+		sprite = value.image
 		max_health = value.max_health
 		health = max_health
 		thrust_force = value.thrust_force
 		part = value
 
 func _ready() -> void:
+	if sprite != null:
+		polygon_2d.set_texture(sprite)
+		polygon_2d.texture_offset = Vector2(32,32)
 	part_detached.connect(stop_particles)
 
 func stop_particles() -> void:

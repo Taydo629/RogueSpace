@@ -15,5 +15,5 @@ weight = 3
 max_health = 200
 part_type = 2
 possible_neighbors = Array[int]([0, 1, 2])
-thrust_force = 50
+thrust_force = 100
 metadata/_custom_type_script = "uid://dfxnbigy6na68"
