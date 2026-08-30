@@ -9,7 +9,7 @@ var number_of_tractor_beam: int = 1
 
 const CORE = preload("uid://dxn6vqjt4j07d")
 const GUN = preload("uid://bs8ufgr7qnr1y")
-const HULL = preload("uid://rp4s55105tbn")
+const HULL = preload("uid://bu4cdhp5bisf5")
 const THRUSTER = preload("uid://b4k0ewhy4bwpf")
 const TRACTOR_BEAM = preload("uid://nxtyhwldok2c")
 

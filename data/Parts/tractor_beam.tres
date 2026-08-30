@@ -13,4 +13,5 @@ buy_price = 300
 sell_price = 100
 weight = 2
 max_health = 200
+possible_neighbors = Array[int]([2])
 metadata/_custom_type_script = "uid://dfxnbigy6na68"
