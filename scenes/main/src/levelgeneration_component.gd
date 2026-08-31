@@ -12,6 +12,9 @@ var main_game: Node2D
 const NPC = preload("uid://dxth7s5bap4i5")
 const STATION = preload("uid://baad6rfav87i3")
 
+@export var spawn_enemies: bool = true
+@export var enemy_spawn_override_count: int = -1
+
 func _ready() -> void:
 	main_game = get_parent()
 	load_all_ships_from_folder("res://data/NPCShips/")
@@ -43,8 +46,14 @@ func generate_level() -> void:
 	clear_level()
 	# NPC spawning
 	var valid_npcs: Array[NPCShip] = get_valid_ships_for_current_level()
-	var number_of_npcs = randi_range(1, level_number)
-	#var number_of_npcs = 0
+	var number_of_npcs: int
+	if spawn_enemies:
+		if enemy_spawn_override_count < 0:
+			number_of_npcs = randi_range(1, level_number)
+		else:
+			number_of_npcs = enemy_spawn_override_count
+	else:
+		number_of_npcs = 0
 	var npc_array: Array[npc]
 	for i in number_of_npcs:
 		var NPC_instance = NPC.instantiate()

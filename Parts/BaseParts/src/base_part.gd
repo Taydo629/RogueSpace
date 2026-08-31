@@ -42,6 +42,21 @@ func take_damage(damage: int) -> void:
 			part_color = Color(0.53, 0.03, 0.0, 1.0)
 		polygon_2d.color = part_color
 
+func heal(healed_health:int) -> void:
+	var new_health = clamp(health + healed_health, 0, max_health)
+	health = new_health
+	var frac_hp = float(health)/float(max_health)
+	var part_color: Color = Color(1,1,1,1)
+	if frac_hp >= 0.5:
+		smoke_particles.emitting = false
+	elif frac_hp < 0.5 and frac_hp >= 0.25:
+		smoke_particles.emitting = true
+		part_color = Color(0.89,0.4,0,1)
+	else:
+		smoke_particles.emitting = true
+		part_color = Color(0.53, 0.03, 0.0, 1.0)
+	polygon_2d.color = part_color
+
 ## Function used when attaching a part to a ship
 ##
 ## The function returns the collision shape to be used

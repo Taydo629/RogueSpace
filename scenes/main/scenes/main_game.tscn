@@ -57,6 +57,7 @@ visible = false
 
 [node name="LevelGenComponent" parent="." unique_id=1697448056 instance=ExtResource("7_nqdth")]
 process_mode = 3
+enemy_spawn_override_count = -1
 
 [node name="Player" parent="LevelGenComponent" unique_id=2138094422 instance=ExtResource("8_70vka")]
 process_mode = 1

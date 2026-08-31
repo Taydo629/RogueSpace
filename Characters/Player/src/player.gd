@@ -36,6 +36,16 @@ func init_ship() -> void:
 	part_component.ship_graph = ship_graph
 	#part_component.grid_size = grid_dim
 	player_camera.enabled = true
+	for value in ship_graph.values():
+		var part_instance:BasePart = value.instance
+		print("Part rotation")
+		print(part_instance.rotation)
+		print("Player rotation")
+		print(rotation)
+		if value.scale == Vector2(-1,1):
+			part_instance.rotation = rotation - PI
+		else:
+			part_instance.rotation = rotation 
 	#part_component.initialise_ship()
 	reinitialise_components()
 

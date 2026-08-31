@@ -51,6 +51,7 @@ func withdraw_from_wallet(credits: int) -> bool:
 	if new_balance >= 0:
 		wallet = new_balance
 		credit_changed.emit(wallet)
+		print_debug("Withdrawal Success")
 		return true
 	else:
 		return false
