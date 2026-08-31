@@ -92,8 +92,6 @@ func check_integrity(removed_key: String) -> void:
 					parent.mass -= part.part.weight
 					ship_graph.erase(key)
 					print("part is no longer connected to root.")
-					#part.instance.reparent(get_parent())
-					part.collider.queue_free()
 					part.instance.detached()
 					has_detached = true
 		print("Emitting the part_removed Signal")

@@ -15,7 +15,7 @@ script = ExtResource("1_j4jjp")
 stream = ExtResource("2_bg554")
 volume_db = -5.0
 
-[node name="HurtArea" type="Area2D" parent="." unique_id=991278418]
+[node name="HurtArea" type="Area2D" parent="." unique_id=991278418 groups=["hurt_box"]]
 
 [node name="SmokeParticles" type="CPUParticles2D" parent="." unique_id=27641739]
 emitting = false

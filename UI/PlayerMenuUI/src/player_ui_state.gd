@@ -15,7 +15,8 @@ func enter() -> void:
 	player_ui = canvas_layer.player_ui
 	player_ui.process_mode = Node.PROCESS_MODE_ALWAYS
 	player_ui.visible = true
-	player_ui.enter_station.connect(enter_station)
+	if not player_ui.enter_station.is_connected(enter_station):
+		player_ui.enter_station.connect(enter_station)
 	player_ui.init_ui()
 
 func exit() -> void:

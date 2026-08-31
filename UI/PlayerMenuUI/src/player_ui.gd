@@ -28,7 +28,8 @@ func init_ui() -> void:
 	level_generator = parent.level_gen
 	enemy_array = level_generator.current_enemy_array
 	station = level_generator.current_station
-	Inventory.credit_changed.connect(update_credit_ui)
+	if not Inventory.credit_changed.is_connected(update_credit_ui):
+		Inventory.credit_changed.connect(update_credit_ui)
 	update_sector_label(level_generator.level_number)
 	update_credit_ui(Inventory.wallet)
 	update_hud()
