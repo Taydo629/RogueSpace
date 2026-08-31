@@ -1,6 +1,5 @@
 class_name StationUI extends Control
 
-var inventory_parts: Array[Part] = []
 @onready var market: ItemList = $Station_UI_menu/MarketContainer/Market
 @onready var buy_button: Button = $Station_UI_menu/MarketContainer/ButtonContainer/BuyButton
 @onready var sell_button: Button = $Station_UI_menu/MarketContainer/ButtonContainer/SellButton
@@ -8,36 +7,17 @@ var inventory_parts: Array[Part] = []
 @onready var j_b_info_label: Label = $Station_UI_menu/JumpBuildServices/ButtonContainer/J_B_InfoLabel
 @onready var credit_ui: Label = $CreditUI
 
+@export var inventory_parts: Array[Part] = []
+
 signal exit_station
 signal enter_build
 signal jump_to_new_level
 
 func init_ui() -> void:
-	load_all_parts_from_folder("res://data/Parts/")
 	for part in inventory_parts:
 		market.add_item(part.name, part.image)
 	Inventory.credit_changed.connect(update_credit_ui)
 	update_credit_ui(Inventory.wallet)
-
-func load_all_parts_from_folder(path: String) -> void:
-	var dir = DirAccess.open(path)
-	if dir:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		
-		while file_name != "":
-			# Ignore subdirectories and non-resource files
-			if not dir.current_is_dir() and file_name.ends_with(".tres"):
-				var full_path = path + "/" + file_name
-				var part_resource = load(full_path) as Part
-				
-				if part_resource:
-					inventory_parts.append(part_resource)
-					
-			file_name = dir.get_next()
-		dir.list_dir_end()
-		
-	print("Total loaded parts: ", inventory_parts.size())
 
 func update_credit_ui(wallet: int):
 	credit_ui.text = str("CR ", wallet)
