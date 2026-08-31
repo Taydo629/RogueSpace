@@ -13,13 +13,8 @@ var ship_graph: Dictionary :
 			print("New graph incoming")
 			initialise_ship.emit()
 signal initialise_ship
-#@onready var player_ui_layer: CanvasLayer = $PlayerUILayer
-
-#var enemy_array: Array[RigidBody2D]
-#var station: StaticBody2D
 
 func _ready() -> void:
-	#ShipInfo.ship_updated.connect(init_ship)
 	initialise_ship.connect(init_ship)
 	part_component.graph_changed.connect(reinitialise_components)
 	input_component.fire_guns.connect(weapon_component.fire)
@@ -32,35 +27,15 @@ func _ready() -> void:
 	input_component.zoom_out.connect(player_camera.zoom_out)
 
 func init_ship() -> void:
-	#clear_old_ship()
 	part_component.ship_graph = ship_graph
-	#part_component.grid_size = grid_dim
 	player_camera.enabled = true
-	for value in ship_graph.values():
-		var part_instance:BasePart = value.instance
-		print("Part rotation")
-		print(part_instance.rotation)
-		print("Player rotation")
-		print(rotation)
-		if value.scale == Vector2(-1,1):
-			part_instance.rotation = rotation - PI
-		else:
-			part_instance.rotation = rotation 
-	#part_component.initialise_ship()
 	reinitialise_components()
 
 func reinitialise_components() -> void:
 	print("Re-initialise components")
-	#ShipInfo.update_ship(part_component.ship_graph)
 	movement_component.initalise_movement(ship_graph)
 	weapon_component.initalise_weapons(ship_graph)
 	tractorbeam_component.initalise_tractor_beams(ship_graph)
-
-#func new_level(level: int, new_npc_array: Array[RigidBody2D], new_station: StaticBody2D) -> void:
-	#enemy_array = new_npc_array
-	#station = new_station
-	##player_ui_layer.update_sector_label(level)
-	##player_ui_layer.update_hud()
 
 func clear_old_ship() -> void:
 	for collider in get_children():

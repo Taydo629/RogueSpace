@@ -32,14 +32,12 @@ func _ready() -> void:
 		i += 1
 
 func add_item(part: Part) -> void:
-	print("part collected")
+	print("%s collected!" % part.name)
 	inventory.append(part)
 	item_pickup.emit(part)
-	#print("test")
-	#print(len(inventory))
-	#print(inventory)
 
 func remove_item(part: Part) -> void:
+	print("%s removed!" % part.name)
 	inventory.erase(part)
 
 func deposit_to_wallet(credits: int) -> void:

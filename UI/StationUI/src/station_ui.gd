@@ -13,9 +13,11 @@ signal exit_station
 signal enter_build
 signal jump_to_new_level
 
-func init_ui() -> void:
+func _ready() -> void:
 	for part in inventory_parts:
 		market.add_item(part.name, part.image)
+
+func init_ui() -> void:
 	Inventory.credit_changed.connect(update_credit_ui)
 	update_credit_ui(Inventory.wallet)
 

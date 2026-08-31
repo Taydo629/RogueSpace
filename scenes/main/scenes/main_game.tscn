@@ -66,6 +66,7 @@ visible = false
 
 [node name="LevelGenComponent" parent="." unique_id=1697448056 instance=ExtResource("7_nqdth")]
 process_mode = 3
+spawn_enemies = false
 loaded_ships = Array[ExtResource("12_4qwfe")]([ExtResource("13_7e4r1")])
 
 [node name="Player" parent="LevelGenComponent" unique_id=2138094422 instance=ExtResource("8_70vka")]

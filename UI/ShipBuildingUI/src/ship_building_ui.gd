@@ -72,8 +72,6 @@ func enter_repair_mode() -> void:
 
 func update_credit() -> void:
 	var credit_str: String = "%s CR"
-	print(credit_str)
-	print(credit_str % Inventory.wallet)
 	credit_ui.text = credit_str % Inventory.wallet
 
 func _input(event: InputEvent) -> void:
