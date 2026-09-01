@@ -43,6 +43,8 @@ func _physics_process(_delta: float) -> void:
 func _collect_part(body: Node2D) -> void:
 	if body.has_method("take_damage") and beam_active:
 		if parent.is_in_group("player"):
+			var part_to_add: Part = body.part
+			part_to_add.current_health = body.health
 			Inventory.add_item(body.part)
 			body.take_damage(100000)
 	pass # Replace with function body.

@@ -124,7 +124,7 @@ func repair_part() -> void:
 		var node_to_repair:Dictionary = building_dict.get(selected_key_for_repair)
 		repair_popup.init_slider(node_to_repair.instance, node_to_repair.part)
 		repair_popup.position = node_to_repair.instance.position
-		repair_popup.visible = true
+		repair_popup.open_popup()
 
 func remove_part() -> void:
 	if current_mouse_pos != Vector2.ZERO:
@@ -132,6 +132,7 @@ func remove_part() -> void:
 		if str(grid_pos) in building_dict.keys():
 			var node = building_dict.get(str(grid_pos))
 			node.instance.queue_free()
+			node.part.current_health = node.instance.health
 			Inventory.add_item(node.part)
 			if node.part.name == get_selected_part_name():
 				item_info_label.text = str(Inventory.inventory.count(node.part), " in inventory")
@@ -296,7 +297,6 @@ func _on_build_button_pressed() -> void:
 			node.instance.position = node.grid_pos * Vector2(grid_size,grid_size) - off_set
 			node.instance.attach(node_key)
 		player.ship_graph = building_dict.duplicate(true)
-		#ShipInfo.initialise_ship(building_dict, (y_range[1]-y_range[0])/64)
 		clear_build_and_exit()
 
 func clear_build_and_exit() -> void:

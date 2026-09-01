@@ -10,9 +10,16 @@ var current_part_instance: BasePart
 @onready var repair_button: Button = $MarginContainer/VBoxContainer/HBoxContainer/RepairButton
 @onready var credit_ui: Label = $"../CreditUI"
 var parent: BuildUI
+@export var popup_anim_dur: float = 0.1
 
 func _on_exit_button_pressed() -> void:
-	visible = false
+	exit_popup()
+
+func open_popup() -> void:
+	scale = Vector2(1,0)
+	var tween = create_tween()
+	tween.tween_property(self, "scale", Vector2(1,1),popup_anim_dur)
+	visible = true
 
 func init_slider(part_instance: BasePart, part: Part) -> void:
 	current_part_instance = part_instance
@@ -41,8 +48,13 @@ func _on_repair_button_pressed() -> void:
 	if Inventory.withdraw_from_wallet(repair_cost):
 		var healed_health: int = int((h_slider.value/100.)*current_part_instance.max_health) - current_part_instance.health
 		current_part_instance.heal(healed_health)
-		visible = false
-		current_part_instance = null
-		current_part = null
-		min_slider_value = 0
+		exit_popup()
 		parent.update_credit()
+
+func exit_popup() -> void:
+	var tween = create_tween()
+	tween.tween_property(self, "scale", Vector2(1,0),popup_anim_dur)
+	tween.tween_callback(hide)
+	current_part_instance = null
+	current_part = null
+	min_slider_value = 0

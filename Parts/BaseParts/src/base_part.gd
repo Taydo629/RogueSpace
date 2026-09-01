@@ -19,6 +19,7 @@ signal part_destroyed
 signal part_detached
 
 func _ready() -> void:
+	take_damage(120)
 	if sprite != null:
 		polygon_2d.set_texture(sprite)
 		polygon_2d.texture_offset = Vector2(32,32)
