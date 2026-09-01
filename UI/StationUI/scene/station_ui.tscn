@@ -20,6 +20,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 20
 current_tab = 0
+tab_0/title = "Sell parts"
 tab_1/title = "Jump/Build Services"
 
 [node name="MarginContainer" type="MarginContainer" parent="Station_UI_menu" unique_id=1236521394]
@@ -29,6 +30,7 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 0
+metadata/_tab_name = "Sell parts"
 
 [node name="Panel" type="Panel" parent="Station_UI_menu/MarginContainer" unique_id=1599439358]
 layout_mode = 2
@@ -71,13 +73,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 horizontal_alignment = 1
-
-[node name="BuyButton" type="Button" parent="Station_UI_menu/MarginContainer/Panel/MarginContainer/MarketContainer/ButtonContainer" unique_id=1895787090]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-theme_override_font_sizes/font_size = 20
-text = "Buy"
 
 [node name="SellButton" type="Button" parent="Station_UI_menu/MarginContainer/Panel/MarginContainer/MarketContainer/ButtonContainer" unique_id=1250783184]
 layout_mode = 2
@@ -149,7 +144,7 @@ theme_override_font_sizes/font_size = 20
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[connection signal="pressed" from="Station_UI_menu/MarginContainer/Panel/MarginContainer/MarketContainer/ButtonContainer/BuyButton" to="." method="_on_buy_button_pressed"]
+[connection signal="gui_input" from="Station_UI_menu/MarginContainer/Panel/MarginContainer/MarketContainer" to="." method="_on_market_container_gui_input"]
 [connection signal="pressed" from="Station_UI_menu/MarginContainer/Panel/MarginContainer/MarketContainer/ButtonContainer/SellButton" to="." method="_on_sell_button_pressed"]
 [connection signal="pressed" from="Station_UI_menu/JumpBuildServices/ButtonContainer/JumpButton" to="." method="_on_jump_button_pressed"]
 [connection signal="pressed" from="Station_UI_menu/JumpBuildServices/ButtonContainer/BuildButton" to="." method="_on_build_button_pressed"]

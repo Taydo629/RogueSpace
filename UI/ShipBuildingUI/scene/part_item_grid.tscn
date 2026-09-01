@@ -18,6 +18,7 @@ grow_vertical = 2
 pivot_offset = Vector2(82, 82)
 size_flags_horizontal = 4
 size_flags_vertical = 4
+mouse_filter = 0
 stretch_mode = 0
 script = ExtResource("1_860yc")
 
@@ -43,28 +44,11 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer2" unique_id=1011141828]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-
-[node name="Label" type="Label" parent="MarginContainer2/PanelContainer" unique_id=1769397967]
-custom_minimum_size = Vector2(20, 20)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-text = "0"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="MarginContainer2/PanelContainer" unique_id=1321365030]
-layout_mode = 2
-
 [node name="ProgressBar" type="ProgressBar" parent="MarginContainer2" unique_id=898687019]
 layout_mode = 2
 size_flags_vertical = 8
-value = 15.82
 show_percentage = false
 
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
