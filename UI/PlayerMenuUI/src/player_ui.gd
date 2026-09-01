@@ -21,10 +21,12 @@ const ENEMY_DIRECTION_HUD = preload("uid://8o6kdkj546o3")
 const STATION_DIRECTION_HUD = preload("uid://dfl6i5lki8rxw")
 
 signal enter_station
+signal player_died
 
 func init_ui() -> void:
 	parent = get_parent()
 	player = parent.player
+	player.player_died.connect(death)
 	level_generator = parent.level_gen
 	enemy_array = level_generator.current_enemy_array
 	station = level_generator.current_station
@@ -33,6 +35,9 @@ func init_ui() -> void:
 	update_sector_label(level_generator.level_number)
 	update_credit_ui(Inventory.wallet)
 	update_hud()
+
+func death() -> void:
+	player_died.emit()
 
 func update_sector_label(level_num: int) -> void:
 	sector_label.text = str("Sector ", str(level_num))

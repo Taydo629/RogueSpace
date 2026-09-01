@@ -8,6 +8,7 @@ class_name MainUILayer extends CanvasLayer
 @onready var guide_ui: GuideUI = $GuideUI
 @onready var station_ui: StationUI = $StationUI
 @onready var sector_info: SectorInfoUI = $SectorInfo
+@onready var death_ui: DeathMenu = $DeathScreen
 
 var player: Player
 var level_gen: LevelGenComponent
@@ -22,7 +23,8 @@ func init_ui() -> void:
 								PlayerUIState.new(self),
 								StationUIState.new(self),
 								GuideUIState.new(self),
-								SectorInfoUIState.new(self)]
+								SectorInfoUIState.new(self),
+								DeathUIState.new(self)]
 	ui_state_machine.start_machine(states)
 
 func jump_to_next_sector() -> void:

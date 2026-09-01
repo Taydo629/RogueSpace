@@ -13,10 +13,12 @@ var ship_graph: Dictionary :
 			print("New graph incoming")
 			initialise_ship.emit()
 signal initialise_ship
+signal player_died
 
 func _ready() -> void:
 	initialise_ship.connect(init_ship)
 	part_component.graph_changed.connect(reinitialise_components)
+	part_component.ship_destroyed.connect(died)
 	input_component.fire_guns.connect(weapon_component.fire)
 	input_component.activate_thrusters.connect(movement_component.activate_thrusters)
 	input_component.deactivate_thrusters.connect(movement_component.deactivate_thrusters)
@@ -43,3 +45,6 @@ func clear_old_ship() -> void:
 			collider.queue_free()
 	for part in part_component.get_children():
 		part.queue_free()
+
+func died() -> void:
+	player_died.emit()
