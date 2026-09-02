@@ -11,12 +11,25 @@ var ship_graph: Dictionary :
 		if value != ship_graph:
 			ship_graph = value
 			print("New graph incoming")
+			initialise_ship.connect(init_ship)
 			initialise_ship.emit()
 signal initialise_ship
 signal player_died
 
-func _ready() -> void:
-	initialise_ship.connect(init_ship)
+#func _ready() -> void:
+	#initialise_ship.connect(init_ship)
+	#part_component.graph_changed.connect(reinitialise_components)
+	#part_component.ship_destroyed.connect(died)
+	#input_component.fire_guns.connect(weapon_component.fire)
+	#input_component.activate_thrusters.connect(movement_component.activate_thrusters)
+	#input_component.deactivate_thrusters.connect(movement_component.deactivate_thrusters)
+	#input_component.activate_tractorbeam.connect(tractorbeam_component.activate)
+	#input_component.deactivate_tractorbeam.connect(tractorbeam_component.deactivate)
+	#input_component.mouse_pos_changed.connect(movement_component.rotate_to)
+	#input_component.zoom_in.connect(player_camera.zoom_in)
+	#input_component.zoom_out.connect(player_camera.zoom_out)
+
+func init_ship() -> void:
 	part_component.graph_changed.connect(reinitialise_components)
 	part_component.ship_destroyed.connect(died)
 	input_component.fire_guns.connect(weapon_component.fire)
@@ -27,8 +40,6 @@ func _ready() -> void:
 	input_component.mouse_pos_changed.connect(movement_component.rotate_to)
 	input_component.zoom_in.connect(player_camera.zoom_in)
 	input_component.zoom_out.connect(player_camera.zoom_out)
-
-func init_ship() -> void:
 	part_component.ship_graph = ship_graph
 	player_camera.enabled = true
 	reinitialise_components()

@@ -111,13 +111,13 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 20
-text = "Jump (CR 100)"
+text = "Jump"
 
 [node name="BuildButton" type="Button" parent="Station_UI_menu/JumpBuildServices/ButtonContainer" unique_id=1181355591]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 20
-text = "Build (CR 50)"
+text = "Build"
 
 [node name="ExitButton" type="Button" parent="." unique_id=1749310588]
 layout_mode = 1

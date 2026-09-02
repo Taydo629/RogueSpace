@@ -28,7 +28,7 @@ func init_game() -> void:
 	current_enemy_array.clear()
 	current_station = null
 	player = PLAYER.instantiate()
-	#player.position = Vector2.ZERO
+	player.position = Vector2.ZERO
 	add_child(player)
 
 func generate_level() -> void:
@@ -61,6 +61,11 @@ func generate_level() -> void:
 	add_child(station_instance)
 	current_enemy_array = npc_array
 	current_station = station_instance
+	player.position = Vector2.ZERO
+	print_debug(player.angular_velocity)
+	print_debug(player.constant_torque)
+	player.constant_torque = 0
+	player.angular_velocity = 0
 	#level_generated.emit(level_number, npc_array, station_instance)
 
 func get_valid_ships_for_current_level() -> Array[NPCShip]:

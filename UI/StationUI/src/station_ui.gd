@@ -126,18 +126,20 @@ func _on_sell_button_pressed() -> void:
 		#item_info.text = "No part selected!"
 
 func _on_jump_button_pressed() -> void:
-	var withdrawal_successful = Inventory.withdraw_from_wallet(100)
-	if not withdrawal_successful:
-		j_b_info_label.text = "Insufficient credits to jump!"
-		return
+	# Making jumping free
+	#var withdrawal_successful = Inventory.withdraw_from_wallet(100)
+	#if not withdrawal_successful:
+		#j_b_info_label.text = "Insufficient credits to jump!"
+		#return
 	# Get game scene
 	jump_to_new_level.emit()
 
 func _on_build_button_pressed() -> void:
-	var withdrawal_successful = Inventory.withdraw_from_wallet(50)
-	if not withdrawal_successful:
-		j_b_info_label.text = "Insufficient credits to build!"
-		return
+	# Making building free
+	#var withdrawal_successful = Inventory.withdraw_from_wallet(50)
+	#if not withdrawal_successful:
+		#j_b_info_label.text = "Insufficient credits to build!"
+		#return
 	# Get game scene
 	enter_build.emit()
 
