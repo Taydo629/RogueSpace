@@ -18,4 +18,5 @@ func exit() -> void:
 	death_ui.process_mode = Node.PROCESS_MODE_DISABLED
 
 func start_game() -> void:
+	canvas_layer.restart_game()
 	state_machine.transition(StartUIState.state_name)

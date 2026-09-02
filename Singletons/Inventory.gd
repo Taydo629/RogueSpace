@@ -16,8 +16,10 @@ const TRACTOR_BEAM = preload("uid://nxtyhwldok2c")
 signal item_pickup
 signal credit_changed
 
-func _ready() -> void:
+func init_inventory() -> void:
 	print("initialise starting items")
+	inventory.clear()
+	wallet = 1000
 	var i: int = 0
 	add_item(CORE)
 	while i < number_of_hull:

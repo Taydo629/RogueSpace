@@ -8,8 +8,10 @@ var current_station: StaticBody2D
 var playable_bound_x: Vector2 = Vector2(-7000,7000)
 var playable_bound_y: Vector2 = Vector2(-7000,7000)
 var main_game: Node2D
+var player: Player
 const NPC = preload("uid://dxth7s5bap4i5")
 const STATION = preload("uid://baad6rfav87i3")
+const PLAYER = preload("uid://tqn70usw28ix")
 
 @export var spawn_enemies: bool = true
 @export var enemy_spawn_override_count: int = -1
@@ -18,8 +20,18 @@ const STATION = preload("uid://baad6rfav87i3")
 func _ready() -> void:
 	main_game = get_parent()
 
+func init_game() -> void:
+	Inventory.init_inventory()
+	for child in get_children():
+		child.queue_free()
+	level_number = 0
+	current_enemy_array.clear()
+	current_station = null
+	player = PLAYER.instantiate()
+	#player.position = Vector2.ZERO
+	add_child(player)
+
 func generate_level() -> void:
-	
 	level_number += 1
 	# Clear the level before generating new one
 	clear_level()

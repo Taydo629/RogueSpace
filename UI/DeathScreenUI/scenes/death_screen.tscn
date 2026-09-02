@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://dogkld0ik4fyx" path="res://UI/DeathScreenUI/src/death_screen.gd" id="1_ro1rc"]
 
 [node name="DeathScreen" type="Control" unique_id=410832684]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

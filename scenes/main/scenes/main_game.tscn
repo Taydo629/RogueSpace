@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://b7axk8e3fxsiw" path="res://UI/PlayerMenuUI/scene/player_ui.tscn" id="6_5cypo"]
 [ext_resource type="PackedScene" uid="uid://dyxopugemdibc" path="res://scenes/main/scenes/level_gen_component.tscn" id="7_nqdth"]
 [ext_resource type="PackedScene" uid="uid://deyud7bd4kyqi" path="res://UI/PauseMenuUI/scene/pause_menu_ui.tscn" id="7_o6v7o"]
-[ext_resource type="PackedScene" uid="uid://tqn70usw28ix" path="res://Characters/Player/scenes/player.tscn" id="8_70vka"]
 [ext_resource type="PackedScene" uid="uid://blofhoxjvbs5y" path="res://UI/ShipBuildingUI/scene/ship_building_ui.tscn" id="8_wjob3"]
 [ext_resource type="PackedScene" uid="uid://c0nva578wdvmu" path="res://UI/GuideUI/scene/guide_ui.tscn" id="9_5cypo"]
 [ext_resource type="Script" uid="uid://dfxnbigy6na68" path="res://data/parts.gd" id="10_fpthe"]
@@ -66,13 +65,12 @@ process_mode = 4
 visible = false
 
 [node name="DeathScreen" parent="MainUILayer" unique_id=410832684 instance=ExtResource("17_h4r6f")]
+process_mode = 4
+visible = false
 
 [node name="LevelGenComponent" parent="." unique_id=1697448056 instance=ExtResource("7_nqdth")]
 process_mode = 3
 loaded_ships = Array[ExtResource("12_4qwfe")]([ExtResource("13_7e4r1")])
-
-[node name="Player" parent="LevelGenComponent" unique_id=2138094422 instance=ExtResource("8_70vka")]
-process_mode = 1
 
 [node name="Background" type="Node2D" parent="." unique_id=1890223868]
 z_index = -5

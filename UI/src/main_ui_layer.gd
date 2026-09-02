@@ -15,6 +15,7 @@ var level_gen: LevelGenComponent
 var main_game: Node2D
 
 signal generate_level
+signal restart
 
 func init_ui() -> void:
 	var states: Array[State] = [StartUIState.new(self),
@@ -29,3 +30,6 @@ func init_ui() -> void:
 
 func jump_to_next_sector() -> void:
 	generate_level.emit()
+
+func restart_game() -> void:
+	restart.emit()
