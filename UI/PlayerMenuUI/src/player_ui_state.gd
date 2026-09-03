@@ -13,7 +13,8 @@ func _init(ui_layer: CanvasLayer) -> void:
 func enter() -> void:
 	state_machine.get_tree().paused = false
 	player_ui = canvas_layer.player_ui
-	player_ui.player_died.connect(death)
+	if not player_ui.player_died.is_connected(death):
+		player_ui.player_died.connect(death)
 	player_ui.process_mode = Node.PROCESS_MODE_ALWAYS
 	player_ui.visible = true
 	if not player_ui.enter_station.is_connected(enter_station):

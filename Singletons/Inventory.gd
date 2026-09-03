@@ -14,7 +14,7 @@ const THRUSTER = preload("uid://b4k0ewhy4bwpf")
 const TRACTOR_BEAM = preload("uid://nxtyhwldok2c")
 
 signal item_pickup
-signal credit_changed
+signal credit_changed(int)
 
 func init_inventory() -> void:
 	print("initialise starting items")

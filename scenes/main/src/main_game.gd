@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var level_gen_component: LevelGenComponent = $LevelGenComponent
-@onready var player: Player = $LevelGenComponent/Player
+#@onready var player: Player = $LevelGenComponent/Player
 #@onready var ui_state_machine: StateMachine = $UIStateMachine
 @onready var main_ui_layer: MainUILayer = $MainUILayer
 

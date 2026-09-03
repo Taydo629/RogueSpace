@@ -15,7 +15,8 @@ func enter() -> void:
 	sector_info_ui = canvas_layer.sector_info
 	sector_info_ui.process_mode = Node.PROCESS_MODE_ALWAYS
 	sector_info_ui.visible = true
-	sector_info_ui.enter_sector.connect(switch_to_player)
+	if not sector_info_ui.enter_sector.is_connected(switch_to_player):
+		sector_info_ui.enter_sector.connect(switch_to_player)
 
 func exit() -> void:
 	sector_info_ui.process_mode = Node.PROCESS_MODE_DISABLED

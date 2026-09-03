@@ -26,7 +26,8 @@ signal player_died
 func init_ui() -> void:
 	parent = get_parent()
 	player = parent.player
-	player.player_died.connect(death)
+	if not player.player_died.is_connected(death):
+		player.player_died.connect(death)
 	level_generator = parent.level_gen
 	enemy_array = level_generator.current_enemy_array
 	station = level_generator.current_station

@@ -65,7 +65,8 @@ func attach(new_key: String) -> void:
 	collider.reparent(parent)
 	dict_key = new_key
 	freeze = true
-	part_destroyed.connect(get_parent().part_destroyed)
+	if not part_destroyed.is_connected(get_parent().part_destroyed):
+		part_destroyed.connect(get_parent().part_destroyed)
 	#return(new_collider)
 
 func detached() -> void:

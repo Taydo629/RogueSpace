@@ -6,5 +6,5 @@ var part:Part:
 	set(value):
 		sprite = value.image
 		max_health = value.max_health
-		health = max_health
+		health = value.current_health
 		part = value

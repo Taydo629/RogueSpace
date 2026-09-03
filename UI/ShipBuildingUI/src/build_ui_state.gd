@@ -15,7 +15,8 @@ func enter() -> void:
 	if state_machine.previous_state.get_state_name() != PauseUIState.state_name:
 		build_menu_ui.init_ui()
 		build_menu_ui.start_build()
-	build_menu_ui.build_complete.connect(build_complete)
+	if not build_menu_ui.build_complete.is_connected(build_complete):
+		build_menu_ui.build_complete.connect(build_complete)
 
 func exit() -> void:
 	build_menu_ui.visible = false

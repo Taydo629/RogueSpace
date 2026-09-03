@@ -11,8 +11,10 @@ func enter() -> void:
 	main_menu_ui = canvas_layer.start_menu_ui
 	main_menu_ui.visible = true
 	main_menu_ui.process_mode = Node.PROCESS_MODE_ALWAYS
-	main_menu_ui.start.connect(start_game)
-	main_menu_ui.guide.connect(guide)
+	if not main_menu_ui.start.is_connected(start_game):
+		main_menu_ui.start.connect(start_game)
+	if not main_menu_ui.guide.is_connected(guide):
+		main_menu_ui.guide.connect(guide)
 
 func exit() -> void:
 	main_menu_ui.visible = false

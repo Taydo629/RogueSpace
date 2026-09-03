@@ -19,7 +19,7 @@ var part:Part:
 	set(value):
 		sprite = value.image
 		max_health = value.max_health
-		health = max_health
+		health = value.current_health
 		weapon_damage = value.damage
 		round_speed = value.round_speed
 		round_scene = value.round_scene

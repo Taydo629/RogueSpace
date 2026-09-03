@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://dhddr4o7ws8ot" path="res://Characters/Player/src/player_camera.gd" id="7_o8v5h"]
 
 [node name="Player" type="RigidBody2D" unique_id=2138094422 groups=["player"]]
+process_mode = 1
 sleeping = true
 linear_damp = 1.0
 angular_damp = 1.0
@@ -19,6 +20,7 @@ script = ExtResource("1_qu4a1")
 [node name="MovementComponent" parent="." unique_id=894662683 instance=ExtResource("3_70d11")]
 
 [node name="WeaponComponent" parent="." unique_id=1177833148 instance=ExtResource("4_cw2d6")]
+process_mode = 1
 
 [node name="InputComponent" parent="." unique_id=218678130 instance=ExtResource("5_khinc")]
 

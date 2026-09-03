@@ -70,7 +70,7 @@ func enter_repair_mode() -> void:
 	foldable_container.visible = false
 	kill_selected_part()
 
-func update_credit() -> void:
+func update_credit(wallet:int = 0) -> void:
 	var credit_str: String = "%s CR"
 	credit_ui.text = credit_str % Inventory.wallet
 
