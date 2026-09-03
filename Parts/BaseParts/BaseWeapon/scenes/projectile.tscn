@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://ikpfuaa8r5q5" path="res://Parts/BaseParts/BaseWeapon/src/projectile.gd" id="1_c8fcr"]
 
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h1aey"]
 size = Vector2(16, 20)
 

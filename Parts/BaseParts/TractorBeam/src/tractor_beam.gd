@@ -1,7 +1,6 @@
 class_name TractorBeam extends BasePart
 
 @export var beam_strength: int = 500
-@export var part_health: int = 100
 
 var beam_active: bool = false
 var parts_in_beam: Array = []
@@ -9,9 +8,17 @@ var parts_in_beam: Array = []
 @onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
 @onready var beam_area: Area2D = $Beam_area
 
+var part:Part:
+	set(value):
+		sprite = value.image
+		max_health = value.max_health
+		health = value.current_health
+		part = value
+
 func _ready() -> void:
-	max_health = part_health
-	health = max_health
+	if sprite != null:
+		polygon_2d.set_texture(sprite)
+		polygon_2d.texture_offset = Vector2(32,32)
 	part_detached.connect(stop_particles)
 
 func stop_particles() -> void:
@@ -36,6 +43,8 @@ func _physics_process(_delta: float) -> void:
 func _collect_part(body: Node2D) -> void:
 	if body.has_method("take_damage") and beam_active:
 		if parent.is_in_group("player"):
+			var part_to_add: Part = body.part
+			part_to_add.current_health = body.health
 			Inventory.add_item(body.part)
 			body.take_damage(100000)
 	pass # Replace with function body.

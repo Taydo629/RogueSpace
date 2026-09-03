@@ -1,6 +1,12 @@
 [gd_scene format=3 uid="uid://ds8t7yfbj4qfp"]
 
 [ext_resource type="Script" uid="uid://b0u3eaegvjswr" path="res://UI/StationUI/src/station_ui.gd" id="1_0bjo3"]
+[ext_resource type="Script" uid="uid://dfxnbigy6na68" path="res://data/parts.gd" id="2_ko81v"]
+[ext_resource type="Resource" uid="uid://nxtyhwldok2c" path="res://data/Parts/tractor_beam.tres" id="3_m2524"]
+[ext_resource type="Resource" uid="uid://b4k0ewhy4bwpf" path="res://data/Parts/thruster.tres" id="4_mivkv"]
+[ext_resource type="Resource" uid="uid://bu4cdhp5bisf5" path="res://data/Parts/hull.tres" id="5_roxts"]
+[ext_resource type="Resource" uid="uid://dxn6vqjt4j07d" path="res://data/Parts/core.tres" id="6_d6o71"]
+[ext_resource type="Resource" uid="uid://bs8ufgr7qnr1y" path="res://data/Parts/gun.tres" id="7_irjcx"]
 
 [node name="StationUI" type="Control" unique_id=2071674807]
 layout_mode = 3
@@ -10,61 +16,142 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0bjo3")
+inventory_parts = Array[ExtResource("2_ko81v")]([ExtResource("3_m2524"), ExtResource("4_mivkv"), ExtResource("5_roxts"), ExtResource("6_d6o71"), ExtResource("7_irjcx")])
 
 [node name="Station_UI_menu" type="TabContainer" parent="." unique_id=165835795]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 96.0
-offset_top = 96.0
-offset_right = -96.0
-offset_bottom = -104.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 20
 current_tab = 1
-tab_0/title = "Market"
-tab_1/title = "Jump/Build Services"
+tab_0/title = "Sell parts"
+tab_1/title = "Buy parts"
+tab_2/title = "Jump/Build Services"
 
-[node name="MarketContainer" type="VBoxContainer" parent="Station_UI_menu" unique_id=71970720]
+[node name="MarginContainer" type="MarginContainer" parent="Station_UI_menu" unique_id=1236521394]
 visible = false
 layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 0
-metadata/_tab_name = "Market"
+metadata/_tab_name = "Sell parts"
 
-[node name="Market" type="ItemList" parent="Station_UI_menu/MarketContainer" unique_id=294535537]
+[node name="Panel" type="Panel" parent="Station_UI_menu/MarginContainer" unique_id=1599439358]
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 20
-same_column_width = true
-fixed_icon_size = Vector2i(64, 64)
 
-[node name="ButtonContainer" type="HBoxContainer" parent="Station_UI_menu/MarketContainer" unique_id=941660018]
+[node name="MarginContainer" type="MarginContainer" parent="Station_UI_menu/MarginContainer/Panel" unique_id=317934129]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="MarketContainer" type="VBoxContainer" parent="Station_UI_menu/MarginContainer/Panel/MarginContainer" unique_id=71970720]
+layout_mode = 2
+
+[node name="ItemInfo" type="Label" parent="Station_UI_menu/MarginContainer/Panel/MarginContainer/MarketContainer" unique_id=1506196009]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "Inventory"
+horizontal_alignment = 1
+
+[node name="Market" type="GridContainer" parent="Station_UI_menu/MarginContainer/Panel/MarginContainer/MarketContainer" unique_id=2133111648]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+columns = 6
+
+[node name="ButtonContainer" type="HBoxContainer" parent="Station_UI_menu/MarginContainer/Panel/MarginContainer/MarketContainer" unique_id=941660018]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 size_flags_vertical = 8
 
-[node name="ItemInfo" type="Label" parent="Station_UI_menu/MarketContainer/ButtonContainer" unique_id=1625991367]
-custom_minimum_size = Vector2(300, 0)
+[node name="ItemInfo" type="Label" parent="Station_UI_menu/MarginContainer/Panel/MarginContainer/MarketContainer/ButtonContainer" unique_id=1625991367]
+custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
 horizontal_alignment = 1
 
-[node name="BuyButton" type="Button" parent="Station_UI_menu/MarketContainer/ButtonContainer" unique_id=1895787090]
+[node name="SellButton" type="Button" parent="Station_UI_menu/MarginContainer/Panel/MarginContainer/MarketContainer/ButtonContainer" unique_id=1250783184]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 20
-text = "Buy"
-
-[node name="SellButton" type="Button" parent="Station_UI_menu/MarketContainer/ButtonContainer" unique_id=1250783184]
-layout_mode = 2
-size_flags_horizontal = 3
+size_flags_vertical = 4
 theme_override_font_sizes/font_size = 20
 text = "Sell"
 
-[node name="JumpBuildServices" type="VBoxContainer" parent="Station_UI_menu" unique_id=496147167]
+[node name="MarginContainer2" type="MarginContainer" parent="Station_UI_menu" unique_id=1264568330]
 layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 metadata/_tab_index = 1
+metadata/_tab_name = "Buy parts"
+
+[node name="Panel" type="Panel" parent="Station_UI_menu/MarginContainer2" unique_id=113998428]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Station_UI_menu/MarginContainer2/Panel" unique_id=1489272279]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="MarketContainer" type="VBoxContainer" parent="Station_UI_menu/MarginContainer2/Panel/MarginContainer" unique_id=389497264]
+layout_mode = 2
+
+[node name="BuyMarketLabel" type="Label" parent="Station_UI_menu/MarginContainer2/Panel/MarginContainer/MarketContainer" unique_id=1321979843]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+text = "Parts available for purchase"
+horizontal_alignment = 1
+
+[node name="BuyMarket" type="GridContainer" parent="Station_UI_menu/MarginContainer2/Panel/MarginContainer/MarketContainer" unique_id=1930821412]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+columns = 2
+
+[node name="ButtonContainer" type="HBoxContainer" parent="Station_UI_menu/MarginContainer2/Panel/MarginContainer/MarketContainer" unique_id=1188475186]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="BuyItemInfo" type="Label" parent="Station_UI_menu/MarginContainer2/Panel/MarginContainer/MarketContainer/ButtonContainer" unique_id=314145087]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+horizontal_alignment = 1
+
+[node name="BuyButton" type="Button" parent="Station_UI_menu/MarginContainer2/Panel/MarginContainer/MarketContainer/ButtonContainer" unique_id=2079211172]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 20
+text = "Buy"
+
+[node name="JumpBuildServices" type="VBoxContainer" parent="Station_UI_menu" unique_id=496147167]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
 metadata/_tab_name = "Jump/Build Services"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Station_UI_menu/JumpBuildServices" unique_id=506026168]
@@ -91,23 +178,22 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 20
-text = "Jump (CR 100)"
+text = "Jump"
 
 [node name="BuildButton" type="Button" parent="Station_UI_menu/JumpBuildServices/ButtonContainer" unique_id=1181355591]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 20
-text = "Build (CR 50)"
+text = "Build"
 
 [node name="ExitButton" type="Button" parent="." unique_id=1749310588]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 928.0
-offset_top = 32.0
-offset_right = -96.0
-offset_bottom = -552.0
+offset_left = 1048.0
+offset_right = -16.0
+offset_bottom = -612.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 20
@@ -116,18 +202,19 @@ text = "Exit"
 [node name="CreditUI" type="Label" parent="." unique_id=594605634]
 layout_mode = 1
 anchors_preset = -1
-offset_left = 24.0
-offset_top = 24.0
-offset_right = 152.0
-offset_bottom = 66.0
+offset_left = 32.0
+offset_top = 64.0
+offset_right = 160.0
+offset_bottom = 106.0
 grow_horizontal = 0
 theme_override_font_sizes/font_size = 20
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[connection signal="item_selected" from="Station_UI_menu/MarketContainer/Market" to="." method="_on_market_item_selected"]
-[connection signal="pressed" from="Station_UI_menu/MarketContainer/ButtonContainer/BuyButton" to="." method="_on_buy_button_pressed"]
-[connection signal="pressed" from="Station_UI_menu/MarketContainer/ButtonContainer/SellButton" to="." method="_on_sell_button_pressed"]
+[connection signal="gui_input" from="Station_UI_menu/MarginContainer/Panel/MarginContainer/MarketContainer" to="." method="_on_market_container_gui_input"]
+[connection signal="pressed" from="Station_UI_menu/MarginContainer/Panel/MarginContainer/MarketContainer/ButtonContainer/SellButton" to="." method="_on_sell_button_pressed"]
+[connection signal="gui_input" from="Station_UI_menu/MarginContainer2/Panel/MarginContainer/MarketContainer/BuyMarket" to="." method="_on_buy_market_gui_input"]
+[connection signal="pressed" from="Station_UI_menu/MarginContainer2/Panel/MarginContainer/MarketContainer/ButtonContainer/BuyButton" to="." method="_on_buy_button_pressed"]
 [connection signal="pressed" from="Station_UI_menu/JumpBuildServices/ButtonContainer/JumpButton" to="." method="_on_jump_button_pressed"]
 [connection signal="pressed" from="Station_UI_menu/JumpBuildServices/ButtonContainer/BuildButton" to="." method="_on_build_button_pressed"]
 [connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]

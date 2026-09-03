@@ -27,7 +27,7 @@ func start_machine(init_states: Array[State]) -> void:
 	is_running = true
 	
 	
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	#current_state.input(event)
 	pass
 	

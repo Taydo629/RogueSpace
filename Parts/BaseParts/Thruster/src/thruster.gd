@@ -2,19 +2,28 @@ class_name Thruster extends BasePart
 
 # Not used but could be used in future for configurable control
 var activation_key: String
-@onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
+@onready var thruster_particles: CPUParticles2D = $ThrusterParticles
+@onready var thruster_light: PointLight2D = $ThrusterParticles/ThrusterLight
 @onready var thruster_sound: AudioStreamPlayer2D = $ThrusterSound
 
-@export var thrust_force: int = 1
-@export var part_health: int = 100
+var thrust_force: int
+var part:Part:
+	set(value):
+		sprite = value.image
+		max_health = value.max_health
+		health = value.current_health
+		thrust_force = value.thrust_force
+		part = value
 
 func _ready() -> void:
-	max_health = part_health
-	health = max_health
+	if sprite != null:
+		polygon_2d.set_texture(sprite)
+		polygon_2d.texture_offset = Vector2(32,32)
 	part_detached.connect(stop_particles)
 
 func stop_particles() -> void:
-	cpu_particles_2d.emitting = false
+	thruster_particles.emitting = false
+	thruster_light.enabled = false
 
 # Test function
 func test_damage():

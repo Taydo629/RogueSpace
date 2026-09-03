@@ -7,15 +7,23 @@
 [ext_resource type="PackedScene" uid="uid://b7axk8e3fxsiw" path="res://UI/PlayerMenuUI/scene/player_ui.tscn" id="6_5cypo"]
 [ext_resource type="PackedScene" uid="uid://dyxopugemdibc" path="res://scenes/main/scenes/level_gen_component.tscn" id="7_nqdth"]
 [ext_resource type="PackedScene" uid="uid://deyud7bd4kyqi" path="res://UI/PauseMenuUI/scene/pause_menu_ui.tscn" id="7_o6v7o"]
-[ext_resource type="PackedScene" uid="uid://tqn70usw28ix" path="res://Characters/Player/scenes/player.tscn" id="8_70vka"]
 [ext_resource type="PackedScene" uid="uid://blofhoxjvbs5y" path="res://UI/ShipBuildingUI/scene/ship_building_ui.tscn" id="8_wjob3"]
 [ext_resource type="PackedScene" uid="uid://c0nva578wdvmu" path="res://UI/GuideUI/scene/guide_ui.tscn" id="9_5cypo"]
+[ext_resource type="Script" uid="uid://dfxnbigy6na68" path="res://data/parts.gd" id="10_fpthe"]
 [ext_resource type="PackedScene" uid="uid://ds8t7yfbj4qfp" path="res://UI/StationUI/scene/station_ui.tscn" id="10_o6v7o"]
+[ext_resource type="Resource" uid="uid://bs8ufgr7qnr1y" path="res://data/Parts/gun.tres" id="11_h4r6f"]
 [ext_resource type="PackedScene" uid="uid://c7woe6b2tkxna" path="res://UI/SectorInfo/scene/sector_info.tscn" id="11_wjob3"]
+[ext_resource type="Script" uid="uid://cm5wa1dfltaot" path="res://data/npc_ship.gd" id="12_4qwfe"]
+[ext_resource type="Resource" uid="uid://dxn6vqjt4j07d" path="res://data/Parts/core.tres" id="12_fvpsc"]
+[ext_resource type="Resource" uid="uid://dwtxjrojbsons" path="res://data/NPCShips/patrol_ship.tres" id="13_7e4r1"]
 [ext_resource type="Texture2D" uid="uid://dmdsrf5jlj5jk" path="res://assets/Space_BG.png" id="13_qy7f2"]
+[ext_resource type="Resource" uid="uid://bu4cdhp5bisf5" path="res://data/Parts/hull.tres" id="13_xk0cf"]
 [ext_resource type="Texture2D" uid="uid://b6qqpjtotmc0p" path="res://assets/Sun_sprite.png" id="14_4d5ma"]
 [ext_resource type="Texture2D" uid="uid://cegk085sa5e0e" path="res://assets/Rocky_planet_sprite.png" id="14_aly5s"]
+[ext_resource type="Resource" uid="uid://b4k0ewhy4bwpf" path="res://data/Parts/thruster.tres" id="14_ldk75"]
+[ext_resource type="Resource" uid="uid://nxtyhwldok2c" path="res://data/Parts/tractor_beam.tres" id="15_eycr2"]
 [ext_resource type="Texture2D" uid="uid://bkkmlju23hpuo" path="res://assets/2d_lights_and_shadows_neutral_point_light.webp" id="15_rxlyu"]
+[ext_resource type="PackedScene" uid="uid://b8m8r5rsh4g0w" path="res://UI/DeathScreenUI/scenes/death_screen.tscn" id="17_h4r6f"]
 
 [node name="MainGame" type="Node2D" unique_id=956598129]
 process_mode = 3
@@ -42,8 +50,6 @@ visible = false
 [node name="ShipBuildingUI" parent="MainUILayer" unique_id=542883084 instance=ExtResource("8_wjob3")]
 process_mode = 4
 visible = false
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="GuideUI" parent="MainUILayer" unique_id=853896309 instance=ExtResource("9_5cypo")]
 process_mode = 4
@@ -52,16 +58,19 @@ visible = false
 [node name="StationUI" parent="MainUILayer" unique_id=2071674807 instance=ExtResource("10_o6v7o")]
 process_mode = 4
 visible = false
+inventory_parts = Array[ExtResource("10_fpthe")]([ExtResource("11_h4r6f"), ExtResource("12_fvpsc"), ExtResource("13_xk0cf"), ExtResource("14_ldk75"), ExtResource("15_eycr2")])
 
 [node name="SectorInfo" parent="MainUILayer" unique_id=943868874 instance=ExtResource("11_wjob3")]
 process_mode = 4
 visible = false
 
+[node name="DeathScreen" parent="MainUILayer" unique_id=410832684 instance=ExtResource("17_h4r6f")]
+process_mode = 4
+visible = false
+
 [node name="LevelGenComponent" parent="." unique_id=1697448056 instance=ExtResource("7_nqdth")]
 process_mode = 3
-
-[node name="Player" parent="LevelGenComponent" unique_id=2138094422 instance=ExtResource("8_70vka")]
-process_mode = 1
+loaded_ships = Array[ExtResource("12_4qwfe")]([ExtResource("13_7e4r1")])
 
 [node name="Background" type="Node2D" parent="." unique_id=1890223868]
 z_index = -5

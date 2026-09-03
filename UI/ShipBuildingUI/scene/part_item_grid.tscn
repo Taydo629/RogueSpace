@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://dfbu8mcw66h2b"]
+
+[ext_resource type="Script" uid="uid://bmijyntww3bje" path="res://UI/ShipBuildingUI/src/part_item_grid.gd" id="1_860yc"]
+[ext_resource type="Texture2D" uid="uid://dtnth2ssektfx" path="res://assets/Thruster_sprite.png" id="2_wpo2h"]
+
+[node name="PartItemGrid" type="AspectRatioContainer" unique_id=1772683898]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = -82.0
+offset_right = 82.0
+offset_bottom = 82.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(82, 82)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 0
+stretch_mode = 0
+script = ExtResource("1_860yc")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1342621695]
+layout_mode = 2
+color = Color(0.18126053, 0.12538743, 0.18454885, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1309976730]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer" unique_id=589034235]
+layout_mode = 2
+texture = ExtResource("2_wpo2h")
+
+[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=1910803847]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer2" unique_id=898687019]
+layout_mode = 2
+size_flags_vertical = 8
+show_percentage = false
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

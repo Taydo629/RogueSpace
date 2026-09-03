@@ -14,9 +14,12 @@ func enter() -> void:
 	station_ui = canvas_layer.station_ui
 	station_ui.visible = true
 	station_ui.process_mode = Node.PROCESS_MODE_ALWAYS
-	station_ui.exit_station.connect(return_to_game)
-	station_ui.enter_build.connect(enter_build)
-	station_ui.jump_to_new_level.connect(jump_to_next_sector)
+	if not station_ui.exit_station.is_connected(return_to_game):
+		station_ui.exit_station.connect(return_to_game)
+	if not station_ui.enter_build.is_connected(enter_build):
+		station_ui.enter_build.connect(enter_build)
+	if not station_ui.jump_to_new_level.is_connected(jump_to_next_sector):
+		station_ui.jump_to_new_level.connect(jump_to_next_sector)
 	station_ui.init_ui()
 	#if state_machine.previous_state.get_state_name() != StationUIState.state_name:
 		#print("hey")

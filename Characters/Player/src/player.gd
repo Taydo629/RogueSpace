@@ -6,42 +6,60 @@ class_name Player extends RigidBody2D
 @onready var input_component: InputComponent = $InputComponent
 @onready var tractorbeam_component: TractorbeamComponent = $TractorbeamComponent
 @onready var player_camera: PlayerCamera = $PlayerCamera
-#@onready var player_ui_layer: CanvasLayer = $PlayerUILayer
+var ship_graph: Dictionary :
+	set(value):
+		if value != ship_graph:
+			ship_graph = value
+			print("New graph incoming")
+			if not initialise_ship.is_connected(init_ship):
+				initialise_ship.connect(init_ship)
+			initialise_ship.emit()
+signal initialise_ship
+signal player_died
 
-#var enemy_array: Array[RigidBody2D]
-#var station: StaticBody2D
+#func _ready() -> void:
+	#initialise_ship.connect(init_ship)
+	#part_component.graph_changed.connect(reinitialise_components)
+	#part_component.ship_destroyed.connect(died)
+	#input_component.fire_guns.connect(weapon_component.fire)
+	#input_component.activate_thrusters.connect(movement_component.activate_thrusters)
+	#input_component.deactivate_thrusters.connect(movement_component.deactivate_thrusters)
+	#input_component.activate_tractorbeam.connect(tractorbeam_component.activate)
+	#input_component.deactivate_tractorbeam.connect(tractorbeam_component.deactivate)
+	#input_component.mouse_pos_changed.connect(movement_component.rotate_to)
+	#input_component.zoom_in.connect(player_camera.zoom_in)
+	#input_component.zoom_out.connect(player_camera.zoom_out)
 
-func _ready() -> void:
-	ShipInfo.ship_updated.connect(init_ship)
-	part_component.graph_changed.connect(reinitialise_components)
-	input_component.fire_guns.connect(weapon_component.fire)
-	input_component.activate_thrusters.connect(movement_component.activate_thrusters)
-	input_component.deactivate_thrusters.connect(movement_component.deactivate_thrusters)
-	input_component.activate_tractorbeam.connect(tractorbeam_component.activate)
-	input_component.deactivate_tractorbeam.connect(tractorbeam_component.deactivate)
-	input_component.mouse_pos_changed.connect(movement_component.rotate_to)
-	input_component.zoom_in.connect(player_camera.zoom_in)
-	input_component.zoom_out.connect(player_camera.zoom_out)
-
-func init_ship(ship_graph, grid_dim) -> void:
-	clear_old_ship()
+func init_ship() -> void:
+	if not part_component.graph_changed.is_connected(reinitialise_components):
+		part_component.graph_changed.connect(reinitialise_components)
+	if not part_component.ship_destroyed.is_connected(died):
+		part_component.ship_destroyed.connect(died)
+	if not input_component.fire_guns.is_connected(weapon_component.fire):
+		input_component.fire_guns.connect(weapon_component.fire)
+	if not input_component.activate_thrusters.is_connected(movement_component.activate_thrusters):
+		input_component.activate_thrusters.connect(movement_component.activate_thrusters)
+	if not input_component.deactivate_thrusters.is_connected(movement_component.deactivate_thrusters):
+		input_component.deactivate_thrusters.connect(movement_component.deactivate_thrusters)
+	if not input_component.activate_tractorbeam.is_connected(tractorbeam_component.activate):
+		input_component.activate_tractorbeam.connect(tractorbeam_component.activate)
+	if not input_component.deactivate_tractorbeam.is_connected(tractorbeam_component.deactivate):
+		input_component.deactivate_tractorbeam.connect(tractorbeam_component.deactivate)
+	if not input_component.mouse_pos_changed.is_connected(movement_component.rotate_to):
+		input_component.mouse_pos_changed.connect(movement_component.rotate_to)
+	if not input_component.zoom_in.is_connected(player_camera.zoom_in):
+		input_component.zoom_in.connect(player_camera.zoom_in)
+	if not input_component.zoom_out.is_connected(player_camera.zoom_out):
+		input_component.zoom_out.connect(player_camera.zoom_out)
 	part_component.ship_graph = ship_graph
-	part_component.grid_size = grid_dim
 	player_camera.enabled = true
-	part_component.initialise_ship()
+	reinitialise_components()
 
 func reinitialise_components() -> void:
 	print("Re-initialise components")
-	ShipInfo.update_ship(part_component.ship_graph)
-	movement_component.initalise_movement(ShipInfo.ship_graph)
-	weapon_component.initalise_weapons(ShipInfo.ship_graph)
-	tractorbeam_component.initalise_tractor_beams(ShipInfo.ship_graph)
-
-#func new_level(level: int, new_npc_array: Array[RigidBody2D], new_station: StaticBody2D) -> void:
-	#enemy_array = new_npc_array
-	#station = new_station
-	##player_ui_layer.update_sector_label(level)
-	##player_ui_layer.update_hud()
+	movement_component.initalise_movement(ship_graph)
+	weapon_component.initalise_weapons(ship_graph)
+	tractorbeam_component.initalise_tractor_beams(ship_graph)
 
 func clear_old_ship() -> void:
 	for collider in get_children():
@@ -49,3 +67,6 @@ func clear_old_ship() -> void:
 			collider.queue_free()
 	for part in part_component.get_children():
 		part.queue_free()
+
+func died() -> void:
+	player_died.emit()

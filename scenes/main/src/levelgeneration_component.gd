@@ -1,50 +1,50 @@
 class_name LevelGenComponent extends Node
 
-signal level_generated
+#signal level_generated
 
 var level_number: int = 0
-var loaded_ships: Array[NPCShip] = []
 var current_enemy_array: Array[npc]
 var current_station: StaticBody2D
 var playable_bound_x: Vector2 = Vector2(-7000,7000)
 var playable_bound_y: Vector2 = Vector2(-7000,7000)
 var main_game: Node2D
+var player: Player
 const NPC = preload("uid://dxth7s5bap4i5")
 const STATION = preload("uid://baad6rfav87i3")
+const PLAYER = preload("uid://tqn70usw28ix")
+
+@export var spawn_enemies: bool = true
+@export var enemy_spawn_override_count: int = -1
+@export var loaded_ships: Array[NPCShip] = []
 
 func _ready() -> void:
 	main_game = get_parent()
-	load_all_ships_from_folder("res://data/NPCShips/")
 
-func load_all_ships_from_folder(path: String) -> void:
-	var dir = DirAccess.open(path)
-	if dir:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		
-		while file_name != "":
-			# Ignore subdirectories and non-resource files
-			if not dir.current_is_dir() and file_name.ends_with(".tres"):
-				var full_path = path + "/" + file_name
-				var ship_resource = load(full_path) as NPCShip
-				
-				if ship_resource:
-					loaded_ships.append(ship_resource)
-					
-			file_name = dir.get_next()
-		dir.list_dir_end()
-		
-	print("Total loaded ships: ", loaded_ships.size())
+func init_game() -> void:
+	Inventory.init_inventory()
+	for child in get_children():
+		child.queue_free()
+	level_number = 0
+	current_enemy_array.clear()
+	current_station = null
+	player = PLAYER.instantiate()
+	player.position = Vector2.ZERO
+	add_child(player)
 
 func generate_level() -> void:
-	
 	level_number += 1
 	# Clear the level before generating new one
 	clear_level()
 	# NPC spawning
 	var valid_npcs: Array[NPCShip] = get_valid_ships_for_current_level()
-	var number_of_npcs = randi_range(1, level_number)
-	#var number_of_npcs = 0
+	var number_of_npcs: int
+	if spawn_enemies:
+		if enemy_spawn_override_count < 0:
+			number_of_npcs = randi_range(1, level_number)
+		else:
+			number_of_npcs = enemy_spawn_override_count
+	else:
+		number_of_npcs = 0
 	var npc_array: Array[npc]
 	for i in number_of_npcs:
 		var NPC_instance = NPC.instantiate()
@@ -61,6 +61,11 @@ func generate_level() -> void:
 	add_child(station_instance)
 	current_enemy_array = npc_array
 	current_station = station_instance
+	player.position = Vector2.ZERO
+	print_debug(player.angular_velocity)
+	print_debug(player.constant_torque)
+	player.constant_torque = 0
+	player.angular_velocity = 0
 	#level_generated.emit(level_number, npc_array, station_instance)
 
 func get_valid_ships_for_current_level() -> Array[NPCShip]:

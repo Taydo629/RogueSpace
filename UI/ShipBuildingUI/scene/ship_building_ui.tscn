@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://blofhoxjvbs5y"]
 
 [ext_resource type="Script" uid="uid://c0d2hed1gmp4k" path="res://UI/ShipBuildingUI/src/ship_building_ui.gd" id="1_ps2en"]
-[ext_resource type="Shader" uid="uid://cvvodjxutsgje" path="res://Shaders/ship_building_ui.gdshader" id="2_ps2en"]
+[ext_resource type="Shader" uid="uid://cvvodjxutsgje" path="res://shaders/ship_building_ui.gdshader" id="2_ps2en"]
+[ext_resource type="Script" uid="uid://dard6afsq0gpb" path="res://UI/ShipBuildingUI/src/build_repair_toggle.gd" id="3_76tch"]
+[ext_resource type="Script" uid="uid://w2jl2lapx8nx" path="res://UI/ShipBuildingUI/src/repair_popup.gd" id="4_skkmp"]
+[ext_resource type="Texture2D" uid="uid://dmdsrf5jlj5jk" path="res://assets/Space_BG.png" id="5_5e27k"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n1a5j"]
 shader = ExtResource("2_ps2en")
@@ -17,7 +20,21 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_ps2en")
+
+[node name="BG" type="TextureRect" parent="." unique_id=1409479143]
+z_index = -4
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_5e27k")
+expand_mode = 2
+stretch_mode = 4
 
 [node name="TextureRect" type="ColorRect" parent="." unique_id=2099780365]
 z_index = -3
@@ -61,15 +78,7 @@ LMB: Place part
 RMB: Remove part"
 horizontal_alignment = 2
 
-[node name="ShipBuildingUI" type="Control" parent="." unique_id=1932583675]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="FoldableContainer" type="FoldableContainer" parent="ShipBuildingUI" unique_id=1146177033]
+[node name="FoldableContainer" type="FoldableContainer" parent="." unique_id=1146177033]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -83,10 +92,10 @@ rotation = -1.5707964
 title = "Parts"
 title_alignment = 1
 
-[node name="Control" type="Control" parent="ShipBuildingUI/FoldableContainer" unique_id=1194157296]
+[node name="Control" type="Control" parent="FoldableContainer" unique_id=1194157296]
 layout_mode = 2
 
-[node name="ItemList" type="ItemList" parent="ShipBuildingUI/FoldableContainer/Control" unique_id=1903116467]
+[node name="ItemList" type="ItemList" parent="FoldableContainer/Control" unique_id=1903116467]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.123
@@ -101,7 +110,7 @@ grow_vertical = 2
 rotation = 1.5707964
 fixed_icon_size = Vector2i(64, 64)
 
-[node name="ItemInfoLabel" type="Label" parent="ShipBuildingUI/FoldableContainer/Control" unique_id=174857658]
+[node name="ItemInfoLabel" type="Label" parent="FoldableContainer/Control" unique_id=174857658]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.008
@@ -117,7 +126,7 @@ text = "No part selected"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BuildButton" type="Button" parent="ShipBuildingUI" unique_id=1465284840]
+[node name="BuildButton" type="Button" parent="." unique_id=1465284840]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -136,5 +145,114 @@ z_index = -2
 color = Color(0.28627452, 0.77254903, 0.9411765, 0.2)
 polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 
-[connection signal="item_selected" from="ShipBuildingUI/FoldableContainer/Control/ItemList" to="." method="_on_item_list_item_selected"]
-[connection signal="pressed" from="ShipBuildingUI/BuildButton" to="." method="_on_build_button_pressed"]
+[node name="BuildRepairToggle" type="HBoxContainer" parent="." unique_id=287470344]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 504.0
+offset_top = 24.0
+offset_right = -505.0
+offset_bottom = -584.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_76tch")
+
+[node name="BuildLabel" type="Label" parent="BuildRepairToggle" unique_id=1174118446]
+layout_mode = 2
+text = "Build"
+
+[node name="BuildRepairSwitch" type="CheckButton" parent="BuildRepairToggle" unique_id=80598679]
+layout_mode = 2
+
+[node name="RepairLabel" type="Label" parent="BuildRepairToggle" unique_id=1557604268]
+layout_mode = 2
+text = "Repair"
+
+[node name="CreditUI" type="Label" parent="." unique_id=1518063273]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 304.0
+offset_top = 24.0
+offset_right = -810.0
+offset_bottom = -582.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="RepairPopup" type="Panel" parent="." unique_id=2646908]
+visible = false
+z_index = 5
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -832.0
+offset_bottom = -456.0
+pivot_offset = Vector2(0, 192)
+script = ExtResource("4_skkmp")
+
+[node name="MarginContainer" type="MarginContainer" parent="RepairPopup" unique_id=1235871981]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RepairPopup/MarginContainer" unique_id=1547222200]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="RepairPopup/MarginContainer/VBoxContainer" unique_id=1357544417]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="RepairPopup/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1670037545]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Repairing Part..."
+
+[node name="ExitButton" type="Button" parent="RepairPopup/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1544479293]
+layout_mode = 2
+text = "X"
+
+[node name="HSlider" type="HSlider" parent="RepairPopup/MarginContainer/VBoxContainer" unique_id=307796108]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="RepairPopup/MarginContainer/VBoxContainer" unique_id=464802910]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RepairPopup/MarginContainer/VBoxContainer/HBoxContainer" unique_id=342301751]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CurrentHealthLabel" type="Label" parent="RepairPopup/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=146218480]
+layout_mode = 2
+text = "Current health %:"
+
+[node name="NewHealthLab" type="Label" parent="RepairPopup/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1767753915]
+layout_mode = 2
+text = "New health %:"
+
+[node name="RepairCostLab" type="Label" parent="RepairPopup/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1085660097]
+layout_mode = 2
+text = "Repair cost:"
+
+[node name="RepairButton" type="Button" parent="RepairPopup/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1048622444]
+layout_mode = 2
+text = "Repair"
+
+[connection signal="item_selected" from="FoldableContainer/Control/ItemList" to="." method="_on_item_list_item_selected"]
+[connection signal="pressed" from="BuildButton" to="." method="_on_build_button_pressed"]
+[connection signal="pressed" from="BuildRepairToggle/BuildRepairSwitch" to="BuildRepairToggle" method="_on_build_repair_switch_pressed"]
+[connection signal="pressed" from="RepairPopup/MarginContainer/VBoxContainer/HBoxContainer2/ExitButton" to="RepairPopup" method="_on_exit_button_pressed"]
+[connection signal="value_changed" from="RepairPopup/MarginContainer/VBoxContainer/HSlider" to="RepairPopup" method="_on_h_slider_value_changed"]
+[connection signal="pressed" from="RepairPopup/MarginContainer/VBoxContainer/HBoxContainer/RepairButton" to="RepairPopup" method="_on_repair_button_pressed"]
