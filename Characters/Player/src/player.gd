@@ -47,6 +47,8 @@ func init_ship() -> void:
 		input_component.deactivate_tractorbeam.connect(tractorbeam_component.deactivate)
 	if not input_component.mouse_pos_changed.is_connected(movement_component.rotate_to):
 		input_component.mouse_pos_changed.connect(movement_component.rotate_to)
+	if not input_component.dash.is_connected(movement_component.dash):
+		input_component.dash.connect(movement_component.dash)
 	if not input_component.zoom_in.is_connected(player_camera.zoom_in):
 		input_component.zoom_in.connect(player_camera.zoom_in)
 	if not input_component.zoom_out.is_connected(player_camera.zoom_out):

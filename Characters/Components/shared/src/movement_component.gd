@@ -1,11 +1,19 @@
 class_name MovementComponent extends Node
 
 @export var gyro_strength: float = 300000.0
+@export var dash_strength: float = 100000.0
+@export var dash_cooldown: float = 0.5
 var parent: RigidBody2D
 var thrusters : Array[Thruster]
+var timer: Timer
+var dash_available: bool = true
 
 func _ready() -> void:
 	parent = get_parent()
+	timer = Timer.new()
+	add_child(timer)
+	timer.wait_time = dash_cooldown
+	timer.timeout.connect(dash_reset)
 
 func initalise_movement(ship_graph: Dictionary) -> void:
 	thrusters = []
@@ -38,6 +46,17 @@ func deactivate_thrusters() -> void:
 	parent.constant_force = Vector2.ZERO
 	#if thruster_sound.playing == true:
 		#thruster_sound.playing = false
+
+func dash(direction: int) -> void:
+	if dash_available:
+		dash_available = false
+		timer.start()
+		# If direction is 1 dash to right and if -1 to left.
+		var dash_force: Vector2 = (direction * Vector2.RIGHT).rotated(parent.rotation) * dash_strength
+		parent.apply_central_impulse(dash_force)
+
+func dash_reset() -> void:
+	dash_available = true
 
 func rotate_to(target_pos: Vector2) -> void:
 	var angle_diff = get_angle_to_target(target_pos)

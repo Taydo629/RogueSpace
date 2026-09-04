@@ -18,6 +18,8 @@ script = ExtResource("1_qu4a1")
 [node name="PartComponent" parent="." unique_id=456244710 instance=ExtResource("2_qu4a1")]
 
 [node name="MovementComponent" parent="." unique_id=894662683 instance=ExtResource("3_70d11")]
+dash_strength = 30000.0
+dash_cooldown = 2.0
 
 [node name="WeaponComponent" parent="." unique_id=1177833148 instance=ExtResource("4_cw2d6")]
 process_mode = 1
