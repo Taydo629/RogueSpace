@@ -1,8 +1,9 @@
 class_name MovementComponent extends Node
 
 @export var gyro_strength: float = 300000.0
-@export var dash_strength: float = 100000.0
-@export var dash_cooldown: float = 0.5
+@export var dash_strength: float = 30000.0
+@export var dash_cooldown: float = 2
+@export var dash_anim_time: float = 0.5
 var parent: RigidBody2D
 var thrusters : Array[Thruster]
 var timer: Timer
@@ -49,6 +50,9 @@ func deactivate_thrusters() -> void:
 
 func dash(direction: int) -> void:
 	if dash_available:
+		parent.dash_effect.direction = Vector2(direction, 0)
+		parent.dash_effect.restart()
+		parent.dash_effect.emitting = true
 		dash_available = false
 		timer.start()
 		# If direction is 1 dash to right and if -1 to left.
