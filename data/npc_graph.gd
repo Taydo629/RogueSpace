@@ -5,4 +5,4 @@ extends Resource
 
 func get_dictionary() -> Dictionary:
 	# This is important so that the graph resource isnt modified by partcomponent.
-	return(graph.duplicate(true))
+	return(graph.duplicate_deep(Resource.DEEP_DUPLICATE_ALL))

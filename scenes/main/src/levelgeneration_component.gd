@@ -72,7 +72,7 @@ func get_valid_ships_for_current_level() -> Array[NPCShip]:
 	var valid_ships: Array[NPCShip]
 	for ship in loaded_ships:
 		if level_number >= ship.min_level and level_number <= ship.max_level:
-			valid_ships.append(ship)
+			valid_ships.append(ship.duplicate_deep(Resource.DEEP_DUPLICATE_ALL))
 	return(valid_ships)
 
 func clear_level() -> void:
