@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://ccnu2ooonh3dg"]
+
+[ext_resource type="PackedScene" uid="uid://dplstcql0ly08" path="res://Parts/BaseParts/scenes/base_part.tscn" id="1_0k03b"]
+[ext_resource type="Script" uid="uid://cs38u1h7heiov" path="res://Parts/BaseParts/BaseEnergyWeapon/src/base_energy_weapon.gd" id="2_0k03b"]
+
+[node name="BaseEnergyWeapon" unique_id=2026258003 instance=ExtResource("1_0k03b")]
+script = ExtResource("2_0k03b")
