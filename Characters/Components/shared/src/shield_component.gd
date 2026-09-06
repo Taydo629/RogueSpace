@@ -2,13 +2,16 @@ class_name ShieldComponent extends Node2D
 
 @export var max_shield_health: float = 500.0
 @export var shield_recharge_time: float = 10.0
+@export var shield_animation_time: float = 0.5
 
 @onready var shield_area: Area2D = $ShieldArea
+@onready var collision_shape_2d: CollisionShape2D = $ShieldArea/CollisionShape2D
 @onready var shield_sprite: Sprite2D = $Shield_sprite
 
 var health: float
 var parent: RigidBody2D
 var timer: Timer
+var shield_active: bool = true
 
 func _ready() -> void:
 	parent = get_parent()
@@ -18,19 +21,29 @@ func _ready() -> void:
 	timer.wait_time = shield_recharge_time
 	timer.timeout.connect(recharge_shield)
 
-func take_damage(damage: int, pos: Vector2) -> void:
+func take_damage(damage: int) -> void:
 	var new_health = health - damage
 	#hit_sound.play()
-	var vector_to_projectile: Vector2 = pos - global_position
-	var vector_to_forward: Vector2 = Vector2.UP.rotated(rotation)
-	var angle: float = vector_to_forward.angle_to(vector_to_projectile)
-	print(angle)
-	shield_sprite.material.set_shader_parameter("highlight_angle", angle)
 	if new_health <= 0:
-		shield_area.monitorable = false
+		var tween: Tween = create_tween()
+		tween.tween_property(shield_sprite.material, "shader_parameter/dissolve_progress", 1.0, shield_animation_time)
+		tween.finished.connect(shield_down)
 	else:
 		health = new_health
+		var frac_health: float = health / max_shield_health
+		print(frac_health)
+		shield_sprite.material.set_shader_parameter("damage_frac", frac_health)
+
+func shield_down() -> void:
+	shield_active = false
+	shield_sprite.visible = false
+	timer.start()
 
 func recharge_shield() -> void:
-	shield_area.monitorable = true
+	shield_active = true
+	#collision_shape_2d.disabled = false
+	shield_sprite.visible = true
 	health = max_shield_health
+	shield_sprite.material.set_shader_parameter("damage_frac", 1.0)
+	var tween: Tween = create_tween()
+	tween.tween_property(shield_sprite.material, "shader_parameter/dissolve_progress", 0.0, shield_animation_time)

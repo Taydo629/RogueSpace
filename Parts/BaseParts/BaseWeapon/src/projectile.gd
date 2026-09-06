@@ -25,8 +25,9 @@ func _on_collision_polygon_2d_area_entered(area: Area2D) -> void:
 				area.get_parent().take_damage(damage)
 				queue_free()
 			if area.is_in_group("shield"):
-				area.get_parent().take_damage(damage, global_position)
-				queue_free()
+				if area.get_parent().shield_active == true:
+					area.get_parent().take_damage(damage)
+					queue_free()
 func cull() -> void:
 	queue_free()
 	
