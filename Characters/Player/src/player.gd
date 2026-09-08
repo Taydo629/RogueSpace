@@ -5,6 +5,8 @@ class_name Player extends RigidBody2D
 @onready var weapon_component: WeaponComponent = $WeaponComponent
 @onready var input_component: InputComponent = $InputComponent
 @onready var tractorbeam_component: TractorbeamComponent = $TractorbeamComponent
+@onready var shield_component: ShieldComponent = $ShieldComponent
+@onready var energy_component: EnergyComponent = $EnergyComponent
 @onready var player_camera: PlayerCamera = $PlayerCamera
 @onready var dash_effect: CPUParticles2D = $DashEffect
 var ship_graph: Dictionary :

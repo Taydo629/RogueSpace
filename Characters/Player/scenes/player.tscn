@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dsfbrqvu3gvm4" path="res://Characters/Player/src/player.gd" id="1_qu4a1"]
 [ext_resource type="PackedScene" uid="uid://bn7tq5d2hxit6" path="res://Characters/Components/shared/scenes/part_component.tscn" id="2_qu4a1"]
+[ext_resource type="PackedScene" uid="uid://b4cb0onhd71wu" path="res://Characters/Components/shared/scenes/energy_component.tscn" id="3_4pyqg"]
 [ext_resource type="PackedScene" uid="uid://caeqjr661qosk" path="res://Characters/Components/shared/scenes/movement_component.tscn" id="3_70d11"]
 [ext_resource type="PackedScene" uid="uid://bmn28l2ks5e3r" path="res://Characters/Components/shared/scenes/weapon_component.tscn" id="4_cw2d6"]
 [ext_resource type="PackedScene" uid="uid://dpu8pdnvx3kqb" path="res://Characters/Components/Player/scenes/input_component.tscn" id="5_khinc"]
@@ -30,6 +31,8 @@ angular_damp = 1.0
 script = ExtResource("1_qu4a1")
 
 [node name="PartComponent" parent="." unique_id=456244710 instance=ExtResource("2_qu4a1")]
+
+[node name="EnergyComponent" parent="." unique_id=1505962074 instance=ExtResource("3_4pyqg")]
 
 [node name="MovementComponent" parent="." unique_id=894662683 instance=ExtResource("3_70d11")]
 

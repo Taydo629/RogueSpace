@@ -12,6 +12,7 @@ var health: float
 var parent: RigidBody2D
 var timer: Timer
 var shield_active: bool = true
+var energy_component: EnergyComponent
 
 func _ready() -> void:
 	parent = get_parent()
