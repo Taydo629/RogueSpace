@@ -27,16 +27,13 @@ const TOTAL_PIPS: int = 6
 
 func _ready() -> void:
 	init_energy_pips()
-	pass
-	#current_energy = max_energy
-	#update_energy_split()
 
 func init_energy_pips() -> void:
 	for route in energy_pips.keys():
 		var energy_route: Dictionary = energy_pips.get(route)
 		var max_energy_of_route: float = (float(energy_route.get("pips"))/float(TOTAL_PIPS)) * max_energy
-		energy_pips.get(route).set("max_energy", max_energy_of_route)
-		energy_pips.get(route).set("current_energy", 0)#max_energy_of_route)
+		energy_pips.get(route).max_energy = max_energy_of_route
+		energy_pips.get(route).current_energy = max_energy_of_route
 
 func _process(delta: float) -> void:
 	generate_energy(delta)
@@ -49,7 +46,6 @@ func _process(delta: float) -> void:
 		reroute_energy(ENERGY_ROUTES.WEAPONS)
 
 func reroute_energy(route_to_add: ENERGY_ROUTES) -> void:
-	print(energy_pips)
 	var current_route_pips: int = energy_pips.get(route_to_add).pips
 	if current_route_pips == MAX_PIPS_PER_ROUTE:
 		# Cannot add more pips to this route
