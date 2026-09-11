@@ -3,5 +3,30 @@
 [ext_resource type="PackedScene" uid="uid://dplstcql0ly08" path="res://Parts/BaseParts/scenes/base_part.tscn" id="1_0k03b"]
 [ext_resource type="Script" uid="uid://cs38u1h7heiov" path="res://Parts/BaseParts/BaseEnergyWeapon/src/base_energy_weapon.gd" id="2_0k03b"]
 
-[node name="BaseEnergyWeapon" unique_id=2026258003 instance=ExtResource("1_0k03b")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8n5rc"]
+size = Vector2(16, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0k03b"]
+size = Vector2(16, 48)
+
+[node name="BaseEnergyWeapon" unique_id=2026258003 groups=["weapon"] instance=ExtResource("1_0k03b")]
 script = ExtResource("2_0k03b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtArea" parent_id_path=PackedInt32Array(991278418) index="0" unique_id=515186750]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_8n5rc")
+
+[node name="RayCast2D" type="RayCast2D" parent="." index="3" unique_id=1240038671]
+target_position = Vector2(0, -64)
+
+[node name="LaserBeam" type="Line2D" parent="RayCast2D" index="0" unique_id=496388374]
+points = PackedVector2Array(0, 0, 0, 0)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Polygon2D" type="Polygon2D" parent="." index="4" unique_id=1234275355]
+polygon = PackedVector2Array(-32, 32, 32, 32, 32, -32, -32, -32)
+
+[node name="Collider" type="CollisionShape2D" parent="." index="5" unique_id=487823049]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_0k03b")

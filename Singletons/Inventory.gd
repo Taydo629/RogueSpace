@@ -5,6 +5,7 @@ var wallet: int = 1000
 var number_of_hull: int = 6
 var number_of_thruster: int = 3
 var number_of_gun: int = 2
+var number_of_laser: int = 2
 var number_of_tractor_beam: int = 1
 
 const CORE = preload("uid://dxn6vqjt4j07d")
@@ -12,6 +13,8 @@ const GUN = preload("uid://bs8ufgr7qnr1y")
 const HULL = preload("uid://bu4cdhp5bisf5")
 const THRUSTER = preload("uid://b4k0ewhy4bwpf")
 const TRACTOR_BEAM = preload("uid://nxtyhwldok2c")
+const LASER = preload("uid://f60asy2hl75j")
+
 
 signal item_pickup
 signal credit_changed(int)
@@ -25,6 +28,8 @@ func init_inventory() -> void:
 	while i < number_of_hull:
 		if i < number_of_gun:
 			add_item(GUN)
+		if i < number_of_laser:
+			add_item(LASER)
 		if i < number_of_thruster:
 			add_item(THRUSTER)
 		if i < number_of_hull:
