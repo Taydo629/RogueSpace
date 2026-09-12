@@ -1,6 +1,7 @@
 class_name InputComponent extends Node
 
 signal fire_guns
+signal toggle_guns(bool)
 signal activate_thrusters
 signal deactivate_thrusters
 signal activate_tractorbeam
@@ -13,6 +14,10 @@ signal dash(int)
 func _process(_delta: float) -> void:
 	if Input.is_action_pressed("left_click"):
 		fire_guns.emit()
+	if Input.is_action_just_pressed("left_click"):
+		toggle_guns.emit(true)
+	if Input.is_action_just_released("left_click"):
+		toggle_guns.emit(false)
 	if Input.is_action_pressed("w"):
 		activate_thrusters.emit()
 	if Input.is_action_just_released("w"):

@@ -40,6 +40,8 @@ func init_ship() -> void:
 		part_component.ship_destroyed.connect(died)
 	if not input_component.fire_guns.is_connected(weapon_component.fire):
 		input_component.fire_guns.connect(weapon_component.fire)
+	if not input_component.toggle_guns.is_connected(weapon_component.toggle_fire):
+		input_component.toggle_guns.connect(weapon_component.toggle_fire)
 	if not input_component.activate_thrusters.is_connected(movement_component.activate_thrusters):
 		input_component.activate_thrusters.connect(movement_component.activate_thrusters)
 	if not input_component.deactivate_thrusters.is_connected(movement_component.deactivate_thrusters):

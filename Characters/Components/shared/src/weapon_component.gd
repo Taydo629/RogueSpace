@@ -1,6 +1,6 @@
 class_name WeaponComponent extends Node
 
-var weapons : Array[BaseWeapon]
+var weapons : Array[BasePart]
 var parent: RigidBody2D
 
 func _ready() -> void:
@@ -14,4 +14,13 @@ func initalise_weapons(ship_graph: Dictionary) -> void:
 
 func fire() -> void:
 	for weapon in weapons:
-		weapon.fire_weapon(parent)
+		if weapon.has_method("fire_weapon"):
+			weapon.fire_weapon(parent)
+
+func toggle_fire(toggle: bool) -> void:
+	for weapon in weapons:
+		if weapon.has_method("toggle_weapon"):
+			if toggle:
+				weapon.toggle_weapon(parent, true)
+			else:
+				weapon.toggle_weapon(parent, false)
