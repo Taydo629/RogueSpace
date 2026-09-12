@@ -49,9 +49,7 @@ func _physics_process(delta: float) -> void:
 	force_raycast_update()
 
 	if is_colliding():
-		print("beam coliding")
 		laser_end_position = to_local(get_collision_point())
-		print(laser_end_position)
 		collision_particles.global_rotation = get_collision_normal().angle()
 		collision_particles.position = laser_end_position
 	

@@ -6,6 +6,7 @@ class_name PlayerUI extends Control
 @onready var sector_label: Label = $SectorLabel
 @onready var hint_panel: Panel = $HintPanel
 @onready var hud: Node2D = $HUD
+@onready var energy_ui: MarginContainer = $EnergyUI
 
 var parent: MainUILayer
 var player: Player
@@ -28,6 +29,7 @@ func init_ui() -> void:
 	player = parent.player
 	if not player.player_died.is_connected(death):
 		player.player_died.connect(death)
+	energy_ui.energy_component = player.energy_component
 	level_generator = parent.level_gen
 	enemy_array = level_generator.current_enemy_array
 	station = level_generator.current_station
@@ -35,6 +37,7 @@ func init_ui() -> void:
 		Inventory.credit_changed.connect(update_credit_ui)
 	update_sector_label(level_generator.level_number)
 	update_credit_ui(Inventory.wallet)
+	update_energy_ui()
 	update_hud()
 
 func death() -> void:
@@ -67,6 +70,9 @@ func update_hud() -> void:
 	station_hud_indicator = {"indicator": new_station_hud_indicator, "node": station}
 	print(station_hud_indicator)
 	print(enemy_hud_indicators)
+
+func update_energy_ui() -> void:
+	energy_ui.init_energy_ui()
 
 func _process(_delta: float) -> void:
 	if len(enemy_hud_indicators) != 0:

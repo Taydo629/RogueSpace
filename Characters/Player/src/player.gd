@@ -58,6 +58,8 @@ func init_ship() -> void:
 		input_component.zoom_in.connect(player_camera.zoom_in)
 	if not input_component.zoom_out.is_connected(player_camera.zoom_out):
 		input_component.zoom_out.connect(player_camera.zoom_out)
+	if not input_component.energy_routing.is_connected(energy_component.reroute_energy):
+		input_component.energy_routing.connect(energy_component.reroute_energy)
 	part_component.ship_graph = ship_graph
 	player_camera.enabled = true
 	reinitialise_components()

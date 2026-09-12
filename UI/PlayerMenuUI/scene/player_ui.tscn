@@ -2,6 +2,17 @@
 
 [ext_resource type="Script" uid="uid://bgsosccfdxhq" path="res://UI/PlayerMenuUI/src/player_ui.gd" id="1_48xfa"]
 [ext_resource type="Script" uid="uid://bqqe7u1h368pq" path="res://UI/PlayerMenuUI/src/pickup_ui.gd" id="2_8isll"]
+[ext_resource type="Script" uid="uid://dp5ohvpt2v5ad" path="res://UI/PlayerMenuUI/src/energy_ui.gd" id="3_swk5i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c8q58"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n1a5j"]
+bg_color = Color(0, 0.7163925, 0.39422363, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+shadow_size = 1
 
 [node name="PlayerUI" type="Control" unique_id=343522777]
 layout_mode = 3
@@ -127,3 +138,134 @@ metadata/_edit_use_anchors_ = true
 
 [node name="HUD" type="Node2D" parent="." unique_id=1522000529]
 position = Vector2(576, 320)
+
+[node name="EnergyUI" type="MarginContainer" parent="." unique_id=792819632]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 480.0
+offset_right = -896.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_swk5i")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EnergyUI" unique_id=649919328]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="EnergyUI/VBoxContainer" unique_id=1422866728]
+layout_mode = 2
+text = "Energy"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="EnergyUI/VBoxContainer" unique_id=1884580810]
+layout_mode = 2
+
+[node name="ShieldEnergyContainer" type="VBoxContainer" parent="EnergyUI/VBoxContainer/HBoxContainer" unique_id=1671010621]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="EnergyUI/VBoxContainer/HBoxContainer/ShieldEnergyContainer" unique_id=1736209693]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="EnergyUI/VBoxContainer/HBoxContainer/ShieldEnergyContainer/MarginContainer" unique_id=1252401809]
+layout_mode = 2
+
+[node name="EnergyBar" type="ProgressBar" parent="EnergyUI/VBoxContainer/HBoxContainer/ShieldEnergyContainer/MarginContainer/HBoxContainer" unique_id=709073555]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/background = SubResource("StyleBoxEmpty_c8q58")
+theme_override_styles/fill = SubResource("StyleBoxFlat_n1a5j")
+fill_mode = 3
+show_percentage = false
+
+[node name="PipHbox" type="VBoxContainer" parent="EnergyUI/VBoxContainer/HBoxContainer/ShieldEnergyContainer/MarginContainer/HBoxContainer" unique_id=215234687]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 6.0
+alignment = 2
+
+[node name="Label" type="Label" parent="EnergyUI/VBoxContainer/HBoxContainer/ShieldEnergyContainer" unique_id=2057029624]
+layout_mode = 2
+text = "Shield"
+horizontal_alignment = 1
+
+[node name="MovementEnergyContainer" type="VBoxContainer" parent="EnergyUI/VBoxContainer/HBoxContainer" unique_id=1083195789]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="EnergyUI/VBoxContainer/HBoxContainer/MovementEnergyContainer" unique_id=175596762]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="EnergyUI/VBoxContainer/HBoxContainer/MovementEnergyContainer/MarginContainer" unique_id=744224252]
+layout_mode = 2
+
+[node name="EnergyBar" type="ProgressBar" parent="EnergyUI/VBoxContainer/HBoxContainer/MovementEnergyContainer/MarginContainer/HBoxContainer" unique_id=1830671118]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/background = SubResource("StyleBoxEmpty_c8q58")
+theme_override_styles/fill = SubResource("StyleBoxFlat_n1a5j")
+fill_mode = 3
+show_percentage = false
+
+[node name="PipHbox" type="VBoxContainer" parent="EnergyUI/VBoxContainer/HBoxContainer/MovementEnergyContainer/MarginContainer/HBoxContainer" unique_id=293489037]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 6.0
+alignment = 2
+
+[node name="Label" type="Label" parent="EnergyUI/VBoxContainer/HBoxContainer/MovementEnergyContainer" unique_id=109779218]
+layout_mode = 2
+text = "Movement"
+horizontal_alignment = 1
+
+[node name="WeaponEnergyContainer" type="VBoxContainer" parent="EnergyUI/VBoxContainer/HBoxContainer" unique_id=1209829088]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="EnergyUI/VBoxContainer/HBoxContainer/WeaponEnergyContainer" unique_id=1296830749]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="EnergyUI/VBoxContainer/HBoxContainer/WeaponEnergyContainer/MarginContainer" unique_id=805630850]
+layout_mode = 2
+
+[node name="EnergyBar" type="ProgressBar" parent="EnergyUI/VBoxContainer/HBoxContainer/WeaponEnergyContainer/MarginContainer/HBoxContainer" unique_id=216421510]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/background = SubResource("StyleBoxEmpty_c8q58")
+theme_override_styles/fill = SubResource("StyleBoxFlat_n1a5j")
+fill_mode = 3
+show_percentage = false
+
+[node name="PipHbox" type="VBoxContainer" parent="EnergyUI/VBoxContainer/HBoxContainer/WeaponEnergyContainer/MarginContainer/HBoxContainer" unique_id=1700978646]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 6.0
+alignment = 2
+
+[node name="Label" type="Label" parent="EnergyUI/VBoxContainer/HBoxContainer/WeaponEnergyContainer" unique_id=1220886988]
+layout_mode = 2
+text = "Weapon"
+horizontal_alignment = 1

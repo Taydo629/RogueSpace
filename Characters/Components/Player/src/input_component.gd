@@ -10,6 +10,12 @@ signal mouse_pos_changed
 signal zoom_in
 signal zoom_out
 signal dash(int)
+signal energy_routing(int)
+
+var energy_component: EnergyComponent
+
+func _ready() -> void:
+	energy_component = get_parent().energy_component
 
 func _process(_delta: float) -> void:
 	if Input.is_action_pressed("left_click"):
@@ -34,4 +40,10 @@ func _process(_delta: float) -> void:
 		dash.emit(-1)
 	if Input.is_action_pressed("yaw_R"):
 		dash.emit(1)
+	if Input.is_action_just_pressed("1"):
+		energy_routing.emit(energy_component.ENERGY_ROUTES.SHIELDS)
+	if Input.is_action_just_pressed("2"):
+		energy_routing.emit(energy_component.ENERGY_ROUTES.MOVEMENT)
+	if Input.is_action_just_pressed("3"):
+		energy_routing.emit(energy_component.ENERGY_ROUTES.WEAPONS)
 	mouse_pos_changed.emit(get_parent().get_global_mouse_position())
