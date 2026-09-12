@@ -21,6 +21,7 @@ shape = SubResource("RectangleShape2D_8n5rc")
 [node name="LaserBeam2D" parent="." index="3" unique_id=1052828422 instance=ExtResource("3_8n5rc")]
 target_position = Vector2(0, -8000)
 max_length = 8000.0
+color = Color(0.8234666, 0.00053925696, 0.8240605, 1)
 
 [node name="Polygon2D" type="Polygon2D" parent="." index="4" unique_id=1234275355]
 polygon = PackedVector2Array(-32, 32, 32, 32, 32, -32, -32, -32)

@@ -16,4 +16,6 @@ max_health = 200
 part_type = 1
 possible_neighbors = Array[int]([2])
 damage = 100.0
+dps = 100.0
+energy_p_s = 200.0
 metadata/_custom_type_script = "uid://dfxnbigy6na68"
