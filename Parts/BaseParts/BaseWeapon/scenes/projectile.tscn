@@ -6,6 +6,7 @@
 size = Vector2(16, 20)
 
 [node name="Projectile" type="StaticBody2D" unique_id=444542411]
+process_mode = 1
 script = ExtResource("1_c8fcr")
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=561878264]
