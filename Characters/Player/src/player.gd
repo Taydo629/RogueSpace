@@ -35,6 +35,7 @@ signal player_died
 
 func init_ship() -> void:
 	shield_component.energy_component = energy_component
+	movement_component.energy_component = energy_component
 	if not part_component.graph_changed.is_connected(reinitialise_components):
 		part_component.graph_changed.connect(reinitialise_components)
 	if not part_component.ship_destroyed.is_connected(died):

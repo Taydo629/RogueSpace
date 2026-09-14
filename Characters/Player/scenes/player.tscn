@@ -35,6 +35,7 @@ script = ExtResource("1_qu4a1")
 [node name="EnergyComponent" parent="." unique_id=1505962074 instance=ExtResource("3_4pyqg")]
 
 [node name="MovementComponent" parent="." unique_id=894662683 instance=ExtResource("3_70d11")]
+gyro_strength = 150000.0
 
 [node name="WeaponComponent" parent="." unique_id=1177833148 instance=ExtResource("4_cw2d6")]
 process_mode = 1

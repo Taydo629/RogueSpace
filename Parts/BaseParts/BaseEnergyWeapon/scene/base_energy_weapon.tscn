@@ -20,6 +20,9 @@ shape = SubResource("RectangleShape2D_8n5rc")
 
 [node name="LaserBeam2D" parent="." index="3" unique_id=1052828422 instance=ExtResource("3_8n5rc")]
 target_position = Vector2(0, -8000)
+collision_mask = 2
+collide_with_areas = true
+collide_with_bodies = false
 max_length = 8000.0
 color = Color(0.8234666, 0.00053925696, 0.8240605, 1)
 

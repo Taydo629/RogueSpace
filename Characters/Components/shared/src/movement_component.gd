@@ -2,12 +2,14 @@ class_name MovementComponent extends Node
 
 @export var gyro_strength: float = 300000.0
 @export var dash_strength: float = 30000.0
+@export var dash_energy_cost: float = 500.0
 @export var dash_cooldown: float = 2
 @export var dash_anim_time: float = 0.5
 var parent: RigidBody2D
 var thrusters : Array[Thruster]
 var timer: Timer
 var dash_available: bool = true
+var energy_component: EnergyComponent
 
 func _ready() -> void:
 	parent = get_parent()
@@ -50,22 +52,31 @@ func deactivate_thrusters() -> void:
 
 func dash(direction: int) -> void:
 	if dash_available:
-		parent.dash_effect.direction = Vector2(direction, 0)
-		parent.dash_effect.restart()
-		parent.dash_effect.emitting = true
-		dash_available = false
-		timer.start()
-		# If direction is 1 dash to right and if -1 to left.
-		var dash_force: Vector2 = (direction * Vector2.RIGHT).rotated(parent.rotation) * dash_strength
-		parent.apply_central_impulse(dash_force)
+		if not energy_component.use_energy(dash_energy_cost, energy_component.ENERGY_ROUTES.MOVEMENT):
+			return
+		else:
+			var force_modifier: float = 1
+			if energy_component != null:
+				force_modifier = 1 + float(energy_component.energy_pips.get(energy_component.ENERGY_ROUTES.MOVEMENT).get("pips")) / float(energy_component.MAX_PIPS_PER_ROUTE)
+			parent.dash_effect.direction = Vector2(direction, 0)
+			parent.dash_effect.restart()
+			parent.dash_effect.emitting = true
+			dash_available = false
+			timer.start()
+			# If direction is 1 dash to right and if -1 to left.
+			var dash_force: Vector2 = (direction * Vector2.RIGHT).rotated(parent.rotation) * dash_strength * force_modifier
+			parent.apply_central_impulse(dash_force)
 
 func dash_reset() -> void:
 	dash_available = true
 
 func rotate_to(target_pos: Vector2) -> void:
+	var force_modifier: float = 1
+	if energy_component != null:
+		force_modifier = 1 + float(energy_component.energy_pips.get(energy_component.ENERGY_ROUTES.MOVEMENT).get("pips")) / float(energy_component.MAX_PIPS_PER_ROUTE)
 	var angle_diff = get_angle_to_target(target_pos)
 	if abs(angle_diff) >= 0.01:
-		parent.apply_torque(angle_diff * gyro_strength)
+		parent.apply_torque(angle_diff * gyro_strength * force_modifier)
 
 func get_angle_to_target(target_pos: Vector2) -> float:
 	var direction = (target_pos - parent.global_position).normalized()

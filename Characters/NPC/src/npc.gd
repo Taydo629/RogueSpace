@@ -6,6 +6,8 @@ class_name npc extends RigidBody2D
 @onready var npc_input_component: NPC_input_component = $NPCInputComponent
 @onready var detection_area: Area2D = $DetectionArea
 @onready var collision_shape_2d: CollisionShape2D = $DetectionArea/CollisionShape2D
+@onready var energy_component: EnergyComponent = $EnergyComponent
+@onready var shield_component: ShieldComponent = $ShieldComponent
 
 var ship_graph: Dictionary
 		
@@ -47,6 +49,7 @@ func create_ship():
 	init_ship()
 
 func init_ship() -> void:
+	shield_component.energy_component = energy_component
 	part_component.ship_graph = ship_graph
 	reinitialise_components()
 
