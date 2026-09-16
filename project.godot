@@ -24,6 +24,11 @@ Inventory="*uid://c37avumkds57"
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[gui]
+
+theme/custom="uid://bttkqih41opy3"
+theme/custom_font="uid://dg1pe2cffshy2"
+
 [input]
 
 thrust={
