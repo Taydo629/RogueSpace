@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://bof1amknkiwlr" path="res://assets/NinePatchRect_asset.png" id="1_cg4lv"]
 [ext_resource type="Texture2D" uid="uid://jyjmyfxbiv2a" path="res://assets/Button_asset.png" id="1_jka1i"]
-[ext_resource type="FontFile" uid="uid://bhhd6df4vpjsc" path="res://font/diffusion/ttf-unhinted/diffusion-regular.ttf" id="1_t6aun"]
 [ext_resource type="Texture2D" uid="uid://birsve6bjks6a" path="res://assets/Tab_asset.png" id="3_6lmnr"]
+[ext_resource type="FontFile" uid="uid://cu5su2gqae8au" path="res://font/Xanmono_Font_1_0/TrueType (.ttf)/Xanmono-Regular.ttf" id="4_6lmnr"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h4t6h"]
 texture = ExtResource("1_jka1i")
@@ -58,53 +58,89 @@ texture_margin_top = 56.0
 texture_margin_right = 22.0
 texture_margin_bottom = 56.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4r13r"]
-atlas = ExtResource("3_6lmnr")
-region = Rect2(10, 47, 71, 15)
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6lmnr"]
+load_path = "res://.godot/imported/Tab_asset.png-87d15fab84fff96b67a91ce757216362.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h4t6h"]
+atlas = SubResource("CompressedTexture2D_6lmnr")
+region = Rect2(80, 32, 32, 16)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tj3yl"]
-texture = SubResource("AtlasTexture_4r13r")
-texture_margin_left = 16.0
-texture_margin_top = 3.0
-texture_margin_right = 16.0
-texture_margin_bottom = 3.0
-modulate_color = Color(0.70796615, 0.7079667, 0.7079661, 1)
+texture = SubResource("AtlasTexture_h4t6h")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 2.0
+modulate_color = Color(0.49354547, 0.4935456, 0.49354517, 1)
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0meg1"]
-texture = SubResource("AtlasTexture_4r13r")
-texture_margin_left = 16.0
-texture_margin_top = 3.0
-texture_margin_right = 16.0
-texture_margin_bottom = 3.0
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ufj7v"]
+load_path = "res://.godot/imported/Tab_asset.png-87d15fab84fff96b67a91ce757216362.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0meg1"]
+atlas = SubResource("CompressedTexture2D_ufj7v")
+region = Rect2(80, 32, 32, 16)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uud0x"]
+texture = SubResource("AtlasTexture_0meg1")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 2.0
+modulate_color = Color(0.8862616, 0.88626146, 0.8862615, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mxt4c"]
+load_path = "res://.godot/imported/Tab_asset.png-87d15fab84fff96b67a91ce757216362.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4r13r"]
+atlas = SubResource("CompressedTexture2D_mxt4c")
+region = Rect2(80, 32, 32, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tsnps"]
 texture = SubResource("AtlasTexture_4r13r")
-texture_margin_left = 16.0
-texture_margin_top = 3.0
-texture_margin_right = 16.0
-texture_margin_bottom = 3.0
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 2.0
+modulate_color = Color(0.9297146, 0.9297147, 0.9297146, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xilhc"]
+load_path = "res://.godot/imported/Tab_asset.png-87d15fab84fff96b67a91ce757216362.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dvcbg"]
+atlas = SubResource("CompressedTexture2D_xilhc")
+region = Rect2(80, 32, 32, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_do0dj"]
+texture = SubResource("AtlasTexture_dvcbg")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 2.0
 modulate_color = Color(0.69965345, 0.69965345, 0.69965345, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j8hlx"]
 atlas = ExtResource("3_6lmnr")
-region = Rect2(8, 72, 240, 15)
+region = Rect2(8, 64, 240, 16)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mxt4c"]
 texture = SubResource("AtlasTexture_j8hlx")
-texture_margin_left = 16.0
-texture_margin_top = 1.0
-texture_margin_right = 16.0
-texture_margin_bottom = 1.0
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 2.0
 
 [resource]
-default_font = ExtResource("1_t6aun")
+default_font = ExtResource("4_6lmnr")
+default_font_size = 12
 Button/styles/disabled = SubResource("StyleBoxTexture_h4t6h")
 Button/styles/hover = SubResource("StyleBoxTexture_jka1i")
 Button/styles/normal = SubResource("StyleBoxTexture_6lmnr")
 Button/styles/pressed = SubResource("StyleBoxTexture_u15ig")
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_cg4lv")
+TabContainer/constants/tab_separation = 2
 TabContainer/styles/panel = SubResource("StyleBoxTexture_ufj7v")
-TabContainer/styles/tab_hovered = SubResource("StyleBoxTexture_tj3yl")
-TabContainer/styles/tab_selected = SubResource("StyleBoxTexture_0meg1")
-TabContainer/styles/tab_unselected = SubResource("StyleBoxTexture_uud0x")
+TabContainer/styles/tab_disabled = SubResource("StyleBoxTexture_tj3yl")
+TabContainer/styles/tab_hovered = SubResource("StyleBoxTexture_uud0x")
+TabContainer/styles/tab_selected = SubResource("StyleBoxTexture_tsnps")
+TabContainer/styles/tab_unselected = SubResource("StyleBoxTexture_do0dj")
 TabContainer/styles/tabbar_background = SubResource("StyleBoxTexture_mxt4c")

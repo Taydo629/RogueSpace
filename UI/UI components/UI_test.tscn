@@ -25,8 +25,8 @@ text = "Take a look"
 [node name="TabContainer" type="TabContainer" parent="." unique_id=1659848873]
 layout_mode = 0
 offset_left = 34.0
-offset_top = 271.0
-offset_right = 541.0
+offset_top = 233.0
+offset_right = 677.0
 offset_bottom = 488.0
 current_tab = 0
 
