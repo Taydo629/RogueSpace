@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://bp51bdue80th0"]
+
+[ext_resource type="Texture2D" uid="uid://b6d1kjojcyi20" path="res://assets/UI_theme_asset_sheet.png" id="1_5awkl"]
+[ext_resource type="Script" uid="uid://w0o0wsetw2vu" path="res://UI/MapUI/src/map_ui.gd" id="1_j0p0c"]
+[ext_resource type="Texture2D" uid="uid://t105tdvgunrx" path="res://Parts/BaseParts/BaseEnergyWeapon/src/glowing_circle.png" id="3_08wri"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n1a5j"]
+atlas = ExtResource("1_5awkl")
+region = Rect2(0, 288, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11g5x"]
+atlas = ExtResource("1_5awkl")
+region = Rect2(80, 288, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k27bp"]
+atlas = ExtResource("1_5awkl")
+region = Rect2(160, 288, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j0p0c"]
+atlas = ExtResource("1_5awkl")
+region = Rect2(240, 288, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4yqsb"]
+atlas = ExtResource("1_5awkl")
+region = Rect2(320, 288, 64, 64)
+
+[node name="MapUI" type="Control" unique_id=869364215]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j0p0c")
+
+[node name="Panel" type="Panel" parent="." unique_id=1638649750]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CombatQuadrant" type="TextureRect" parent="." unique_id=1832126188]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_n1a5j")
+
+[node name="ShipyardQuadrant" type="TextureRect" parent="." unique_id=1495720909]
+layout_mode = 0
+offset_left = 79.0
+offset_top = 21.0
+offset_right = 143.0
+offset_bottom = 85.0
+texture = SubResource("AtlasTexture_11g5x")
+
+[node name="NeutralQuadrant" type="TextureRect" parent="." unique_id=1198858153]
+layout_mode = 0
+offset_left = 177.0
+offset_top = 19.0
+offset_right = 241.0
+offset_bottom = 83.0
+texture = SubResource("AtlasTexture_k27bp")
+
+[node name="MerchantQaudrant" type="TextureRect" parent="." unique_id=1770642028]
+layout_mode = 0
+offset_left = 265.0
+offset_top = 92.0
+offset_right = 329.0
+offset_bottom = 156.0
+texture = SubResource("AtlasTexture_j0p0c")
+
+[node name="BossQaudrant2" type="TextureRect" parent="." unique_id=825315531]
+layout_mode = 0
+offset_left = 367.0
+offset_top = 61.0
+offset_right = 431.0
+offset_bottom = 125.0
+texture = SubResource("AtlasTexture_4yqsb")
+
+[node name="Line2D" type="Line2D" parent="." unique_id=1761509130]
+points = PackedVector2Array(355, 1, 0, 0)
+
+[node name="StartQuadrant" type="TextureRect" parent="." unique_id=1174147942]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 71.0
+offset_right = 61.0
+offset_bottom = 130.0
+texture = ExtResource("3_08wri")

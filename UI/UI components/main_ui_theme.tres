@@ -39,6 +39,9 @@ texture_margin_right = 10.0
 texture_margin_bottom = 10.0
 modulate_color = Color(1.540184e-06, 0.43351945, 0.5369333, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_snhad"]
+bg_color = Color(0.30810207, 0.3182794, 0.64332104, 1)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_uud0x"]
 atlas = ExtResource("2_h4t6h")
 region = Rect2(256, 112, 240, 160)
@@ -113,6 +116,7 @@ Button/styles/disabled = SubResource("StyleBoxTexture_h4t6h")
 Button/styles/hover = SubResource("StyleBoxTexture_u15ig")
 Button/styles/normal = SubResource("StyleBoxTexture_6lmnr")
 Button/styles/pressed = SubResource("StyleBoxTexture_0meg1")
+Panel/styles/panel = SubResource("StyleBoxFlat_snhad")
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_cg4lv")
 TabContainer/constants/tab_separation = 2
 TabContainer/styles/panel = SubResource("StyleBoxTexture_ufj7v")
