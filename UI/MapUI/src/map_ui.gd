@@ -15,8 +15,8 @@ var map_h_view_frac: float = 0.8
 var map_v_view_frac: float = 0.5
 var selected_quadrant_icon: QuadrantIcon
 const QUADRANT_ICON = preload("uid://cell8jff8h881")
-@onready var quadrant_label: Label = $QuadrantLabel
-@onready var button: Button = $Button
+@onready var quadrant_label: Label = $PanelContainer/HBoxContainer/QuadrantLabel
+@onready var button: Button = $PanelContainer/HBoxContainer/Button
 var hovering_button: bool = false
 
 func _ready() -> void:

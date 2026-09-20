@@ -6,7 +6,7 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lpe4w"]
 atlas = ExtResource("1_5awkl")
-region = Rect2(-4, 284, 72, 72)
+region = Rect2(396, 284, 72, 72)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qh7vf"]
 atlas = ExtResource("1_5awkl")
@@ -31,6 +31,18 @@ shader_parameter/line_width = 1.0
 shader_parameter/line_default_a = 0.2000000095
 shader_parameter/circle_size = 1.0
 shader_parameter/mouse_pos = Vector2(0, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uud0x"]
+atlas = ExtResource("1_5awkl")
+region = Rect2(256, 112, 240, 160)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j0p0c"]
+texture = SubResource("AtlasTexture_uud0x")
+texture_margin_left = 54.0
+texture_margin_top = 54.0
+texture_margin_right = 54.0
+texture_margin_bottom = 54.0
+modulate_color = Color(0.641934, 0.641934, 0.641934, 1)
 
 [node name="MapUI" type="Control" unique_id=869364215]
 layout_mode = 3
@@ -67,31 +79,35 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Button" type="Button" parent="." unique_id=1511221602]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 968.0
-offset_top = 536.0
-offset_right = -52.0
-offset_bottom = -64.0
-disabled = true
-text = "Travel"
-
-[node name="QuadrantLabel" type="Label" parent="." unique_id=1413820900]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=832135776]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 600.0
-offset_top = 554.0
-offset_right = -192.0
-offset_bottom = -63.0
+offset_left = 488.0
+offset_top = 496.0
+offset_right = -40.0
+offset_bottom = -13.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_j0p0c")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer" unique_id=1717118117]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="QuadrantLabel" type="Label" parent="PanelContainer/HBoxContainer" unique_id=1413820900]
+layout_mode = 2
+size_flags_horizontal = 3
 text = "Select a quadrant to continue!
 "
+vertical_alignment = 1
 
-[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
-[connection signal="mouse_exited" from="Button" to="." method="_on_button_mouse_exited"]
+[node name="Button" type="Button" parent="PanelContainer/HBoxContainer" unique_id=1511221602]
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 2
+disabled = true
+text = "Travel"
+
+[connection signal="mouse_entered" from="PanelContainer/HBoxContainer/Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="PanelContainer/HBoxContainer/Button" to="." method="_on_button_mouse_exited"]
