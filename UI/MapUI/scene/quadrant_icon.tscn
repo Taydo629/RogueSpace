@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cell8jff8h881"]
+
+[ext_resource type="Script" uid="uid://dg1xbgooqdvf" path="res://UI/MapUI/src/quadrant_icon.gd" id="1_lpe4w"]
+
+[node name="QuadrantIcon" type="TextureRect" unique_id=777437560]
+anchors_preset = -1
+anchor_left = -0.021000002
+anchor_top = -0.037
+anchor_right = 0.021000002
+anchor_bottom = 0.037
+offset_left = 0.19200134
+offset_top = -0.024000168
+offset_right = -0.19200134
+offset_bottom = 0.024000168
+pivot_offset = Vector2(24, 24)
+offset_transform_enabled = true
+script = ExtResource("1_lpe4w")
+grow_time = 0.1
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
