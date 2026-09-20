@@ -3,14 +3,21 @@ extends Control
 
 # Testing with script inside level_gen_component
 @export var sector_width: int = 5
-@export var layers: int = 10
+@export var layers: int = 8
 @export var num_of_paths: int = 3
 @export var icons: Dictionary[Quadrant.TYPE, Texture2D]
 var map_grid: Array[Array]
-var selected_quadrant_icon: QuadrantIcon
+var current_grid_pos: Vector2
+
+var icon_dict: Dictionary[Vector2, QuadrantIcon]
 var view_port_size: Vector2
-var map_view_frac: float = 0.8
+var map_h_view_frac: float = 0.8
+var map_v_view_frac: float = 0.5
+var selected_quadrant_icon: QuadrantIcon
 const QUADRANT_ICON = preload("uid://cell8jff8h881")
+@onready var quadrant_label: Label = $QuadrantLabel
+@onready var button: Button = $Button
+var hovering_button: bool = false
 
 func _ready() -> void:
 	view_port_size = get_viewport().get_visible_rect().size
@@ -22,40 +29,70 @@ func _process(delta: float) -> void:
 		_unselect_quadrant()
 
 func _init_map_ui() -> void:
-	var map_size: Vector2 = view_port_size * map_view_frac
-	var h_sep: float = map_size.x/layers
-	var v_sep: float = map_size.y/sector_width
-	var left_offset: float = (view_port_size.x - map_size.x)
-	var up_offset: float = (view_port_size.y - map_size.y)
-	for layer in len(map_grid):
-		for row in len(map_grid[layer]):
-			var current_quadrant: Quadrant = map_grid[layer][row]
-			var current_grid: Vector2 = current_quadrant.position
-			var new_quadrant_icon: QuadrantIcon = QUADRANT_ICON.instantiate()
-			var current_quadrant_position = Vector2(left_offset + current_grid.x * h_sep, up_offset + current_grid.y * v_sep)
-			new_quadrant_icon.quadrant = current_quadrant
-			new_quadrant_icon.icon_texture = icons.get(current_quadrant.type)
-			new_quadrant_icon.set_position(current_quadrant_position)
-			new_quadrant_icon.selected.connect(_select_quadrant)
-			for next_quadrant: Quadrant in current_quadrant.next_quadrant:
-				# Create Line
-				var connecting_line: Line2D = Line2D.new()
-				connecting_line.add_point(current_quadrant_position)
-				var next_grid: Vector2 = next_quadrant.position
-				var pos_to_connect: Vector2 = Vector2(left_offset + next_grid.x * h_sep, up_offset + next_grid.y * v_sep)
-				connecting_line.add_point(pos_to_connect)
-				connecting_line.z_index = -1
-				add_child(connecting_line)
-			add_child(new_quadrant_icon)
+	var map_size: Vector2 = view_port_size * Vector2(map_h_view_frac, map_v_view_frac)
+	var h_sep: float = map_size.x/(layers - 1)
+	var v_sep: float = map_size.y/(sector_width - 1)
+	var left_offset: float = (view_port_size.x - map_size.x)/1.5
+	var up_offset: float = (view_port_size.y - map_size.y)/2
+	for layer in map_grid:
+		for quadrant: Quadrant in layer:
+			if quadrant.type == Quadrant.TYPE.EMPTY:
+				pass
+			else:
+				var current_grid: Vector2 = quadrant.position
+				var new_quadrant_icon: QuadrantIcon = QUADRANT_ICON.instantiate()
+				var current_quadrant_position = Vector2(left_offset + current_grid.x * h_sep, up_offset + current_grid.y * v_sep)
+				new_quadrant_icon.quadrant = quadrant
+				new_quadrant_icon.icon_texture = icons.get(quadrant.type)
+				new_quadrant_icon.set_position(current_quadrant_position)
+				new_quadrant_icon.selected.connect(_select_quadrant)
+				for next_quadrant: Quadrant in quadrant.next_quadrant:
+					# Create Line
+					var connecting_line: Line2D = Line2D.new()
+					connecting_line.add_point(current_quadrant_position)
+					var next_grid: Vector2 = next_quadrant.position
+					var pos_to_connect: Vector2 = Vector2(left_offset + next_grid.x * h_sep, up_offset + next_grid.y * v_sep)
+					connecting_line.add_point(pos_to_connect)
+					connecting_line.z_index = -1
+					add_child(connecting_line)
+				icon_dict.set(current_grid, new_quadrant_icon)
+				new_quadrant_icon.reachable = false
+				add_child(new_quadrant_icon)
+	
+	_available_quadrants()
+
+func _available_quadrants() -> void:
+	var available_quadrants: Array[Quadrant] = []
+	if current_grid_pos == Vector2.ZERO:
+		for candidate_quadrant: Quadrant in map_grid[0]:
+			if candidate_quadrant.type != Quadrant.TYPE.EMPTY:
+				available_quadrants.append(candidate_quadrant)
+	else:
+		var current_quadrant: Quadrant = map_grid[current_grid_pos.x][current_grid_pos.y]
+		for next_quadrants: Quadrant in current_quadrant.next_quadrant:
+			available_quadrants.append(next_quadrants)
+	for quadrant: Quadrant in available_quadrants:
+		var grid_pos: Vector2 = quadrant.position
+		var quadrant_icon: QuadrantIcon = icon_dict.get(grid_pos)
+		print(quadrant_icon)
+		quadrant_icon.highlighted()
+		quadrant_icon.reachable = true
 
 func _select_quadrant(selected_quadrant: QuadrantIcon) -> void:
+	button.disabled = false
 	selected_quadrant_icon = selected_quadrant
+	var label_text: String = "Selected Quadrant: a%s-b%s"  % [int(selected_quadrant.quadrant.position.x)+1, int(selected_quadrant.quadrant.position.y)+1]
+	quadrant_label.text = label_text
 
 func _unselect_quadrant() -> void:
-	print("Unselecting quadrant")
 	if selected_quadrant_icon != null:
+		if hovering_button:
+			return
 		if selected_quadrant_icon.unselect_quadrant():
 			selected_quadrant_icon = null
+			button.disabled = true
+			var label_text: String = "Select a quadrant to continue!"
+			quadrant_label.text = label_text
 		else:
 			return
 	else:
@@ -141,15 +178,24 @@ func generate_map() -> void:
 			if len(quadrant.next_quadrant) == 0 and quadrant.type != Quadrant.TYPE.BOSS:
 				quadrant_to_remove.append(quadrant)
 		for quadrant in quadrant_to_remove:
-			initial_map_grid[i].erase(quadrant)
+			quadrant.type = Quadrant.TYPE.EMPTY
 	
 	# Debug print
 	print(initial_map_grid)
 	for layer in initial_map_grid:
 		for row:Quadrant in layer:
-			if len(row.next_quadrant) != 0 or row.type == Quadrant.TYPE.BOSS:
-				var next_pos: Array[Vector2]
-				for connection: Quadrant in row.next_quadrant:
-					next_pos.append(connection.position)
-				print("%s at %s with connections to %s" % [row, row.position,next_pos])
+			if row.type != Quadrant.TYPE.EMPTY:
+				if len(row.next_quadrant) != 0 or row.type == Quadrant.TYPE.BOSS:
+					var next_pos: Array[Vector2]
+					for connection: Quadrant in row.next_quadrant:
+						next_pos.append(connection.position)
+					print("%s at %s with connections to %s" % [row, row.position,next_pos])
 	map_grid = initial_map_grid
+
+
+func _on_button_mouse_entered() -> void:
+	hovering_button = true
+
+
+func _on_button_mouse_exited() -> void:
+	hovering_button = false

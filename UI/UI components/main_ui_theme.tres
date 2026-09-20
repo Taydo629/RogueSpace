@@ -1,6 +1,7 @@
 [gd_resource type="Theme" format=3 uid="uid://bttkqih41opy3"]
 
 [ext_resource type="Texture2D" uid="uid://b6d1kjojcyi20" path="res://assets/UI_theme_asset_sheet.png" id="2_h4t6h"]
+[ext_resource type="Texture2D" uid="uid://b7kfpcmgiw4tm" path="res://assets/Panel_asset.png" id="2_jka1i"]
 [ext_resource type="FontFile" uid="uid://cu5su2gqae8au" path="res://font/Xanmono_Font_1_0/TrueType (.ttf)/Xanmono-Regular.ttf" id="4_6lmnr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cec4o"]
@@ -39,8 +40,15 @@ texture_margin_right = 10.0
 texture_margin_bottom = 10.0
 modulate_color = Color(1.540184e-06, 0.43351945, 0.5369333, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_snhad"]
-bg_color = Color(0.30810207, 0.3182794, 0.64332104, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k27bp"]
+texture = ExtResource("2_jka1i")
+texture_margin_left = 100.0
+texture_margin_top = 100.0
+texture_margin_right = 100.0
+texture_margin_bottom = 100.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+region_rect = Rect2(0, 0, 1000, 1000)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uud0x"]
 atlas = ExtResource("2_h4t6h")
@@ -116,7 +124,7 @@ Button/styles/disabled = SubResource("StyleBoxTexture_h4t6h")
 Button/styles/hover = SubResource("StyleBoxTexture_u15ig")
 Button/styles/normal = SubResource("StyleBoxTexture_6lmnr")
 Button/styles/pressed = SubResource("StyleBoxTexture_0meg1")
-Panel/styles/panel = SubResource("StyleBoxFlat_snhad")
+Panel/styles/panel = SubResource("StyleBoxTexture_k27bp")
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_cg4lv")
 TabContainer/constants/tab_separation = 2
 TabContainer/styles/panel = SubResource("StyleBoxTexture_ufj7v")

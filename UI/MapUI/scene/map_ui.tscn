@@ -2,26 +2,35 @@
 
 [ext_resource type="Texture2D" uid="uid://b6d1kjojcyi20" path="res://assets/UI_theme_asset_sheet.png" id="1_5awkl"]
 [ext_resource type="Script" uid="uid://w0o0wsetw2vu" path="res://UI/MapUI/src/map_ui.gd" id="1_j0p0c"]
+[ext_resource type="Shader" uid="uid://cvvodjxutsgje" path="res://shaders/ship_building_ui.gdshader" id="3_j0p0c"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lpe4w"]
 atlas = ExtResource("1_5awkl")
-region = Rect2(0, 288, 64, 64)
+region = Rect2(-4, 284, 72, 72)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qh7vf"]
 atlas = ExtResource("1_5awkl")
-region = Rect2(240, 288, 64, 64)
+region = Rect2(236, 284, 72, 72)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cb3mm"]
 atlas = ExtResource("1_5awkl")
-region = Rect2(80, 288, 64, 64)
+region = Rect2(76, 284, 72, 72)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u48wt"]
 atlas = ExtResource("1_5awkl")
-region = Rect2(160, 288, 64, 64)
+region = Rect2(156, 284, 72, 72)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t5xms"]
 atlas = ExtResource("1_5awkl")
-region = Rect2(320, 288, 64, 64)
+region = Rect2(316, 284, 72, 72)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c8q58"]
+shader = ExtResource("3_j0p0c")
+shader_parameter/grid_size = 50.0000023275
+shader_parameter/line_width = 1.0
+shader_parameter/line_default_a = 0.2000000095
+shader_parameter/circle_size = 1.0
+shader_parameter/mouse_pos = Vector2(0, 0)
 
 [node name="MapUI" type="Control" unique_id=869364215]
 layout_mode = 3
@@ -32,18 +41,57 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_j0p0c")
 icons = Dictionary[int, Texture2D]({
-0: SubResource("AtlasTexture_lpe4w"),
-1: SubResource("AtlasTexture_qh7vf"),
-2: SubResource("AtlasTexture_cb3mm"),
-3: SubResource("AtlasTexture_u48wt"),
-4: SubResource("AtlasTexture_t5xms")
+1: SubResource("AtlasTexture_lpe4w"),
+2: SubResource("AtlasTexture_qh7vf"),
+3: SubResource("AtlasTexture_cb3mm"),
+4: SubResource("AtlasTexture_u48wt"),
+5: SubResource("AtlasTexture_t5xms")
 })
 
-[node name="Panel" type="Panel" parent="." unique_id=1638649750]
+[node name="TextureRect" type="ColorRect" parent="." unique_id=536022505]
 z_index = -5
+material = SubResource("ShaderMaterial_c8q58")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="." unique_id=1638649750]
+z_index = -10
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="." unique_id=1511221602]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 968.0
+offset_top = 536.0
+offset_right = -52.0
+offset_bottom = -64.0
+disabled = true
+text = "Travel"
+
+[node name="QuadrantLabel" type="Label" parent="." unique_id=1413820900]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 600.0
+offset_top = 554.0
+offset_right = -192.0
+offset_bottom = -63.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Select a quadrant to continue!
+"
+
+[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="_on_button_mouse_exited"]

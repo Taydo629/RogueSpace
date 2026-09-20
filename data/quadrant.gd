@@ -1,7 +1,7 @@
 class_name Quadrant
 extends Resource
 
-enum TYPE {COMBAT, MERCAHNT, SHIPYARD, NEUTRAL, BOSS}
+enum TYPE {EMPTY, COMBAT, MERCAHNT, SHIPYARD, NEUTRAL, BOSS}
 const COMBAT_PROB: int = 2
 const MERCAHNT_PROB: int = 1
 const SHIPYARD_PROB: int = 1
