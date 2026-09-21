@@ -137,6 +137,8 @@ func init_game() -> void:
 
 func generate_level(quadrant: Quadrant) -> void:
 	current_quadrant = quadrant
+	if current_quadrant.type == Quadrant.TYPE.BOSS:
+		generate_map()
 	level_number += 1
 	# Clear the level before generating new one
 	clear_level()

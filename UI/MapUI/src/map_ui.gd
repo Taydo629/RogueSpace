@@ -4,10 +4,13 @@ extends Control
 @export var icons: Dictionary[Quadrant.TYPE, Texture2D]
 var map_grid: Array[Array]:
 	set(value):
+		if not map_grid.is_empty():
+			_clear_map()
 		map_grid = value
 		_init_new_map()
-var current_grid_pos: Vector2
 
+var current_grid_pos: Vector2
+var line_array: Array[Line2D]
 var icon_dict: Dictionary[Vector2, QuadrantIcon]
 var view_port_size: Vector2
 var map_h_view_frac: float = 0.8
@@ -32,6 +35,16 @@ func _process(delta: float) -> void:
 func init_map_ui() -> void:
 	_available_quadrants()
 
+func _clear_map() -> void:
+	available_quadrants.clear()
+	for icon: QuadrantIcon in icon_dict.values():
+		icon.queue_free()
+	for line in line_array:
+		line.queue_free()
+	line_array.clear()
+	icon_dict.clear()
+	current_grid_pos = Vector2.ZERO
+
 func _init_new_map() -> void:
 	var map_size: Vector2 = view_port_size * Vector2(map_h_view_frac, map_v_view_frac)
 	var h_sep: float = map_size.x/(len(map_grid) - 1)
@@ -53,6 +66,7 @@ func _init_new_map() -> void:
 				for next_quadrant: Quadrant in quadrant.next_quadrant:
 					# Create Line
 					var connecting_line: Line2D = Line2D.new()
+					line_array.append(connecting_line)
 					connecting_line.add_point(current_quadrant_position)
 					var next_grid: Vector2 = next_quadrant.position
 					var pos_to_connect: Vector2 = Vector2(left_offset + next_grid.x * h_sep, up_offset + next_grid.y * v_sep)
@@ -64,6 +78,12 @@ func _init_new_map() -> void:
 				add_child(new_quadrant_icon)
 
 func _available_quadrants() -> void:
+	# Clear previous available quadrants and make them not reachable and not highlighted
+	for quadrant: Quadrant in available_quadrants:
+		var quadrant_pos: Vector2 = quadrant.position
+		var quadrant_icon: QuadrantIcon = icon_dict.get(quadrant_pos)
+		quadrant_icon.reachable = false
+		quadrant_icon.unhighlighted()
 	available_quadrants.clear()
 	if current_grid_pos == Vector2.ZERO:
 		for candidate_quadrant: Quadrant in map_grid[0]:
@@ -113,15 +133,8 @@ func _on_button_pressed() -> void:
 		print("traveling")
 		current_grid_pos = selected_quadrant_icon.quadrant.position
 		
-		for quadrant: Quadrant in available_quadrants:
-			var quadrant_pos: Vector2 = quadrant.position
-			var quadrant_icon: QuadrantIcon = icon_dict.get(quadrant_pos)
-			quadrant_icon.reachable = false
-			selected_quadrant_icon.unhighlighted()
-		
 		selected_quadrant_icon.highlighted()
 		selected_quadrant_icon.reachable = false
 		selected_quadrant_icon.unselect_quadrant()
 		selected_quadrant_icon = null
-		_available_quadrants()
 		travel_to_quadrant.emit(map_grid[current_grid_pos.x][current_grid_pos.y])

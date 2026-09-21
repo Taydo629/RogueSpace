@@ -4,3 +4,4 @@
 
 [node name="LevelGenComponent" type="Node" unique_id=1697448056]
 script = ExtResource("1_5mlh8")
+layers = 3
