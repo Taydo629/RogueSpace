@@ -18,8 +18,8 @@ func enter() -> void:
 		station_ui.exit_station.connect(return_to_game)
 	if not station_ui.enter_build.is_connected(enter_build):
 		station_ui.enter_build.connect(enter_build)
-	if not station_ui.jump_to_new_level.is_connected(jump_to_next_sector):
-		station_ui.jump_to_new_level.connect(jump_to_next_sector)
+	if not station_ui.jump_to_new_level.is_connected(travel_to_next_quadrant):
+		station_ui.jump_to_new_level.connect(travel_to_next_quadrant)
 	station_ui.init_ui()
 	#if state_machine.previous_state.get_state_name() != StationUIState.state_name:
 		#print("hey")
@@ -43,9 +43,9 @@ func return_to_game() -> void:
 func enter_build() -> void:
 	state_machine.transition(BuildUIState.state_name)
 
-func jump_to_next_sector() -> void:
-	state_machine.transition(SectorInfoUIState.state_name)
-	canvas_layer.jump_to_next_sector()
+func travel_to_next_quadrant() -> void:
+	state_machine.transition(MapUIState.state_name)
+	#canvas_layer.jump_to_next_sector()
 
 func process(_delta: float) -> void:
 	if Input.is_action_just_pressed("esc"):

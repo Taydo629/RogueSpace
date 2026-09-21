@@ -1,0 +1,129 @@
+[gd_scene format=3 uid="uid://g7i7nqney7q"]
+
+[ext_resource type="Script" uid="uid://dlqbmcwkrm6rx" path="res://scenes/main/src/main_game.gd" id="1_d2op2"]
+[ext_resource type="Script" uid="uid://fs53e73vr78y" path="res://UI/src/main_ui_layer.gd" id="4_o6v7o"]
+[ext_resource type="PackedScene" uid="uid://cxmsma5j4rs0l" path="res://UI/UIStateMachine/scenes/ui_state_machine.tscn" id="4_wjob3"]
+[ext_resource type="PackedScene" uid="uid://blx5bir57n83o" path="res://UI/StartMenuUI/scene/start_menu_ui.tscn" id="5_nqdth"]
+[ext_resource type="PackedScene" uid="uid://b7axk8e3fxsiw" path="res://UI/PlayerMenuUI/scene/player_ui.tscn" id="6_5cypo"]
+[ext_resource type="PackedScene" uid="uid://dyxopugemdibc" path="res://scenes/main/scenes/level_gen_component.tscn" id="7_nqdth"]
+[ext_resource type="PackedScene" uid="uid://deyud7bd4kyqi" path="res://UI/PauseMenuUI/scene/pause_menu_ui.tscn" id="7_o6v7o"]
+[ext_resource type="PackedScene" uid="uid://bp51bdue80th0" path="res://UI/MapUI/scene/map_ui.tscn" id="8_h4r6f"]
+[ext_resource type="PackedScene" uid="uid://blofhoxjvbs5y" path="res://UI/ShipBuildingUI/scene/ship_building_ui.tscn" id="8_wjob3"]
+[ext_resource type="PackedScene" uid="uid://c0nva578wdvmu" path="res://UI/GuideUI/scene/guide_ui.tscn" id="9_5cypo"]
+[ext_resource type="Script" uid="uid://dfxnbigy6na68" path="res://data/parts.gd" id="10_fpthe"]
+[ext_resource type="PackedScene" uid="uid://ds8t7yfbj4qfp" path="res://UI/StationUI/scene/station_ui.tscn" id="10_o6v7o"]
+[ext_resource type="Resource" uid="uid://bs8ufgr7qnr1y" path="res://data/Parts/gun.tres" id="11_h4r6f"]
+[ext_resource type="PackedScene" uid="uid://c7woe6b2tkxna" path="res://UI/SectorInfo/scene/sector_info.tscn" id="11_wjob3"]
+[ext_resource type="Script" uid="uid://cm5wa1dfltaot" path="res://data/npc_ship.gd" id="12_4qwfe"]
+[ext_resource type="Resource" uid="uid://dxn6vqjt4j07d" path="res://data/Parts/core.tres" id="12_fvpsc"]
+[ext_resource type="Resource" uid="uid://dwtxjrojbsons" path="res://data/NPCShips/patrol_ship.tres" id="13_7e4r1"]
+[ext_resource type="Texture2D" uid="uid://dmdsrf5jlj5jk" path="res://assets/Space_BG.png" id="13_qy7f2"]
+[ext_resource type="Resource" uid="uid://bu4cdhp5bisf5" path="res://data/Parts/hull.tres" id="13_xk0cf"]
+[ext_resource type="Texture2D" uid="uid://b6qqpjtotmc0p" path="res://assets/Sun_sprite.png" id="14_4d5ma"]
+[ext_resource type="Texture2D" uid="uid://cegk085sa5e0e" path="res://assets/Rocky_planet_sprite.png" id="14_aly5s"]
+[ext_resource type="Resource" uid="uid://b4k0ewhy4bwpf" path="res://data/Parts/thruster.tres" id="14_ldk75"]
+[ext_resource type="Resource" uid="uid://nxtyhwldok2c" path="res://data/Parts/tractor_beam.tres" id="15_eycr2"]
+[ext_resource type="Texture2D" uid="uid://bkkmlju23hpuo" path="res://assets/2d_lights_and_shadows_neutral_point_light.webp" id="15_rxlyu"]
+[ext_resource type="PackedScene" uid="uid://b8m8r5rsh4g0w" path="res://UI/DeathScreenUI/scenes/death_screen.tscn" id="17_h4r6f"]
+
+[node name="MainGame" type="Node2D" unique_id=956598129]
+process_mode = 3
+script = ExtResource("1_d2op2")
+
+[node name="MainUILayer" type="CanvasLayer" parent="." unique_id=1008782413]
+process_mode = 3
+script = ExtResource("4_o6v7o")
+
+[node name="UIStateMachine" parent="MainUILayer" unique_id=2069799045 instance=ExtResource("4_wjob3")]
+
+[node name="StartMenuUI" parent="MainUILayer" unique_id=867886566 instance=ExtResource("5_nqdth")]
+process_mode = 4
+visible = false
+
+[node name="PauseMenuUI" parent="MainUILayer" unique_id=2109095095 instance=ExtResource("7_o6v7o")]
+process_mode = 4
+visible = false
+
+[node name="PlayerUI" parent="MainUILayer" unique_id=343522777 instance=ExtResource("6_5cypo")]
+process_mode = 4
+visible = false
+
+[node name="ShipBuildingUI" parent="MainUILayer" unique_id=542883084 instance=ExtResource("8_wjob3")]
+process_mode = 4
+visible = false
+
+[node name="MapUI" parent="MainUILayer" unique_id=869364215 instance=ExtResource("8_h4r6f")]
+process_mode = 4
+visible = false
+
+[node name="GuideUI" parent="MainUILayer" unique_id=853896309 instance=ExtResource("9_5cypo")]
+process_mode = 4
+visible = false
+
+[node name="StationUI" parent="MainUILayer" unique_id=2071674807 instance=ExtResource("10_o6v7o")]
+process_mode = 4
+visible = false
+inventory_parts = Array[ExtResource("10_fpthe")]([ExtResource("11_h4r6f"), ExtResource("12_fvpsc"), ExtResource("13_xk0cf"), ExtResource("14_ldk75"), ExtResource("15_eycr2")])
+
+[node name="SectorInfo" parent="MainUILayer" unique_id=943868874 instance=ExtResource("11_wjob3")]
+process_mode = 4
+visible = false
+
+[node name="DeathScreen" parent="MainUILayer" unique_id=410832684 instance=ExtResource("17_h4r6f")]
+process_mode = 4
+visible = false
+
+[node name="LevelGenComponent" parent="." unique_id=1697448056 instance=ExtResource("7_nqdth")]
+process_mode = 3
+loaded_ships = Array[ExtResource("12_4qwfe")]([ExtResource("13_7e4r1")])
+
+[node name="Background" type="Node2D" parent="." unique_id=1890223868]
+z_index = -5
+
+[node name="Space" type="Parallax2D" parent="Background" unique_id=736096544]
+scroll_scale = Vector2(0.1, 0.1)
+repeat_size = Vector2(1920, 1080)
+repeat_times = 8
+
+[node name="Space" type="Sprite2D" parent="Background/Space" unique_id=1460360841]
+texture = ExtResource("13_qy7f2")
+
+[node name="Sun" type="Parallax2D" parent="Background" unique_id=1470027427]
+scroll_scale = Vector2(0.2, 0.2)
+
+[node name="Sun" type="Sprite2D" parent="Background/Sun" unique_id=987179957]
+position = Vector2(-2128, -1208)
+scale = Vector2(10, 10)
+texture = ExtResource("14_4d5ma")
+
+[node name="PointLight2D" type="PointLight2D" parent="Background/Sun" unique_id=481029091]
+position = Vector2(-2124, -1191.9999)
+scale = Vector2(20.21875, 19.437502)
+color = Color(0.87357354, 0.6782919, 0.12589192, 1)
+energy = 2.0
+texture = ExtResource("15_rxlyu")
+texture_scale = 1.3
+
+[node name="PlanetNear" type="Parallax2D" parent="Background" unique_id=1646218158]
+scroll_scale = Vector2(0.5, 0.5)
+
+[node name="Planet" type="Sprite2D" parent="Background/PlanetNear" unique_id=1611445449]
+position = Vector2(2911.9998, 1119.9999)
+scale = Vector2(6, 6)
+texture = ExtResource("14_aly5s")
+
+[node name="PlanetMid" type="Parallax2D" parent="Background" unique_id=1410389629]
+scroll_scale = Vector2(0.4, 0.4)
+
+[node name="Planet" type="Sprite2D" parent="Background/PlanetMid" unique_id=401766289]
+position = Vector2(992, 256)
+scale = Vector2(3, 3)
+texture = ExtResource("14_aly5s")
+
+[node name="PlanetFar" type="Parallax2D" parent="Background" unique_id=408329590]
+scroll_scale = Vector2(0.3, 0.3)
+scroll_offset = Vector2(-120, -432)
+
+[node name="Planet" type="Sprite2D" parent="Background/PlanetFar" unique_id=1935650754]
+position = Vector2(-184, -440)
+texture = ExtResource("14_aly5s")

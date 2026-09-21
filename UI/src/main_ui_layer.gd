@@ -5,6 +5,7 @@ class_name MainUILayer extends CanvasLayer
 @onready var player_ui: PlayerUI = $PlayerUI
 @onready var pause_menu_ui: PauseMenu = $PauseMenuUI
 @onready var ship_building_ui: BuildUI = $ShipBuildingUI
+@onready var map_ui: MapUI = $MapUI
 @onready var guide_ui: GuideUI = $GuideUI
 @onready var station_ui: StationUI = $StationUI
 @onready var sector_info: SectorInfoUI = $SectorInfo
@@ -14,7 +15,8 @@ var player: Player
 var level_gen: LevelGenComponent
 var main_game: Node2D
 
-signal generate_level
+signal travel_to_new_sector
+signal travel_to_new_quadrant(Quadrant)
 signal restart
 
 func init_ui() -> void:
@@ -22,6 +24,7 @@ func init_ui() -> void:
 								PauseUIState.new(self),
 								BuildUIState.new(self),
 								PlayerUIState.new(self),
+								MapUIState.new(self),
 								StationUIState.new(self),
 								GuideUIState.new(self),
 								SectorInfoUIState.new(self),
@@ -29,7 +32,11 @@ func init_ui() -> void:
 	ui_state_machine.start_machine(states)
 
 func jump_to_next_sector() -> void:
-	generate_level.emit()
+	pass
+
+func travel_to_next_quadrant(quadrant: Quadrant) -> void:
+	#generate_level.emit()
+	travel_to_new_quadrant.emit(quadrant)
 
 func restart_game() -> void:
 	restart.emit()

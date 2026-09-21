@@ -52,6 +52,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_j0p0c")
+sector_width = null
+layers = null
+num_of_paths = null
 icons = Dictionary[int, Texture2D]({
 1: SubResource("AtlasTexture_lpe4w"),
 2: SubResource("AtlasTexture_qh7vf"),
@@ -111,3 +114,4 @@ text = "Travel"
 
 [connection signal="mouse_entered" from="PanelContainer/HBoxContainer/Button" to="." method="_on_button_mouse_entered"]
 [connection signal="mouse_exited" from="PanelContainer/HBoxContainer/Button" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]

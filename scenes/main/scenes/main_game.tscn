@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b7axk8e3fxsiw" path="res://UI/PlayerMenuUI/scene/player_ui.tscn" id="6_5cypo"]
 [ext_resource type="PackedScene" uid="uid://dyxopugemdibc" path="res://scenes/main/scenes/level_gen_component.tscn" id="7_nqdth"]
 [ext_resource type="PackedScene" uid="uid://deyud7bd4kyqi" path="res://UI/PauseMenuUI/scene/pause_menu_ui.tscn" id="7_o6v7o"]
+[ext_resource type="PackedScene" uid="uid://bp51bdue80th0" path="res://UI/MapUI/scene/map_ui.tscn" id="8_h4r6f"]
 [ext_resource type="PackedScene" uid="uid://blofhoxjvbs5y" path="res://UI/ShipBuildingUI/scene/ship_building_ui.tscn" id="8_wjob3"]
 [ext_resource type="PackedScene" uid="uid://c0nva578wdvmu" path="res://UI/GuideUI/scene/guide_ui.tscn" id="9_5cypo"]
 [ext_resource type="Script" uid="uid://dfxnbigy6na68" path="res://data/parts.gd" id="10_fpthe"]
@@ -48,6 +49,10 @@ process_mode = 4
 visible = false
 
 [node name="ShipBuildingUI" parent="MainUILayer" unique_id=542883084 instance=ExtResource("8_wjob3")]
+process_mode = 4
+visible = false
+
+[node name="MapUI" parent="MainUILayer" unique_id=869364215 instance=ExtResource("8_h4r6f")]
 process_mode = 4
 visible = false
 

@@ -9,13 +9,18 @@ var playable_bound_x: Vector2 = Vector2(-7000,7000)
 var playable_bound_y: Vector2 = Vector2(-7000,7000)
 var main_game: Node2D
 var player: Player
+var map_ui: MapUI
 const NPC = preload("uid://dxth7s5bap4i5")
 const STATION = preload("uid://baad6rfav87i3")
 const PLAYER = preload("uid://tqn70usw28ix")
 @export var sector_width: int = 5
 @export var layers: int = 10
 @export var num_of_paths: int = 3
-var map_grid: Array[Array]
+var current_quadrant: Quadrant
+var map_grid: Array[Array]:
+	set(value):
+		map_grid = value
+		map_ui.map_grid = map_grid
 
 @export var spawn_enemies: bool = true
 @export var enemy_spawn_override_count: int = -1
@@ -101,17 +106,18 @@ func generate_map() -> void:
 			if len(quadrant.next_quadrant) == 0 and quadrant.type != Quadrant.TYPE.BOSS:
 				quadrant_to_remove.append(quadrant)
 		for quadrant in quadrant_to_remove:
-			initial_map_grid[i].erase(quadrant)
+			quadrant.type = Quadrant.TYPE.EMPTY
 	
 	# Debug print
 	print(initial_map_grid)
 	for layer in initial_map_grid:
 		for row:Quadrant in layer:
-			if len(row.next_quadrant) != 0 or row.type == Quadrant.TYPE.BOSS:
-				var next_pos: Array[Vector2]
-				for connection: Quadrant in row.next_quadrant:
-					next_pos.append(connection.position)
-				print("%s at %s with connections to %s" % [row, row.position,next_pos])
+			if row.type != Quadrant.TYPE.EMPTY:
+				if len(row.next_quadrant) != 0 or row.type == Quadrant.TYPE.BOSS:
+					var next_pos: Array[Vector2]
+					for connection: Quadrant in row.next_quadrant:
+						next_pos.append(connection.position)
+					print("%s at %s with connections to %s" % [row, row.position,next_pos])
 	map_grid = initial_map_grid
 
 func _ready() -> void:
@@ -129,7 +135,8 @@ func init_game() -> void:
 	add_child(player)
 	generate_map()
 
-func generate_level() -> void:
+func generate_level(quadrant: Quadrant) -> void:
+	current_quadrant = quadrant
 	level_number += 1
 	# Clear the level before generating new one
 	clear_level()

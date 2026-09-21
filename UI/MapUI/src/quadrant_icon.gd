@@ -32,8 +32,12 @@ func set_availability() -> void:
 		set_instance_shader_parameter("reachable", false)
 	else:
 		set_instance_shader_parameter("reachable", true)
+
 func highlighted() -> void:
 	set_instance_shader_parameter("highlighted", true)
+
+func unhighlighted() -> void:
+	set_instance_shader_parameter("highlighted", false)
 
 func unselect_quadrant() -> bool:
 	if not is_hovered and reachable:
