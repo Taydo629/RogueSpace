@@ -7,23 +7,26 @@ class_name PlayerUI extends Control
 @onready var hint_panel: Panel = $HintPanel
 @onready var hud: Node2D = $HUD
 @onready var energy_ui: MarginContainer = $EnergyUI
+@onready var warp_button: Button = $WarpButton
 
 var parent: MainUILayer
 var player: Player
 var level_generator: LevelGenComponent
 var enemy_array: Array[npc]
-var station: StaticBody2D
+#var station: StaticBody2D
 
 var enemy_hud_indicators: Array[Dictionary]
-var station_hud_indicator: Dictionary
+#var station_hud_indicator: Dictionary
 
 const ENEMY_DIRECTION_HUD = preload("uid://8o6kdkj546o3")
-const STATION_DIRECTION_HUD = preload("uid://dfl6i5lki8rxw")
+#const STATION_DIRECTION_HUD = preload("uid://dfl6i5lki8rxw")
 
-signal enter_station
+#signal enter_station
 signal player_died
+signal warp
 
 func init_ui() -> void:
+	set_process(true)
 	parent = get_parent()
 	player = parent.player
 	if not player.player_died.is_connected(death):
@@ -31,7 +34,7 @@ func init_ui() -> void:
 	energy_ui.energy_component = player.energy_component
 	level_generator = parent.level_gen
 	enemy_array = level_generator.current_enemy_array
-	station = level_generator.current_station
+	#station = level_generator.current_station
 	if not Inventory.credit_changed.is_connected(update_credit_ui):
 		Inventory.credit_changed.connect(update_credit_ui)
 	update_sector_label(level_generator.level_number, level_generator.current_quadrant.position)
@@ -55,10 +58,10 @@ func update_hud() -> void:
 	if not enemy_hud_indicators.is_empty():
 		for enemy in enemy_hud_indicators:
 			enemy.get("indicator").queue_free()
-	if not station_hud_indicator.is_empty():
-		station_hud_indicator.get("indicator").queue_free()
+	#if not station_hud_indicator.is_empty():
+		#station_hud_indicator.get("indicator").queue_free()
 	enemy_hud_indicators.clear()
-	station_hud_indicator.clear()
+	#station_hud_indicator.clear()
 	
 	# Mutate player UI based on the type of quadrant
 	if level_generator.current_quadrant.type in [Quadrant.TYPE.COMBAT, Quadrant.TYPE.BOSS]:
@@ -66,11 +69,11 @@ func update_hud() -> void:
 			var new_npc_hud_indicator = ENEMY_DIRECTION_HUD.instantiate()
 			hud.add_child(new_npc_hud_indicator)
 			enemy_hud_indicators.append({"indicator": new_npc_hud_indicator, "node": new_npc})
-		var new_station_hud_indicator = STATION_DIRECTION_HUD.instantiate()
-		new_station_hud_indicator.visible = false
-		hud.add_child(new_station_hud_indicator)
-		station_hud_indicator = {"indicator": new_station_hud_indicator, "node": station}
-		print(station_hud_indicator)
+		#var new_station_hud_indicator = STATION_DIRECTION_HUD.instantiate()
+		#new_station_hud_indicator.visible = false
+		#hud.add_child(new_station_hud_indicator)
+		#station_hud_indicator = {"indicator": new_station_hud_indicator, "node": station}
+		#print(station_hud_indicator)
 		print(enemy_hud_indicators)
 	elif level_generator.current_quadrant.type == Quadrant.TYPE.NEUTRAL:
 		print_debug("Add dialog box UI here!")
@@ -97,17 +100,25 @@ func _process(_delta: float) -> void:
 					enemy_hud.visible = true
 				var direction = (enemy_node.global_position - player.global_position).normalized()
 				enemy_hud.rotation = (Vector2.UP).angle_to(direction)
-	elif not station_hud_indicator.is_empty():
-		var station_node = station_hud_indicator.get("node")
-		if station_node != null:
-			var station_hud = station_hud_indicator.get("indicator")
-			if player.global_position.distance_to(station_node.global_position) <= 1200:
-				station_hud.visible = false
-				hint_panel.visible = true
-				if Input.is_action_just_pressed("e"):
-					enter_station.emit()
-			else:
-				station_hud.visible = true
-				hint_panel.visible = false
-			var direction = (station_node.global_position - player.global_position).normalized()
-			station_hud.rotation = (Vector2.UP).angle_to(direction)
+	else:
+		warp_button.disabled = false
+		warp_button.text = "Warp Ready!"
+		set_process(false)
+	#elif not station_hud_indicator.is_empty():
+		#var station_node = station_hud_indicator.get("node")
+		#if station_node != null:
+			#var station_hud = station_hud_indicator.get("indicator")
+			#if player.global_position.distance_to(station_node.global_position) <= 1200:
+				#station_hud.visible = false
+				#hint_panel.visible = true
+				#if Input.is_action_just_pressed("e"):
+					#enter_station.emit()
+			#else:
+				#station_hud.visible = true
+				#hint_panel.visible = false
+			#var direction = (station_node.global_position - player.global_position).normalized()
+			#station_hud.rotation = (Vector2.UP).angle_to(direction)
+
+
+func _on_warp_button_pressed() -> void:
+	warp.emit()
