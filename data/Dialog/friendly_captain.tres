@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="Dialog" format=3 uid="uid://byxw7igs6xxwg"]
+
+[ext_resource type="Script" uid="uid://dr7ekb3lnwneb" path="res://data/dialog_option.gd" id="1_7ls2v"]
+[ext_resource type="Script" uid="uid://dfxnbigy6na68" path="res://data/parts.gd" id="2_4hrs0"]
+[ext_resource type="Script" uid="uid://bqkyyw3ii053j" path="res://data/dialog.gd" id="2_sx8bo"]
+[ext_resource type="Resource" uid="uid://bs8ufgr7qnr1y" path="res://data/Parts/gun.tres" id="3_x1gft"]
+[ext_resource type="Resource" uid="uid://f60asy2hl75j" path="res://data/Parts/laser.tres" id="4_rvvvm"]
+[ext_resource type="Resource" uid="uid://b4k0ewhy4bwpf" path="res://data/Parts/thruster.tres" id="5_rygc1"]
+
+[sub_resource type="Resource" id="Resource_sulr2"]
+script = ExtResource("1_7ls2v")
+option_text = "Ill take a part!"
+rewards = Array[int]([0])
+option_response = "Here take these parts! I dont have a need for these anyways! Good luck!"
+possible_part_rewards = Array[ExtResource("2_4hrs0")]([ExtResource("3_x1gft"), ExtResource("4_rvvvm"), ExtResource("5_rygc1")])
+metadata/_custom_type_script = "uid://dr7ekb3lnwneb"
+
+[sub_resource type="Resource" id="Resource_ik4pj"]
+script = ExtResource("1_7ls2v")
+option_text = "Ill take some credits!"
+rewards = Array[int]([1])
+option_response = "Ofcourse you can have some credits! Anything for a fellow captain!"
+possible_credit_reward = 250
+metadata/_custom_type_script = "uid://dr7ekb3lnwneb"
+
+[sub_resource type="Resource" id="Resource_c7u5f"]
+script = ExtResource("1_7ls2v")
+option_text = "Im good thanks..."
+option_response = "Oh...Okay. Good luck on your journey captain..."
+metadata/_custom_type_script = "uid://dr7ekb3lnwneb"
+
+[resource]
+script = ExtResource("2_sx8bo")
+npc_name = "Friendly Captain"
+main_dialog_text = "Hello there fellow captain. It seems that you are new to this sector and looks like you could do with an helping hand!"
+options = Array[ExtResource("1_7ls2v")]([SubResource("Resource_sulr2"), SubResource("Resource_ik4pj"), SubResource("Resource_c7u5f")])
+metadata/_custom_type_script = "uid://bqkyyw3ii053j"

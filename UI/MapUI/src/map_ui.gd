@@ -9,7 +9,7 @@ var map_grid: Array[Array]:
 		map_grid = value
 		_init_new_map()
 
-var current_grid_pos: Vector2
+var current_grid_pos: Vector2 = Vector2.INF
 var line_array: Array[Line2D]
 var icon_dict: Dictionary[Vector2, QuadrantIcon]
 var view_port_size: Vector2
@@ -43,7 +43,7 @@ func _clear_map() -> void:
 		line.queue_free()
 	line_array.clear()
 	icon_dict.clear()
-	current_grid_pos = Vector2.ZERO
+	current_grid_pos = Vector2.INF
 
 func _init_new_map() -> void:
 	var map_size: Vector2 = view_port_size * Vector2(map_h_view_frac, map_v_view_frac)
@@ -85,7 +85,7 @@ func _available_quadrants() -> void:
 		quadrant_icon.reachable = false
 		quadrant_icon.unhighlighted()
 	available_quadrants.clear()
-	if current_grid_pos == Vector2.ZERO:
+	if current_grid_pos == Vector2.INF:
 		for candidate_quadrant: Quadrant in map_grid[0]:
 			if candidate_quadrant.type != Quadrant.TYPE.EMPTY:
 				available_quadrants.append(candidate_quadrant)

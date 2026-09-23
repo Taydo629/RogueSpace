@@ -33,4 +33,4 @@ func restart_game() -> void:
 	# Give UI reference to player for player specific UI
 	main_ui_layer.player = level_gen_component.player
 	
-	level_gen_component.generate_level(null)
+	#level_gen_component.generate_level(null)

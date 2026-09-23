@@ -23,30 +23,43 @@ offset_bottom = -40.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="DialogBoxContainer" type="HBoxContainer" parent="DialogBoxBG" unique_id=1235733842]
+[node name="VBoxContainer" type="VBoxContainer" parent="DialogBoxBG" unique_id=133011197]
 layout_mode = 2
 
-[node name="DialogText" type="RichTextLabel" parent="DialogBoxBG/DialogBoxContainer" unique_id=1178964722]
+[node name="NPCNameLabel" type="Label" parent="DialogBoxBG/VBoxContainer" unique_id=1824629048]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Name"
+
+[node name="DialogBoxContainer" type="HBoxContainer" parent="DialogBoxBG/VBoxContainer" unique_id=1235733842]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DialogText" type="RichTextLabel" parent="DialogBoxBG/VBoxContainer/DialogBoxContainer" unique_id=1178964722]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 text = "lorem ipsum dolor sit amet consectetur adipiscing elit et enim optio sint cumque harum aliquip dolor nulla labore ad dolores quos voluptas ex et voluptas animi pariatur labore omnis ut assumenda vel distinctio irure eligendi quod at laboris quidem non soluta et nobis est ducimus nihil et id excepteur est"
 vertical_alignment = 1
 
-[node name="ButtonContainer" type="VBoxContainer" parent="DialogBoxBG/DialogBoxContainer" unique_id=1001862351]
+[node name="ButtonContainer" type="VBoxContainer" parent="DialogBoxBG/VBoxContainer/DialogBoxContainer" unique_id=1001862351]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 theme_override_constants/separation = 12
 
-[node name="Button1" type="Button" parent="DialogBoxBG/DialogBoxContainer/ButtonContainer" unique_id=1939324028]
-layout_mode = 2
-text = "Help them"
+[node name="WarpButton" type="Button" parent="." unique_id=851733143]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 912.0
+offset_top = 24.0
+offset_right = -28.0
+offset_bottom = -584.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Warp Ready!"
 
-[node name="Button2" type="Button" parent="DialogBoxBG/DialogBoxContainer/ButtonContainer" unique_id=1374202181]
-layout_mode = 2
-text = "Ignore"
-
-[node name="Button3" type="Button" parent="DialogBoxBG/DialogBoxContainer/ButtonContainer" unique_id=1387155252]
-layout_mode = 2
-text = "Attack Them"
+[connection signal="pressed" from="WarpButton" to="." method="_on_warp_button_pressed"]

@@ -142,37 +142,41 @@ func generate_level(quadrant: Quadrant) -> void:
 	level_number += 1
 	# Clear the level before generating new one
 	clear_level()
-	# NPC spawning
-	var valid_npcs: Array[NPCShip] = get_valid_ships_for_current_level()
-	var number_of_npcs: int
-	if spawn_enemies:
-		if enemy_spawn_override_count < 0:
-			number_of_npcs = randi_range(1, level_number)
+	# Spawn enemies if quadrant either boss or combat
+	if current_quadrant.type in [Quadrant.TYPE.BOSS, Quadrant.TYPE.COMBAT]:
+		# NPC spawning
+		var valid_npcs: Array[NPCShip] = get_valid_ships_for_current_level()
+		var number_of_npcs: int
+		if spawn_enemies:
+			if enemy_spawn_override_count < 0:
+				number_of_npcs = randi_range(1, level_number)
+			else:
+				number_of_npcs = enemy_spawn_override_count
 		else:
-			number_of_npcs = enemy_spawn_override_count
-	else:
-		number_of_npcs = 0
-	var npc_array: Array[npc]
-	for i in number_of_npcs:
-		var NPC_instance = NPC.instantiate()
-		var NPC_ship = valid_npcs.pick_random()
-		NPC_instance.position = Vector2(randf_range(playable_bound_x.x,playable_bound_x.y),randf_range(playable_bound_y.x,playable_bound_y.y))
-		#NPC_instance.position = Vector2(-200,0)
-		NPC_instance.ship_graph = NPC_ship.ship_graph.get_dictionary()
-		NPC_instance.grid_dim = NPC_ship.grid_size
-		add_child(NPC_instance)
-		npc_array.append(NPC_instance)
-	# Station spawining
-	var station_instance = STATION.instantiate()
-	station_instance.position = Vector2(randf_range(playable_bound_x.x,playable_bound_x.y),randf_range(playable_bound_y.x,playable_bound_y.y))
-	add_child(station_instance)
-	current_enemy_array = npc_array
-	current_station = station_instance
-	player.position = Vector2.ZERO
-	print_debug(player.angular_velocity)
-	print_debug(player.constant_torque)
-	player.constant_torque = 0
-	player.angular_velocity = 0
+			number_of_npcs = 0
+		var npc_array: Array[npc]
+		for i in number_of_npcs:
+			var NPC_instance = NPC.instantiate()
+			var NPC_ship = valid_npcs.pick_random()
+			NPC_instance.position = Vector2(randf_range(playable_bound_x.x,playable_bound_x.y),randf_range(playable_bound_y.x,playable_bound_y.y))
+			#NPC_instance.position = Vector2(-200,0)
+			NPC_instance.ship_graph = NPC_ship.ship_graph.get_dictionary()
+			NPC_instance.grid_dim = NPC_ship.grid_size
+			add_child(NPC_instance)
+			npc_array.append(NPC_instance)
+		# Station spawining
+		var station_instance = STATION.instantiate()
+		station_instance.position = Vector2(randf_range(playable_bound_x.x,playable_bound_x.y),randf_range(playable_bound_y.x,playable_bound_y.y))
+		add_child(station_instance)
+		current_enemy_array = npc_array
+		current_station = station_instance
+		player.position = Vector2.ZERO
+		print_debug(player.angular_velocity)
+		print_debug(player.constant_torque)
+		player.constant_torque = 0
+		player.angular_velocity = 0
+	if current_quadrant.type == Quadrant.TYPE.NEUTRAL:
+		pass
 	level_ready.emit(current_quadrant)
 
 func get_valid_ships_for_current_level() -> Array[NPCShip]:

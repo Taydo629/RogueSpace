@@ -25,6 +25,7 @@
 [ext_resource type="Resource" uid="uid://nxtyhwldok2c" path="res://data/Parts/tractor_beam.tres" id="15_eycr2"]
 [ext_resource type="Texture2D" uid="uid://bkkmlju23hpuo" path="res://assets/2d_lights_and_shadows_neutral_point_light.webp" id="15_rxlyu"]
 [ext_resource type="PackedScene" uid="uid://b8m8r5rsh4g0w" path="res://UI/DeathScreenUI/scenes/death_screen.tscn" id="17_h4r6f"]
+[ext_resource type="PackedScene" uid="uid://b7xy467r6h3vw" path="res://UI/DialogUI/scene/dialog_ui.tscn" id="19_fvpsc"]
 
 [node name="MainGame" type="Node2D" unique_id=956598129]
 process_mode = 3
@@ -70,6 +71,10 @@ process_mode = 4
 visible = false
 
 [node name="DeathScreen" parent="MainUILayer" unique_id=410832684 instance=ExtResource("17_h4r6f")]
+process_mode = 4
+visible = false
+
+[node name="DialogUI" parent="MainUILayer" unique_id=1059275400 instance=ExtResource("19_fvpsc")]
 process_mode = 4
 visible = false
 
