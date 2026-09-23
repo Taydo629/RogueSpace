@@ -120,10 +120,8 @@ func _unselect_quadrant() -> void:
 	else:
 		return
 
-
 func _on_button_mouse_entered() -> void:
 	hovering_button = true
-
 
 func _on_button_mouse_exited() -> void:
 	hovering_button = false

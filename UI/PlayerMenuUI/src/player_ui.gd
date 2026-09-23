@@ -11,7 +11,6 @@ class_name PlayerUI extends Control
 var parent: MainUILayer
 var player: Player
 var level_generator: LevelGenComponent
-
 var enemy_array: Array[npc]
 var station: StaticBody2D
 
@@ -60,16 +59,25 @@ func update_hud() -> void:
 		station_hud_indicator.get("indicator").queue_free()
 	enemy_hud_indicators.clear()
 	station_hud_indicator.clear()
-	for new_npc in enemy_array:
-		var new_npc_hud_indicator = ENEMY_DIRECTION_HUD.instantiate()
-		hud.add_child(new_npc_hud_indicator)
-		enemy_hud_indicators.append({"indicator": new_npc_hud_indicator, "node": new_npc})
-	var new_station_hud_indicator = STATION_DIRECTION_HUD.instantiate()
-	new_station_hud_indicator.visible = false
-	hud.add_child(new_station_hud_indicator)
-	station_hud_indicator = {"indicator": new_station_hud_indicator, "node": station}
-	print(station_hud_indicator)
-	print(enemy_hud_indicators)
+	
+	# Mutate player UI based on the type of quadrant
+	if level_generator.current_quadrant.type in [Quadrant.TYPE.COMBAT, Quadrant.TYPE.BOSS]:
+		for new_npc in enemy_array:
+			var new_npc_hud_indicator = ENEMY_DIRECTION_HUD.instantiate()
+			hud.add_child(new_npc_hud_indicator)
+			enemy_hud_indicators.append({"indicator": new_npc_hud_indicator, "node": new_npc})
+		var new_station_hud_indicator = STATION_DIRECTION_HUD.instantiate()
+		new_station_hud_indicator.visible = false
+		hud.add_child(new_station_hud_indicator)
+		station_hud_indicator = {"indicator": new_station_hud_indicator, "node": station}
+		print(station_hud_indicator)
+		print(enemy_hud_indicators)
+	elif level_generator.current_quadrant.type == Quadrant.TYPE.NEUTRAL:
+		print_debug("Add dialog box UI here!")
+	elif level_generator.current_quadrant.type == Quadrant.TYPE.SHIPYARD:
+		print_debug("Add shipyard UI here!")
+	elif level_generator.current_quadrant.type == Quadrant.TYPE.MERCAHNT:
+		print_debug("Add MERCHANT UI here!")
 
 func update_energy_ui() -> void:
 	energy_ui.init_energy_ui()

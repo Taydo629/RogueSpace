@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://b7xy467r6h3vw"]
+
+[ext_resource type="Script" uid="uid://bw3vn2c8poaob" path="res://UI/DialogUI/src/dialog_ui.gd" id="1_c7u5f"]
+
+[node name="DialogUI" type="Control" unique_id=1059275400]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_c7u5f")
+
+[node name="DialogBoxBG" type="PanelContainer" parent="." unique_id=703667214]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 176.0
+offset_top = 324.0
+offset_right = -176.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DialogBoxContainer" type="HBoxContainer" parent="DialogBoxBG" unique_id=1235733842]
+layout_mode = 2
+
+[node name="DialogText" type="RichTextLabel" parent="DialogBoxBG/DialogBoxContainer" unique_id=1178964722]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+text = "lorem ipsum dolor sit amet consectetur adipiscing elit et enim optio sint cumque harum aliquip dolor nulla labore ad dolores quos voluptas ex et voluptas animi pariatur labore omnis ut assumenda vel distinctio irure eligendi quod at laboris quidem non soluta et nobis est ducimus nihil et id excepteur est"
+vertical_alignment = 1
+
+[node name="ButtonContainer" type="VBoxContainer" parent="DialogBoxBG/DialogBoxContainer" unique_id=1001862351]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = 12
+
+[node name="Button1" type="Button" parent="DialogBoxBG/DialogBoxContainer/ButtonContainer" unique_id=1939324028]
+layout_mode = 2
+text = "Help them"
+
+[node name="Button2" type="Button" parent="DialogBoxBG/DialogBoxContainer/ButtonContainer" unique_id=1374202181]
+layout_mode = 2
+text = "Ignore"
+
+[node name="Button3" type="Button" parent="DialogBoxBG/DialogBoxContainer/ButtonContainer" unique_id=1387155252]
+layout_mode = 2
+text = "Attack Them"

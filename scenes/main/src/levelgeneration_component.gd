@@ -1,6 +1,6 @@
 class_name LevelGenComponent extends Node
 
-#signal level_generated
+signal level_ready(Quadrant)
 
 var level_number: int = 0
 var current_enemy_array: Array[npc]
@@ -173,7 +173,7 @@ func generate_level(quadrant: Quadrant) -> void:
 	print_debug(player.constant_torque)
 	player.constant_torque = 0
 	player.angular_velocity = 0
-	#level_generated.emit(level_number, npc_array, station_instance)
+	level_ready.emit(current_quadrant)
 
 func get_valid_ships_for_current_level() -> Array[NPCShip]:
 	var valid_ships: Array[NPCShip]

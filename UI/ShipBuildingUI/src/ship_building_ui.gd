@@ -314,4 +314,3 @@ func clear_build_and_exit() -> void:
 			child.queue_free()
 	
 	build_complete.emit()
-	get_tree().paused = false
