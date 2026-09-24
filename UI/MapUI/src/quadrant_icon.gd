@@ -18,7 +18,7 @@ var is_selected: bool = false
 
 signal selected(QuadrantIcon)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("left_click") and is_hovered and reachable:
 		selected.emit(self)
 		is_selected = true

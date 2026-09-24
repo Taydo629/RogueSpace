@@ -16,7 +16,7 @@ var player: Player
 var level_gen: LevelGenComponent
 var main_game: Node2D
 
-signal travel_to_new_sector
+#signal travel_to_new_sector
 signal travel_to_new_quadrant(Quadrant)
 signal restart
 

@@ -28,7 +28,7 @@ func _ready() -> void:
 	view_port_size = get_viewport().get_visible_rect().size
 	#generate_map()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("left_click"):
 		_unselect_quadrant()
 

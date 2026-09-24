@@ -23,7 +23,7 @@ func _process(delta: float) -> void:
 		if not energy_component.use_energy(energy_per_sec * delta, energy_component.ENERGY_ROUTES.WEAPONS):
 			toggle_weapon(parent, false)
 
-func toggle_weapon(parent_node: RigidBody2D, toggle: bool) -> void:
+func toggle_weapon(_parent_node: RigidBody2D, toggle: bool) -> void:
 	print("Firing Laser")
 	if toggle:
 		laser_on = true

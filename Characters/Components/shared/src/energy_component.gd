@@ -86,7 +86,7 @@ func generate_energy(delta: float) -> void:
 	for route in energy_pips.keys():
 		var energy_route: Dictionary = energy_pips.get(route)
 		var frac_total_pips: float = float(energy_route.get("pips"))/float(TOTAL_PIPS)
-		var max_energy_of_route: float = frac_total_pips * max_energy
+		#var max_energy_of_route: float = frac_total_pips * max_energy
 		var energy_charged: float = energy_route.max_energy * frac_total_pips * (energy_prod_percent_per_sec/100) * delta
 		var new_current_energy: float = energy_route.current_energy + energy_charged
 		if new_current_energy > energy_route.max_energy:

@@ -24,7 +24,7 @@ func _ready() -> void:
 func take_damage(damage: int) -> void:
 	var current_shield_energy: float = energy_component.energy_pips.get(energy_component.ENERGY_ROUTES.SHIELDS).get("current_energy")
 	var max_shield_energy: float = energy_component.energy_pips.get(energy_component.ENERGY_ROUTES.SHIELDS).get("max_energy")
-	var new_energy = current_shield_energy - damage * damage_to_energy_ratio
+	#var new_energy = current_shield_energy - damage * damage_to_energy_ratio
 	if energy_component.use_energy(damage * damage_to_energy_ratio, energy_component.ENERGY_ROUTES.SHIELDS):
 		var frac_energy: float = current_shield_energy / max_shield_energy
 		shield_sprite.material.set_shader_parameter("damage_frac", frac_energy)

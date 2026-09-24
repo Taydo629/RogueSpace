@@ -32,9 +32,11 @@ var tween: Tween = null
 func _ready() -> void:
 	set_color(color)
 	set_is_casting(is_casting)
-	line_2d.points[0] = Vector2.UP * start_distance
-	print(line_2d.points[0])
-	line_2d.points[1] = Vector2.ZERO
+	var line_points:= line_2d.points
+	line_points[0] = Vector2.UP * start_distance
+	print(line_points[0])
+	line_points[1] = Vector2.ZERO
+	line_2d.points = line_points
 	line_2d.visible = false
 	casting_particles.position = line_2d.points[0]
 
@@ -60,8 +62,9 @@ func _physics_process(delta: float) -> void:
 				hit_part.take_damage(get_parent().dps * delta)
 		collision_particles.global_rotation = get_collision_normal().angle()
 		collision_particles.position = laser_end_position
-	
-	line_2d.points[1] = laser_end_position
+	var line_points:= line_2d.points
+	line_points[1] = laser_end_position
+	line_2d.points = line_points
 	
 	var laser_start_position := line_2d.points[0]
 	beam_particles.position = laser_start_position + (laser_end_position - laser_start_position) * 0.5
@@ -84,8 +87,10 @@ func set_is_casting(new_value: bool) -> void:
 
 	if is_casting:
 		var laser_start := Vector2.RIGHT * start_distance
-		line_2d.points[0] = laser_start
-		line_2d.points[1] = laser_start
+		var line_points := line_2d.points
+		line_points[0] = laser_start
+		line_points[1] = laser_start
+		line_2d.points = line_points
 		casting_particles.position = laser_start
 
 		appear()

@@ -62,7 +62,7 @@ func generate_map() -> void:
 	for starting_point in starting_rows:
 		var current_pos:= Vector2(0,starting_point)
 		for layer in layers-1:
-			var current_quadrant: Quadrant = initial_map_grid[layer][current_pos.y]
+			var current_quadrant_iter: Quadrant = initial_map_grid[layer][current_pos.y]
 			var possible_rows: Array[int] = []
 			if current_pos.y > 0:
 				possible_rows.append(current_pos.y - 1)
@@ -79,12 +79,12 @@ func generate_map() -> void:
 			# Last layer before boss
 			if layer == layers -2:
 				# Connect second to last layer to boss quadrant
-				if initial_map_grid[boss_pos.x][boss_pos.y] not in current_quadrant.next_quadrant:
-					current_quadrant.next_quadrant.append(initial_map_grid[boss_pos.x][boss_pos.y])
+				if initial_map_grid[boss_pos.x][boss_pos.y] not in current_quadrant_iter.next_quadrant:
+					current_quadrant_iter.next_quadrant.append(initial_map_grid[boss_pos.x][boss_pos.y])
 			else:
 				var next_row: int = possible_rows.pick_random()
-				if initial_map_grid[layer + 1][next_row] not in current_quadrant.next_quadrant:
-					current_quadrant.next_quadrant.append(initial_map_grid[layer + 1][next_row])
+				if initial_map_grid[layer + 1][next_row] not in current_quadrant_iter.next_quadrant:
+					current_quadrant_iter.next_quadrant.append(initial_map_grid[layer + 1][next_row])
 				current_pos = Vector2(layer + 1, next_row)
 	
 	# Create a layer which has combat in the middle

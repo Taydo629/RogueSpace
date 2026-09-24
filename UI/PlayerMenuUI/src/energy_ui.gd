@@ -82,5 +82,5 @@ func update_energy_ui() -> void:
 						pips[i].queue_free()
 			weapon_energy_bar.value = energy_percent
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	update_energy_ui()

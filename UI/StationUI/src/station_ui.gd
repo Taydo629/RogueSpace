@@ -89,7 +89,7 @@ func _on_market_container_gui_input(event: InputEvent) -> void:
 func _on_sell_button_pressed() -> void:
 	if current_selected_grid != null:
 		var part_to_sell: Part = current_selected_grid.part
-		var credits_due: float = (float(part_to_sell.current_health)/float(part_to_sell.max_health))*float(part_to_sell.sell_price)
+		var credits_due := int((float(part_to_sell.current_health)/float(part_to_sell.max_health))*float(part_to_sell.sell_price))
 		Inventory.deposit_to_wallet(credits_due)
 		Inventory.remove_item(part_to_sell)
 		current_selected_grid.unselect()
@@ -122,7 +122,7 @@ func _on_buy_market_gui_input(event: InputEvent) -> void:
 func _on_buy_button_pressed() -> void:
 	if current_selected_grid_to_buy != null:
 		var part_to_buy: Part = current_selected_grid_to_buy.part
-		var credits_required: float = part_to_buy.buy_price
+		var credits_required := part_to_buy.buy_price
 		if not Inventory.withdraw_from_wallet(credits_required):
 			buy_item_info.text = "Not enough credits!"
 		else:
