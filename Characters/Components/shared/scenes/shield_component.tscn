@@ -30,16 +30,15 @@ shader_parameter/highlight_strength = 1.0
 shader_parameter/main_color = Color(0.26433355, 0.085895814, 0.99999994, 1)
 shader_parameter/highlight_color = Color(0.10374751, 0.77119255, 0, 1)
 shader_parameter/damaged_color = Color(1, 0, 0, 1)
-shader_parameter/damage_frac = 1.0
 shader_parameter/glow = 0.50000002375
 shader_parameter/noise = SubResource("NoiseTexture2D_c8q58")
 shader_parameter/dissolve = SubResource("NoiseTexture2D_7ue6p")
-shader_parameter/dissolve_progress = 0.0
 shader_parameter/animation_speed = 0.10000000475
 shader_parameter/highlight_speed = 0.2000000095
 
 [node name="ShieldComponent" type="Node2D" unique_id=637585528]
 script = ExtResource("1_0ns54")
+damage_to_energy_ratio = 5.0
 
 [node name="ShieldArea" type="Area2D" parent="." unique_id=422586742 groups=["shield"]]
 visible = false

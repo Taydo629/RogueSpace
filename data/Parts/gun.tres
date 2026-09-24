@@ -18,6 +18,6 @@ part_type = 1
 possible_neighbors = Array[int]([2])
 fire_rate = 0.1
 damage = 6.0
-round_speed = 1400
+round_speed = 2800
 round_scene = ExtResource("2_kk63y")
 metadata/_custom_type_script = "uid://dfxnbigy6na68"

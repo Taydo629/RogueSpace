@@ -11,7 +11,13 @@ class_name ShieldComponent extends Node2D
 
 var parent: RigidBody2D
 var timer: Timer
-var shield_active: bool = true
+var shield_active: bool = true:
+	set(value):
+		shield_active = value
+		if not shield_active:
+			shield_area.collision_layer = 1
+		else:
+			shield_area.collision_layer = 2
 var energy_component: EnergyComponent
 
 func _ready() -> void:
@@ -27,10 +33,11 @@ func take_damage(damage: int) -> void:
 	#var new_energy = current_shield_energy - damage * damage_to_energy_ratio
 	if energy_component.use_energy(damage * damage_to_energy_ratio, energy_component.ENERGY_ROUTES.SHIELDS):
 		var frac_energy: float = current_shield_energy / max_shield_energy
-		shield_sprite.material.set_shader_parameter("damage_frac", frac_energy)
+		shield_sprite.set_instance_shader_parameter("damage_frac", frac_energy)
+		#shield_sprite.material.set_shader_parameter("damage_frac", frac_energy)
 	else:
 		var tween: Tween = create_tween()
-		tween.tween_property(shield_sprite.material, "shader_parameter/dissolve_progress", 1.0, shield_animation_time)
+		tween.tween_property(shield_sprite, "instance_shader_parameters/dissolve_progress", 1.0, shield_animation_time)
 		tween.finished.connect(shield_down)
 
 func shield_down() -> void:
@@ -43,4 +50,4 @@ func recharge_shield() -> void:
 	shield_sprite.visible = true
 	shield_sprite.material.set_shader_parameter("damage_frac", 1.0)
 	var tween: Tween = create_tween()
-	tween.tween_property(shield_sprite.material, "shader_parameter/dissolve_progress", 0.0, shield_animation_time)
+	tween.tween_property(shield_sprite, "instance_shader_parameters/dissolve_progress", 0.0, shield_animation_time)

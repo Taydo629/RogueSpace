@@ -19,8 +19,17 @@ var selected_quadrant_icon: QuadrantIcon
 const QUADRANT_ICON = preload("uid://cell8jff8h881")
 @onready var quadrant_label: Label = $PanelContainer/HBoxContainer/QuadrantLabel
 @onready var button: Button = $PanelContainer/HBoxContainer/Button
+@onready var map_elements: Control = $MapElements
+@onready var reset_view_button: Button = $ResetViewButton
+
+@export var min_zoom: float = 0.6
+@export var max_zoom: float = 2.0
+@export var zoom_increment: float = 0.2
 var hovering_button: bool = false
 var available_quadrants: Array[Quadrant] = []
+var lmb_held: bool = false
+var mouse_anchor: Vector2
+var map_moved: bool = false
 
 signal travel_to_quadrant(Quadrant)
 
@@ -31,6 +40,34 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("left_click"):
 		_unselect_quadrant()
+		
+	if Input.is_action_just_pressed("scroll_up"):
+		var new_zoom:= map_elements.scale + Vector2(zoom_increment,zoom_increment)
+		if new_zoom > Vector2(max_zoom,max_zoom):
+			new_zoom = Vector2(max_zoom,max_zoom)
+		if new_zoom != Vector2.ONE:
+			_on_map_elements_moved()
+		map_elements.scale = new_zoom
+	if Input.is_action_just_pressed("scroll_down"):
+		var new_zoom:= map_elements.scale - Vector2(zoom_increment,zoom_increment)
+		if new_zoom < Vector2(min_zoom,min_zoom):
+			new_zoom = Vector2(min_zoom,min_zoom)
+		if new_zoom != Vector2.ONE:
+			_on_map_elements_moved()
+		map_elements.scale = new_zoom
+
+func _input(event:InputEvent) -> void:
+	var mouse_event := event
+	if mouse_event is InputEventMouseButton:
+		if mouse_event.button_index == MOUSE_BUTTON_LEFT and mouse_event.pressed:
+			lmb_held = true
+			mouse_anchor = mouse_event.position - map_elements.position
+		elif mouse_event.button_index == MOUSE_BUTTON_LEFT and not mouse_event.pressed:
+			lmb_held = false
+	if mouse_event is InputEventMouseMotion:
+		if lmb_held:
+			var map_offset: Vector2 = mouse_event.position - mouse_anchor
+			map_elements.position = map_offset
 
 func init_map_ui() -> void:
 	_available_quadrants()
@@ -72,10 +109,10 @@ func _init_new_map() -> void:
 					var pos_to_connect: Vector2 = Vector2(left_offset + next_grid.x * h_sep, up_offset + next_grid.y * v_sep)
 					connecting_line.add_point(pos_to_connect)
 					connecting_line.z_index = -1
-					add_child(connecting_line)
+					map_elements.add_child(connecting_line)
 				icon_dict.set(current_grid, new_quadrant_icon)
 				new_quadrant_icon.reachable = false
-				add_child(new_quadrant_icon)
+				map_elements.add_child(new_quadrant_icon)
 
 func _available_quadrants() -> void:
 	# Clear previous available quadrants and make them not reachable and not highlighted
@@ -136,3 +173,14 @@ func _on_button_pressed() -> void:
 		selected_quadrant_icon.unselect_quadrant()
 		selected_quadrant_icon = null
 		travel_to_quadrant.emit(map_grid[current_grid_pos.x][current_grid_pos.y])
+
+func _on_reset_view_button_pressed() -> void:
+	if reset_view_button != null:
+		map_elements.scale = Vector2.ONE
+		map_elements.position = Vector2.ZERO
+		reset_view_button.visible = false
+
+
+func _on_map_elements_moved() -> void:
+	if reset_view_button != null:
+		reset_view_button.visible = true
