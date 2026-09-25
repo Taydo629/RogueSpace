@@ -1,6 +1,7 @@
 class_name DialogUI extends Control
 
 var player: Player
+var level_gen: LevelGenComponent
 var dialog_res_dir: String = "res://data/Dialog/"
 var dialog_list: Array[Dialog]
 var options_dict: Dictionary[Button,DialogOption]
@@ -11,6 +12,7 @@ signal interaction_end(bool)
 @onready var button_container: VBoxContainer = $DialogBoxBG/VBoxContainer/DialogBoxContainer/ButtonContainer
 @onready var npc_name_label: Label = $DialogBoxBG/VBoxContainer/NPCNameLabel
 @onready var warp_button: Button = $WarpButton
+@onready var combat_button: Button = $CombatButton
 
 func _ready() -> void:
 	_load_all_dialog()
@@ -56,9 +58,11 @@ func init_dialog_ui() -> void:
 	player.position = player_offset
 	player.rotation_degrees = 90
 	# NPC orientation
-	#var npc_offset:= Vector2(current_viewport_rect.size.x - player_offset.x, player_offset.y)
-	#NPC.position = npc_offset
-	#NPC.rotation_degrees = -90
+	if len(level_gen.current_enemy_array) == 1:
+		var dialog_npc: npc = level_gen.current_enemy_array[0]
+		var npc_offset:= Vector2(current_viewport_rect.size.x - player_offset.x, player_offset.y)
+		dialog_npc.position = npc_offset
+		dialog_npc.rotation_degrees = -90
 
 func _option_button_pressed(button: Button) -> void:
 	var selected_option: DialogOption = options_dict.get(button)
@@ -77,9 +81,7 @@ func _option_button_pressed(button: Button) -> void:
 				Inventory.deposit_to_wallet(selected_option.possible_credit_reward)
 			elif reward == DialogOption.REWARD_TYPE.AMMO:
 				Inventory.add_ammo(selected_option.possible_ammo_rewards)
-			elif reward == DialogOption.REWARD_TYPE.REPAIRS:
-				# Repairs may need more work thus leaving empty
-				pass
+	
 	if not selected_option.penalties.is_empty():
 		for penalty: DialogOption.PENALTY_TYPE in selected_option.penalties:
 			if penalty == DialogOption.PENALTY_TYPE.PART:
@@ -90,10 +92,10 @@ func _option_button_pressed(button: Button) -> void:
 				Inventory.withdraw_from_wallet(selected_option.possible_credit_penalty)
 			elif penalty == DialogOption.PENALTY_TYPE.AMMO:
 				Inventory.subtract_ammo(selected_option.possible_ammo_penalty)
-			elif penalty == DialogOption.PENALTY_TYPE.DAMAGE:
-				# Damage penalties have not been figured out yet.
-				pass
-	warp_button.visible = true
+	if selected_option.combat:
+		combat_button.visible = true
+	else:
+		warp_button.visible = true
 
 func _load_all_dialog() -> void:
 	for resource in ResourceLoader.list_directory(dialog_res_dir):
@@ -113,4 +115,13 @@ func _on_warp_button_pressed() -> void:
 func _clear_dialog() -> void:
 	for child:Button in button_container.get_children():
 		child.queue_free()
+	warp_button.visible = false
+	combat_button.visible = false
 	options_dict.clear()
+
+
+func _on_combat_button_pressed() -> void:
+	_clear_dialog()
+	player.freeze = false
+	player.player_camera.enabled = true
+	interaction_end.emit(false)

@@ -27,6 +27,8 @@ signal warp
 
 func init_ui() -> void:
 	set_process(true)
+	warp_button.disabled = true
+	warp_button.text = "Warp unavailable"
 	parent = get_parent()
 	player = parent.player
 	if not player.player_died.is_connected(death):
@@ -34,6 +36,8 @@ func init_ui() -> void:
 	energy_ui.energy_component = player.energy_component
 	level_generator = parent.level_gen
 	enemy_array = level_generator.current_enemy_array
+	print("Player UI initialised")
+	print(enemy_array)
 	#station = level_generator.current_station
 	#if not Inventory.credit_changed.is_connected(update_credit_ui):
 		#Inventory.credit_changed.connect(update_credit_ui)
@@ -63,24 +67,10 @@ func update_hud() -> void:
 	enemy_hud_indicators.clear()
 	#station_hud_indicator.clear()
 	
-	# Mutate player UI based on the type of quadrant
-	if level_generator.current_quadrant.type in [Quadrant.TYPE.COMBAT, Quadrant.TYPE.BOSS]:
-		for new_npc in enemy_array:
-			var new_npc_hud_indicator = ENEMY_DIRECTION_HUD.instantiate()
-			hud.add_child(new_npc_hud_indicator)
-			enemy_hud_indicators.append({"indicator": new_npc_hud_indicator, "node": new_npc})
-		#var new_station_hud_indicator = STATION_DIRECTION_HUD.instantiate()
-		#new_station_hud_indicator.visible = false
-		#hud.add_child(new_station_hud_indicator)
-		#station_hud_indicator = {"indicator": new_station_hud_indicator, "node": station}
-		#print(station_hud_indicator)
-		print(enemy_hud_indicators)
-	elif level_generator.current_quadrant.type == Quadrant.TYPE.NEUTRAL:
-		print_debug("Add dialog box UI here!")
-	elif level_generator.current_quadrant.type == Quadrant.TYPE.SHIPYARD:
-		print_debug("Add shipyard UI here!")
-	elif level_generator.current_quadrant.type == Quadrant.TYPE.MERCAHNT:
-		print_debug("Add MERCHANT UI here!")
+	for new_npc in enemy_array:
+		var new_npc_hud_indicator = ENEMY_DIRECTION_HUD.instantiate()
+		hud.add_child(new_npc_hud_indicator)
+		enemy_hud_indicators.append({"indicator": new_npc_hud_indicator, "node": new_npc})
 
 func update_energy_ui() -> void:
 	energy_ui.init_energy_ui()

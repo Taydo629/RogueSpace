@@ -1,12 +1,13 @@
 class_name DialogOption extends Resource
 
-enum REWARD_TYPE{PART, CREDIT, REPAIRS, AMMO}
-enum PENALTY_TYPE{PART, CREDIT, DAMAGE, AMMO}
+enum REWARD_TYPE{PART, CREDIT, AMMO}
+enum PENALTY_TYPE{PART, CREDIT, AMMO}
 
 @export var option_text: String
 @export var rewards: Array[REWARD_TYPE]
 @export var penalties: Array[PENALTY_TYPE]
 @export_multiline var option_response: String
+@export var combat: bool
 @export var possible_credit_reward: int
 @export var possible_part_rewards: Array[Part]
 @export var possible_ammo_rewards: int

@@ -27,6 +27,7 @@ metadata/_custom_type_script = "uid://dr7ekb3lnwneb"
 script = ExtResource("1_7ls2v")
 option_text = "Im good thanks..."
 option_response = "Oh...Okay. Good luck on your journey captain..."
+combat = true
 metadata/_custom_type_script = "uid://dr7ekb3lnwneb"
 
 [resource]

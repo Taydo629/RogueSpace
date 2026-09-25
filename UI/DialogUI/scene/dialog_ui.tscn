@@ -58,6 +58,15 @@ offset_right = 168.0
 offset_bottom = 50.0
 text = "Warp Ready!"
 
+[node name="CombatButton" type="Button" parent="." unique_id=1809851423]
+visible = false
+layout_mode = 1
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 168.0
+offset_bottom = 50.0
+text = "Engage!"
+
 [node name="InventoryBar" parent="." unique_id=537340854 instance=ExtResource("2_mqumw")]
 layout_mode = 1
 anchors_preset = 1
@@ -69,3 +78,4 @@ offset_right = 0.0
 offset_bottom = 80.0
 
 [connection signal="pressed" from="WarpButton" to="." method="_on_warp_button_pressed"]
+[connection signal="pressed" from="CombatButton" to="." method="_on_combat_button_pressed"]

@@ -30,6 +30,7 @@ metadata/_custom_type_script = "uid://dr7ekb3lnwneb"
 script = ExtResource("1_x1wff")
 option_text = "Run away"
 option_response = "Hey! No that was exactly what I told you not to do!!"
+combat = true
 metadata/_custom_type_script = "uid://dr7ekb3lnwneb"
 
 [resource]

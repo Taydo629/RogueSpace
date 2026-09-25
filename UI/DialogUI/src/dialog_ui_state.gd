@@ -11,6 +11,7 @@ func enter() -> void:
 	dialog_ui = canvas_layer.dialog_ui
 	dialog_ui.visible = true
 	dialog_ui.player = canvas_layer.player
+	dialog_ui.level_gen = canvas_layer.level_gen
 	dialog_ui.process_mode = Node.PROCESS_MODE_ALWAYS
 	if state_machine.previous_state.get_state_name() != PauseUIState.state_name:
 		dialog_ui.init_dialog_ui()
@@ -21,11 +22,11 @@ func exit() -> void:
 	dialog_ui.visible = false
 	dialog_ui.process_mode = Node.PROCESS_MODE_DISABLED
 
-func interaction_end(survived: bool) -> void:
-	if survived:
+func interaction_end(finished: bool) -> void:
+	if finished:
 		state_machine.transition(MapUIState.state_name)
 	else:
-		state_machine.transition(DeathUIState.state_name)
+		state_machine.transition(PlayerUIState.state_name)
 
 func process(_delta: float) -> void:
 	if Input.is_action_just_pressed("esc"):
