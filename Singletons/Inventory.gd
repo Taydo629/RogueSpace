@@ -2,6 +2,8 @@ extends Node
 
 var inventory: Array
 var wallet: int = 1000
+var ammo: int = 1000
+var explosives: int = 0
 var number_of_hull: int = 6
 var number_of_thruster: int = 3
 var number_of_gun: int = 2
@@ -17,12 +19,16 @@ const LASER = preload("uid://f60asy2hl75j")
 
 
 signal item_pickup
-signal credit_changed(int)
+signal credit_changed(current_credit: int)
+signal ammo_changed(current_ammo: int)
+signal explosives_changed(current_explosives: int)
 
 func init_inventory() -> void:
 	print("initialise starting items")
 	inventory.clear()
 	wallet = 1000
+	ammo = 1000
+	explosives = 0
 	var i: int = 0
 	add_item(CORE)
 	while i < number_of_hull:
@@ -60,3 +66,30 @@ func withdraw_from_wallet(credits: int) -> bool:
 		return true
 	else:
 		return false
+
+func add_ammo(added_ammo: int) -> void:
+	ammo += added_ammo
+	ammo_changed.emit(ammo)
+
+func subtract_ammo(ammo_to_subtract: int) -> bool:
+	var new_ammo = ammo - ammo_to_subtract
+	if new_ammo >= 0:
+		ammo = new_ammo
+		ammo_changed.emit(ammo)
+		return true
+	else:
+		return false
+
+func add_explosive(added_explosive: int) -> void:
+	explosives += added_explosive
+	explosives_changed.emit(explosives)
+
+func subtract_explosive(explosive_to_subtract: int) -> bool:
+	var new_explosive = ammo - explosive_to_subtract
+	if new_explosive >= 0:
+		explosives = new_explosive
+		explosives_changed.emit(explosives)
+		return true
+	else:
+		return false
+		

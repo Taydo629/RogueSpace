@@ -2,7 +2,7 @@ class_name PlayerUI extends Control
 
 @onready var pickup_ui: HBoxContainer = $Pickup_UI
 #@onready var direction_indicator: Control = $DirectionIndicator
-@onready var credit_ui: Label = $CreditUI
+#@onready var credit_ui: Label = $CreditUI
 @onready var sector_label: Label = $SectorLabel
 @onready var hint_panel: Panel = $HintPanel
 @onready var hud: Node2D = $HUD

@@ -22,6 +22,7 @@ enum POSSIBLE_NEIGHBORS{UP, RIGHT, DOWN, LEFT, ALL}
 @export var damage: float
 @export var round_speed: int
 @export var round_scene: PackedScene
+@export var ammo_cost: int
 # Energy weapon specific properties
 @export var dps: float
 @export var energy_p_s: float

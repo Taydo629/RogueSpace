@@ -1,7 +1,7 @@
 class_name BaseEnergyWeapon extends BasePart
 
 # Weapon related exports
-@onready var fire_sound: AudioStreamPlayer2D = $FireSound
+#@onready var fire_sound: AudioStreamPlayer2D = $FireSound
 @onready var laser_beam_2d: RayCast2D = $LaserBeam2D
 # Not used but could be used in future for configurable control
 var activation_key: String
