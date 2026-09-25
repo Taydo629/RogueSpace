@@ -11,7 +11,6 @@ signal interaction_end(bool)
 @onready var button_container: VBoxContainer = $DialogBoxBG/VBoxContainer/DialogBoxContainer/ButtonContainer
 @onready var npc_name_label: Label = $DialogBoxBG/VBoxContainer/NPCNameLabel
 @onready var warp_button: Button = $WarpButton
-@onready var credit_ui: Label = $CreditUI
 
 func _ready() -> void:
 	_load_all_dialog()
@@ -19,11 +18,6 @@ func _ready() -> void:
 func init_dialog_ui() -> void:
 	# Get a random dialog
 	var selected_dialog: Dialog = dialog_list.pick_random()
-	
-	# Set up connections with Inventory
-	if not Inventory.credit_changed.is_connected(_update_credit_ui):
-		Inventory.credit_changed.connect(_update_credit_ui)
-	_update_credit_ui(Inventory.wallet)
 	
 	# Set up dialog box
 	npc_name_label.text = selected_dialog.npc_name
@@ -65,9 +59,6 @@ func init_dialog_ui() -> void:
 	#var npc_offset:= Vector2(current_viewport_rect.size.x - player_offset.x, player_offset.y)
 	#NPC.position = npc_offset
 	#NPC.rotation_degrees = -90
-
-func _update_credit_ui(wallet: int):
-	credit_ui.text = str("CR ", wallet)
 
 func _option_button_pressed(button: Button) -> void:
 	var selected_option: DialogOption = options_dict.get(button)

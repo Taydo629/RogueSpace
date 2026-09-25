@@ -35,10 +35,10 @@ func init_ui() -> void:
 	level_generator = parent.level_gen
 	enemy_array = level_generator.current_enemy_array
 	#station = level_generator.current_station
-	if not Inventory.credit_changed.is_connected(update_credit_ui):
-		Inventory.credit_changed.connect(update_credit_ui)
+	#if not Inventory.credit_changed.is_connected(update_credit_ui):
+		#Inventory.credit_changed.connect(update_credit_ui)
 	update_sector_label(level_generator.level_number, level_generator.current_quadrant.position)
-	update_credit_ui(Inventory.wallet)
+	#update_credit_ui(Inventory.wallet)
 	update_energy_ui()
 	update_hud()
 
@@ -48,8 +48,8 @@ func death() -> void:
 func update_sector_label(sector_num: int, quadrant_pos: Vector2) -> void:
 	sector_label.text = "Sector %s : Quadrant A%s.B%s" % [sector_num, int(quadrant_pos.x), int(quadrant_pos.y)]
 
-func update_credit_ui(wallet: int):
-	credit_ui.text = str("CR ", wallet)
+#func update_credit_ui(wallet: int):
+	#credit_ui.text = str("CR ", wallet)
 
 func item_pickup(part: Part) -> void:
 	pickup_ui.pickup_notif(part)

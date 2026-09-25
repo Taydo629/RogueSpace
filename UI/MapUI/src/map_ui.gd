@@ -17,10 +17,12 @@ var map_h_view_frac: float = 0.8
 var map_v_view_frac: float = 0.5
 var selected_quadrant_icon: QuadrantIcon
 const QUADRANT_ICON = preload("uid://cell8jff8h881")
+const PAN_CURSOR = preload("uid://5fti4wk5y0ww")
 @onready var quadrant_label: Label = $PanelContainer/HBoxContainer/QuadrantLabel
 @onready var button: Button = $PanelContainer/HBoxContainer/Button
 @onready var map_elements: Control = $MapElements
 @onready var reset_view_button: Button = $ResetViewButton
+@onready var panel_container: PanelContainer = $PanelContainer
 
 @export var min_zoom: float = 0.6
 @export var max_zoom: float = 2.0
@@ -59,11 +61,13 @@ func _process(_delta: float) -> void:
 func _input(event:InputEvent) -> void:
 	var mouse_event := event
 	if mouse_event is InputEventMouseButton:
-		if mouse_event.button_index == MOUSE_BUTTON_LEFT and mouse_event.pressed:
-			lmb_held = true
-			mouse_anchor = mouse_event.position - map_elements.position
-		elif mouse_event.button_index == MOUSE_BUTTON_LEFT and not mouse_event.pressed:
-			lmb_held = false
+		var panel_cont_rect: Rect2 = panel_container.get_rect()
+		if not panel_cont_rect.has_point(mouse_event.position):
+			if mouse_event.button_index == MOUSE_BUTTON_LEFT and mouse_event.pressed:
+				lmb_held = true
+				mouse_anchor = mouse_event.position - map_elements.position
+			elif mouse_event.button_index == MOUSE_BUTTON_LEFT and not mouse_event.pressed:
+				lmb_held = false
 	if mouse_event is InputEventMouseMotion:
 		if lmb_held:
 			var map_offset: Vector2 = mouse_event.position - mouse_anchor
