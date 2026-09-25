@@ -34,8 +34,8 @@ func init_dialog_ui() -> void:
 					if Inventory.wallet < option.possible_credit_penalty:
 						is_button_disabled = true
 				elif penalty == DialogOption.PENALTY_TYPE.AMMO:
-					# Add ammo logic here once it is added.
-					pass
+					if Inventory.ammo < option.possible_ammo_penalty:
+						is_button_disabled = true
 		var new_option_button: Button = Button.new()
 		new_option_button.text = option.option_text
 		if is_button_disabled:
@@ -76,14 +76,23 @@ func _option_button_pressed(button: Button) -> void:
 			elif reward == DialogOption.REWARD_TYPE.CREDIT:
 				Inventory.deposit_to_wallet(selected_option.possible_credit_reward)
 			elif reward == DialogOption.REWARD_TYPE.AMMO:
-				# No current ammo inventory
-				pass
+				Inventory.add_ammo(selected_option.possible_ammo_rewards)
 			elif reward == DialogOption.REWARD_TYPE.REPAIRS:
 				# Repairs may need more work thus leaving empty
 				pass
-	if not selected_option.rewards.is_empty():
-		# Code recieving penalties
-		pass
+	if not selected_option.penalties.is_empty():
+		for penalty: DialogOption.PENALTY_TYPE in selected_option.penalties:
+			if penalty == DialogOption.PENALTY_TYPE.PART:
+				for i in selected_option.possible_part_penalty:
+					var part_to_remove: Part = Inventory.inventory.pick_random()
+					Inventory.remove_item(part_to_remove)
+			elif penalty == DialogOption.PENALTY_TYPE.CREDIT:
+				Inventory.withdraw_from_wallet(selected_option.possible_credit_penalty)
+			elif penalty == DialogOption.PENALTY_TYPE.AMMO:
+				Inventory.subtract_ammo(selected_option.possible_ammo_penalty)
+			elif penalty == DialogOption.PENALTY_TYPE.DAMAGE:
+				# Damage penalties have not been figured out yet.
+				pass
 	warp_button.visible = true
 
 func _load_all_dialog() -> void:
