@@ -14,6 +14,8 @@ metadata/_custom_type_script = "uid://bai17l24abfvp"
 [resource]
 script = ExtResource("1_1bxkw")
 name = "gun"
+display_name = "Gattling gun"
+part_description = "Basic Kinetic energy weapon with low ammo cost but low damage."
 scene = ExtResource("2_5cbms")
 part_type = 1
 possible_neighbors = Array[int]([2])

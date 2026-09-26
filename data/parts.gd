@@ -1,11 +1,13 @@
 class_name Part
 extends Resource
 
-enum PART_TYPE{STRUCTURAL, WEAPON, THRUSTER}
+enum PART_TYPE{STRUCTURAL, KINETIC_WEAPON, ENERGY_WEAPON, THRUSTER}
 enum POSSIBLE_NEIGHBORS{UP, RIGHT, DOWN, LEFT, ALL}
 
 
 @export var name: String
+@export var display_name: String
+@export_multiline var part_description: String
 @export var scene: PackedScene
 @export var part_type: PART_TYPE
 @export var possible_neighbors: Array[POSSIBLE_NEIGHBORS]

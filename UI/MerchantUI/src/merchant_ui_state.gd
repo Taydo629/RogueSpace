@@ -18,8 +18,8 @@ func enter() -> void:
 		#merchant_ui.exit_station.connect(return_to_game)
 	#if not merchant_ui.enter_build.is_connected(enter_build):
 		#merchant_ui.enter_build.connect(enter_build)
-	if not merchant_ui.jump_to_new_level.is_connected(travel_to_next_quadrant):
-		merchant_ui.jump_to_new_level.connect(travel_to_next_quadrant)
+	if not merchant_ui.warp.is_connected(go_to_map_ui):
+		merchant_ui.warp.connect(go_to_map_ui)
 	merchant_ui.init_ui()
 	#if state_machine.previous_state.get_state_name() != StationUIState.state_name:
 		#print("hey")
@@ -43,7 +43,7 @@ func exit() -> void:
 #func enter_build() -> void:
 	#state_machine.transition(BuildUIState.state_name)
 
-func travel_to_next_quadrant() -> void:
+func go_to_map_ui() -> void:
 	state_machine.transition(MapUIState.state_name)
 	#canvas_layer.jump_to_next_sector()
 

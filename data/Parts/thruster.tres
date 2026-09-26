@@ -13,6 +13,8 @@ metadata/_custom_type_script = "uid://bai17l24abfvp"
 [resource]
 script = ExtResource("1_5xp6c")
 name = "thruster"
+display_name = "Thruster"
+part_description = "A basic thruster giving the ship a means of propulsion."
 scene = ExtResource("2_u85ot")
 part_type = 2
 possible_neighbors = Array[int]([0, 1, 2])

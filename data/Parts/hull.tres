@@ -13,6 +13,8 @@ metadata/_custom_type_script = "uid://bai17l24abfvp"
 [resource]
 script = ExtResource("1_4q4pp")
 name = "hull"
+display_name = "Hull"
+part_description = "A basic structural block providing armor protection."
 scene = ExtResource("2_12q6g")
 possible_neighbors = Array[int]([4])
 base_buy_price = 100

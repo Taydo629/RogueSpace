@@ -13,6 +13,8 @@ metadata/_custom_type_script = "uid://bai17l24abfvp"
 [resource]
 script = ExtResource("1_nhdpj")
 name = "tractor_beam"
+display_name = "Tractor beam"
+part_description = "To be removed"
 scene = ExtResource("2_mtvwk")
 possible_neighbors = Array[int]([2])
 base_buy_price = 100

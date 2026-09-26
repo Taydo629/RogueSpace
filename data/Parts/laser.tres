@@ -13,8 +13,10 @@ metadata/_custom_type_script = "uid://bai17l24abfvp"
 [resource]
 script = ExtResource("1_iqepg")
 name = "laser"
+display_name = "Beam Laser"
+part_description = "A basic energy weapon with low energy cost but low damage output."
 scene = ExtResource("2_3c6o5")
-part_type = 1
+part_type = 3
 possible_neighbors = Array[int]([2])
 base_buy_price = 200
 base_sell_price = 150

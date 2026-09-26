@@ -13,6 +13,8 @@ metadata/_custom_type_script = "uid://bai17l24abfvp"
 [resource]
 script = ExtResource("1_43rg0")
 name = "core"
+display_name = "Bridge"
+part_description = "Part which is responsible for controlling the ship. Also handles energy production and gyro."
 scene = ExtResource("1_l7os8")
 possible_neighbors = Array[int]([4])
 base_weight = 2

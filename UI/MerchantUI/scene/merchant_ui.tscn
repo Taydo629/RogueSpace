@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://ds8t7yfbj4qfp"]
 
 [ext_resource type="Script" uid="uid://b0u3eaegvjswr" path="res://UI/MerchantUI/src/merchant_ui.gd" id="1_77r05"]
-[ext_resource type="PackedScene" uid="uid://c4j3o05v1cybp" path="res://UI/MerchantUI/scene/merchant_item.tscn" id="2_5ltpe"]
 
 [node name="MerchantUI" type="Control" unique_id=2071674807]
 layout_mode = 3
@@ -101,26 +100,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Exit"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="BuyMenuBG/VBoxContainer" unique_id=1980343074]
+[node name="ItemContainer" type="HBoxContainer" parent="BuyMenuBG/VBoxContainer" unique_id=1980343074]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 20
 alignment = 1
-
-[node name="MerchantItem" parent="BuyMenuBG/VBoxContainer/HBoxContainer" unique_id=930897121 instance=ExtResource("2_5ltpe")]
-layout_mode = 2
-
-[node name="MerchantItem2" parent="BuyMenuBG/VBoxContainer/HBoxContainer" unique_id=1952170195 instance=ExtResource("2_5ltpe")]
-layout_mode = 2
-
-[node name="MerchantItem3" parent="BuyMenuBG/VBoxContainer/HBoxContainer" unique_id=294558004 instance=ExtResource("2_5ltpe")]
-layout_mode = 2
-
-[node name="MerchantItem4" parent="BuyMenuBG/VBoxContainer/HBoxContainer" unique_id=1530877102 instance=ExtResource("2_5ltpe")]
-layout_mode = 2
-
-[node name="MerchantItem5" parent="BuyMenuBG/VBoxContainer/HBoxContainer" unique_id=1189589377 instance=ExtResource("2_5ltpe")]
-layout_mode = 2
 
 [connection signal="pressed" from="DialogBoxBG/VBoxContainer/DialogBoxContainer/ButtonContainer/ShopButton" to="." method="_on_shop_button_pressed"]
 [connection signal="pressed" from="DialogBoxBG/VBoxContainer/DialogBoxContainer/ButtonContainer/SellButton" to="." method="_on_sell_button_pressed"]

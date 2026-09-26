@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://cqm8my8blgkh3" path="res://UI/MerchantUI/src/merchant_item.gd" id="1_i6tp7"]
 [ext_resource type="Texture2D" uid="uid://b6d1kjojcyi20" path="res://assets/UI_theme_asset_sheet.png" id="1_n8mwl"]
-[ext_resource type="Texture2D" uid="uid://5fti4wk5y0ww" path="res://assets/Pan_Cursor.png" id="2_i6tp7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uud0x"]
 atlas = ExtResource("1_n8mwl")
@@ -23,8 +22,8 @@ offset_bottom = 40.0
 script = ExtResource("1_i6tp7")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1349606751]
-custom_minimum_size = Vector2(150, 200)
-custom_maximum_size = Vector2(150, 200)
+custom_minimum_size = Vector2(175, 250)
+custom_maximum_size = Vector2(175, 250)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_dj54i")
 
@@ -32,27 +31,45 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_dj54i")
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1188276757]
+[node name="ItemTitleLabel" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1188276757]
 layout_mode = 2
 text = "Part LV2"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer" unique_id=1001531853]
 layout_mode = 2
-texture = ExtResource("2_i6tp7")
 stretch_mode = 5
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer" unique_id=1437355525]
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer" unique_id=2043108977]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ItemDescriptionLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer" unique_id=1437355525]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/normal_font_size = 8
 theme_override_font_sizes/bold_font_size = 8
 bbcode_enabled = true
-text = "Multiplies neighboring parts [color=#ff0000]damage[/color]"
+text = "If you see this there is a bug!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="." unique_id=1042875157]
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer" unique_id=1419799664]
+visible = false
 layout_mode = 2
+size_flags_vertical = 6
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 8
+fit_content = true
+autowrap_mode = 0
+
+[node name="BuyButton" type="Button" parent="." unique_id=1042875157]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
 text = "buy"
+
+[connection signal="mouse_entered" from="PanelContainer" to="." method="_on_panel_container_mouse_entered"]
+[connection signal="mouse_exited" from="PanelContainer" to="." method="_on_panel_container_mouse_exited"]
+[connection signal="pressed" from="BuyButton" to="." method="_on_buy_button_pressed"]
