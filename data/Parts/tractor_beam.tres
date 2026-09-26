@@ -1,17 +1,25 @@
 [gd_resource type="Resource" script_class="Part" format=3 uid="uid://nxtyhwldok2c"]
 
-[ext_resource type="Texture2D" uid="uid://c2yf50itjvh6w" path="res://assets/Tractor_beam_sprite.png" id="1_mxndn"]
+[ext_resource type="Script" uid="uid://bai17l24abfvp" path="res://data/part_modifier.gd" id="1_mxndn"]
 [ext_resource type="Script" uid="uid://dfxnbigy6na68" path="res://data/parts.gd" id="1_nhdpj"]
+[ext_resource type="Texture2D" uid="uid://c2yf50itjvh6w" path="res://assets/Tractor_beam_sprite.png" id="2_c6o1d"]
 [ext_resource type="PackedScene" uid="uid://bmppj8nctpawu" path="res://Parts/BaseParts/TractorBeam/scenes/tractor_beam.tscn" id="2_mtvwk"]
+
+[sub_resource type="Resource" id="Resource_cu64k"]
+script = ExtResource("1_mxndn")
+sprite = ExtResource("2_c6o1d")
+metadata/_custom_type_script = "uid://bai17l24abfvp"
 
 [resource]
 script = ExtResource("1_nhdpj")
 name = "tractor_beam"
 scene = ExtResource("2_mtvwk")
-image = ExtResource("1_mxndn")
-buy_price = 300
-sell_price = 100
-weight = 2
-max_health = 200
 possible_neighbors = Array[int]([2])
+base_buy_price = 100
+base_sell_price = 100
+base_weight = 1
+base_max_health = 100
+level_dict = Dictionary[int, ExtResource("1_mxndn")]({
+1: SubResource("Resource_cu64k")
+})
 metadata/_custom_type_script = "uid://dfxnbigy6na68"

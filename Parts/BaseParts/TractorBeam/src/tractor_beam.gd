@@ -10,7 +10,7 @@ var parts_in_beam: Array = []
 
 var part:Part:
 	set(value):
-		sprite = value.image
+		sprite = value.sprite
 		max_health = value.max_health
 		health = value.current_health
 		part = value

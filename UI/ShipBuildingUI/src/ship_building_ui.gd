@@ -203,7 +203,7 @@ func update_partlist() -> void:
 	var already_added_part: Array[Part]
 	for part in Inventory.inventory:
 		if part not in already_added_part:
-			item_list.add_item(part.name, part.image)
+			item_list.add_item(part.name, part.sprite)
 			already_added_part.append(part)
 
 func get_selected_part_name() -> String:

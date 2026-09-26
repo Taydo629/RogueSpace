@@ -34,7 +34,7 @@ func load_into_new_quadrant(quadrant: Quadrant) -> void:
 	elif quadrant.type == Quadrant.TYPE.SHIPYARD:
 		state_machine.transition(BuildUIState.state_name)
 	elif quadrant.type == Quadrant.TYPE.MERCAHNT:
-		state_machine.transition(StationUIState.state_name)
+		state_machine.transition(MerchantUIState.state_name)
 
 func process(_delta: float) -> void:
 	if Input.is_action_just_pressed("esc"):

@@ -1,21 +1,28 @@
 [gd_resource type="Resource" script_class="Part" format=3 uid="uid://f60asy2hl75j"]
 
 [ext_resource type="Script" uid="uid://dfxnbigy6na68" path="res://data/parts.gd" id="1_iqepg"]
-[ext_resource type="Texture2D" uid="uid://bwbnfkeklw1w6" path="res://assets/LazerCannon_sprite.png" id="1_joawm"]
+[ext_resource type="Script" uid="uid://bai17l24abfvp" path="res://data/part_modifier.gd" id="1_joawm"]
 [ext_resource type="PackedScene" uid="uid://ccnu2ooonh3dg" path="res://Parts/BaseParts/BaseEnergyWeapon/scene/base_energy_weapon.tscn" id="2_3c6o5"]
+[ext_resource type="Texture2D" uid="uid://bwbnfkeklw1w6" path="res://assets/LazerCannon_sprite.png" id="2_v1gxe"]
+
+[sub_resource type="Resource" id="Resource_5jhsg"]
+script = ExtResource("1_joawm")
+sprite = ExtResource("2_v1gxe")
+metadata/_custom_type_script = "uid://bai17l24abfvp"
 
 [resource]
 script = ExtResource("1_iqepg")
 name = "laser"
 scene = ExtResource("2_3c6o5")
-image = ExtResource("1_joawm")
-buy_price = 100
-sell_price = 100
-weight = 2
-max_health = 200
 part_type = 1
 possible_neighbors = Array[int]([2])
-damage = 100.0
-dps = 200.0
-energy_p_s = 200.0
+base_buy_price = 200
+base_sell_price = 150
+base_weight = 2
+base_max_health = 100
+base_dps = 200.0
+base_energy_p_s = 200.0
+level_dict = Dictionary[int, ExtResource("1_joawm")]({
+1: SubResource("Resource_5jhsg")
+})
 metadata/_custom_type_script = "uid://dfxnbigy6na68"

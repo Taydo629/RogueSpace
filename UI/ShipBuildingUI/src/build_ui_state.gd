@@ -2,14 +2,11 @@ class_name BuildUIState extends UIState
 
 static var state_name = "BuildUIState"
 var build_menu_ui: BuildUI
-var return_state_name: String
 
 func get_state_name() -> String:
 	return state_name
 
 func enter() -> void:
-	if state_machine.previous_state.get_state_name() != PauseUIState.state_name:
-		return_state_name = state_machine.previous_state.get_state_name()
 	state_machine.get_tree().paused = true
 	build_menu_ui = canvas_layer.ship_building_ui
 	build_menu_ui.player = canvas_layer.player
@@ -26,10 +23,7 @@ func exit() -> void:
 	build_menu_ui.process_mode = Node.PROCESS_MODE_DISABLED
 
 func build_complete() -> void:
-	if return_state_name == StationUIState.state_name:
-		state_machine.transition(PlayerUIState.state_name)
-	else:
-		state_machine.transition(MapUIState.state_name)
+	state_machine.transition(MapUIState.state_name)
 
 func process(_delta: float) -> void:
 	if Input.is_action_just_pressed("esc"):

@@ -1,17 +1,25 @@
 [gd_resource type="Resource" script_class="Part" format=3 uid="uid://bu4cdhp5bisf5"]
 
 [ext_resource type="Script" uid="uid://dfxnbigy6na68" path="res://data/parts.gd" id="1_4q4pp"]
-[ext_resource type="Texture2D" uid="uid://by24fkoebq5jy" path="res://assets/Hull_sprite.png" id="1_12q6g"]
+[ext_resource type="Script" uid="uid://bai17l24abfvp" path="res://data/part_modifier.gd" id="1_12q6g"]
 [ext_resource type="PackedScene" uid="uid://cbies401v0c4e" path="res://Parts/BaseParts/Hull/scenes/hull.tscn" id="2_12q6g"]
+[ext_resource type="Texture2D" uid="uid://by24fkoebq5jy" path="res://assets/Hull_sprite.png" id="2_hn3f4"]
+
+[sub_resource type="Resource" id="Resource_pbt6m"]
+script = ExtResource("1_12q6g")
+sprite = ExtResource("2_hn3f4")
+metadata/_custom_type_script = "uid://bai17l24abfvp"
 
 [resource]
 script = ExtResource("1_4q4pp")
 name = "hull"
 scene = ExtResource("2_12q6g")
-image = ExtResource("1_12q6g")
-buy_price = 150
-sell_price = 50
-weight = 3
-max_health = 200
 possible_neighbors = Array[int]([4])
+base_buy_price = 100
+base_sell_price = 50
+base_weight = 1
+base_max_health = 200
+level_dict = Dictionary[int, ExtResource("1_12q6g")]({
+1: SubResource("Resource_pbt6m")
+})
 metadata/_custom_type_script = "uid://dfxnbigy6na68"

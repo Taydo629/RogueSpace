@@ -10,7 +10,7 @@ var dps: float
 var energy_per_sec: float
 var part:Part:
 	set(value):
-		sprite = value.image
+		sprite = value.sprite
 		max_health = value.max_health
 		health = value.current_health
 		dps = value.dps

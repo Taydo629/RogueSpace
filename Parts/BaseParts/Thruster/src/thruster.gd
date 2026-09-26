@@ -9,7 +9,7 @@ var activation_key: String
 var thrust_force: int
 var part:Part:
 	set(value):
-		sprite = value.image
+		sprite = value.sprite
 		max_health = value.max_health
 		health = value.current_health
 		thrust_force = value.thrust_force

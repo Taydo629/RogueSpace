@@ -55,10 +55,12 @@ func _physics_process(delta: float) -> void:
 		if get_collider().is_in_group("hurt_box"):
 			var hit_part: Node2D = get_collider().get_parent()
 			if hit_part.has_method("take_damage"):
+				print(get_parent().dps * delta)
 				hit_part.take_damage(get_parent().dps * delta)
 		if get_collider().is_in_group("shield") and get_collider().get_parent().shield_active == true:
 			var hit_part: Node2D = get_collider().get_parent()
 			if hit_part.has_method("take_damage"):
+				print(get_parent().dps * delta)
 				hit_part.take_damage(get_parent().dps * delta)
 		collision_particles.global_rotation = get_collision_normal().angle()
 		collision_particles.position = laser_end_position
