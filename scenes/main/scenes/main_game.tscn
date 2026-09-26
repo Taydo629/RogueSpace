@@ -10,19 +10,13 @@
 [ext_resource type="PackedScene" uid="uid://bp51bdue80th0" path="res://UI/MapUI/scene/map_ui.tscn" id="8_h4r6f"]
 [ext_resource type="PackedScene" uid="uid://blofhoxjvbs5y" path="res://UI/ShipBuildingUI/scene/ship_building_ui.tscn" id="8_wjob3"]
 [ext_resource type="PackedScene" uid="uid://c0nva578wdvmu" path="res://UI/GuideUI/scene/guide_ui.tscn" id="9_5cypo"]
-[ext_resource type="Script" uid="uid://dfxnbigy6na68" path="res://data/parts.gd" id="10_fpthe"]
-[ext_resource type="PackedScene" uid="uid://ds8t7yfbj4qfp" path="res://UI/StationUI/scene/station_ui.tscn" id="10_o6v7o"]
-[ext_resource type="Resource" uid="uid://bs8ufgr7qnr1y" path="res://data/Parts/gun.tres" id="11_h4r6f"]
+[ext_resource type="PackedScene" uid="uid://ds8t7yfbj4qfp" path="res://UI/MerchantUI/scene/merchant_ui.tscn" id="10_o6v7o"]
 [ext_resource type="PackedScene" uid="uid://c7woe6b2tkxna" path="res://UI/SectorInfo/scene/sector_info.tscn" id="11_wjob3"]
 [ext_resource type="Script" uid="uid://cm5wa1dfltaot" path="res://data/npc_ship.gd" id="12_4qwfe"]
-[ext_resource type="Resource" uid="uid://dxn6vqjt4j07d" path="res://data/Parts/core.tres" id="12_fvpsc"]
 [ext_resource type="Resource" uid="uid://dwtxjrojbsons" path="res://data/NPCShips/patrol_ship.tres" id="13_7e4r1"]
 [ext_resource type="Texture2D" uid="uid://dmdsrf5jlj5jk" path="res://assets/Space_BG.png" id="13_qy7f2"]
-[ext_resource type="Resource" uid="uid://bu4cdhp5bisf5" path="res://data/Parts/hull.tres" id="13_xk0cf"]
 [ext_resource type="Texture2D" uid="uid://b6qqpjtotmc0p" path="res://assets/Sun_sprite.png" id="14_4d5ma"]
 [ext_resource type="Texture2D" uid="uid://cegk085sa5e0e" path="res://assets/Rocky_planet_sprite.png" id="14_aly5s"]
-[ext_resource type="Resource" uid="uid://b4k0ewhy4bwpf" path="res://data/Parts/thruster.tres" id="14_ldk75"]
-[ext_resource type="Resource" uid="uid://nxtyhwldok2c" path="res://data/Parts/tractor_beam.tres" id="15_eycr2"]
 [ext_resource type="Texture2D" uid="uid://bkkmlju23hpuo" path="res://assets/2d_lights_and_shadows_neutral_point_light.webp" id="15_rxlyu"]
 [ext_resource type="PackedScene" uid="uid://b8m8r5rsh4g0w" path="res://UI/DeathScreenUI/scenes/death_screen.tscn" id="17_h4r6f"]
 [ext_resource type="PackedScene" uid="uid://b7xy467r6h3vw" path="res://UI/DialogUI/scene/dialog_ui.tscn" id="19_fvpsc"]
@@ -61,10 +55,9 @@ visible = false
 process_mode = 4
 visible = false
 
-[node name="StationUI" parent="MainUILayer" unique_id=2071674807 instance=ExtResource("10_o6v7o")]
+[node name="MerchantUI" parent="MainUILayer" unique_id=2071674807 instance=ExtResource("10_o6v7o")]
 process_mode = 4
 visible = false
-inventory_parts = Array[ExtResource("10_fpthe")]([ExtResource("11_h4r6f"), ExtResource("12_fvpsc"), ExtResource("13_xk0cf"), ExtResource("14_ldk75"), ExtResource("15_eycr2")])
 
 [node name="SectorInfo" parent="MainUILayer" unique_id=943868874 instance=ExtResource("11_wjob3")]
 process_mode = 4

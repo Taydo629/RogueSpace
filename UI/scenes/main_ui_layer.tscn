@@ -7,8 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://b7axk8e3fxsiw" path="res://UI/PlayerMenuUI/scene/player_ui.tscn" id="5_opk4l"]
 [ext_resource type="PackedScene" uid="uid://blofhoxjvbs5y" path="res://UI/ShipBuildingUI/scene/ship_building_ui.tscn" id="6_ubglp"]
 [ext_resource type="PackedScene" uid="uid://c0nva578wdvmu" path="res://UI/GuideUI/scene/guide_ui.tscn" id="7_j5jn6"]
-[ext_resource type="PackedScene" uid="uid://ds8t7yfbj4qfp" path="res://UI/StationUI/scene/station_ui.tscn" id="8_1qnvn"]
+[ext_resource type="PackedScene" uid="uid://ds8t7yfbj4qfp" path="res://UI/MerchantUI/scene/merchant_ui.tscn" id="8_1qnvn"]
 [ext_resource type="PackedScene" uid="uid://c7woe6b2tkxna" path="res://UI/SectorInfo/scene/sector_info.tscn" id="9_vtn47"]
+
 
 [node name="MainUILayer" type="CanvasLayer" unique_id=836505016]
 process_mode = 3

@@ -7,7 +7,7 @@ class_name MainUILayer extends CanvasLayer
 @onready var ship_building_ui: BuildUI = $ShipBuildingUI
 @onready var map_ui: MapUI = $MapUI
 @onready var guide_ui: GuideUI = $GuideUI
-@onready var station_ui: StationUI = $StationUI
+@onready var merchant_ui: MerchantUI = $MerchantUI
 @onready var sector_info: SectorInfoUI = $SectorInfo
 @onready var death_ui: DeathMenu = $DeathScreen
 @onready var dialog_ui: DialogUI = $DialogUI
@@ -26,7 +26,7 @@ func init_ui() -> void:
 								BuildUIState.new(self),
 								PlayerUIState.new(self),
 								MapUIState.new(self),
-								StationUIState.new(self),
+								MerchantUIState.new(self),
 								GuideUIState.new(self),
 								SectorInfoUIState.new(self),
 								DeathUIState.new(self),

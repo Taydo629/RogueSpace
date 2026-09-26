@@ -1,0 +1,128 @@
+[gd_scene format=3 uid="uid://ds8t7yfbj4qfp"]
+
+[ext_resource type="Script" uid="uid://b0u3eaegvjswr" path="res://UI/MerchantUI/src/merchant_ui.gd" id="1_77r05"]
+[ext_resource type="PackedScene" uid="uid://c4j3o05v1cybp" path="res://UI/MerchantUI/scene/merchant_item.tscn" id="2_5ltpe"]
+
+[node name="MerchantUI" type="Control" unique_id=2071674807]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_77r05")
+
+[node name="DialogBoxBG" type="PanelContainer" parent="." unique_id=1145638386]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 176.0
+offset_top = 324.0
+offset_right = -176.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DialogBoxBG" unique_id=1579979575]
+layout_mode = 2
+
+[node name="NPCNameLabel" type="Label" parent="DialogBoxBG/VBoxContainer" unique_id=712679937]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Merchant vendor"
+
+[node name="DialogBoxContainer" type="HBoxContainer" parent="DialogBoxBG/VBoxContainer" unique_id=75960948]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DialogText" type="RichTextLabel" parent="DialogBoxBG/VBoxContainer/DialogBoxContainer" unique_id=1881291159]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+text = "Can I interest you in some new parts for your ship? 
+My prices are the best in this sector!
+
+I also buy parts if your cargo hold is becomming cramped!"
+vertical_alignment = 1
+
+[node name="ButtonContainer" type="VBoxContainer" parent="DialogBoxBG/VBoxContainer/DialogBoxContainer" unique_id=798883876]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = 12
+
+[node name="ShopButton" type="Button" parent="DialogBoxBG/VBoxContainer/DialogBoxContainer/ButtonContainer" unique_id=860478499]
+layout_mode = 2
+text = "Buy parts"
+
+[node name="SellButton" type="Button" parent="DialogBoxBG/VBoxContainer/DialogBoxContainer/ButtonContainer" unique_id=1470640971]
+layout_mode = 2
+text = "Sell Parts"
+
+[node name="LeaveButton" type="Button" parent="DialogBoxBG/VBoxContainer/DialogBoxContainer/ButtonContainer" unique_id=1299492088]
+layout_mode = 2
+text = "Leave"
+
+[node name="BuyMenuBG" type="PanelContainer" parent="." unique_id=702929932]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -928.0
+offset_top = 152.0
+offset_right = -1152.0
+offset_bottom = -152.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(464, 172)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BuyMenuBG" unique_id=1649495874]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="BuyMenuBG/VBoxContainer" unique_id=2012329833]
+layout_mode = 2
+alignment = 2
+
+[node name="Control" type="Control" parent="BuyMenuBG/VBoxContainer/HBoxContainer2" unique_id=403095183]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="BuyMenuBG/VBoxContainer/HBoxContainer2" unique_id=1406808824]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 8.0
+text = "Merchant shop"
+horizontal_alignment = 1
+
+[node name="ExitBuyMenuButton" type="Button" parent="BuyMenuBG/VBoxContainer/HBoxContainer2" unique_id=384531667]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Exit"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BuyMenuBG/VBoxContainer" unique_id=1980343074]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="MerchantItem" parent="BuyMenuBG/VBoxContainer/HBoxContainer" unique_id=930897121 instance=ExtResource("2_5ltpe")]
+layout_mode = 2
+
+[node name="MerchantItem2" parent="BuyMenuBG/VBoxContainer/HBoxContainer" unique_id=1952170195 instance=ExtResource("2_5ltpe")]
+layout_mode = 2
+
+[node name="MerchantItem3" parent="BuyMenuBG/VBoxContainer/HBoxContainer" unique_id=294558004 instance=ExtResource("2_5ltpe")]
+layout_mode = 2
+
+[node name="MerchantItem4" parent="BuyMenuBG/VBoxContainer/HBoxContainer" unique_id=1530877102 instance=ExtResource("2_5ltpe")]
+layout_mode = 2
+
+[node name="MerchantItem5" parent="BuyMenuBG/VBoxContainer/HBoxContainer" unique_id=1189589377 instance=ExtResource("2_5ltpe")]
+layout_mode = 2
+
+[connection signal="pressed" from="DialogBoxBG/VBoxContainer/DialogBoxContainer/ButtonContainer/ShopButton" to="." method="_on_shop_button_pressed"]
+[connection signal="pressed" from="DialogBoxBG/VBoxContainer/DialogBoxContainer/ButtonContainer/SellButton" to="." method="_on_sell_button_pressed"]
+[connection signal="pressed" from="DialogBoxBG/VBoxContainer/DialogBoxContainer/ButtonContainer/LeaveButton" to="." method="_on_leave_button_pressed"]
+[connection signal="pressed" from="BuyMenuBG/VBoxContainer/HBoxContainer2/ExitBuyMenuButton" to="." method="_on_exit_buy_menu_button_pressed"]
