@@ -21,10 +21,13 @@ func _init_inventory_bar() -> void:
 	_update_explosive_label(Inventory.explosives)
 
 func _update_credit_label(new_credit: int) -> void:
-	credit_label.text = template_str % new_credit
+	if credit_label != null:
+		credit_label.text = template_str % new_credit
 
 func _update_ammo_label(new_ammo: int) -> void:
-	ammo_label.text = template_str % new_ammo
+	if ammo_label != null:
+		ammo_label.text = template_str % new_ammo
 
 func _update_explosive_label(new_explosives: int) -> void:
-	explosive_label.text = template_str % new_explosives
+	if explosive_label != null:
+		explosive_label.text = template_str % new_explosives

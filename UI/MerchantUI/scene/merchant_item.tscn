@@ -17,14 +17,15 @@ region_rect = Rect2(0, 0, 240, 160)
 modulate_color = Color(1, 0.36862746, 1, 1)
 
 [node name="MerchantItem" type="VBoxContainer" unique_id=930897121]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 175.0
+offset_bottom = 286.0
 script = ExtResource("1_i6tp7")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1349606751]
 custom_minimum_size = Vector2(175, 250)
 custom_maximum_size = Vector2(175, 250)
 layout_mode = 2
+offset_transform_enabled = true
 theme_override_styles/panel = SubResource("StyleBoxTexture_dj54i")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1772452141]

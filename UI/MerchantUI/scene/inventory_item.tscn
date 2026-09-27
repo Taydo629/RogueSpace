@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://djfievkxd0ryk"]
+
+[ext_resource type="Script" uid="uid://cdncbluow40wb" path="res://UI/MerchantUI/src/inventory_item.gd" id="1_eg764"]
+[ext_resource type="Texture2D" uid="uid://b6d1kjojcyi20" path="res://assets/UI_theme_asset_sheet.png" id="2_hhiun"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uud0x"]
+atlas = ExtResource("2_hhiun")
+region = Rect2(256, 112, 240, 160)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dj54i"]
+texture = SubResource("AtlasTexture_uud0x")
+texture_margin_left = 22.0
+texture_margin_top = 26.0
+texture_margin_right = 16.0
+texture_margin_bottom = 17.0
+region_rect = Rect2(0, 0, 240, 160)
+modulate_color = Color(1, 0.36862746, 1, 1)
+
+[node name="InventoryItem" type="VBoxContainer" unique_id=930897121]
+offset_right = 175.0
+offset_bottom = 250.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_eg764")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1349606751]
+custom_minimum_size = Vector2(125, 175)
+custom_maximum_size = Vector2(125, 175)
+layout_mode = 2
+offset_transform_enabled = true
+theme_override_styles/panel = SubResource("StyleBoxTexture_dj54i")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1772452141]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ItemTitleLabel" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1188276757]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Part LV2"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer" unique_id=1001531853]
+layout_mode = 2
+stretch_mode = 5
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer" unique_id=1419799664]
+visible = false
+layout_mode = 2
+size_flags_vertical = 6
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 6
+fit_content = true
+autowrap_mode = 0
+
+[connection signal="mouse_entered" from="PanelContainer" to="." method="_on_panel_container_mouse_entered"]
+[connection signal="mouse_exited" from="PanelContainer" to="." method="_on_panel_container_mouse_exited"]

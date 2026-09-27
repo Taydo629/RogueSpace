@@ -10,6 +10,11 @@ var hovered:bool = false:
 		else:
 			rich_text_label.visible = false
 			item_description_label.visible = true
+var is_hovered: bool = false
+var is_selected: bool = false
+
+@export var hover_grow: float = 1.2
+@export var grow_time: float = 0.2
 
 @onready var texture_rect: TextureRect = $PanelContainer/VBoxContainer/TextureRect
 @onready var item_description_label: RichTextLabel = $PanelContainer/VBoxContainer/ItemDescriptionLabel
@@ -18,6 +23,8 @@ var hovered:bool = false:
 @onready var rich_text_label: RichTextLabel = $PanelContainer/VBoxContainer/RichTextLabel
 @onready var buy_button: Button = $BuyButton
 #@onready var h_separator: HSeparator = $PanelContainer/VBoxContainer/HSeparator
+
+signal selected(QuadrantIcon)
 
 var part: Part:
 	set(value):
@@ -55,11 +62,13 @@ func _set_stats():
 func _on_panel_container_mouse_entered() -> void:
 	if not hovered:
 		hovered = true
+		_on_hover()
 		print("entered")
 
 func _on_panel_container_mouse_exited() -> void:
 	if not Rect2(Vector2(), panel_container.size).has_point(get_local_mouse_position()):
 		hovered = false
+		_on_unhover()
 		print("exited")
 
 func _on_buy_button_pressed() -> void:
@@ -73,6 +82,23 @@ func _unaffordable() -> void:
 
 func _affordable() -> void:
 	buy_button.disabled = false
+
+func _on_hover() -> void:
+	var tween: Tween = create_tween()
+	tween.tween_property(panel_container, "offset_transform_scale", Vector2(hover_grow,hover_grow), grow_time)
+
+func _on_unhover() -> void:
+	var tween: Tween = create_tween()
+	tween.tween_property(panel_container, "offset_transform_scale", Vector2(1,1), grow_time)
+
+func unselect_item() -> bool:
+	if not is_hovered:
+		is_selected = false
+		set_instance_shader_parameter("selected", false)
+		_on_unhover()
+		return true
+	else:
+		return false
 
 func check_affordable() -> void:
 	if part.buy_price > Inventory.wallet:

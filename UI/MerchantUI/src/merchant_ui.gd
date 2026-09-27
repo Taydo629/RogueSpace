@@ -2,17 +2,21 @@ class_name MerchantUI extends Control
 
 @onready var dialog_box_bg: PanelContainer = $DialogBoxBG
 @onready var buy_menu_bg: PanelContainer = $BuyMenuBG
+@onready var sell_menu_h_box: HBoxContainer = $SellMenuHBox
 @onready var item_container: HBoxContainer = $BuyMenuBG/VBoxContainer/ItemContainer
+@onready var inv_grid_container: GridContainer = $HBoxContainer/InventoryPanelContainer/VBoxContainer/PanelContainer/ScrollContainer/GridContainer
 
 @export var tween_in_animation_time: float = 0.3
 @export var number_of_items_for_sale: int = 5
 
 var dialog_box_last_pos: Vector2
 var buy_menu_last_pos: Vector2
+var sell_menu_last_pos: Vector2
 var part_list: Array[Part]
 
 const parts_res_dir = "res://data/Parts/"
 const MERCHANT_ITEM = preload("uid://c4j3o05v1cybp")
+const INVENTORY_ITEM = preload("uid://djfievkxd0ryk")
 
 signal warp
 
@@ -22,7 +26,13 @@ func _ready() -> void:
 
 func init_ui() -> void:
 	_select_stock()
-	
+
+func _update_inventory() -> void:
+	if not Inventory.inventory.is_empty():
+		for item:Part in Inventory.inventory:
+			var new_item_icon: InventoryItem = INVENTORY_ITEM.instantiate()
+			inv_grid_container.add_child(new_item_icon)
+			new_item_icon.part = item
 
 func _select_stock() -> void:
 	for i in number_of_items_for_sale:
@@ -40,6 +50,8 @@ func _on_shop_button_pressed() -> void:
 	_tween_buy_menu(true)
 
 func _on_sell_button_pressed() -> void:
+	_update_inventory()
+	_tween_sell_menu(true)
 	_tween_dialog_box(false)
 
 func _tween_dialog_box(is_tween_in: bool) -> void:
@@ -68,9 +80,27 @@ func _tween_buy_menu(is_tween_in: bool) -> void:
 		
 	tween.tween_property(buy_menu_bg, "position", buy_menu_target_pos, tween_in_animation_time)
 
+func _tween_sell_menu(is_tween_in: bool) -> void:
+	var tween:= create_tween()
+	var current_rect:= get_rect()
+	var sell_menu_target_pos: Vector2
+	if is_tween_in:
+		sell_menu_target_pos = current_rect.size/2 - sell_menu_h_box.pivot_offset
+		sell_menu_last_pos = sell_menu_h_box.position
+	else:
+		sell_menu_target_pos = sell_menu_last_pos
+		
+	tween.tween_property(sell_menu_h_box, "position", sell_menu_target_pos, tween_in_animation_time)
+
 func _on_leave_button_pressed() -> void:
 	warp.emit()
 
 func _on_exit_buy_menu_button_pressed() -> void:
 	_tween_dialog_box(true)
 	_tween_buy_menu(false)
+
+
+func _on_exit_sell_menu_button_pressed() -> void:
+	_tween_dialog_box(true)
+	_tween_sell_menu(false)
+	# Code to clear sell menu changes
