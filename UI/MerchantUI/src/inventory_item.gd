@@ -10,11 +10,10 @@ var hovered:bool = false:
 		else:
 			rich_text_label.visible = false
 			texture_rect.visible = true
-var is_hovered: bool = false
-var is_selected: bool = false
-
-@export var hover_grow: float = 1.2
-@export var grow_time: float = 0.2
+var is_clicked: bool = false
+var mouse_anchor_pos: Vector2
+@export var click_grow: float = 1.2
+@export var grow_time: float = 0.1
 
 @onready var texture_rect: TextureRect = $PanelContainer/VBoxContainer/TextureRect
 @onready var item_title_label: Label = $PanelContainer/VBoxContainer/ItemTitleLabel
@@ -22,7 +21,8 @@ var is_selected: bool = false
 @onready var rich_text_label: RichTextLabel = $PanelContainer/VBoxContainer/RichTextLabel
 #@onready var h_separator: HSeparator = $PanelContainer/VBoxContainer/HSeparator
 
-signal selected(QuadrantIcon)
+#signal clicked(icon: InventoryItem)
+#signal unclicked(icon: InventoryItem)
 
 var part: Part:
 	set(value):
@@ -32,12 +32,55 @@ var part: Part:
 		item_title_label.text = str(part.display_name, " Lv %s" % part.level)
 		_set_stats()
 
-func _ready() -> void:
-	_test()
+#func _ready() -> void:
+	#_test()
 
-func _test() -> void:
-	const GUN = preload("uid://bs8ufgr7qnr1y")
-	part = GUN
+#func _test() -> void:
+	#const GUN = preload("uid://bs8ufgr7qnr1y")
+	#part = GUN
+
+func _get_drag_data(at_position: Vector2) -> Variant:
+	var data = self
+	var preview = Control.new()
+	# So that icon is shown instead of stats
+	hovered = false
+	var preview_contents = self.duplicate()
+	# Stop scripts from running as there is many scripts running
+	preview_contents.set_script(null)
+	# Off set the position so that it is inline with the cursor
+	preview_contents.position = -0.5 * preview_contents.size
+	preview.add_child(preview_contents)
+	set_drag_preview(preview)
+	
+	# hide original node when dragging
+	modulate.a = 0
+	return data
+
+#func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
+	#return false
+
+#func _drop_data(at_position: Vector2, data: Variant) -> void:
+	#pass
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_DRAG_END:
+		modulate.a = 1
+
+#func _process(_delta: float) -> void:
+	#if Input.is_action_just_pressed("left_click") and hovered:
+		#clicked.emit(self)
+		#_on_clicked()
+		#mouse_anchor_pos = get_local_mouse_position()
+		#is_clicked = true
+		#print("Clicked!")
+	#elif Input.is_action_just_released("left_click") and hovered:
+		#unclicked.emit(self)
+		#_on_unclicked()
+		#mouse_anchor_pos = Vector2.ZERO
+		#is_clicked = false
+		#print("Not clicked!")
+	##elif is_clicked:
+		##position += get_local_mouse_position() - mouse_anchor_pos
 
 func _set_stats():
 	rich_text_label.append_text(str("Value: %s" % part.sell_price, "\n"))
@@ -71,17 +114,17 @@ func _on_buy_button_pressed() -> void:
 	Inventory.add_item(part)
 	queue_free()
 
-func _on_hover() -> void:
+func _on_clicked() -> void:
 	var tween: Tween = create_tween()
-	tween.tween_property(panel_container, "offset_transform_scale", Vector2(hover_grow,hover_grow), grow_time)
+	tween.tween_property(panel_container, "offset_transform_scale", Vector2(click_grow,click_grow), grow_time)
 
-func _on_unhover() -> void:
+func _on_unclicked() -> void:
 	var tween: Tween = create_tween()
 	tween.tween_property(panel_container, "offset_transform_scale", Vector2(1,1), grow_time)
 
 func unselect_item() -> bool:
-	if not is_hovered:
-		is_selected = false
+	if not hovered:
+		is_clicked = false
 		set_instance_shader_parameter("selected", false)
 		#_on_unhover()
 		return true

@@ -142,6 +142,8 @@ func generate_level(quadrant: Quadrant) -> void:
 	level_number += 1
 	# Clear the level before generating new one
 	clear_level()
+	
+	player.position = Vector2.ZERO
 	# Spawn enemies if quadrant either boss or combat
 	if current_quadrant.type in [Quadrant.TYPE.BOSS, Quadrant.TYPE.COMBAT]:
 		# NPC spawning

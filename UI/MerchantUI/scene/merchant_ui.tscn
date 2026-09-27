@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b0u3eaegvjswr" path="res://UI/MerchantUI/src/merchant_ui.gd" id="1_77r05"]
 [ext_resource type="PackedScene" uid="uid://dq11rkx784xj0" path="res://UI/PlayerMenuUI/scene/inventory_bar.tscn" id="2_5ltpe"]
 [ext_resource type="Texture2D" uid="uid://b6d1kjojcyi20" path="res://assets/UI_theme_asset_sheet.png" id="3_53tim"]
-[ext_resource type="PackedScene" uid="uid://djfievkxd0ryk" path="res://UI/MerchantUI/scene/inventory_item.tscn" id="4_tx2ft"]
+[ext_resource type="Script" uid="uid://s5orvff0dly7" path="res://UI/MerchantUI/src/item_drag_destination.gd" id="4_d4cjv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uud0x"]
 atlas = ExtResource("3_53tim")
@@ -170,24 +170,27 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_tx2ft")
 layout_mode = 2
 horizontal_scroll_mode = 0
 
-[node name="GridContainer" type="GridContainer" parent="SellMenuHBox/SellPanelContainer/VBoxContainer/PanelContainer/ScrollContainer" unique_id=785145562]
+[node name="SellGridContainer" type="GridContainer" parent="SellMenuHBox/SellPanelContainer/VBoxContainer/PanelContainer/ScrollContainer" unique_id=785145562]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 columns = 3
+script = ExtResource("4_d4cjv")
 
-[node name="Label2" type="Label" parent="SellMenuHBox/SellPanelContainer/VBoxContainer" unique_id=1376044873]
+[node name="CurrentValueLabel" type="Label" parent="SellMenuHBox/SellPanelContainer/VBoxContainer" unique_id=1376044873]
 layout_mode = 2
-text = "Current value: %s CR"
+text = "Drag items to sell"
 horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="SellMenuHBox/SellPanelContainer/VBoxContainer" unique_id=1227085063]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="SellMenuHBox/SellPanelContainer/VBoxContainer/HBoxContainer" unique_id=743610372]
+[node name="ClearSellBoxButton" type="Button" parent="SellMenuHBox/SellPanelContainer/VBoxContainer/HBoxContainer" unique_id=743610372]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Clear"
 
-[node name="Button2" type="Button" parent="SellMenuHBox/SellPanelContainer/VBoxContainer/HBoxContainer" unique_id=1753593983]
+[node name="SellItemButton" type="Button" parent="SellMenuHBox/SellPanelContainer/VBoxContainer/HBoxContainer" unique_id=1753593983]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Sell"
@@ -226,15 +229,18 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_tx2ft")
 layout_mode = 2
 horizontal_scroll_mode = 0
 
-[node name="GridContainer" type="GridContainer" parent="SellMenuHBox/InventoryPanelContainer/VBoxContainer/PanelContainer/ScrollContainer" unique_id=1704042205]
+[node name="InvGridContainer" type="GridContainer" parent="SellMenuHBox/InventoryPanelContainer/VBoxContainer/PanelContainer/ScrollContainer" unique_id=1704042205]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 columns = 3
-
-[node name="InventoryItem" parent="SellMenuHBox/InventoryPanelContainer/VBoxContainer/PanelContainer/ScrollContainer/GridContainer" unique_id=930897121 instance=ExtResource("4_tx2ft")]
-layout_mode = 2
+script = ExtResource("4_d4cjv")
 
 [connection signal="pressed" from="DialogBoxBG/VBoxContainer/DialogBoxContainer/ButtonContainer/ShopButton" to="." method="_on_shop_button_pressed"]
 [connection signal="pressed" from="DialogBoxBG/VBoxContainer/DialogBoxContainer/ButtonContainer/SellButton" to="." method="_on_sell_button_pressed"]
 [connection signal="pressed" from="DialogBoxBG/VBoxContainer/DialogBoxContainer/ButtonContainer/LeaveButton" to="." method="_on_leave_button_pressed"]
 [connection signal="pressed" from="BuyMenuBG/VBoxContainer/HBoxContainer2/ExitBuyMenuButton" to="." method="_on_exit_buy_menu_button_pressed"]
+[connection signal="child_order_changed" from="SellMenuHBox/SellPanelContainer/VBoxContainer/PanelContainer/ScrollContainer/SellGridContainer" to="." method="_on_sell_grid_container_child_order_changed"]
+[connection signal="pressed" from="SellMenuHBox/SellPanelContainer/VBoxContainer/HBoxContainer/ClearSellBoxButton" to="." method="_on_clear_sell_box_button_pressed"]
+[connection signal="pressed" from="SellMenuHBox/SellPanelContainer/VBoxContainer/HBoxContainer/SellItemButton" to="." method="_on_sell_item_button_pressed"]
 [connection signal="pressed" from="SellMenuHBox/Spacing/ExitSellMenuButton" to="." method="_on_exit_sell_menu_button_pressed"]
