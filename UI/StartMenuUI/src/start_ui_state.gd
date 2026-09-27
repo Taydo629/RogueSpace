@@ -21,7 +21,7 @@ func exit() -> void:
 	main_menu_ui.process_mode = Node.PROCESS_MODE_DISABLED
 
 func start_game() -> void:
-	state_machine.transition(BuildUIState.state_name)
+	state_machine.transition(ShipyardUIState.state_name)
 
 func guide() -> void:
 	state_machine.transition(GuideUIState.state_name)

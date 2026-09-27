@@ -19,6 +19,7 @@ const LASER = preload("uid://f60asy2hl75j")
 
 
 signal item_pickup
+signal inventory_change
 signal credit_changed(current_credit: int)
 signal ammo_changed(current_ammo: int)
 signal explosives_changed(current_explosives: int)
@@ -47,11 +48,13 @@ func init_inventory() -> void:
 func add_item(part: Part) -> void:
 	print("%s collected!" % part.name)
 	inventory.append(part)
+	inventory_change.emit()
 	item_pickup.emit(part)
 
 func remove_item(part: Part) -> void:
 	print("%s removed!" % part.name)
 	inventory.erase(part)
+	inventory_change.emit()
 
 func deposit_to_wallet(credits: int) -> void:
 	wallet += credits

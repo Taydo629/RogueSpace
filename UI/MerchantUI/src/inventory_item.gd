@@ -101,13 +101,11 @@ func _on_panel_container_mouse_entered() -> void:
 	if not hovered:
 		hovered = true
 		#_on_hover()
-		print("entered")
 
 func _on_panel_container_mouse_exited() -> void:
 	if not Rect2(Vector2(), panel_container.size).has_point(get_local_mouse_position()):
 		hovered = false
 		#_on_unhover()
-		print("exited")
 
 func _on_buy_button_pressed() -> void:
 	Inventory.withdraw_from_wallet(part.buy_price)

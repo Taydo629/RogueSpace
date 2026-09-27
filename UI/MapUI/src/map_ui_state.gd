@@ -32,7 +32,7 @@ func load_into_new_quadrant(quadrant: Quadrant) -> void:
 	elif quadrant.type == Quadrant.TYPE.NEUTRAL:
 		state_machine.transition(DialogUIState.state_name)
 	elif quadrant.type == Quadrant.TYPE.SHIPYARD:
-		state_machine.transition(BuildUIState.state_name)
+		state_machine.transition(ShipyardUIState.state_name)
 	elif quadrant.type == Quadrant.TYPE.MERCAHNT:
 		state_machine.transition(MerchantUIState.state_name)
 

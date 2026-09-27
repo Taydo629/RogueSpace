@@ -1,0 +1,264 @@
+[gd_scene format=3 uid="uid://if4i8inii6cr"]
+
+[ext_resource type="Texture2D" uid="uid://dmdsrf5jlj5jk" path="res://assets/Space_BG.png" id="1_fs5yi"]
+[ext_resource type="Script" uid="uid://br7mewwcs64re" path="res://UI/ShipyardUI/src/shipyard_ui.gd" id="1_ueep2"]
+[ext_resource type="Shader" uid="uid://cvvodjxutsgje" path="res://shaders/ship_building_ui.gdshader" id="2_ueep2"]
+[ext_resource type="Texture2D" uid="uid://b6d1kjojcyi20" path="res://assets/UI_theme_asset_sheet.png" id="4_v0584"]
+[ext_resource type="PackedScene" uid="uid://dq11rkx784xj0" path="res://UI/PlayerMenuUI/scene/inventory_bar.tscn" id="6_ltgk6"]
+[ext_resource type="PackedScene" uid="uid://01c8dlk1i3xw" path="res://UI/ShipyardUI/scene/item_slot.tscn" id="6_v0584"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jdgi4"]
+shader = ExtResource("2_ueep2")
+shader_parameter/grid_size = 64.0000029925
+shader_parameter/line_width = 1.0
+shader_parameter/line_default_a = 0.2000000095
+shader_parameter/circle_size = 200.0000094525
+shader_parameter/mouse_pos = Vector2(63.265, 32.475)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uud0x"]
+atlas = ExtResource("4_v0584")
+region = Rect2(256, 112, 240, 160)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fnbh3"]
+texture = SubResource("AtlasTexture_uud0x")
+texture_margin_left = 22.0
+texture_margin_top = 26.0
+texture_margin_right = 16.0
+texture_margin_bottom = 17.0
+region_rect = Rect2(0, 0, 240, 160)
+modulate_color = Color(0.7708395, 0.77083945, 0.77083945, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ltgk6"]
+atlas = ExtResource("4_v0584")
+region = Rect2(480, 0, 64, 64)
+
+[node name="ShipyardUI" type="Control" unique_id=1775686744]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ueep2")
+
+[node name="BG" type="TextureRect" parent="." unique_id=1022332198]
+z_index = -4
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_fs5yi")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="BuildArea" type="Control" parent="." unique_id=930140709]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="ColorRect" parent="BuildArea" unique_id=207244479]
+z_index = -3
+texture_repeat = 3
+material = SubResource("ShaderMaterial_jdgi4")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(575, 324)
+color = Color(0.6955032, 0.6955031, 0.6955031, 1)
+
+[node name="BuildAreaRect" type="ColorRect" parent="BuildArea" unique_id=2065284722]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 800.0
+offset_top = 288.0
+offset_right = -288.0
+offset_bottom = -295.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(32, 32)
+color = Color(1, 1, 1, 0.15686275)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1732025093]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 26.0
+offset_right = -672.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 10.0
+
+[node name="InventoryPanelContainer" type="PanelContainer" parent="VBoxContainer" unique_id=467717394]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/InventoryPanelContainer" unique_id=1988751257]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/InventoryPanelContainer/VBoxContainer" unique_id=393549114]
+layout_mode = 2
+text = "Inventory"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/InventoryPanelContainer/VBoxContainer" unique_id=1786715046]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/InventoryPanelContainer/VBoxContainer" unique_id=1986282766]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_fnbh3")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/InventoryPanelContainer/VBoxContainer/PanelContainer" unique_id=1741712876]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="InvGridContainer" type="GridContainer" parent="VBoxContainer/InventoryPanelContainer/VBoxContainer/PanelContainer/ScrollContainer" unique_id=1546416878]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 3
+
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer" unique_id=434727743]
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 1
+
+[node name="Upgrade" type="VBoxContainer" parent="VBoxContainer/TabContainer" unique_id=296229299]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/Upgrade" unique_id=1637861285]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CurrentItem" parent="VBoxContainer/TabContainer/Upgrade/HBoxContainer" unique_id=1337602768 instance=ExtResource("6_v0584")]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/Upgrade/HBoxContainer" unique_id=1500435247]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Arrow" type="TextureRect" parent="VBoxContainer/TabContainer/Upgrade/HBoxContainer/VBoxContainer" unique_id=2141181022]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = SubResource("AtlasTexture_ltgk6")
+stretch_mode = 3
+
+[node name="Button" type="Button" parent="VBoxContainer/TabContainer/Upgrade/HBoxContainer/VBoxContainer" unique_id=2132254612]
+layout_mode = 2
+disabled = true
+text = "Upgrade"
+
+[node name="NewItem" parent="VBoxContainer/TabContainer/Upgrade/HBoxContainer" unique_id=963354090 instance=ExtResource("6_v0584")]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="Repair" type="VBoxContainer" parent="VBoxContainer/TabContainer" unique_id=833745396]
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/Repair" unique_id=189934308]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CurrentItem" parent="VBoxContainer/TabContainer/Repair/HBoxContainer" unique_id=604896441 instance=ExtResource("6_v0584")]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/Repair/HBoxContainer" unique_id=163487514]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Arrow" type="TextureRect" parent="VBoxContainer/TabContainer/Repair/HBoxContainer/VBoxContainer" unique_id=992683342]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = SubResource("AtlasTexture_ltgk6")
+stretch_mode = 3
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/TabContainer/Repair/HBoxContainer/VBoxContainer" unique_id=1145526813]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer/TabContainer/Repair/HBoxContainer/VBoxContainer" unique_id=458430547]
+layout_mode = 2
+disabled = true
+text = "Repair"
+
+[node name="NewItem" parent="VBoxContainer/TabContainer/Repair/HBoxContainer" unique_id=1017130514 instance=ExtResource("6_v0584")]
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/TabContainer/Repair" unique_id=286326253]
+layout_mode = 2
+alignment = 2
+
+[node name="InventoryBar" parent="." unique_id=537340854 instance=ExtResource("6_ltgk6")]
+layout_mode = 1
+offset_left = 936.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1332717771]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 504.0
+offset_top = 26.0
+offset_right = -456.0
+offset_bottom = -582.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BuildLabel" type="Label" parent="HBoxContainer" unique_id=494937369]
+layout_mode = 2
+text = "Mode"
+
+[node name="BuildModeDropdown" type="OptionButton" parent="HBoxContainer" unique_id=594765001]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+clip_text = true
+selected = 0
+item_count = 3
+popup/item_0/text = "Build"
+popup/item_0/id = 0
+popup/item_1/text = "Remove"
+popup/item_1/id = 1
+popup/item_2/text = "Select"
+popup/item_2/id = 2
+
+[node name="BuildButton" type="Button" parent="." unique_id=2066772004]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1064.0
+offset_top = 600.0
+offset_right = -15.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Build"
+
+[connection signal="item_selected" from="HBoxContainer/BuildModeDropdown" to="." method="_on_build_mode_dropdown_item_selected"]
+[connection signal="toggled" from="HBoxContainer/BuildModeDropdown" to="." method="_on_build_remove_toggle_toggled"]
+[connection signal="pressed" from="BuildButton" to="." method="_on_build_button_pressed"]

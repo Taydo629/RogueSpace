@@ -37,6 +37,10 @@ func _update_inventory() -> void:
 			inv_grid_container.add_child(new_item_icon)
 			new_item_icon.part = item
 
+func _clear_inv_grid() -> void:
+	for item_icon: InventoryItem in inv_grid_container.get_children():
+		item_icon.queue_free()
+
 func _select_stock() -> void:
 	for i in number_of_items_for_sale:
 		var selected_part: Part = part_list.pick_random().duplicate()
