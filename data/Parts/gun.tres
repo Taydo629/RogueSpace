@@ -11,6 +11,19 @@ script = ExtResource("1_5cbms")
 sprite = ExtResource("1_opjho")
 metadata/_custom_type_script = "uid://bai17l24abfvp"
 
+[sub_resource type="Resource" id="Resource_ltgk6"]
+script = ExtResource("1_5cbms")
+sprite = ExtResource("1_opjho")
+buy_price_modifier = 1.5
+sell_price_modifier = 1.5
+weight_modifier = 1.5
+max_health_modifier = 1.5
+fire_rate_modifier = 1.5
+damage_modifier = 1.5
+round_speed_modifier = 1.5
+ammo_cost_modifier = 2.0
+metadata/_custom_type_script = "uid://bai17l24abfvp"
+
 [resource]
 script = ExtResource("1_1bxkw")
 name = "gun"
@@ -29,6 +42,7 @@ base_damage = 30.0
 base_round_speed = 2000
 base_ammo_cost = 1
 level_dict = Dictionary[int, ExtResource("1_5cbms")]({
-1: SubResource("Resource_3ab80")
+1: SubResource("Resource_3ab80"),
+2: SubResource("Resource_ltgk6")
 })
 metadata/_custom_type_script = "uid://dfxnbigy6na68"

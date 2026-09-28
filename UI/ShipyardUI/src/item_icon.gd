@@ -36,7 +36,7 @@ func _ready() -> void:
 
 func _update_count() -> void:
 	if selectable:
-		var new_count: int = Inventory.inventory.count(part)
+		var new_count: int = _count_similar_parts(part)
 		if item_count != new_count:
 			item_count = new_count
 		if item_count == 0:
@@ -44,10 +44,17 @@ func _update_count() -> void:
 			selectable = false
 			out_of_parts.emit()
 	else:
-		var new_count: int = Inventory.inventory.count(part)
+		var new_count: int = _count_similar_parts(part)
 		if new_count > 0:
 			item_count = new_count
 			selectable = true
+
+func _count_similar_parts(part_to_check: Part) -> int:
+	var number_of_similar_parts: int = 0
+	for part: Part in Inventory.inventory:
+		if part_to_check.name == part.name and part_to_check.level == part.level:
+			number_of_similar_parts += 1
+	return number_of_similar_parts
 
 func _process(_delta: float) -> void:
 	if hovered:

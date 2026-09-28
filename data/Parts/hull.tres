@@ -10,6 +10,15 @@ script = ExtResource("1_12q6g")
 sprite = ExtResource("2_hn3f4")
 metadata/_custom_type_script = "uid://bai17l24abfvp"
 
+[sub_resource type="Resource" id="Resource_voyld"]
+script = ExtResource("1_12q6g")
+sprite = ExtResource("2_hn3f4")
+buy_price_modifier = 1.25
+sell_price_modifier = 1.25
+weight_modifier = 1.25
+max_health_modifier = 2.0
+metadata/_custom_type_script = "uid://bai17l24abfvp"
+
 [resource]
 script = ExtResource("1_4q4pp")
 name = "hull"
@@ -22,6 +31,7 @@ base_sell_price = 50
 base_weight = 1
 base_max_health = 200
 level_dict = Dictionary[int, ExtResource("1_12q6g")]({
-1: SubResource("Resource_pbt6m")
+1: SubResource("Resource_pbt6m"),
+2: SubResource("Resource_voyld")
 })
 metadata/_custom_type_script = "uid://dfxnbigy6na68"

@@ -3,6 +3,10 @@
 [ext_resource type="Texture2D" uid="uid://b6d1kjojcyi20" path="res://assets/UI_theme_asset_sheet.png" id="1_bxsyj"]
 [ext_resource type="Script" uid="uid://icjfipj0pgqn" path="res://UI/ShipyardUI/src/item_slot.gd" id="1_v8xgg"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8xgg"]
+atlas = ExtResource("1_bxsyj")
+region = Rect2(544, 0, 64, 64)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_uud0x"]
 atlas = ExtResource("1_bxsyj")
 region = Rect2(256, 112, 240, 160)
@@ -26,6 +30,7 @@ offset_bottom = 250.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_v8xgg")
+default_texture = SubResource("AtlasTexture_v8xgg")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1349606751]
 custom_minimum_size = Vector2(125, 175)

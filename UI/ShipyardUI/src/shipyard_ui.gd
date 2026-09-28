@@ -8,10 +8,14 @@ class_name ShipyardUI extends Control
 @onready var texture_rect: ColorRect = $BuildArea/TextureRect
 @onready var build_area_rect: ColorRect = $BuildArea/BuildAreaRect
 @onready var build_area: Control = $BuildArea
+@onready var upgrade_button: Button = $VBoxContainer/TabContainer/Upgrade/HBoxContainer/VBoxContainer/UpgradeButton
+@onready var repair_button: Button = $VBoxContainer/TabContainer/Repair/HBoxContainer/VBoxContainer/RepairButton
+@onready var upgrade_cost_label: Label = $VBoxContainer/TabContainer/Upgrade/HBoxContainer/VBoxContainer/UpgradeCostLabel
 
 enum BUILD_MODE {BUILD,REMOVE,SELECT}
 
 var current_selected_item: Variant
+var current_selected_base_part: BasePart
 var instantiated_item: Variant
 var current_mouse_pos: Vector2 = Vector2.ZERO
 
@@ -65,6 +69,22 @@ func _clear_inv_grid() -> void:
 	for item: ItemIcon in inv_grid_container.get_children():
 		item.queue_free()
 
+func _add_part_to_inventory(new_part: Part) -> void:
+	for icon: ItemIcon in inv_grid_container.get_children():
+		var icon_part: Part = icon.part
+		if new_part.name == icon.part.name and new_part.level == icon.part.level:
+			print("found appropriate icon")
+			icon.item_count = icon.item_count + 1
+			return
+	print("no icon found")
+	var new_item_icon:ItemIcon = ITEM_ICON.instantiate()
+	inv_grid_container.add_child(new_item_icon)
+	new_item_icon.selected.connect(_add_to_part_to_slot)
+	new_item_icon.out_of_parts.connect(_unselect_current_part)
+	new_item_icon.item_count = 1
+	new_item_icon.part = new_upgrade_item.part
+	return
+	
 func start_build() -> void:
 	building_dict.clear()
 	for value in player.part_component.ship_graph.values():
@@ -83,7 +103,27 @@ func _add_to_part_to_slot(selected_part: Part, icon: Variant) -> void:
 		current_selected_item = icon
 	else:
 		current_selected_item = null
+		current_selected_base_part = icon
 	current_upgrade_item.part = selected_part
+	upgrade_cost_label.text = ""
+	if selected_part.level != selected_part.level_dict.keys().max():
+		print("part_is_upgradeable")
+		var upgraded_part: Part = selected_part.duplicate_deep()
+		# Increment part level by 1
+		print(upgraded_part.buy_price)
+		upgraded_part.level = selected_part.level + 1
+		# Check if upgrade is affordable
+		upgrade_cost_label.text = "%s CR" % upgraded_part.buy_price
+		upgrade_button.text = "Upgrade"
+		new_upgrade_item.part = upgraded_part
+		if upgraded_part.buy_price > Inventory.wallet:
+			upgrade_button.disabled = true
+		else:
+			upgrade_button.disabled = false
+	else:
+		upgrade_button.text = "Max Level"
+		upgrade_button.disabled = true
+		new_upgrade_item.reset_icon_to_default()
 	current_repair_item.part = selected_part
 	if build_mode == BUILD_MODE.BUILD:
 		instantiate_part()
@@ -96,6 +136,14 @@ func _unselect_current_part() -> void:
 	if current_selected_item != null:
 		current_selected_item.is_selected = false
 		current_selected_item = null
+		current_selected_base_part = null
+		current_upgrade_item.reset_icon_to_default()
+		new_upgrade_item.reset_icon_to_default()
+		current_repair_item.reset_icon_to_default()
+		new_repair_item.reset_icon_to_default()
+		upgrade_button.text = "Upgrade"
+		upgrade_cost_label.text = ""
+		upgrade_button.disabled = true
 	if instantiated_item != null:
 		instantiated_item.queue_free()
 
@@ -160,7 +208,7 @@ func pick_part() -> void:
 		var grid_pos: Vector2 = (Vector2(current_mouse_pos) - Vector2(x_range[0],y_range[0]) - Vector2(32,32))/64
 		if str(grid_pos) in building_dict.keys():
 			var node = building_dict.get(str(grid_pos))
-			_add_to_part_to_slot(node.part, null)
+			_add_to_part_to_slot(node.part, node.instance)
 			print("Part picked")
 		else:
 			print("No part to pick!")
@@ -303,3 +351,26 @@ func _on_build_mode_dropdown_item_selected(index: int) -> void:
 	else:
 		build_mode = BUILD_MODE.SELECT
 	_toggle_build_mode()
+
+func _on_upgrade_button_pressed() -> void:
+	if current_selected_item is ItemIcon:
+		var current_part:Part = current_selected_item.part
+		var upgraded_part:Part = new_upgrade_item.part
+		var new_current_item_count: int = current_selected_item.item_count - 1
+		if new_current_item_count > 0:
+			current_selected_item.item_count = new_current_item_count
+		else:
+			current_selected_item.queue_free()
+		call_deferred("_add_part_to_inventory", upgraded_part)
+		Inventory.withdraw_from_wallet(upgraded_part.buy_price)
+		Inventory.remove_item(current_upgrade_item.part)
+		Inventory.add_item(new_upgrade_item.part)
+	else:
+		print(current_selected_base_part.max_health)
+		var current_part:Part = current_selected_base_part.part
+		var upgraded_part:Part = current_part.duplicate_deep()
+		upgraded_part.level += 1
+		current_selected_base_part.part = upgraded_part
+		Inventory.withdraw_from_wallet(upgraded_part.buy_price)
+		_add_to_part_to_slot(current_selected_base_part.part, current_selected_base_part)
+		print(current_selected_base_part.max_health)

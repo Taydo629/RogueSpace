@@ -17,24 +17,39 @@ var hovered:bool = false:
 @onready var description_label: RichTextLabel = $PanelContainer/VBoxContainer/DescriptionLabel
 @onready var panel_container: PanelContainer = $PanelContainer
 
+@export var default_texture: Texture2D
+var default_item_title_text: String = "Empty"
+var default_description_text: String = "Select a part"
+var default_stats_text: String = "Select a part"
+
 var part: Part:
 	set(value):
-		part = value
-		current_part_level = part.level
-		texture_rect.texture = part.sprite
-		item_title_label.text = str(part.display_name, " Lv %s" % part.level)
-		description_label.text = part.part_description
-		_set_stats()
+		if value != null:
+			part = value
+			current_part_level = part.level
+			texture_rect.texture = part.sprite
+			item_title_label.text = str(part.display_name, " Lv %s" % part.level)
+			description_label.text = part.part_description
+			_set_stats()
 
 func _process(delta: float) -> void:
 	if hovered:
-		if panel_container.get_rect().has_point(get_local_mouse_position()):
+		if not panel_container.get_rect().has_point(get_local_mouse_position()):
 			hovered = false
+			print("unhovered")
 
 func _on_panel_container_mouse_entered() -> void:
 	if not hovered:
+		print("hovered")
 		hovered = true
 		#_on_hover()
+
+func reset_icon_to_default() -> void:
+	part = null
+	texture_rect.texture = default_texture
+	item_title_label.text = default_item_title_text
+	description_label.text = default_description_text
+	stats_label.text = default_stats_text
 
 #func _on_panel_container_mouse_exited() -> void:
 	#if not Rect2(Vector2(), panel_container.size).has_point(get_local_mouse_position()):
@@ -42,6 +57,7 @@ func _on_panel_container_mouse_entered() -> void:
 		##_on_unhover()
 
 func _set_stats():
+	stats_label.text = ""
 	stats_label.append_text(str("Value: %s" % part.sell_price, "\n"))
 	stats_label.append_text(str("Max hp: %s" % part.max_health, "\n"))
 	stats_label.append_text(str("Mass: %s" % part.weight, "\n"))

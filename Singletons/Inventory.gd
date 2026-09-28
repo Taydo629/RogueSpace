@@ -18,6 +18,7 @@ const TRACTOR_BEAM = preload("uid://nxtyhwldok2c")
 const LASER = preload("uid://f60asy2hl75j")
 
 
+
 signal item_pickup
 signal inventory_change
 signal credit_changed(current_credit: int)
@@ -47,6 +48,7 @@ func init_inventory() -> void:
 
 func add_item(part: Part) -> void:
 	print("%s collected!" % part.name)
+	var item_istance: Part = part.duplicate()
 	inventory.append(part)
 	inventory_change.emit()
 	item_pickup.emit(part)
