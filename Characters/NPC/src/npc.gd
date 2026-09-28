@@ -15,6 +15,7 @@ var grid_dim: float = 5
 var grid_size: float = 64
 @export var detection_range: int = 1500
 @export var wander_range: int = 4000
+@export var ammo: int = 1000
 
 func _ready() -> void:
 	collision_shape_2d.shape.radius = detection_range
@@ -44,8 +45,6 @@ func create_ship():
 		part_scene.position = node.grid_pos * Vector2(grid_size,grid_size) - off_set
 		part_component.add_child(part_scene)
 		part_scene.attach(key)
-	
-	
 	init_ship()
 
 func init_ship() -> void:

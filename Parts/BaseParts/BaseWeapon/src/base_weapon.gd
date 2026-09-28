@@ -37,9 +37,9 @@ func fire_weapon(parent_node: RigidBody2D) -> void:
 		var sufficient_ammo: bool = false
 		if parent_node is Player:
 			sufficient_ammo = Inventory.subtract_ammo(ammo_cost)
-		else:
-			# Handle ammo for npcs
-			pass
+		elif parent_node is npc:
+			if parent_node.ammo >= ammo_cost:
+				sufficient_ammo = true
 		if not sufficient_ammo:
 			return
 		fire_sound.play()
