@@ -72,6 +72,11 @@ func reinitialise_components() -> void:
 	weapon_component.initalise_weapons(ship_graph)
 	tractorbeam_component.initalise_tractor_beams(ship_graph)
 
+func repair_ship() -> void:
+	for ship_component in part_component.get_children():
+		if ship_component is BasePart:
+			ship_component.heal(ship_component.part.max_health)
+
 func clear_old_ship() -> void:
 	for collider in get_children():
 		if collider is CollisionShape2D:

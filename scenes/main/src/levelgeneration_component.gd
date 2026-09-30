@@ -144,6 +144,8 @@ func generate_level(quadrant: Quadrant) -> void:
 	clear_level()
 	
 	player.position = Vector2.ZERO
+	# Repair current parts of players ship
+	player.repair_ship()
 	# Spawn enemies if quadrant either boss or combat
 	if current_quadrant.type in [Quadrant.TYPE.BOSS, Quadrant.TYPE.COMBAT]:
 		# NPC spawning
