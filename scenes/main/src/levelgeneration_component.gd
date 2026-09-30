@@ -161,10 +161,10 @@ func generate_level(quadrant: Quadrant) -> void:
 		var npc_array: Array[npc]
 		for i in number_of_npcs:
 			var NPC_instance = NPC.instantiate()
-			var NPC_ship = valid_npcs.pick_random()
+			var NPC_ship = valid_npcs.pick_random().duplicate(true)
 			NPC_instance.position = Vector2(randf_range(playable_bound_x.x,playable_bound_x.y),randf_range(playable_bound_y.x,playable_bound_y.y))
 			#NPC_instance.position = Vector2(-200,0)
-			NPC_instance.ship_graph = NPC_ship.ship_graph.get_dictionary()
+			NPC_instance.ship_graph = NPC_ship.ship_graph.get_dictionary().duplicate(true)
 			NPC_instance.grid_dim = NPC_ship.grid_size
 			add_child(NPC_instance)
 			npc_array.append(NPC_instance)
@@ -182,9 +182,9 @@ func generate_level(quadrant: Quadrant) -> void:
 	if current_quadrant.type == Quadrant.TYPE.NEUTRAL:
 		var valid_npcs: Array[NPCShip] = get_valid_ships_for_current_level()
 		var NPC_instance = NPC.instantiate()
-		var NPC_ship = valid_npcs.pick_random()
+		var NPC_ship = valid_npcs.pick_random().duplicate(true)
 		NPC_instance.position = Vector2(randf_range(playable_bound_x.x,playable_bound_x.y),randf_range(playable_bound_y.x,playable_bound_y.y))
-		NPC_instance.ship_graph = NPC_ship.ship_graph.get_dictionary()
+		NPC_instance.ship_graph = NPC_ship.ship_graph.get_dictionary().duplicate(true)
 		NPC_instance.grid_dim = NPC_ship.grid_size
 		add_child(NPC_instance)
 		current_enemy_array = [NPC_instance]
