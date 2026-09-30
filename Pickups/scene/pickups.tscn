@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://cva46fe8ibd55"]
+
+[ext_resource type="Script" uid="uid://c4tkj5s1ia7jn" path="res://Pickups/src/pickups.gd" id="1_gessj"]
+[ext_resource type="Texture2D" uid="uid://b6d1kjojcyi20" path="res://assets/UI_theme_asset_sheet.png" id="2_p4cxg"]
+[ext_resource type="Texture2D" uid="uid://t105tdvgunrx" path="res://Parts/BaseParts/BaseEnergyWeapon/src/glowing_circle.png" id="3_wib16"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p4cxg"]
+atlas = ExtResource("2_p4cxg")
+region = Rect2(16, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wib16"]
+atlas = ExtResource("2_p4cxg")
+region = Rect2(112, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1q2mb"]
+atlas = ExtResource("2_p4cxg")
+region = Rect2(208, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tors0"]
+atlas = ExtResource("2_p4cxg")
+region = Rect2(16, 384, 64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n1a5j"]
+size = Vector2(48, 48)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n1a5j"]
+radius = 800.0
+
+[node name="Pickups" type="RigidBody2D" unique_id=2141296260]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_gessj")
+credit_sprite = SubResource("AtlasTexture_p4cxg")
+ammo_sprite = SubResource("AtlasTexture_wib16")
+explosive_sprite = SubResource("AtlasTexture_1q2mb")
+tracking_speed = 1000.0
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1808583641]
+texture = SubResource("AtlasTexture_tors0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=223597780]
+shape = SubResource("RectangleShape2D_n1a5j")
+disabled = true
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1219099755]
+color = Color(1, 1, 0.52156866, 1)
+texture = ExtResource("3_wib16")
+texture_scale = 1.76
+
+[node name="PickupArea" type="Area2D" parent="." unique_id=1545645600]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea" unique_id=438752824]
+shape = SubResource("CircleShape2D_n1a5j")
+
+[node name="Timer" type="Timer" parent="." unique_id=59832475]
+one_shot = true
+
+[connection signal="body_entered" from="PickupArea" to="." method="_on_pickup_area_body_entered"]

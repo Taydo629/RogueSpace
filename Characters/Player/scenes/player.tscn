@@ -24,6 +24,9 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 0.40069774, 0.40069774, 0.4006
 [sub_resource type="Gradient" id="Gradient_txdur"]
 colors = PackedColorArray(0.9850511, 0.25459218, 0, 1, 0.9714251, 0.81478477, 0.08191123, 1)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_n1a5j"]
+radius = 150.0
+
 [node name="Player" type="RigidBody2D" unique_id=2138094422 groups=["player"]]
 process_mode = 1
 sleeping = true
@@ -76,3 +79,11 @@ anim_speed_max = 5.12
 [node name="ShieldComponent" parent="." unique_id=2100568463 instance=ExtResource("9_txdur")]
 
 [node name="ExplosionParticle" parent="." unique_id=891529447 instance=ExtResource("11_g7fq8")]
+
+[node name="PickupArea" type="Area2D" parent="." unique_id=1130262283]
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea" unique_id=1941398209]
+shape = SubResource("CircleShape2D_n1a5j")
+
+[connection signal="body_entered" from="PickupArea" to="." method="_on_pickup_area_body_entered"]

@@ -86,3 +86,8 @@ func clear_old_ship() -> void:
 
 func died() -> void:
 	player_died.emit()
+
+
+func _on_pickup_area_body_entered(body: Node2D) -> void:
+	if body is Pickups:
+		body.pick_up()

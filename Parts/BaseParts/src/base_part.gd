@@ -30,10 +30,11 @@ func take_damage(damage: int) -> void:
 	
 	if new_health <= 0:
 		part_destroyed.emit(dict_key)
-		var explosion_effect:CPUParticles2D = EXPLOSION_PARTICLE.instantiate()
-		explosion_effect.finished.connect(explosion_effect.queue_free)
-		parent.add_child(explosion_effect)
-		explosion_effect.emitting = true
+		if parent != null:
+			var explosion_effect:CPUParticles2D = EXPLOSION_PARTICLE.instantiate()
+			explosion_effect.finished.connect(explosion_effect.queue_free)
+			parent.add_child(explosion_effect)
+			explosion_effect.emitting = true
 		collider.queue_free()
 		queue_free()
 	else:
