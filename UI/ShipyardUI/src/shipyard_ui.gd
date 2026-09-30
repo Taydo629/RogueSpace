@@ -169,7 +169,7 @@ func _input(event: InputEvent) -> void:
 			
 
 func place_part() -> void:
-	if current_mouse_pos != Vector2.ZERO:
+	if current_mouse_pos != Vector2.ZERO and current_selected_item != null:
 		var grid_pos: Vector2 = (Vector2(current_mouse_pos) - Vector2(x_range[0],y_range[0]) - Vector2(32,32))/64
 		if str(grid_pos) not in building_dict.keys():
 			var node_dict: Dictionary = {

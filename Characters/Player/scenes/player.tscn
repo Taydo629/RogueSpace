@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://dhddr4o7ws8ot" path="res://Characters/Player/src/player_camera.gd" id="7_o8v5h"]
 [ext_resource type="Texture2D" uid="uid://cx25qprs7hr6s" path="res://assets/Smoke_sprite.png" id="8_oigw6"]
 [ext_resource type="PackedScene" uid="uid://br5vacnjfyoe8" path="res://Characters/Components/shared/scenes/shield_component.tscn" id="9_txdur"]
+[ext_resource type="PackedScene" uid="uid://daghypp3r5ng" path="res://Effects/explosion_particle.tscn" id="11_g7fq8"]
 
 [sub_resource type="Curve" id="Curve_o8v5h"]
 _limits = [0.0, 3.0, 0.0, 1.0]
@@ -73,3 +74,5 @@ color_initial_ramp = SubResource("Gradient_txdur")
 anim_speed_max = 5.12
 
 [node name="ShieldComponent" parent="." unique_id=2100568463 instance=ExtResource("9_txdur")]
+
+[node name="ExplosionParticle" parent="." unique_id=891529447 instance=ExtResource("11_g7fq8")]

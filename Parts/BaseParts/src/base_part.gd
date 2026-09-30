@@ -4,6 +4,7 @@ class_name BasePart extends RigidBody2D
 @onready var polygon_2d: Polygon2D = $Polygon2D
 @onready var collider: CollisionShape2D = $Collider
 @onready var smoke_particles: CPUParticles2D = $SmokeParticles
+const EXPLOSION_PARTICLE = preload("res://Effects/explosion_particle.tscn")
 
 var max_health: int:
 	set(value):
@@ -29,6 +30,10 @@ func take_damage(damage: int) -> void:
 	
 	if new_health <= 0:
 		part_destroyed.emit(dict_key)
+		var explosion_effect:CPUParticles2D = EXPLOSION_PARTICLE.instantiate()
+		explosion_effect.finished.connect(explosion_effect.queue_free)
+		parent.add_child(explosion_effect)
+		explosion_effect.emitting = true
 		collider.queue_free()
 		queue_free()
 	else:
