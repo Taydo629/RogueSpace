@@ -13,6 +13,8 @@ func enter() -> void:
 	dialog_ui.player = canvas_layer.player
 	dialog_ui.level_gen = canvas_layer.level_gen
 	dialog_ui.process_mode = Node.PROCESS_MODE_ALWAYS
+	if not dialog_ui.player_died.is_connected(death):
+		dialog_ui.player_died.connect(death)
 	if state_machine.previous_state.get_state_name() != PauseUIState.state_name:
 		dialog_ui.init_dialog_ui()
 	if not dialog_ui.interaction_end.is_connected(interaction_end):
@@ -21,6 +23,9 @@ func enter() -> void:
 func exit() -> void:
 	dialog_ui.visible = false
 	dialog_ui.process_mode = Node.PROCESS_MODE_DISABLED
+
+func death() -> void:
+	state_machine.transition(DeathUIState.state_name)
 
 func interaction_end(finished: bool) -> void:
 	if finished:

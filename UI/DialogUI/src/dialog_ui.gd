@@ -7,6 +7,7 @@ var dialog_list: Array[Dialog]
 var options_dict: Dictionary[Button,DialogOption]
 
 signal interaction_end(bool)
+signal player_died
 
 @onready var dialog_text: RichTextLabel = $DialogBoxBG/VBoxContainer/DialogBoxContainer/DialogText
 @onready var button_container: VBoxContainer = $DialogBoxBG/VBoxContainer/DialogBoxContainer/ButtonContainer
@@ -20,7 +21,8 @@ func _ready() -> void:
 func init_dialog_ui() -> void:
 	# Get a random dialog
 	var selected_dialog: Dialog = dialog_list.pick_random()
-	
+	if not player.player_died.is_connected(death):
+		player.player_died.connect(death)
 	# Set up dialog box
 	npc_name_label.text = selected_dialog.npc_name
 	dialog_text.text = selected_dialog.main_dialog_text
@@ -63,6 +65,9 @@ func init_dialog_ui() -> void:
 		var npc_offset:= Vector2(current_viewport_rect.size.x - player_offset.x, player_offset.y)
 		dialog_npc.position = npc_offset
 		dialog_npc.rotation_degrees = -90
+
+func death() -> void:
+	player_died.emit()
 
 func _option_button_pressed(button: Button) -> void:
 	var selected_option: DialogOption = options_dict.get(button)

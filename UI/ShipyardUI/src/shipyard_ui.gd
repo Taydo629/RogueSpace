@@ -52,6 +52,7 @@ func init_ui() -> void:
 	x_range = [grid_centre_x - grid_edge_dist_from_centre, grid_centre_x + grid_edge_dist_from_centre]
 
 func _init_inv_grid() -> void:
+	_unselect_current_part()
 	if not Inventory.inventory.is_empty():
 		var parts_added: Array[Part] = []
 		for item:Part in Inventory.inventory:
