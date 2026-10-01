@@ -24,7 +24,7 @@ signal out_of_parts
 @export var select_grow: float = 1.1
 @export var grow_time: float = 0.2
 @export var disabled_modulate: Color
-@onready var count_label: Label = $PanelContainer/Control/CountLabel
+@onready var count_label: Label = $PanelContainer/CounterControl/CountLabel
 
 func _ready() -> void:
 	Inventory.inventory_change.connect(_update_count)

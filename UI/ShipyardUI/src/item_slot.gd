@@ -4,23 +4,41 @@ var current_part_level:int
 var hovered:bool = false:
 	set(value):
 		hovered = value
-		if hovered:
-			stats_label.visible = true
-			description_label.visible = false
+		if hovered and part != null:
+			if popup_node != null:
+				control.reparent(popup_node)
+			if tween != null:
+				if tween.is_running():
+					tween.stop()
+			tween = create_tween()
+			tween.tween_property(control, "offset_transform_scale", Vector2.ONE, 0.1)
+			control.visible = true
 		else:
-			stats_label.visible = false
-			description_label.visible = true
+			if tween.is_running():
+				tween.stop()
+			if popup_node != null:
+				control.reparent(self)
+			control.offset_transform_scale = Vector2.ZERO
+			control.visible = false
 
-@onready var item_title_label: Label = $PanelContainer/VBoxContainer/ItemTitleLabel
+var tween: Tween
+
+@onready var control: Control = $Control
+@onready var item_title_label: Label = $Control/PanelContainer/VBoxContainer/ItemTitleLabel
+@onready var item_title_label_2: Label = $PanelContainer/VBoxContainer/ItemTitleLabel2
 @onready var texture_rect: TextureRect = $PanelContainer/VBoxContainer/TextureRect
-@onready var stats_label: RichTextLabel = $PanelContainer/VBoxContainer/StatsLabel
-@onready var description_label: RichTextLabel = $PanelContainer/VBoxContainer/DescriptionLabel
+@onready var stats_label: RichTextLabel = $Control/PanelContainer/VBoxContainer/StatsLabel
+@onready var description_label: RichTextLabel = $Control/PanelContainer/VBoxContainer/DescriptionLabel
 @onready var panel_container: PanelContainer = $PanelContainer
+@onready var pop_up_panel_container: PanelContainer = $Control/PanelContainer
 
 @export var default_texture: Texture2D
+
 var default_item_title_text: String = "Empty"
 var default_description_text: String = "Select a part"
 var default_stats_text: String = "Select a part"
+
+var popup_node: Control
 
 var part: Part:
 	set(value):
@@ -29,6 +47,7 @@ var part: Part:
 			current_part_level = part.level
 			texture_rect.texture = part.sprite
 			item_title_label.text = str(part.display_name, " Lv %s" % part.level)
+			item_title_label_2.text = str(part.display_name, " Lv %s" % part.level)
 			description_label.text = part.part_description
 			_set_stats()
 

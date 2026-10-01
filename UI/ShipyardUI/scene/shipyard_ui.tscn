@@ -41,6 +41,14 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ueep2")
 
+[node name="PopupControl" type="Control" parent="." unique_id=1160097598]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="BG" type="TextureRect" parent="." unique_id=1022332198]
 z_index = -4
 layout_mode = 1
@@ -127,7 +135,14 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_fnbh3")
 layout_mode = 2
 horizontal_scroll_mode = 0
 
-[node name="InvGridContainer" type="GridContainer" parent="VBoxContainer/InventoryPanelContainer/VBoxContainer/PanelContainer/ScrollContainer" unique_id=1546416878]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/InventoryPanelContainer/VBoxContainer/PanelContainer/ScrollContainer" unique_id=1666148853]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 5
+
+[node name="InvGridContainer" type="GridContainer" parent="VBoxContainer/InventoryPanelContainer/VBoxContainer/PanelContainer/ScrollContainer/MarginContainer" unique_id=1546416878]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

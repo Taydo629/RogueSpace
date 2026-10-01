@@ -4,13 +4,15 @@ class_name ShipyardUI extends Control
 @onready var new_upgrade_item: ItemSlot = $VBoxContainer/TabContainer/Upgrade/HBoxContainer/NewItem
 @onready var current_repair_item: ItemSlot = $VBoxContainer/TabContainer/Repair/HBoxContainer/CurrentItem
 @onready var new_repair_item: ItemSlot = $VBoxContainer/TabContainer/Repair/HBoxContainer/NewItem
-@onready var inv_grid_container: GridContainer = $VBoxContainer/InventoryPanelContainer/VBoxContainer/PanelContainer/ScrollContainer/InvGridContainer
+@onready var inv_grid_container: GridContainer = $VBoxContainer/InventoryPanelContainer/VBoxContainer/PanelContainer/ScrollContainer/MarginContainer/InvGridContainer
 @onready var texture_rect: ColorRect = $BuildArea/TextureRect
 @onready var build_area_rect: ColorRect = $BuildArea/BuildAreaRect
 @onready var build_area: Control = $BuildArea
 @onready var upgrade_button: Button = $VBoxContainer/TabContainer/Upgrade/HBoxContainer/VBoxContainer/UpgradeButton
 @onready var repair_button: Button = $VBoxContainer/TabContainer/Repair/HBoxContainer/VBoxContainer/RepairButton
 @onready var upgrade_cost_label: Label = $VBoxContainer/TabContainer/Upgrade/HBoxContainer/VBoxContainer/UpgradeCostLabel
+@onready var margin_container: MarginContainer = $VBoxContainer/InventoryPanelContainer/VBoxContainer/PanelContainer/ScrollContainer/MarginContainer
+@onready var popup_control: Control = $PopupControl
 
 enum BUILD_MODE {BUILD,REMOVE,SELECT}
 
@@ -65,6 +67,7 @@ func _init_inv_grid() -> void:
 				new_item_icon.out_of_parts.connect(_unselect_current_part)
 				new_item_icon.item_count = num_of_items
 				new_item_icon.part = item
+				new_item_icon.popup_node = popup_control
 
 func _clear_inv_grid() -> void:
 	for item: ItemIcon in inv_grid_container.get_children():
@@ -84,6 +87,7 @@ func _add_part_to_inventory(new_part: Part) -> void:
 	new_item_icon.out_of_parts.connect(_unselect_current_part)
 	new_item_icon.item_count = 1
 	new_item_icon.part = new_upgrade_item.part
+	new_item_icon.popup_node = popup_control
 	return
 	
 func start_build() -> void:
