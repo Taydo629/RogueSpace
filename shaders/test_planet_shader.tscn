@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://yq3q3jl4g7bu"]
+
+[ext_resource type="Shader" uid="uid://8717i7vvu0pn" path="res://shaders/test_planet_shader.gdshader" id="1_24ey0"]
+[ext_resource type="Texture2D" uid="uid://c3ptjsobd7yf1" path="res://icon.svg" id="1_uigwl"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1l3u5"]
+noise_type = 2
+seed = 2
+cellular_jitter = 1.5
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_24ey0"]
+noise = SubResource("FastNoiseLite_1l3u5")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_snhad"]
+shader = ExtResource("1_24ey0")
+shader_parameter/rotation_speed = 0.0550000026125
+shader_parameter/radius = 0.5
+shader_parameter/noise_step = 0.37200001767
+shader_parameter/terrain_noise = SubResource("NoiseTexture2D_24ey0")
+shader_parameter/terrain_color = Color(0, 0.3647059, 0, 1)
+shader_parameter/water_color = Color(1.2032688e-06, 0, 0.5209808, 1)
+shader_parameter/pixel_amount = 112
+
+[node name="Sprite2D" type="Sprite2D" unique_id=1143938736]
+material = SubResource("ShaderMaterial_snhad")
+position = Vector2(256, -256.00003)
+scale = Vector2(4, 3.9999998)
+texture = ExtResource("1_uigwl")
+region_rect = Rect2(0, 0, 128, 128)
