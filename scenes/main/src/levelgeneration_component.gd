@@ -2,6 +2,7 @@ class_name LevelGenComponent extends Node
 
 signal level_ready(Quadrant)
 
+var sector_number: int = 0
 var level_number: int = 0
 var current_enemy_array: Array[npc]
 var current_station: StaticBody2D
@@ -27,6 +28,7 @@ var map_grid: Array[Array]:
 @export var loaded_ships: Array[NPCShip] = []
 
 func generate_map() -> void:
+	sector_number += 1
 	# Create and initial grid of quadrants
 	var initial_map_grid: Array[Array] = []
 	for i in layers:
@@ -77,7 +79,7 @@ func generate_map() -> void:
 							possible_rows.erase(adjacent_quadrant.position.y)
 			possible_rows.append(current_pos.y)
 			# Last layer before boss
-			if layer == layers -2:
+			if layer == layers - 2:
 				# Connect second to last layer to boss quadrant
 				if initial_map_grid[boss_pos.x][boss_pos.y] not in current_quadrant_iter.next_quadrant:
 					current_quadrant_iter.next_quadrant.append(initial_map_grid[boss_pos.x][boss_pos.y])
@@ -127,6 +129,7 @@ func init_game() -> void:
 	Inventory.init_inventory()
 	for child in get_children():
 		child.queue_free()
+	sector_number = 0
 	level_number = 0
 	current_enemy_array.clear()
 	current_station = null
@@ -153,7 +156,7 @@ func generate_level(quadrant: Quadrant) -> void:
 		var number_of_npcs: int
 		if spawn_enemies:
 			if enemy_spawn_override_count < 0:
-				number_of_npcs = randi_range(1, level_number)
+				number_of_npcs = randi_range(1, sector_number+1)
 			else:
 				number_of_npcs = enemy_spawn_override_count
 		else:
@@ -195,7 +198,7 @@ func generate_level(quadrant: Quadrant) -> void:
 func get_valid_ships_for_current_level() -> Array[NPCShip]:
 	var valid_ships: Array[NPCShip]
 	for ship in loaded_ships:
-		if level_number >= ship.min_level and level_number <= ship.max_level:
+		if sector_number >= ship.min_level and sector_number <= ship.max_level:
 			valid_ships.append(ship.duplicate_deep(Resource.DEEP_DUPLICATE_ALL))
 	return(valid_ships)
 

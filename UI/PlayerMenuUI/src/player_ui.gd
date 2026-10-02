@@ -41,7 +41,7 @@ func init_ui() -> void:
 	#station = level_generator.current_station
 	#if not Inventory.credit_changed.is_connected(update_credit_ui):
 		#Inventory.credit_changed.connect(update_credit_ui)
-	update_sector_label(level_generator.level_number, level_generator.current_quadrant.position)
+	update_sector_label(level_generator.sector_number, level_generator.current_quadrant.position)
 	#update_credit_ui(Inventory.wallet)
 	update_energy_ui()
 	update_hud()
@@ -50,7 +50,7 @@ func death() -> void:
 	player_died.emit()
 
 func update_sector_label(sector_num: int, quadrant_pos: Vector2) -> void:
-	sector_label.text = "Sector %s : Quadrant A%s.B%s" % [sector_num, int(quadrant_pos.x), int(quadrant_pos.y)]
+	sector_label.text = "Sector %s : Quadrant %s-%s" % [sector_num, int(quadrant_pos.x), int(quadrant_pos.y)]
 
 #func update_credit_ui(wallet: int):
 	#credit_ui.text = str("CR ", wallet)

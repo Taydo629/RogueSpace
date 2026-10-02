@@ -10,7 +10,7 @@ enum PICKUP_TYPE{CREDIT, AMMO, EXPLOSIVE}
 @export var credit_sprite: Texture2D
 @export var ammo_sprite: Texture2D
 @export var explosive_sprite: Texture2D
-@export var tracking_speed: float = 10
+@export var tracking_speed: float = 100
 
 var amount_in_pickup: int
 

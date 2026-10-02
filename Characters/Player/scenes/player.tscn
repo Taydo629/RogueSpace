@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://caeqjr661qosk" path="res://Characters/Components/shared/scenes/movement_component.tscn" id="3_70d11"]
 [ext_resource type="PackedScene" uid="uid://bmn28l2ks5e3r" path="res://Characters/Components/shared/scenes/weapon_component.tscn" id="4_cw2d6"]
 [ext_resource type="PackedScene" uid="uid://dpu8pdnvx3kqb" path="res://Characters/Components/Player/scenes/input_component.tscn" id="5_khinc"]
-[ext_resource type="PackedScene" uid="uid://j8dgeq4a20qq" path="res://Characters/Components/shared/scenes/tractorbeam_component.tscn" id="6_70d11"]
 [ext_resource type="Script" uid="uid://dhddr4o7ws8ot" path="res://Characters/Player/src/player_camera.gd" id="7_o8v5h"]
 [ext_resource type="Texture2D" uid="uid://cx25qprs7hr6s" path="res://assets/Smoke_sprite.png" id="8_oigw6"]
 [ext_resource type="PackedScene" uid="uid://br5vacnjfyoe8" path="res://Characters/Components/shared/scenes/shield_component.tscn" id="9_txdur"]
@@ -45,8 +44,6 @@ gyro_strength = 150000.0
 process_mode = 1
 
 [node name="InputComponent" parent="." unique_id=218678130 instance=ExtResource("5_khinc")]
-
-[node name="TractorbeamComponent" parent="." unique_id=471176929 instance=ExtResource("6_70d11")]
 
 [node name="PlayerCamera" type="Camera2D" parent="." unique_id=1184838693]
 enabled = false

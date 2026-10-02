@@ -4,7 +4,6 @@ class_name Player extends RigidBody2D
 @onready var movement_component: MovementComponent = $MovementComponent
 @onready var weapon_component: WeaponComponent = $WeaponComponent
 @onready var input_component: InputComponent = $InputComponent
-@onready var tractorbeam_component: TractorbeamComponent = $TractorbeamComponent
 @onready var shield_component: ShieldComponent = $ShieldComponent
 @onready var energy_component: EnergyComponent = $EnergyComponent
 @onready var player_camera: PlayerCamera = $PlayerCamera
@@ -48,10 +47,6 @@ func init_ship() -> void:
 		input_component.activate_thrusters.connect(movement_component.activate_thrusters)
 	if not input_component.deactivate_thrusters.is_connected(movement_component.deactivate_thrusters):
 		input_component.deactivate_thrusters.connect(movement_component.deactivate_thrusters)
-	if not input_component.activate_tractorbeam.is_connected(tractorbeam_component.activate):
-		input_component.activate_tractorbeam.connect(tractorbeam_component.activate)
-	if not input_component.deactivate_tractorbeam.is_connected(tractorbeam_component.deactivate):
-		input_component.deactivate_tractorbeam.connect(tractorbeam_component.deactivate)
 	if not input_component.mouse_pos_changed.is_connected(movement_component.rotate_to):
 		input_component.mouse_pos_changed.connect(movement_component.rotate_to)
 	if not input_component.dash.is_connected(movement_component.dash):
@@ -70,7 +65,6 @@ func reinitialise_components() -> void:
 	print("Re-initialise components")
 	movement_component.initalise_movement(ship_graph)
 	weapon_component.initalise_weapons(ship_graph)
-	tractorbeam_component.initalise_tractor_beams(ship_graph)
 
 func repair_ship() -> void:
 	for ship_component in part_component.get_children():
