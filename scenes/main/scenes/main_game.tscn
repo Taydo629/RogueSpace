@@ -107,7 +107,7 @@ texture_scale = 1.3
 scroll_scale = Vector2(0.5, 0.5)
 
 [node name="Planet" type="Sprite2D" parent="Background/PlanetNear" unique_id=1611445449]
-position = Vector2(2911.9998, 1119.9999)
+position = Vector2(3286.0002, 1248.0001)
 scale = Vector2(6, 6)
 texture = ExtResource("14_aly5s")
 
