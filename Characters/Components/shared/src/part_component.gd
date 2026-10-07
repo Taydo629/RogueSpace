@@ -24,6 +24,8 @@ func part_destroyed(graph_key:String):
 						if key == graph_key:
 							neighbor.neighbors.erase(key)
 			ship_graph.erase(graph_key)
+			if ship_graph.size() == 0:
+				print_debug("Shipdestroyed!")
 			call_deferred("check_integrity",graph_key)
 
 func find_core() -> String:
@@ -48,6 +50,18 @@ func check_integrity(removed_key: String) -> void:
 			has_detached = true
 		ship_graph.clear()
 		print("Emitting the part_removed Signal")
+		graph_changed.emit()
+		ship_destroyed.emit()
+		return
+	elif ship_graph.size() == 1:
+		print("Ship has only core left!")
+		for key in ship_graph.keys():
+			# Currently when root is destroyed all remaining parts are detached
+			# Infuture this could randomly destroy some parts when this happens
+			var part = ship_graph.get(key)
+			# remove weight from ship is not needed as ship as a whole is now destroyed!
+			part.instance.detached()
+		ship_graph.clear()
 		graph_changed.emit()
 		ship_destroyed.emit()
 		return

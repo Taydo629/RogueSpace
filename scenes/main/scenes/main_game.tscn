@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://bkkmlju23hpuo" path="res://assets/2d_lights_and_shadows_neutral_point_light.webp" id="15_rxlyu"]
 [ext_resource type="PackedScene" uid="uid://b8m8r5rsh4g0w" path="res://UI/DeathScreenUI/scenes/death_screen.tscn" id="17_h4r6f"]
 [ext_resource type="PackedScene" uid="uid://b7xy467r6h3vw" path="res://UI/DialogUI/scene/dialog_ui.tscn" id="19_fvpsc"]
+[ext_resource type="PackedScene" uid="uid://yq3q3jl4g7bu" path="res://shaders/test_planet_shader.tscn" id="20_8bauj"]
 
 [node name="MainGame" type="Node2D" unique_id=956598129]
 process_mode = 3
@@ -106,10 +107,9 @@ texture_scale = 1.3
 [node name="PlanetNear" type="Parallax2D" parent="Background" unique_id=1646218158]
 scroll_scale = Vector2(0.5, 0.5)
 
-[node name="Planet" type="Sprite2D" parent="Background/PlanetNear" unique_id=1611445449]
-position = Vector2(3286.0002, 1248.0001)
-scale = Vector2(6, 6)
-texture = ExtResource("14_aly5s")
+[node name="Sprite2D" parent="Background/PlanetNear" unique_id=1143938736 instance=ExtResource("20_8bauj")]
+position = Vector2(3245.9998, 1241)
+scale = Vector2(12.547886, 12.547885)
 
 [node name="PlanetMid" type="Parallax2D" parent="Background" unique_id=1410389629]
 scroll_scale = Vector2(0.4, 0.4)
