@@ -11,7 +11,6 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_n1a5j"]
 
 [node name="NPC" type="RigidBody2D" unique_id=355031547 groups=["npc"]]
-freeze = true
 linear_damp = 1.0
 angular_damp = 1.0
 script = ExtResource("1_nh2m4")

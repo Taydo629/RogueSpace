@@ -31,6 +31,7 @@ func init_ui() -> void:
 	_select_stock()
 
 func _update_inventory() -> void:
+	_clear_inv_grid()
 	if not Inventory.inventory.is_empty():
 		for item:Part in Inventory.inventory:
 			var new_item_icon: InventoryItem = INVENTORY_ITEM.instantiate()
@@ -42,11 +43,16 @@ func _clear_inv_grid() -> void:
 		item_icon.queue_free()
 
 func _select_stock() -> void:
+	_clear_stock()
 	for i in number_of_items_for_sale:
 		var selected_part: Part = part_list.pick_random().duplicate()
 		var item_node: MerchantItem = MERCHANT_ITEM.instantiate()
 		item_container.add_child(item_node)
 		item_node.part = selected_part
+
+func _clear_stock() -> void:
+	for item in item_container.get_children():
+		item.queue_free()
 
 func _load_all_parts() -> void:
 	for resource in ResourceLoader.list_directory(parts_res_dir):

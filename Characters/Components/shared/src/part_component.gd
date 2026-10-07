@@ -25,8 +25,9 @@ func part_destroyed(graph_key:String):
 							neighbor.neighbors.erase(key)
 			ship_graph.erase(graph_key)
 			if ship_graph.size() == 0:
-				print_debug("Shipdestroyed!")
-			call_deferred("check_integrity",graph_key)
+				ship_destroyed.emit()
+			else:
+				check_integrity(graph_key)
 
 func find_core() -> String:
 	var core_key: String
@@ -75,6 +76,8 @@ func check_integrity(removed_key: String) -> void:
 				print("part is not connected to any other parts.")
 				part.instance.detached()
 				has_detached = true
+				if ship_graph.size() == 0:
+					ship_destroyed.emit()
 		
 		# Following is to search if a colection of parts have been severed
 		# from the root node.
@@ -108,5 +111,7 @@ func check_integrity(removed_key: String) -> void:
 					print("part is no longer connected to root.")
 					part.instance.detached()
 					has_detached = true
+					if ship_graph.size() == 0:
+						ship_destroyed.emit()
 		print("Emitting the part_removed Signal")
 		graph_changed.emit()
