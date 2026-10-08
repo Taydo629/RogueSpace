@@ -88,7 +88,7 @@ func set_is_casting(new_value: bool) -> void:
 	casting_particles.emitting = is_casting
 
 	if is_casting:
-		var laser_start := Vector2.RIGHT * start_distance
+		var laser_start := Vector2.UP * start_distance
 		var line_points := line_2d.points
 		line_points[0] = laser_start
 		line_points[1] = laser_start
