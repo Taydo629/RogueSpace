@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://cegk085sa5e0e" path="res://assets/Rocky_planet_sprite.png" id="14_aly5s"]
 [ext_resource type="Texture2D" uid="uid://bkkmlju23hpuo" path="res://assets/2d_lights_and_shadows_neutral_point_light.webp" id="15_rxlyu"]
 [ext_resource type="PackedScene" uid="uid://b8m8r5rsh4g0w" path="res://UI/DeathScreenUI/scenes/death_screen.tscn" id="17_h4r6f"]
+[ext_resource type="PackedScene" uid="uid://cv540hes1gbdv" path="res://Characters/Drone/scene/drone.tscn" id="17_x65fx"]
 [ext_resource type="PackedScene" uid="uid://b7xy467r6h3vw" path="res://UI/DialogUI/scene/dialog_ui.tscn" id="19_fvpsc"]
 [ext_resource type="PackedScene" uid="uid://yq3q3jl4g7bu" path="res://shaders/test_planet_shader.tscn" id="20_8bauj"]
 
@@ -75,6 +76,7 @@ visible = false
 [node name="LevelGenComponent" parent="." unique_id=1697448056 instance=ExtResource("7_nqdth")]
 process_mode = 3
 layers = 5
+spawn_enemies = false
 loaded_ships = Array[ExtResource("12_4qwfe")]([ExtResource("13_7e4r1")])
 
 [node name="Background" type="Node2D" parent="." unique_id=1890223868]
@@ -126,3 +128,5 @@ scroll_offset = Vector2(-120, -432)
 [node name="Planet" type="Sprite2D" parent="Background/PlanetFar" unique_id=1935650754]
 position = Vector2(-184, -440)
 texture = ExtResource("14_aly5s")
+
+[node name="Drone" parent="." unique_id=822918275 instance=ExtResource("17_x65fx")]
