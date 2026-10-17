@@ -1,5 +1,7 @@
 class_name PartComponent extends Node2D
 
+@export var ship_destroyed_magnitude: float = 1.0
+
 var parent: RigidBody2D
 var grid_size: int
 var ship_graph: Dictionary
@@ -49,6 +51,7 @@ func check_integrity(removed_key: String) -> void:
 			# remove weight from ship is not needed as ship as a whole is now destroyed!
 			part.instance.detached()
 			has_detached = true
+		CameraManager.apply_camera_shake(ship_destroyed_magnitude)
 		ship_graph.clear()
 		print("Emitting the part_removed Signal")
 		graph_changed.emit()

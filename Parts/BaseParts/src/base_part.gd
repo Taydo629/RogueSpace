@@ -18,6 +18,7 @@ var sprite: Texture2D
 
 @export var damage_camera_shake_mag: float = 0.1
 @export var destruction_camera_shake_mag: float = 0.25
+@export var destruction_impulse_magnitude: float = 750.0
 
 signal part_destroyed
 signal part_detached
@@ -86,3 +87,5 @@ func detached() -> void:
 	is_detached = true
 	part_detached.emit()
 	freeze = false
+	var random_impulse: Vector2 = Vector2(randf_range(-1,1),randf_range(-1,1))
+	apply_central_impulse(random_impulse.normalized() * destruction_impulse_magnitude)
