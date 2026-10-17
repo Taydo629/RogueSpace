@@ -75,7 +75,7 @@ func _clear_inv_grid() -> void:
 
 func _add_part_to_inventory(new_part: Part) -> void:
 	for icon: ItemIcon in inv_grid_container.get_children():
-		var icon_part: Part = icon.part
+		#var icon_part: Part = icon.part
 		if new_part.name == icon.part.name and new_part.level == icon.part.level:
 			print("found appropriate icon")
 			icon.item_count = icon.item_count + 1
@@ -359,7 +359,7 @@ func _on_build_mode_dropdown_item_selected(index: int) -> void:
 
 func _on_upgrade_button_pressed() -> void:
 	if current_selected_item is ItemIcon:
-		var current_part:Part = current_selected_item.part
+		#var current_part:Part = current_selected_item.part
 		var upgraded_part:Part = new_upgrade_item.part
 		var new_current_item_count: int = current_selected_item.item_count - 1
 		if new_current_item_count > 0:

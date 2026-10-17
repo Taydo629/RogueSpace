@@ -51,7 +51,7 @@ var part: Part:
 			description_label.text = part.part_description
 			_set_stats()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if hovered:
 		if not panel_container.get_rect().has_point(get_local_mouse_position()):
 			hovered = false

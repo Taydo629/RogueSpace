@@ -18,7 +18,7 @@ var parent: Drone
 func _ready() -> void:
 	parent = get_parent()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if current_state == STATE.PATROL:
 		_patrol()
 	elif current_state == STATE.SEARCH:
@@ -57,7 +57,7 @@ func _attack() -> void:
 	pass
 
 func rotate_to(target_pos: Vector2) -> void:
-	var torque_modifier: float = 1
+	#var torque_modifier: float = 1
 	var angle_diff = get_angle_to_target(target_pos)
 	var torque : float = angle_diff * gyro_strength - parent.angular_velocity * gyro_strength / 2
 	parent.apply_torque(torque)

@@ -51,8 +51,8 @@ func _update_count() -> void:
 
 func _count_similar_parts(part_to_check: Part) -> int:
 	var number_of_similar_parts: int = 0
-	for part: Part in Inventory.inventory:
-		if part_to_check.name == part.name and part_to_check.level == part.level:
+	for _part: Part in Inventory.inventory:
+		if part_to_check.name == _part.name and part_to_check.level == _part.level:
 			number_of_similar_parts += 1
 	return number_of_similar_parts
 
@@ -67,11 +67,11 @@ func _process(_delta: float) -> void:
 			is_selected = true
 
 func _selected() -> void:
-	var tween: Tween = create_tween()
+	var _tween: Tween = create_tween()
 	z_index = 1
-	tween.tween_property(panel_container, "offset_transform_scale", Vector2(select_grow,select_grow), grow_time)
+	_tween.tween_property(panel_container, "offset_transform_scale", Vector2(select_grow,select_grow), grow_time)
 
 func _unselected() -> void:
-	var tween: Tween = create_tween()
+	var _tween: Tween = create_tween()
 	z_index = 0
-	tween.tween_property(panel_container, "offset_transform_scale", Vector2(1,1), grow_time)
+	_tween.tween_property(panel_container, "offset_transform_scale", Vector2(1,1), grow_time)
