@@ -16,8 +16,8 @@ var is_detached: bool = false
 var parent: RigidBody2D
 var sprite: Texture2D
 
-@export var damage_camera_shake_mag: float = 2.5
-@export var destruction_camera_shake_mag: float = 10
+@export var damage_camera_shake_mag: float = 0.1
+@export var destruction_camera_shake_mag: float = 0.25
 
 signal part_destroyed
 signal part_detached
