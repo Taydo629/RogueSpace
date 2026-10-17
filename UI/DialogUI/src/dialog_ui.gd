@@ -20,6 +20,7 @@ func _ready() -> void:
 
 func init_dialog_ui() -> void:
 	# Get a random dialog
+	randomize()
 	var selected_dialog: Dialog = dialog_list.pick_random()
 	if not player.player_died.is_connected(death):
 		player.player_died.connect(death)
@@ -120,7 +121,10 @@ func _on_warp_button_pressed() -> void:
 
 func _clear_dialog() -> void:
 	for child:Button in button_container.get_children():
-		child.queue_free()
+		if child not in [warp_button,combat_button]:
+			child.queue_free()
+		else:
+			child.visible = false
 	warp_button.visible = false
 	combat_button.visible = false
 	options_dict.clear()
