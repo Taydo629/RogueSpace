@@ -49,22 +49,14 @@ size_flags_horizontal = 3
 size_flags_vertical = 4
 theme_override_constants/separation = 12
 
-[node name="WarpButton" type="Button" parent="." unique_id=851733143]
+[node name="WarpButton" type="Button" parent="DialogBoxBG/VBoxContainer/DialogBoxContainer/ButtonContainer" unique_id=851733143]
 visible = false
-layout_mode = 1
-offset_left = 16.0
-offset_top = 16.0
-offset_right = 168.0
-offset_bottom = 50.0
+layout_mode = 2
 text = "Warp Ready!"
 
-[node name="CombatButton" type="Button" parent="." unique_id=1809851423]
+[node name="CombatButton" type="Button" parent="DialogBoxBG/VBoxContainer/DialogBoxContainer/ButtonContainer" unique_id=1809851423]
 visible = false
-layout_mode = 1
-offset_left = 16.0
-offset_top = 16.0
-offset_right = 168.0
-offset_bottom = 50.0
+layout_mode = 2
 text = "Engage!"
 
 [node name="InventoryBar" parent="." unique_id=537340854 instance=ExtResource("2_mqumw")]
@@ -77,5 +69,5 @@ offset_top = 0.0
 offset_right = 0.0
 offset_bottom = 80.0
 
-[connection signal="pressed" from="WarpButton" to="." method="_on_warp_button_pressed"]
-[connection signal="pressed" from="CombatButton" to="." method="_on_combat_button_pressed"]
+[connection signal="pressed" from="DialogBoxBG/VBoxContainer/DialogBoxContainer/ButtonContainer/WarpButton" to="." method="_on_warp_button_pressed"]
+[connection signal="pressed" from="DialogBoxBG/VBoxContainer/DialogBoxContainer/ButtonContainer/CombatButton" to="." method="_on_combat_button_pressed"]

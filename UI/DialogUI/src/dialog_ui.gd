@@ -12,8 +12,8 @@ signal player_died
 @onready var dialog_text: RichTextLabel = $DialogBoxBG/VBoxContainer/DialogBoxContainer/DialogText
 @onready var button_container: VBoxContainer = $DialogBoxBG/VBoxContainer/DialogBoxContainer/ButtonContainer
 @onready var npc_name_label: Label = $DialogBoxBG/VBoxContainer/NPCNameLabel
-@onready var warp_button: Button = $WarpButton
-@onready var combat_button: Button = $CombatButton
+@onready var warp_button: Button = $DialogBoxBG/VBoxContainer/DialogBoxContainer/ButtonContainer/WarpButton
+@onready var combat_button: Button = $DialogBoxBG/VBoxContainer/DialogBoxContainer/ButtonContainer/CombatButton
 
 func _ready() -> void:
 	_load_all_dialog()
@@ -74,7 +74,8 @@ func _option_button_pressed(button: Button) -> void:
 	dialog_text.text = selected_option.option_response
 	# Make all buttons disabled:
 	for child:Button in button_container.get_children():
-		child.disabled = true
+		if child not in [warp_button,combat_button]:
+			child.visible = false
 	# Code related to recieving rewards and penalties.
 	if not selected_option.rewards.is_empty():
 		# Code recieving rewards
