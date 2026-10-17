@@ -45,7 +45,7 @@ func pick_up() -> void:
 		Inventory.add_explosive(amount_in_pickup)
 	queue_free()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if player != null:
 		var vec_to_player: Vector2 = (player.position - position).normalized()
 		constant_force = vec_to_player * tracking_speed

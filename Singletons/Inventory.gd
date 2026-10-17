@@ -48,7 +48,7 @@ func init_inventory() -> void:
 
 func add_item(part: Part) -> void:
 	print("%s collected!" % part.name)
-	var item_istance: Part = part.duplicate()
+	#var item_istance: Part = part.duplicate()
 	inventory.append(part)
 	inventory_change.emit()
 	item_pickup.emit(part)

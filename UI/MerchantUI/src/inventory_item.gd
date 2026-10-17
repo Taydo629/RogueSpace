@@ -39,7 +39,7 @@ var part: Part:
 	#const GUN = preload("uid://bs8ufgr7qnr1y")
 	#part = GUN
 
-func _get_drag_data(at_position: Vector2) -> Variant:
+func _get_drag_data(_at_position: Vector2) -> Variant:
 	var data = self
 	var preview = Control.new()
 	# So that icon is shown instead of stats

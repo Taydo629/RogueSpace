@@ -12,33 +12,32 @@ region = Rect2(0, 0, 64, 32)
 texture = SubResource("AtlasTexture_cec4o")
 texture_margin_left = 10.0
 texture_margin_top = 10.0
-texture_margin_right = 10.0
-texture_margin_bottom = 10.0
+texture_margin_right = 9.0
+texture_margin_bottom = 9.0
 modulate_color = Color(2.4065375e-07, 0.27064118, 0.3395755, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_u15ig"]
 texture = SubResource("AtlasTexture_cec4o")
 texture_margin_left = 10.0
 texture_margin_top = 10.0
-texture_margin_right = 10.0
-texture_margin_bottom = 10.0
+texture_margin_right = 9.0
+texture_margin_bottom = 9.0
 modulate_color = Color(0.84199005, 0.9575537, 0.99999994, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6lmnr"]
 texture = SubResource("AtlasTexture_cec4o")
-texture_margin_left = 7.0
-texture_margin_top = 6.0
-texture_margin_right = 6.0
-texture_margin_bottom = 6.0
-region_rect = Rect2(0, 0, 64, 32)
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 9.0
+texture_margin_bottom = 9.0
 modulate_color = Color(0, 0.8156863, 1, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0meg1"]
 texture = SubResource("AtlasTexture_cec4o")
 texture_margin_left = 10.0
 texture_margin_top = 10.0
-texture_margin_right = 10.0
-texture_margin_bottom = 10.0
+texture_margin_right = 9.0
+texture_margin_bottom = 9.0
 modulate_color = Color(1.540184e-06, 0.43351945, 0.5369333, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_voyld"]
