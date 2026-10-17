@@ -15,6 +15,7 @@ func enter() -> void:
 		main_menu_ui.start.connect(start_game)
 	if not main_menu_ui.guide.is_connected(guide):
 		main_menu_ui.guide.connect(guide)
+	main_menu_ui.init_ui()
 
 func exit() -> void:
 	main_menu_ui.visible = false
