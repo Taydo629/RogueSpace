@@ -4,6 +4,17 @@
 [ext_resource type="Script" uid="uid://bqqe7u1h368pq" path="res://UI/PlayerMenuUI/src/pickup_ui.gd" id="2_8isll"]
 [ext_resource type="Script" uid="uid://dp5ohvpt2v5ad" path="res://UI/PlayerMenuUI/src/energy_ui.gd" id="3_swk5i"]
 [ext_resource type="PackedScene" uid="uid://dq11rkx784xj0" path="res://UI/PlayerMenuUI/scene/inventory_bar.tscn" id="3_uw7vr"]
+[ext_resource type="Shader" uid="uid://cysavlvcpmt0r" path="res://UI/PlayerMenuUI/scene/radar_hud.gdshader" id="4_1wanh"]
+[ext_resource type="Texture2D" uid="uid://c3ptjsobd7yf1" path="res://icon.svg" id="5_t0cfl"]
+[ext_resource type="PackedScene" uid="uid://jhxoa11srl4l" path="res://UI/PlayerMenuUI/scene/enemy_blip.tscn" id="6_yfwda"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n1a5j"]
+shader = ExtResource("4_1wanh")
+shader_parameter/radar_color = Color(0, 0.7251751, 5.7756904e-07, 1)
+shader_parameter/radar_opacity = 0.5
+shader_parameter/radius = 0.5
+shader_parameter/default_ring_thickness = 0.085
+shader_parameter/ring_thickness_modifer = 0.250000011875
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c8q58"]
 
@@ -126,6 +137,29 @@ metadata/_edit_use_anchors_ = true
 
 [node name="HUD" type="Node2D" parent="." unique_id=1522000529]
 position = Vector2(576, 320)
+
+[node name="RadarHUD" type="TextureRect" parent="." unique_id=264385324]
+material = SubResource("ShaderMaterial_n1a5j")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 512.0
+offset_top = 496.0
+offset_right = -512.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(64, 64)
+texture = ExtResource("5_t0cfl")
+
+[node name="EnemyBlip" parent="RadarHUD" unique_id=2087291226 instance=ExtResource("6_yfwda")]
+position = Vector2(32, 32)
+polygon = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+
+[node name="PlayerBlip" type="Polygon2D" parent="RadarHUD" unique_id=1861268468]
+position = Vector2(64, 64)
+polygon = PackedVector2Array(-4, 4, 0, -4, 4, 4, 0, 2)
 
 [node name="EnergyUI" type="MarginContainer" parent="." unique_id=792819632]
 layout_mode = 1

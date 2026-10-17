@@ -8,6 +8,7 @@ class_name PlayerUI extends Control
 @onready var hud: Node2D = $HUD
 @onready var energy_ui: MarginContainer = $EnergyUI
 @onready var warp_button: Button = $WarpButton
+@onready var player_blip: Polygon2D = $RadarHUD/PlayerBlip
 
 var parent: MainUILayer
 var player: Player
@@ -76,6 +77,9 @@ func update_energy_ui() -> void:
 	energy_ui.init_energy_ui()
 
 func _process(_delta: float) -> void:
+	# Rotate Player blip
+	player_blip.rotation = player.rotation
+	
 	if len(enemy_hud_indicators) != 0:
 		for enemy in enemy_hud_indicators:
 			var enemy_node = enemy.get("node")
