@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://g7i7nqney7q"]
 
 [ext_resource type="Script" uid="uid://dlqbmcwkrm6rx" path="res://scenes/main/src/main_game.gd" id="1_d2op2"]
+[ext_resource type="Shader" uid="uid://cfeym6now4miw" path="res://UI/UI components/UIDissolveShader.gdshader" id="3_fpthe"]
+[ext_resource type="Texture2D" uid="uid://y2eph70ftp2i" path="res://assets/HexNoise.png" id="4_h4r6f"]
 [ext_resource type="Script" uid="uid://fs53e73vr78y" path="res://UI/src/main_ui_layer.gd" id="4_o6v7o"]
 [ext_resource type="PackedScene" uid="uid://cxmsma5j4rs0l" path="res://UI/UIStateMachine/scenes/ui_state_machine.tscn" id="4_wjob3"]
 [ext_resource type="PackedScene" uid="uid://blx5bir57n83o" path="res://UI/StartMenuUI/scene/start_menu_ui.tscn" id="5_nqdth"]
@@ -23,6 +25,11 @@
 [ext_resource type="PackedScene" uid="uid://b7xy467r6h3vw" path="res://UI/DialogUI/scene/dialog_ui.tscn" id="19_fvpsc"]
 [ext_resource type="PackedScene" uid="uid://yq3q3jl4g7bu" path="res://shaders/test_planet_shader.tscn" id="20_8bauj"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fvpsc"]
+shader = ExtResource("3_fpthe")
+shader_parameter/dissolve = ExtResource("4_h4r6f")
+shader_parameter/animation_speed = 0.0
+
 [node name="MainGame" type="Node2D" unique_id=956598129]
 process_mode = 3
 script = ExtResource("1_d2op2")
@@ -30,6 +37,16 @@ script = ExtResource("1_d2op2")
 [node name="MainUILayer" type="CanvasLayer" parent="." unique_id=1008782413]
 process_mode = 3
 script = ExtResource("4_o6v7o")
+
+[node name="TransitionRect" type="ColorRect" parent="MainUILayer" unique_id=1796622113]
+z_index = 50
+material = SubResource("ShaderMaterial_fvpsc")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0, 0, 0, 0)
 
 [node name="UIStateMachine" parent="MainUILayer" unique_id=2069799045 instance=ExtResource("4_wjob3")]
 
@@ -76,7 +93,6 @@ visible = false
 [node name="LevelGenComponent" parent="." unique_id=1697448056 instance=ExtResource("7_nqdth")]
 process_mode = 3
 layers = 5
-spawn_enemies = false
 loaded_ships = Array[ExtResource("12_4qwfe")]([ExtResource("13_7e4r1")])
 
 [node name="Background" type="Node2D" parent="." unique_id=1890223868]
