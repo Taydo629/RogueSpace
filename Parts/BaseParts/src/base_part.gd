@@ -16,6 +16,9 @@ var is_detached: bool = false
 var parent: RigidBody2D
 var sprite: Texture2D
 
+@export var damage_camera_shake_mag: float = 2.5
+@export var destruction_camera_shake_mag: float = 10
+
 signal part_destroyed
 signal part_detached
 
@@ -29,6 +32,7 @@ func take_damage(damage: int) -> void:
 	hit_sound.play()
 	
 	if new_health <= 0:
+		CameraManager.apply_camera_shake(destruction_camera_shake_mag)
 		part_destroyed.emit(dict_key)
 		if parent != null:
 			var explosion_effect:CPUParticles2D = EXPLOSION_PARTICLE.instantiate()
@@ -38,6 +42,7 @@ func take_damage(damage: int) -> void:
 		collider.queue_free()
 		queue_free()
 	else:
+		CameraManager.apply_camera_shake(damage_camera_shake_mag)
 		health = new_health
 		var frac_hp = float(new_health)/float(max_health)
 		var part_color: Color = polygon_2d.color
