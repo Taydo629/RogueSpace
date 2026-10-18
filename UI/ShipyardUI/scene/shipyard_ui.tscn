@@ -40,6 +40,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ueep2")
+instantiated_item_modulate = Color(0.53333336, 0.53333336, 0.53333336, 0.7882353)
 
 [node name="PopupControl" type="Control" parent="." unique_id=1160097598]
 layout_mode = 1

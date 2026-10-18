@@ -19,6 +19,7 @@ enum BUILD_MODE {BUILD,REMOVE,SELECT}
 var current_selected_item: Variant
 var current_selected_base_part: BasePart
 var instantiated_item: Variant
+@export var instantiated_item_modulate: Color
 var current_mouse_pos: Vector2 = Vector2.ZERO
 
 var player: Player
@@ -102,6 +103,7 @@ func start_build() -> void:
 	building_dict = player.part_component.ship_graph.duplicate(true)
 
 func _add_to_part_to_slot(selected_part: Part, icon: Variant) -> void:
+	_unselect_current_part()
 	if current_selected_item is ItemIcon:
 		current_selected_item.is_selected = false
 	if icon is ItemIcon:
@@ -231,15 +233,16 @@ func move_part(_position: Vector2) -> void:
 	# Handle parts positioning and handle when mouse pos is outside of building area.
 	if build_area_rect.get_rect().has_point(pos):
 		if instantiated_item != null:
-			instantiated_item.visible = true
+			instantiated_item.modulate = Color(1,1,1,1)
 			instantiated_item.position = pos
+			instantiated_item.visible = true
 		current_mouse_pos = pos
 	else:
 		if instantiated_item != null:
-			instantiated_item.visible = false
+			instantiated_item.modulate = instantiated_item_modulate
+			instantiated_item.position = mouse_pos
+			instantiated_item.visible = true
 		current_mouse_pos = Vector2.ZERO
-	#if instantiated_item != null:
-		#instantiated_item.position = pos
 
 func rotate_part(direction: int) -> void:
 	if instantiated_item != null:
