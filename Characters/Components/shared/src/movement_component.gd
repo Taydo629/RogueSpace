@@ -73,6 +73,7 @@ func dash_reset() -> void:
 	dash_available = true
 
 func rotate_to(target_pos: Vector2) -> void:
+	var mass_adjusted_gyro_strength: float = gyro_strength * parent.mass
 	var torque_modifier: float = 1
 	if energy_component != null:
 		torque_modifier = 1 + float(energy_component.energy_pips.get(energy_component.ENERGY_ROUTES.MOVEMENT).get("pips")) / float(energy_component.MAX_PIPS_PER_ROUTE)

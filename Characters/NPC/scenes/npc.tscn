@@ -21,6 +21,7 @@ detection_range = 1200
 [node name="ShieldComponent" parent="." unique_id=637585528 instance=ExtResource("3_mqs85")]
 
 [node name="MovementComponent" parent="." unique_id=894662683 instance=ExtResource("3_tl2vt")]
+gyro_strength = 150000.0
 
 [node name="WeaponComponent" parent="." unique_id=1177833148 instance=ExtResource("4_hwkja")]
 
