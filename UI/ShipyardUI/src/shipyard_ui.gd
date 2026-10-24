@@ -18,6 +18,7 @@ enum BUILD_MODE {BUILD,REMOVE,SELECT}
 
 var current_selected_item: Variant
 var current_selected_base_part: BasePart
+var current_node_key: String
 var instantiated_item: Variant
 @export var instantiated_item_modulate: Color
 var current_mouse_pos: Vector2 = Vector2.ZERO
@@ -102,8 +103,9 @@ func start_build() -> void:
 		part_instance.rotation = value.rotation
 	building_dict = player.part_component.ship_graph.duplicate(true)
 
-func _add_to_part_to_slot(selected_part: Part, icon: Variant) -> void:
+func _add_to_part_to_slot(selected_part: Part, icon: Variant, node_key: String = "") -> void:
 	_unselect_current_part()
+	current_node_key = node_key
 	if current_selected_item is ItemIcon:
 		current_selected_item.is_selected = false
 	if icon is ItemIcon:
@@ -117,7 +119,6 @@ func _add_to_part_to_slot(selected_part: Part, icon: Variant) -> void:
 		print("part_is_upgradeable")
 		var upgraded_part: Part = selected_part.duplicate_deep()
 		# Increment part level by 1
-		print(upgraded_part.buy_price)
 		upgraded_part.level = selected_part.level + 1
 		# Check if upgrade is affordable
 		upgrade_cost_label.text = "%s CR" % upgraded_part.buy_price
@@ -215,7 +216,7 @@ func pick_part() -> void:
 		var grid_pos: Vector2 = (Vector2(current_mouse_pos) - Vector2(x_range[0],y_range[0]) - Vector2(32,32))/64
 		if str(grid_pos) in building_dict.keys():
 			var node = building_dict.get(str(grid_pos))
-			_add_to_part_to_slot(node.part, node.instance)
+			_add_to_part_to_slot(node.part, node.instance, str(grid_pos))
 			print("Part picked")
 		else:
 			print("No part to pick!")
@@ -374,11 +375,12 @@ func _on_upgrade_button_pressed() -> void:
 		Inventory.remove_item(current_upgrade_item.part)
 		Inventory.add_item(new_upgrade_item.part)
 	else:
-		print(current_selected_base_part.max_health)
 		var current_part:Part = current_selected_base_part.part
 		var upgraded_part:Part = current_part.duplicate_deep()
 		upgraded_part.level += 1
 		current_selected_base_part.part = upgraded_part
 		Inventory.withdraw_from_wallet(upgraded_part.buy_price)
+		if current_node_key != "":
+			building_dict.get(current_node_key).part = new_upgrade_item.part
 		_add_to_part_to_slot(current_selected_base_part.part, current_selected_base_part)
 		print(current_selected_base_part.max_health)
