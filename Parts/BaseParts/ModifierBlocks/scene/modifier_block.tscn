@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dx4iqq78q500l"]
+
+[ext_resource type="PackedScene" uid="uid://dplstcql0ly08" path="res://Parts/BaseParts/scenes/base_part.tscn" id="1_wkqdv"]
+[ext_resource type="Script" uid="uid://bfmcotk0mjots" path="res://Parts/BaseParts/ModifierBlocks/scene/modifier_block.gd" id="2_f2nk3"]
+
+[node name="ModifierBlock" unique_id=2026258003 instance=ExtResource("1_wkqdv")]
+script = ExtResource("2_f2nk3")
+modifyier_directions = Array[Vector2i]([Vector2i(-1, -1), Vector2i(1, -1), Vector2i(1, -1), Vector2i(0, 0)])
