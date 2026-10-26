@@ -63,8 +63,8 @@ var energy_p_s: float
 # This is to be updated when parts are moved to and from inventory
 var current_health: int
 
-var applied_modifiers: Array[ModifierBlock]
-var current_modifier: int = 0
+var external_modifier: Array[ModifierBlock]
+var current_external_multiplier: int = 0
 
 func _init_properties() -> void:
 	var current_modifiers: PartModifier = level_dict.get(level)
