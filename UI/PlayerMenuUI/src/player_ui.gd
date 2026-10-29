@@ -56,10 +56,9 @@ func item_pickup(part: Part) -> void:
 	pickup_ui.pickup_notif(part)
 
 func update_hud() -> void:
-	if EnemyBlip in radar_hud.get_children():
-		for blip in radar_hud.get_children():
-			if blip is EnemyBlip:
-				blip.queue_free()
+	for blip in radar_hud.get_children():
+		if blip is EnemyBlip:
+			blip.queue_free()
 	
 	for new_npc in enemy_array:
 		var new_npc_blip:EnemyBlip = ENEMY_BLIP.instantiate()

@@ -49,7 +49,7 @@ func check_integrity(removed_key: String) -> void:
 			# Infuture this could randomly destroy some parts when this happens
 			var part = ship_graph.get(key)
 			# remove weight from ship is not needed as ship as a whole is now destroyed!
-			part.instance.detached()
+			part.instance.call_deferred("detached")
 			has_detached = true
 		CameraManager.apply_camera_shake(ship_destroyed_magnitude)
 		ship_graph.clear()
@@ -64,7 +64,7 @@ func check_integrity(removed_key: String) -> void:
 			# Infuture this could randomly destroy some parts when this happens
 			var part = ship_graph.get(key)
 			# remove weight from ship is not needed as ship as a whole is now destroyed!
-			part.instance.detached()
+			part.instance.call_deferred("detached")
 		ship_graph.clear()
 		graph_changed.emit()
 		ship_destroyed.emit()
@@ -77,7 +77,7 @@ func check_integrity(removed_key: String) -> void:
 				parent.mass -= part.part.weight
 				ship_graph.erase(key)
 				print("part is not connected to any other parts.")
-				part.instance.detached()
+				part.instance.call_deferred("detached")
 				has_detached = true
 				if ship_graph.size() == 0:
 					ship_destroyed.emit()
@@ -112,7 +112,7 @@ func check_integrity(removed_key: String) -> void:
 					parent.mass -= part.part.weight
 					ship_graph.erase(key)
 					print("part is no longer connected to root.")
-					part.instance.detached()
+					part.instance.call_deferred("detached")
 					has_detached = true
 					if ship_graph.size() == 0:
 						ship_destroyed.emit()
