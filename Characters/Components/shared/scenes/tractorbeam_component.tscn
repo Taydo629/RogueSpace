@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://j8dgeq4a20qq"]
+
+[ext_resource type="Script" uid="uid://weqgcpew6a4w" path="res://Characters/Components/shared/src/tractorbeam_component.gd" id="1_s56qc"]
+
+[node name="TractorbeamComponent" type="Node" unique_id=471176929]
+script = ExtResource("1_s56qc")

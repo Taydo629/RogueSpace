@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Part" format=3 uid="uid://dxn6vqjt4j07d"]
+
+[ext_resource type="Script" uid="uid://dfxnbigy6na68" path="res://data/parts.gd" id="1_43rg0"]
+[ext_resource type="PackedScene" uid="uid://d2iy1wfm3hmvg" path="res://Parts/BaseParts/Core/scenes/core.tscn" id="1_l7os8"]
+[ext_resource type="Script" uid="uid://bai17l24abfvp" path="res://data/part_modifier.gd" id="1_mde3k"]
+
+[resource]
+script = ExtResource("1_43rg0")
+name = "core"
+scene = ExtResource("1_l7os8")
+possible_neighbors = Array[int]([4])
+base_weight = 2
+base_max_health = 200
+metadata/_custom_type_script = "uid://dfxnbigy6na68"

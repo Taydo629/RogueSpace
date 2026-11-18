@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://yq3q3jl4g7bu"]
+
+[ext_resource type="Shader" uid="uid://8717i7vvu0pn" path="res://shaders/test_planet_shader.gdshader" id="1_24ey0"]
+[ext_resource type="Texture2D" uid="uid://c3ptjsobd7yf1" path="res://icon.svg" id="1_uigwl"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1q5dl"]
+noise_type = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_brcdu"]
+noise = SubResource("FastNoiseLite_1q5dl")
+seamless = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1l3u5"]
+noise_type = 2
+cellular_jitter = 1.5
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_24ey0"]
+noise = SubResource("FastNoiseLite_1l3u5")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_snhad"]
+shader = ExtResource("1_24ey0")
+shader_parameter/rotation_speed = 0.010000000475
+shader_parameter/radius = 0.4650000220875
+shader_parameter/shade_radius = 0.030000001425
+shader_parameter/noise_step = 0.5
+shader_parameter/terrain_noise = SubResource("NoiseTexture2D_24ey0")
+shader_parameter/cloud_noise = SubResource("NoiseTexture2D_brcdu")
+shader_parameter/terrain_color = Color(0, 0.45384848, 0, 1)
+shader_parameter/water_color = Color(0.0036011427, 0.17944378, 0.77339506, 1)
+shader_parameter/shore_color = Color(3.6098065e-08, 0, 0.12764454, 1)
+shader_parameter/cloud_color = Color(0.66656864, 0.6665687, 0.66656864, 1)
+shader_parameter/subterrain_color = Color(0.56078434, 0, 0, 1)
+shader_parameter/shade_color = Color(1, 1, 1, 1)
+shader_parameter/pixel_amount = 150
+
+[node name="Sprite2D" type="Sprite2D" unique_id=1143938736]
+material = SubResource("ShaderMaterial_snhad")
+position = Vector2(256, -256.00003)
+scale = Vector2(4, 3.9999998)
+texture = ExtResource("1_uigwl")
+region_rect = Rect2(0, 0, 128, 128)

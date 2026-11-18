@@ -1,0 +1,1 @@
+class_name Station extends StaticBody2D

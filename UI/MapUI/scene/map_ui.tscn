@@ -1,0 +1,138 @@
+[gd_scene format=3 uid="uid://bp51bdue80th0"]
+
+[ext_resource type="Texture2D" uid="uid://b6d1kjojcyi20" path="res://assets/UI_theme_asset_sheet.png" id="1_5awkl"]
+[ext_resource type="Script" uid="uid://w0o0wsetw2vu" path="res://UI/MapUI/src/map_ui.gd" id="1_j0p0c"]
+[ext_resource type="Shader" uid="uid://cvvodjxutsgje" path="res://shaders/ship_building_ui.gdshader" id="3_j0p0c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lpe4w"]
+atlas = ExtResource("1_5awkl")
+region = Rect2(396, 284, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qh7vf"]
+atlas = ExtResource("1_5awkl")
+region = Rect2(236, 284, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cb3mm"]
+atlas = ExtResource("1_5awkl")
+region = Rect2(76, 284, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u48wt"]
+atlas = ExtResource("1_5awkl")
+region = Rect2(156, 284, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t5xms"]
+atlas = ExtResource("1_5awkl")
+region = Rect2(316, 284, 72, 72)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c8q58"]
+shader = ExtResource("3_j0p0c")
+shader_parameter/grid_size = 50.0000023275
+shader_parameter/line_width = 1.0
+shader_parameter/line_default_a = 0.2000000095
+shader_parameter/circle_size = 1.0
+shader_parameter/mouse_pos = Vector2(0, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uud0x"]
+atlas = ExtResource("1_5awkl")
+region = Rect2(256, 112, 240, 160)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j0p0c"]
+texture = SubResource("AtlasTexture_uud0x")
+texture_margin_left = 54.0
+texture_margin_top = 54.0
+texture_margin_right = 54.0
+texture_margin_bottom = 54.0
+modulate_color = Color(0.641934, 0.641934, 0.641934, 1)
+
+[node name="MapUI" type="Control" unique_id=869364215]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j0p0c")
+icons = Dictionary[int, Texture2D]({
+1: SubResource("AtlasTexture_lpe4w"),
+2: SubResource("AtlasTexture_qh7vf"),
+3: SubResource("AtlasTexture_cb3mm"),
+4: SubResource("AtlasTexture_u48wt"),
+5: SubResource("AtlasTexture_t5xms")
+})
+
+[node name="TextureRect" type="ColorRect" parent="." unique_id=536022505]
+z_index = -5
+material = SubResource("ShaderMaterial_c8q58")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="." unique_id=1638649750]
+z_index = -10
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MapElements" type="Control" parent="." unique_id=247336791]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(576, 324)
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=832135776]
+z_index = 5
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 488.0
+offset_top = 496.0
+offset_right = -40.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_j0p0c")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer" unique_id=1717118117]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="QuadrantLabel" type="Label" parent="PanelContainer/HBoxContainer" unique_id=1413820900]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Select a quadrant to continue!
+"
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="PanelContainer/HBoxContainer" unique_id=1511221602]
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 2
+disabled = true
+text = "Travel"
+
+[node name="ResetViewButton" type="Button" parent="." unique_id=961556247]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 944.0
+offset_top = 64.0
+offset_right = -68.0
+offset_bottom = -544.0
+text = "Reset View"
+
+[connection signal="item_rect_changed" from="MapElements" to="." method="_on_map_elements_moved"]
+[connection signal="mouse_entered" from="PanelContainer/HBoxContainer/Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="PanelContainer/HBoxContainer/Button" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="ResetViewButton" to="." method="_on_reset_view_button_pressed"]

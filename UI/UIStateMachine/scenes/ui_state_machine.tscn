@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cxmsma5j4rs0l"]
+
+[ext_resource type="Script" uid="uid://car1u56qv04q6" path="res://UI/UIStateMachine/src/state_machine.gd" id="1_a50mo"]
+
+[node name="UIStateMachine" type="Node" unique_id=2069799045]
+script = ExtResource("1_a50mo")
+is_log_enabled = true

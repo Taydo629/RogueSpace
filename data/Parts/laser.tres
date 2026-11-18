@@ -1,0 +1,42 @@
+[gd_resource type="Resource" script_class="Part" format=3 uid="uid://f60asy2hl75j"]
+
+[ext_resource type="Script" uid="uid://dfxnbigy6na68" path="res://data/parts.gd" id="1_iqepg"]
+[ext_resource type="Script" uid="uid://bai17l24abfvp" path="res://data/part_modifier.gd" id="1_joawm"]
+[ext_resource type="PackedScene" uid="uid://ccnu2ooonh3dg" path="res://Parts/BaseParts/BaseEnergyWeapon/scene/base_energy_weapon.tscn" id="2_3c6o5"]
+[ext_resource type="Texture2D" uid="uid://bwbnfkeklw1w6" path="res://assets/LazerCannon_sprite.png" id="2_v1gxe"]
+
+[sub_resource type="Resource" id="Resource_5jhsg"]
+script = ExtResource("1_joawm")
+sprite = ExtResource("2_v1gxe")
+metadata/_custom_type_script = "uid://bai17l24abfvp"
+
+[sub_resource type="Resource" id="Resource_v1gxe"]
+script = ExtResource("1_joawm")
+sprite = ExtResource("2_v1gxe")
+buy_price_modifier = 1.5
+sell_price_modifier = 1.5
+weight_modifier = 1.25
+max_health_modifier = 1.25
+dps_modifier = 1.5
+energy_p_s_modifier = 0.8
+metadata/_custom_type_script = "uid://bai17l24abfvp"
+
+[resource]
+script = ExtResource("1_iqepg")
+name = "laser"
+display_name = "Beam Laser"
+part_description = "A basic energy weapon with low energy cost but low damage output."
+scene = ExtResource("2_3c6o5")
+part_type = 2
+possible_neighbors = Array[int]([2])
+base_buy_price = 200
+base_sell_price = 150
+base_weight = 2
+base_max_health = 100
+base_dps = 250.0
+base_energy_p_s = 75.0
+level_dict = Dictionary[int, ExtResource("1_joawm")]({
+1: SubResource("Resource_5jhsg"),
+2: SubResource("Resource_v1gxe")
+})
+metadata/_custom_type_script = "uid://dfxnbigy6na68"

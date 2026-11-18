@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://br7bcoepqbhx7"]
+
+[ext_resource type="Script" uid="uid://fs53e73vr78y" path="res://UI/src/main_ui_layer.gd" id="1_emnph"]
+[ext_resource type="PackedScene" uid="uid://cxmsma5j4rs0l" path="res://UI/UIStateMachine/scenes/ui_state_machine.tscn" id="2_18ihv"]
+[ext_resource type="PackedScene" uid="uid://blx5bir57n83o" path="res://UI/StartMenuUI/scene/start_menu_ui.tscn" id="3_enc2h"]
+[ext_resource type="PackedScene" uid="uid://deyud7bd4kyqi" path="res://UI/PauseMenuUI/scene/pause_menu_ui.tscn" id="4_snp2b"]
+[ext_resource type="PackedScene" uid="uid://b7axk8e3fxsiw" path="res://UI/PlayerMenuUI/scene/player_ui.tscn" id="5_opk4l"]
+[ext_resource type="PackedScene" uid="uid://blofhoxjvbs5y" path="res://UI/ShipBuildingUI/scene/ship_building_ui.tscn" id="6_ubglp"]
+[ext_resource type="PackedScene" uid="uid://c0nva578wdvmu" path="res://UI/GuideUI/scene/guide_ui.tscn" id="7_j5jn6"]
+[ext_resource type="PackedScene" uid="uid://ds8t7yfbj4qfp" path="res://UI/MerchantUI/scene/merchant_ui.tscn" id="8_1qnvn"]
+[ext_resource type="PackedScene" uid="uid://c7woe6b2tkxna" path="res://UI/SectorInfo/scene/sector_info.tscn" id="9_vtn47"]
+
+
+[node name="MainUILayer" type="CanvasLayer" unique_id=836505016]
+process_mode = 3
+script = ExtResource("1_emnph")
+
+[node name="UIStateMachine" parent="." unique_id=2069799045 instance=ExtResource("2_18ihv")]
+
+[node name="StartMenuUI" parent="." unique_id=867886566 instance=ExtResource("3_enc2h")]
+process_mode = 4
+visible = false
+
+[node name="PauseMenuUI" parent="." unique_id=2109095095 instance=ExtResource("4_snp2b")]
+process_mode = 4
+visible = false
+
+[node name="PlayerUI" parent="." unique_id=343522777 instance=ExtResource("5_opk4l")]
+process_mode = 4
+visible = false
+
+[node name="ShipBuildingUI" parent="." unique_id=542883084 instance=ExtResource("6_ubglp")]
+process_mode = 4
+visible = false
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GuideUI" parent="." unique_id=853896309 instance=ExtResource("7_j5jn6")]
+process_mode = 4
+visible = false
+
+[node name="StationUI" parent="." unique_id=2071674807 instance=ExtResource("8_1qnvn")]
+process_mode = 4
+visible = false
+
+[node name="SectorInfo" parent="." unique_id=943868874 instance=ExtResource("9_vtn47")]
+process_mode = 4
+visible = false

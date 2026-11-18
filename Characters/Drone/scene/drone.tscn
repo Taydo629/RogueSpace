@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://cv540hes1gbdv"]
+
+[ext_resource type="Texture2D" uid="uid://d1xtyqyrkq4q6" path="res://assets/Brainstorm.png" id="1_cfp0q"]
+[ext_resource type="Script" uid="uid://cwnbmlbk1i1u0" path="res://Characters/Drone/src/drone.gd" id="1_iyf46"]
+[ext_resource type="PackedScene" uid="uid://chaom7mhcgjir" path="res://Characters/Components/Drone/scene/drone_movement_component.tscn" id="2_a1fen"]
+[ext_resource type="Script" uid="uid://buv1hm4lonwrx" path="res://Characters/Components/Drone/src/drone_movement_component.gd" id="3_tksfc"]
+[ext_resource type="PackedScene" uid="uid://b83uhxexjj6eh" path="res://Characters/Components/Drone/scene/drone_input_component.tscn" id="4_leewt"]
+[ext_resource type="Script" uid="uid://bisr6tcd1usj4" path="res://Characters/Components/Drone/src/drone_input_component.gd" id="5_iyf46"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n1a5j"]
+atlas = ExtResource("1_cfp0q")
+region = Rect2(48, 64, 192, 208)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n1a5j"]
+size = Vector2(144, 144)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a1fen"]
+
+[node name="Drone" type="RigidBody2D" unique_id=822918275]
+mass = 5.0
+linear_damp = 1.0
+angular_damp = 1.0
+script = ExtResource("1_iyf46")
+
+[node name="DroneSprite" type="Sprite2D" parent="." unique_id=88326060]
+texture = SubResource("AtlasTexture_n1a5j")
+
+[node name="CollisionShape" type="CollisionPolygon2D" parent="." unique_id=745977880]
+polygon = PackedVector2Array(-80, -88, 80, -88, 80, -8, 64, 56, 16, 88, -16, 88, -64, 56, -80, -8, -80, -88)
+
+[node name="HurtBox" type="Area2D" parent="." unique_id=1968597570]
+
+[node name="HurtCollisionShape" type="CollisionShape2D" parent="HurtBox" unique_id=1225039154]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_n1a5j")
+
+[node name="DetectionArea" type="Area2D" parent="." unique_id=227927821]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=1650160816]
+shape = SubResource("CircleShape2D_a1fen")
+
+[node name="DroneMovementComponent" parent="." unique_id=1271832693 instance=ExtResource("2_a1fen")]
+script = ExtResource("3_tksfc")
+patrol_radius = 3000.0
+
+[node name="DroneInputComponent" parent="." unique_id=661643281 instance=ExtResource("4_leewt")]
+script = ExtResource("5_iyf46")

@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="NPCShip" format=3 uid="uid://dwtxjrojbsons"]
 
 [ext_resource type="Script" uid="uid://cm5wa1dfltaot" path="res://data/npc_ship.gd" id="1_ix65d"]
-[ext_resource type="Resource" path="res://data/ShipGraphs/patrol_graph.res" id="2_td42f"]
+[ext_resource type="Resource" uid="uid://c7he7tmhmmj7y" path="res://data/ShipGraphs/patrol_graph_new.res" id="2_td42f"]
 
 [resource]
 script = ExtResource("1_ix65d")
 ship_name = "patrol"
 ship_graph = ExtResource("2_td42f")
-grid_size = 6
+grid_size = 5
 min_level = 1
 max_level = 5
 metadata/_custom_type_script = "uid://cm5wa1dfltaot"

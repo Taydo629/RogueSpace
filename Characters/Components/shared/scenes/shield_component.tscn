@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://br5vacnjfyoe8"]
+
+[ext_resource type="Script" uid="uid://d1gl0axcaf87p" path="res://Characters/Components/shared/src/shield_component.gd" id="1_0ns54"]
+[ext_resource type="Shader" uid="uid://bg75yeyofb8o4" path="res://shaders/shield_component.gdshader" id="3_4u330"]
+[ext_resource type="Texture2D" uid="uid://c3ptjsobd7yf1" path="res://icon.svg" id="4_ugll7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n1a5j"]
+radius = 256.0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_s8amn"]
+noise_type = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7ue6p"]
+noise = SubResource("FastNoiseLite_s8amn")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_l2ora"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_c8q58"]
+width = 166
+height = 166
+noise = SubResource("FastNoiseLite_l2ora")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n1a5j"]
+shader = ExtResource("3_4u330")
+shader_parameter/radius = 0.5
+shader_parameter/inner_radius = 0.322000015295
+shader_parameter/highlight_alpha = 1.0
+shader_parameter/highlight_strength = 1.0
+shader_parameter/main_color = Color(0.26433355, 0.085895814, 0.99999994, 1)
+shader_parameter/highlight_color = Color(0.10374751, 0.77119255, 0, 1)
+shader_parameter/damaged_color = Color(1, 0, 0, 1)
+shader_parameter/glow = 0.50000002375
+shader_parameter/noise = SubResource("NoiseTexture2D_c8q58")
+shader_parameter/dissolve = SubResource("NoiseTexture2D_7ue6p")
+shader_parameter/animation_speed = 0.10000000475
+shader_parameter/highlight_speed = 0.2000000095
+
+[node name="ShieldComponent" type="Node2D" unique_id=637585528]
+script = ExtResource("1_0ns54")
+damage_to_energy_ratio = 5.0
+
+[node name="ShieldArea" type="Area2D" parent="." unique_id=422586742 groups=["shield"]]
+visible = false
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldArea" unique_id=276496859]
+shape = SubResource("CircleShape2D_n1a5j")
+
+[node name="Shield_sprite" type="Sprite2D" parent="." unique_id=365459694]
+material = SubResource("ShaderMaterial_n1a5j")
+position = Vector2(9.536743e-07, 9.536743e-07)
+scale = Vector2(4, 4)
+texture = ExtResource("4_ugll7")
