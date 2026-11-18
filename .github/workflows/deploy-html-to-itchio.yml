@@ -20,7 +20,7 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    
+
     environment: main
 
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -59,6 +59,9 @@ jobs:
           mkdir -p ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
           unzip -q templates.tpz -d "$RUNNER_TEMP/templates"
           mv "$RUNNER_TEMP"/templates/templates/* ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable/
+
+      - name: Import project assets
+        run: godot --headless --import
 
       - name: Export web build
         run: |
