@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="Dialog" format=3 uid="uid://c2gh5do7o1ij2"]
+
+[ext_resource type="Script" uid="uid://dr7ekb3lnwneb" path="res://data/dialog_option.gd" id="1_x1wff"]
+[ext_resource type="Script" uid="uid://bqkyyw3ii053j" path="res://data/dialog.gd" id="2_v2lb4"]
+[ext_resource type="Script" uid="uid://dfxnbigy6na68" path="res://data/parts.gd" id="2_ygm7f"]
+
+[sub_resource type="Resource" id="Resource_ygm7f"]
+script = ExtResource("1_x1wff")
+option_text = "Hand over CR"
+penalties = Array[int]([1])
+option_response = "Good choice! CR is king after all. Now warp before I change my mind!"
+possible_credit_penalty = 500
+metadata/_custom_type_script = "uid://dr7ekb3lnwneb"
+
+[sub_resource type="Resource" id="Resource_bin6o"]
+script = ExtResource("1_x1wff")
+option_text = "Hand over parts and ammo"
+penalties = Array[int]([0, 2])
+option_response = "These will do... They were probably weighing your junk ship anyways!"
+possible_part_penalty = 2
+possible_ammo_penalty = 200
+metadata/_custom_type_script = "uid://dr7ekb3lnwneb"
+
+[sub_resource type="Resource" id="Resource_ke42v"]
+script = ExtResource("1_x1wff")
+option_text = "Fight"
+option_response = "Hey! Now that was exactly what I told you not to do!!"
+combat = true
+metadata/_custom_type_script = "uid://dr7ekb3lnwneb"
+
+[resource]
+script = ExtResource("2_v2lb4")
+interaction_type = 2
+npc_name = "Pirate leader"
+main_dialog_text = "Stop! If you try to run I will blow you out of this quadrant. Give me somthing worth my time or Ill scrap your ship and sell it to the next shipyard I come across!"
+options = Array[ExtResource("1_x1wff")]([SubResource("Resource_ygm7f"), SubResource("Resource_bin6o"), SubResource("Resource_ke42v")])
+metadata/_custom_type_script = "uid://bqkyyw3ii053j"

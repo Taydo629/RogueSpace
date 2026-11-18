@@ -1,19 +1,40 @@
 [gd_resource type="Resource" script_class="Part" format=3 uid="uid://b4k0ewhy4bwpf"]
 
 [ext_resource type="Script" uid="uid://dfxnbigy6na68" path="res://data/parts.gd" id="1_5xp6c"]
-[ext_resource type="Texture2D" uid="uid://dtnth2ssektfx" path="res://assets/Thruster_sprite.png" id="1_u85ot"]
+[ext_resource type="Script" uid="uid://bai17l24abfvp" path="res://data/part_modifier.gd" id="1_u85ot"]
+[ext_resource type="Texture2D" uid="uid://dtnth2ssektfx" path="res://assets/Thruster_sprite.png" id="2_mcja4"]
 [ext_resource type="PackedScene" uid="uid://jumhiux358g4" path="res://Parts/BaseParts/Thruster/scenes/thruster.tscn" id="2_u85ot"]
+
+[sub_resource type="Resource" id="Resource_2g0pr"]
+script = ExtResource("1_u85ot")
+sprite = ExtResource("2_mcja4")
+metadata/_custom_type_script = "uid://bai17l24abfvp"
+
+[sub_resource type="Resource" id="Resource_cu64k"]
+script = ExtResource("1_u85ot")
+sprite = ExtResource("2_mcja4")
+buy_price_modifier = 1.5
+sell_price_modifier = 1.5
+weight_modifier = 1.25
+max_health_modifier = 1.25
+thrust_force_modifier = 2.0
+metadata/_custom_type_script = "uid://bai17l24abfvp"
 
 [resource]
 script = ExtResource("1_5xp6c")
 name = "thruster"
+display_name = "Thruster"
+part_description = "A basic thruster giving the ship a means of propulsion."
 scene = ExtResource("2_u85ot")
-image = ExtResource("1_u85ot")
-buy_price = 300
-sell_price = 100
-weight = 3
-max_health = 200
 part_type = 2
 possible_neighbors = Array[int]([0, 1, 2])
-thrust_force = 100
+base_buy_price = 150
+base_sell_price = 100
+base_weight = 2
+base_max_health = 200
+base_thrust_force = 100
+level_dict = Dictionary[int, ExtResource("1_u85ot")]({
+1: SubResource("Resource_2g0pr"),
+2: SubResource("Resource_cu64k")
+})
 metadata/_custom_type_script = "uid://dfxnbigy6na68"

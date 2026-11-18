@@ -14,7 +14,7 @@ func _ready() -> void:
 
 func pickup_notif(part: Part) -> void:
 	timer.start()
-	texture_rect.texture = part.image
+	texture_rect.texture = part.sprite
 	label.text = part.name
 
 func _reset_notif() -> void:

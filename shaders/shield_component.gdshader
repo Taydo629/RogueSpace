@@ -8,11 +8,11 @@ uniform float highlight_strength: hint_range(0.0, 1.0, 0.1);
 uniform vec3 main_color: source_color;
 uniform vec3 highlight_color: source_color;
 uniform vec3 damaged_color: source_color;
-uniform float damage_frac: hint_range(0.0, 1.0) = 1.0;
+instance uniform float damage_frac: hint_range(0.0, 1.0) = 1.0;
 uniform float glow: hint_range(0.0, 1.0);
 uniform sampler2D noise: repeat_enable;
 uniform sampler2D dissolve: repeat_enable;
-uniform float dissolve_progress: hint_range(0.0, 1.0) = 0.0;
+instance uniform float dissolve_progress: hint_range(0.0, 1.0) = 0.0;
 uniform float animation_speed: hint_range(0.0, 1.0);
 uniform float highlight_speed: hint_range(0.0, 1.0) = 2.0;
 

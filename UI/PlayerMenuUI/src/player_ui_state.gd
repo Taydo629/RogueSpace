@@ -17,8 +17,8 @@ func enter() -> void:
 		player_ui.player_died.connect(death)
 	player_ui.process_mode = Node.PROCESS_MODE_ALWAYS
 	player_ui.visible = true
-	if not player_ui.enter_station.is_connected(enter_station):
-		player_ui.enter_station.connect(enter_station)
+	if not player_ui.warp.is_connected(warp):
+		player_ui.warp.connect(warp)
 	player_ui.init_ui()
 
 func exit() -> void:
@@ -28,8 +28,8 @@ func exit() -> void:
 func death() -> void:
 	state_machine.transition(DeathUIState.state_name)
 
-func enter_station() -> void:
-	state_machine.transition(StationUIState.state_name)
+func warp() -> void:
+	state_machine.transition(MapUIState.state_name)
 
 func process(_delta: float) -> void:
 	if Input.is_action_just_pressed("esc"):

@@ -1,5 +1,7 @@
 class_name PartComponent extends Node2D
 
+@export var ship_destroyed_magnitude: float = 1.0
+
 var parent: RigidBody2D
 var grid_size: int
 var ship_graph: Dictionary
@@ -24,7 +26,10 @@ func part_destroyed(graph_key:String):
 						if key == graph_key:
 							neighbor.neighbors.erase(key)
 			ship_graph.erase(graph_key)
-			call_deferred("check_integrity",graph_key)
+			if ship_graph.size() == 0:
+				ship_destroyed.emit()
+			else:
+				check_integrity(graph_key)
 
 func find_core() -> String:
 	var core_key: String
@@ -44,10 +49,23 @@ func check_integrity(removed_key: String) -> void:
 			# Infuture this could randomly destroy some parts when this happens
 			var part = ship_graph.get(key)
 			# remove weight from ship is not needed as ship as a whole is now destroyed!
-			part.instance.detached()
+			part.instance.call_deferred("detached")
 			has_detached = true
+		CameraManager.apply_camera_shake(ship_destroyed_magnitude)
 		ship_graph.clear()
 		print("Emitting the part_removed Signal")
+		graph_changed.emit()
+		ship_destroyed.emit()
+		return
+	elif ship_graph.size() == 1:
+		print("Ship has only core left!")
+		for key in ship_graph.keys():
+			# Currently when root is destroyed all remaining parts are detached
+			# Infuture this could randomly destroy some parts when this happens
+			var part = ship_graph.get(key)
+			# remove weight from ship is not needed as ship as a whole is now destroyed!
+			part.instance.call_deferred("detached")
+		ship_graph.clear()
 		graph_changed.emit()
 		ship_destroyed.emit()
 		return
@@ -59,8 +77,10 @@ func check_integrity(removed_key: String) -> void:
 				parent.mass -= part.part.weight
 				ship_graph.erase(key)
 				print("part is not connected to any other parts.")
-				part.instance.detached()
+				part.instance.call_deferred("detached")
 				has_detached = true
+				if ship_graph.size() == 0:
+					ship_destroyed.emit()
 		
 		# Following is to search if a colection of parts have been severed
 		# from the root node.
@@ -92,7 +112,9 @@ func check_integrity(removed_key: String) -> void:
 					parent.mass -= part.part.weight
 					ship_graph.erase(key)
 					print("part is no longer connected to root.")
-					part.instance.detached()
+					part.instance.call_deferred("detached")
 					has_detached = true
+					if ship_graph.size() == 0:
+						ship_destroyed.emit()
 		print("Emitting the part_removed Signal")
 		graph_changed.emit()

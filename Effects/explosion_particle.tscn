@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://daghypp3r5ng"]
+
+[ext_resource type="Texture2D" uid="uid://cx25qprs7hr6s" path="res://assets/Smoke_sprite.png" id="1_7017n"]
+
+[sub_resource type="Curve" id="Curve_n1a5j"]
+_limits = [-200.0, 200.0, 0.0, 1.0]
+_data = [Vector2(0, 200), 0.0, 0.0, 0, 0, Vector2(0.398374, -13.698639), -663.4416, -663.4416, 0, 0, Vector2(1, -200), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_c8q58"]
+_limits = [0.5, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 0.520548), 0.0, 0.0, 0, 0, Vector2(0.7, 1.25), 0.0, 0.0, 0, 0, Vector2(0.99458003, 0.520548), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_8kenm"]
+colors = PackedColorArray(1, 1, 1, 1, 0.5609549, 0.5609549, 0.5609549, 1)
+
+[sub_resource type="Gradient" id="Gradient_ttm03"]
+colors = PackedColorArray(0.8235294, 0.44705883, 0, 1, 1, 0.6509804, 0, 1)
+
+[node name="ExplosionParticle" type="CPUParticles2D" unique_id=891529447]
+emitting = false
+amount = 20
+texture = ExtResource("1_7017n")
+one_shot = true
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 40.0
+initial_velocity_max = 120.0
+angular_velocity_min = -200.0
+angular_velocity_max = 200.0
+linear_accel_max = 3.0
+linear_accel_curve = SubResource("Curve_n1a5j")
+damping_min = 1.0
+damping_max = 1.0
+scale_amount_min = 0.5
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_c8q58")
+color_ramp = SubResource("Gradient_8kenm")
+color_initial_ramp = SubResource("Gradient_ttm03")
+hue_variation_min = -0.5
+hue_variation_max = 0.5

@@ -23,6 +23,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ps2en")
+invalid_pos_part_modulate = Color(0, 0, 0, 0.84313726)
 
 [node name="BG" type="TextureRect" parent="." unique_id=1409479143]
 z_index = -4
@@ -48,35 +49,27 @@ grow_vertical = 2
 pivot_offset = Vector2(575, 324)
 color = Color(0.6955032, 0.6955031, 0.6955031, 1)
 
-[node name="Panel" type="Panel" parent="." unique_id=343043088]
+[node name="Panel" type="PanelContainer" parent="." unique_id=1061000782]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 898.0
-offset_top = 66.0
-offset_right = -30.0
-offset_bottom = -446.0
+offset_left = 731.0
+offset_top = 32.0
+offset_right = -32.0
+offset_bottom = -493.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="KeyHelp" type="Label" parent="Panel" unique_id=1387154647]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -3.9370003
-anchor_top = -0.485
-anchor_right = 1.205
-anchor_bottom = 4.2790003
-offset_left = 881.88806
-offset_top = 63.96
-offset_right = -45.920013
-offset_bottom = -447.94403
-grow_horizontal = 0
-theme_override_constants/line_spacing = -10
+[node name="KeyHelp" type="RichTextLabel" parent="Panel" unique_id=1434017197]
+layout_mode = 2
 text = "Q: Rotate part anti-clockwise
 E: Rotate part clockwise
 M: Mirror part
 LMB: Place part
 RMB: Remove part"
 horizontal_alignment = 2
+vertical_alignment = 1
 
 [node name="FoldableContainer" type="FoldableContainer" parent="." unique_id=1146177033]
 layout_mode = 1
@@ -202,10 +195,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
 
 [node name="VBoxContainer" type="VBoxContainer" parent="RepairPopup/MarginContainer" unique_id=1547222200]
 layout_mode = 2
@@ -233,17 +226,21 @@ size_flags_vertical = 3
 [node name="VBoxContainer" type="VBoxContainer" parent="RepairPopup/MarginContainer/VBoxContainer/HBoxContainer" unique_id=342301751]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 4
 
 [node name="CurrentHealthLabel" type="Label" parent="RepairPopup/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=146218480]
 layout_mode = 2
+theme_override_font_sizes/font_size = 10
 text = "Current health %:"
 
 [node name="NewHealthLab" type="Label" parent="RepairPopup/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1767753915]
 layout_mode = 2
+theme_override_font_sizes/font_size = 10
 text = "New health %:"
 
 [node name="RepairCostLab" type="Label" parent="RepairPopup/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1085660097]
 layout_mode = 2
+theme_override_font_sizes/font_size = 10
 text = "Repair cost:"
 
 [node name="RepairButton" type="Button" parent="RepairPopup/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1048622444]

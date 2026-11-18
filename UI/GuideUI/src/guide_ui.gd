@@ -79,6 +79,7 @@ var guide_dict = {
 signal guide_end
 
 func init_ui() -> void:
+	current_page = 1
 	var page = guide_dict.get(str(current_page))
 	rich_text_label.text = page.text
 	texture_rect.texture = page.icon

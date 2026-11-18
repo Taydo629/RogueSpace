@@ -1,0 +1,123 @@
+[gd_scene format=3 uid="uid://01c8dlk1i3xw"]
+
+[ext_resource type="Texture2D" uid="uid://b6d1kjojcyi20" path="res://assets/UI_theme_asset_sheet.png" id="1_bxsyj"]
+[ext_resource type="Script" uid="uid://icjfipj0pgqn" path="res://UI/ShipyardUI/src/item_slot.gd" id="1_v8xgg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8xgg"]
+atlas = ExtResource("1_bxsyj")
+region = Rect2(544, 0, 64, 64)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n1a5j"]
+bg_color = Color(0.18359044, 0.18359047, 0.18359032, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.18431373, 0.18431373, 0.18431373, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_400o8"]
+atlas = ExtResource("1_bxsyj")
+region = Rect2(544, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_87lqj"]
+atlas = ExtResource("1_bxsyj")
+region = Rect2(256, 112, 240, 160)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dj54i"]
+texture = SubResource("AtlasTexture_87lqj")
+texture_margin_left = 22.0
+texture_margin_top = 26.0
+texture_margin_right = 16.0
+texture_margin_bottom = 17.0
+region_rect = Rect2(0, 0, 240, 160)
+modulate_color = Color(0.32156864, 0.32156864, 0.32156864, 1)
+
+[node name="ItemSlot" type="VBoxContainer" unique_id=930897121]
+custom_minimum_size = Vector2(128, 128)
+offset_right = 128.0
+offset_bottom = 128.0
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+script = ExtResource("1_v8xgg")
+default_texture = SubResource("AtlasTexture_v8xgg")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1021590552]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_n1a5j")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1035525976]
+layout_mode = 2
+
+[node name="ItemTitleLabel2" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1571066066]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Empty"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/VBoxContainer" unique_id=1001531853]
+layout_mode = 2
+size_flags_vertical = 3
+texture = SubResource("AtlasTexture_400o8")
+stretch_mode = 5
+
+[node name="Control" type="Control" parent="." unique_id=772413176]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(0, 0)
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Control" unique_id=1349606751]
+z_index = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = -152.0
+offset_right = 192.0
+offset_bottom = -65.0
+grow_vertical = 0
+pivot_offset = Vector2(0, 87)
+offset_transform_enabled = true
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_dj54i")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer" unique_id=1772452141]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="ItemTitleLabel" type="Label" parent="Control/PanelContainer/VBoxContainer" unique_id=1188276757]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Empty"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="DescriptionLabel" type="RichTextLabel" parent="Control/PanelContainer/VBoxContainer" unique_id=1419799664]
+layout_mode = 2
+size_flags_vertical = 6
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 6
+text = "Select a part"
+fit_content = true
+
+[node name="StatsLabel" type="RichTextLabel" parent="Control/PanelContainer/VBoxContainer" unique_id=778614984]
+layout_mode = 2
+size_flags_vertical = 6
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 6
+text = "Select a part"
+fit_content = true
+autowrap_mode = 0
+
+[connection signal="mouse_entered" from="PanelContainer" to="." method="_on_panel_container_mouse_entered"]

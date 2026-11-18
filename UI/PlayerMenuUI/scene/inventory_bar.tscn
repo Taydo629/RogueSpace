@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://dq11rkx784xj0"]
+
+[ext_resource type="Texture2D" uid="uid://b6d1kjojcyi20" path="res://assets/UI_theme_asset_sheet.png" id="1_4m80m"]
+[ext_resource type="Script" uid="uid://dakgshegbr6hv" path="res://UI/PlayerMenuUI/src/inventory_bar.gd" id="1_5d0gr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n1a5j"]
+atlas = ExtResource("1_4m80m")
+region = Rect2(16, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4m80m"]
+atlas = ExtResource("1_4m80m")
+region = Rect2(112, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5d0gr"]
+atlas = ExtResource("1_4m80m")
+region = Rect2(208, 384, 64, 64)
+
+[node name="InventoryBar" type="HBoxContainer" unique_id=537340854]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 920.0
+offset_top = 16.0
+offset_right = -17.0
+offset_bottom = -568.0
+grow_horizontal = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 2
+script = ExtResource("1_5d0gr")
+
+[node name="CreditVbox" type="HBoxContainer" parent="." unique_id=843640659]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="CreditIcon" type="TextureRect" parent="CreditVbox" unique_id=659099445]
+layout_mode = 2
+texture = SubResource("AtlasTexture_n1a5j")
+stretch_mode = 4
+
+[node name="CreditLabel" type="Label" parent="CreditVbox" unique_id=582811195]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AmmoVbox" type="HBoxContainer" parent="." unique_id=97271329]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="AmmoIcon" type="TextureRect" parent="AmmoVbox" unique_id=600549550]
+layout_mode = 2
+texture = SubResource("AtlasTexture_4m80m")
+stretch_mode = 4
+
+[node name="AmmoLabel" type="Label" parent="AmmoVbox" unique_id=753980986]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ExplosiveVbox" type="HBoxContainer" parent="." unique_id=35087621]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="ExplosiveIcon" type="TextureRect" parent="ExplosiveVbox" unique_id=2026707432]
+layout_mode = 2
+texture = SubResource("AtlasTexture_5d0gr")
+stretch_mode = 4
+
+[node name="ExplosiveLabel" type="Label" parent="ExplosiveVbox" unique_id=950047313]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

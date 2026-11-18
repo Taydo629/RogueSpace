@@ -1,7 +1,7 @@
 class_name BaseEnergyWeapon extends BasePart
 
 # Weapon related exports
-@onready var fire_sound: AudioStreamPlayer2D = $FireSound
+#@onready var fire_sound: AudioStreamPlayer2D = $FireSound
 @onready var laser_beam_2d: RayCast2D = $LaserBeam2D
 # Not used but could be used in future for configurable control
 var activation_key: String
@@ -10,7 +10,7 @@ var dps: float
 var energy_per_sec: float
 var part:Part:
 	set(value):
-		sprite = value.image
+		sprite = value.sprite
 		max_health = value.max_health
 		health = value.current_health
 		dps = value.dps
@@ -23,7 +23,7 @@ func _process(delta: float) -> void:
 		if not energy_component.use_energy(energy_per_sec * delta, energy_component.ENERGY_ROUTES.WEAPONS):
 			toggle_weapon(parent, false)
 
-func toggle_weapon(parent_node: RigidBody2D, toggle: bool) -> void:
+func toggle_weapon(_parent_node: RigidBody2D, toggle: bool) -> void:
 	print("Firing Laser")
 	if toggle:
 		laser_on = true

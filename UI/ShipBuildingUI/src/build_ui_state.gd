@@ -23,7 +23,7 @@ func exit() -> void:
 	build_menu_ui.process_mode = Node.PROCESS_MODE_DISABLED
 
 func build_complete() -> void:
-	state_machine.transition(PlayerUIState.state_name)
+	state_machine.transition(MapUIState.state_name)
 
 func process(_delta: float) -> void:
 	if Input.is_action_just_pressed("esc"):

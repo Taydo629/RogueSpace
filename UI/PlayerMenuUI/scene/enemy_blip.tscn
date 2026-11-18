@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://jhxoa11srl4l"]
+
+[ext_resource type="Script" uid="uid://dbimd62iwjr1w" path="res://UI/PlayerMenuUI/src/enemy_blip.gd" id="1_12ss7"]
+[ext_resource type="Shader" uid="uid://bjaxbikuf7kts" path="res://UI/PlayerMenuUI/src/enemy_blip_shader.gdshader" id="1_brs7x"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8meiq"]
+shader = ExtResource("1_brs7x")
+
+[node name="EnemyBlip" type="Polygon2D" unique_id=2087291226]
+z_index = 5
+material = SubResource("ShaderMaterial_8meiq")
+color = Color(1, 0.5529412, 0, 1)
+polygon = PackedVector2Array(0, 0, 8, 0, 8, 8, 0, 8)
+script = ExtResource("1_12ss7")

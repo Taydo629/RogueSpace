@@ -9,9 +9,11 @@ func _ready() -> void:
 	# Initialise all of the UI
 	main_ui_layer.init_ui()
 	# Connect signal for going to next level
-	main_ui_layer.generate_level.connect(generate_level)
+	main_ui_layer.travel_to_new_quadrant.connect(travel_to_new_quadrant)
 	# Connect signal for restarting game
 	main_ui_layer.restart.connect(restart_game)
+	# Give level_gen_component reference to MapUI
+	level_gen_component.map_ui = main_ui_layer.map_ui
 	# Generate the level on start
 	level_gen_component.init_game()
 	# Give UI reference to level_gen_component to get info about POIs and level number
@@ -19,10 +21,10 @@ func _ready() -> void:
 	# Give UI reference to player for player specific UI
 	main_ui_layer.player = level_gen_component.player
 
-	level_gen_component.generate_level()
+	#level_gen_component.generate_level()
 
-func generate_level() -> void:
-	level_gen_component.generate_level()
+func travel_to_new_quadrant(quadrant: Quadrant) -> void:
+	level_gen_component.generate_level(quadrant)
 
 func restart_game() -> void:
 	level_gen_component.init_game()
@@ -31,4 +33,4 @@ func restart_game() -> void:
 	# Give UI reference to player for player specific UI
 	main_ui_layer.player = level_gen_component.player
 	
-	level_gen_component.generate_level()
+	#level_gen_component.generate_level(null)

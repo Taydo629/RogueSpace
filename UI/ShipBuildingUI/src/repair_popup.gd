@@ -44,7 +44,7 @@ func update_info() -> void:
 	repair_cost_lab.text = repair_cost_str % cost_to_repair
 
 func _on_repair_button_pressed() -> void:
-	var repair_cost: float = ((h_slider.value - min_slider_value)/100.) * current_part.sell_price
+	var repair_cost := int(((h_slider.value - min_slider_value)/100.) * current_part.sell_price)
 	if Inventory.withdraw_from_wallet(repair_cost):
 		var healed_health: int = int((h_slider.value/100.)*current_part_instance.max_health) - current_part_instance.health
 		current_part_instance.heal(healed_health)

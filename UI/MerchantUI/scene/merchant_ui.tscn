@@ -1,0 +1,246 @@
+[gd_scene format=3 uid="uid://ds8t7yfbj4qfp"]
+
+[ext_resource type="Script" uid="uid://b0u3eaegvjswr" path="res://UI/MerchantUI/src/merchant_ui.gd" id="1_77r05"]
+[ext_resource type="PackedScene" uid="uid://dq11rkx784xj0" path="res://UI/PlayerMenuUI/scene/inventory_bar.tscn" id="2_5ltpe"]
+[ext_resource type="Texture2D" uid="uid://b6d1kjojcyi20" path="res://assets/UI_theme_asset_sheet.png" id="3_53tim"]
+[ext_resource type="Script" uid="uid://s5orvff0dly7" path="res://UI/MerchantUI/src/item_drag_destination.gd" id="4_d4cjv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tx2ft"]
+atlas = ExtResource("3_53tim")
+region = Rect2(256, 112, 240, 160)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tx2ft"]
+texture = SubResource("AtlasTexture_tx2ft")
+texture_margin_left = 22.0
+texture_margin_top = 26.0
+texture_margin_right = 16.0
+texture_margin_bottom = 17.0
+region_rect = Rect2(0, 0, 240, 160)
+modulate_color = Color(0.7708395, 0.77083945, 0.77083945, 1)
+
+[node name="MerchantUI" type="Control" unique_id=2071674807]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_77r05")
+
+[node name="InventoryBar" parent="." unique_id=537340854 instance=ExtResource("2_5ltpe")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_bottom = 0.0
+offset_left = -199.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 64.0
+
+[node name="DialogBoxBG" type="PanelContainer" parent="." unique_id=1145638386]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 176.0
+offset_top = 324.0
+offset_right = -176.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DialogBoxBG" unique_id=1579979575]
+layout_mode = 2
+
+[node name="NPCNameLabel" type="Label" parent="DialogBoxBG/VBoxContainer" unique_id=712679937]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Merchant vendor"
+
+[node name="DialogBoxContainer" type="HBoxContainer" parent="DialogBoxBG/VBoxContainer" unique_id=75960948]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DialogText" type="RichTextLabel" parent="DialogBoxBG/VBoxContainer/DialogBoxContainer" unique_id=1881291159]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+text = "Can I interest you in some new parts for your ship? 
+My prices are the best in this sector!
+
+I also buy parts if your cargo hold is becomming cramped!"
+vertical_alignment = 1
+
+[node name="ButtonContainer" type="VBoxContainer" parent="DialogBoxBG/VBoxContainer/DialogBoxContainer" unique_id=798883876]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = 12
+
+[node name="ShopButton" type="Button" parent="DialogBoxBG/VBoxContainer/DialogBoxContainer/ButtonContainer" unique_id=860478499]
+layout_mode = 2
+text = "Buy parts"
+
+[node name="SellButton" type="Button" parent="DialogBoxBG/VBoxContainer/DialogBoxContainer/ButtonContainer" unique_id=1470640971]
+layout_mode = 2
+text = "Sell Parts"
+
+[node name="LeaveButton" type="Button" parent="DialogBoxBG/VBoxContainer/DialogBoxContainer/ButtonContainer" unique_id=1299492088]
+layout_mode = 2
+text = "Leave"
+
+[node name="BuyMenuBG" type="PanelContainer" parent="." unique_id=702929932]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -992.0
+offset_top = 152.0
+offset_right = -1216.0
+offset_bottom = -152.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(464, 172)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BuyMenuBG" unique_id=1649495874]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="BuyMenuBG/VBoxContainer" unique_id=2012329833]
+layout_mode = 2
+alignment = 2
+
+[node name="Control" type="Control" parent="BuyMenuBG/VBoxContainer/HBoxContainer2" unique_id=403095183]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="BuyMenuBG/VBoxContainer/HBoxContainer2" unique_id=1406808824]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 8.0
+text = "Merchant shop"
+horizontal_alignment = 1
+
+[node name="ExitBuyMenuButton" type="Button" parent="BuyMenuBG/VBoxContainer/HBoxContainer2" unique_id=384531667]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Exit"
+
+[node name="ItemContainer" type="HBoxContainer" parent="BuyMenuBG/VBoxContainer" unique_id=1980343074]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="SellMenuHBox" type="HBoxContainer" parent="." unique_id=983137702]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = -576.0
+offset_right = -64.0
+offset_bottom = -712.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(512, 228)
+
+[node name="SellPanelContainer" type="PanelContainer" parent="SellMenuHBox" unique_id=1576350963]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SellMenuHBox/SellPanelContainer" unique_id=1975273103]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SellMenuHBox/SellPanelContainer/VBoxContainer" unique_id=922945067]
+layout_mode = 2
+text = "Sell Parts"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="SellMenuHBox/SellPanelContainer/VBoxContainer" unique_id=943732620]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="SellMenuHBox/SellPanelContainer/VBoxContainer" unique_id=192612431]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_tx2ft")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SellMenuHBox/SellPanelContainer/VBoxContainer/PanelContainer" unique_id=660611735]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="SellGridContainer" type="GridContainer" parent="SellMenuHBox/SellPanelContainer/VBoxContainer/PanelContainer/ScrollContainer" unique_id=785145562]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 3
+script = ExtResource("4_d4cjv")
+
+[node name="CurrentValueLabel" type="Label" parent="SellMenuHBox/SellPanelContainer/VBoxContainer" unique_id=1376044873]
+layout_mode = 2
+text = "Drag items to sell"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SellMenuHBox/SellPanelContainer/VBoxContainer" unique_id=1227085063]
+layout_mode = 2
+
+[node name="ClearSellBoxButton" type="Button" parent="SellMenuHBox/SellPanelContainer/VBoxContainer/HBoxContainer" unique_id=743610372]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Clear"
+
+[node name="SellItemButton" type="Button" parent="SellMenuHBox/SellPanelContainer/VBoxContainer/HBoxContainer" unique_id=1753593983]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Sell"
+
+[node name="Spacing" type="VBoxContainer" parent="SellMenuHBox" unique_id=1477632518]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="ExitSellMenuButton" type="Button" parent="SellMenuHBox/Spacing" unique_id=970557979]
+layout_mode = 2
+text = "Leave"
+
+[node name="InventoryPanelContainer" type="PanelContainer" parent="SellMenuHBox" unique_id=923276801]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SellMenuHBox/InventoryPanelContainer" unique_id=1466980683]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SellMenuHBox/InventoryPanelContainer/VBoxContainer" unique_id=1997075894]
+layout_mode = 2
+text = "Inventory"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="SellMenuHBox/InventoryPanelContainer/VBoxContainer" unique_id=1699071161]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="SellMenuHBox/InventoryPanelContainer/VBoxContainer" unique_id=1425905300]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_tx2ft")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SellMenuHBox/InventoryPanelContainer/VBoxContainer/PanelContainer" unique_id=768222894]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="InvGridContainer" type="GridContainer" parent="SellMenuHBox/InventoryPanelContainer/VBoxContainer/PanelContainer/ScrollContainer" unique_id=1704042205]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 3
+script = ExtResource("4_d4cjv")
+
+[connection signal="pressed" from="DialogBoxBG/VBoxContainer/DialogBoxContainer/ButtonContainer/ShopButton" to="." method="_on_shop_button_pressed"]
+[connection signal="pressed" from="DialogBoxBG/VBoxContainer/DialogBoxContainer/ButtonContainer/SellButton" to="." method="_on_sell_button_pressed"]
+[connection signal="pressed" from="DialogBoxBG/VBoxContainer/DialogBoxContainer/ButtonContainer/LeaveButton" to="." method="_on_leave_button_pressed"]
+[connection signal="pressed" from="BuyMenuBG/VBoxContainer/HBoxContainer2/ExitBuyMenuButton" to="." method="_on_exit_buy_menu_button_pressed"]
+[connection signal="child_order_changed" from="SellMenuHBox/SellPanelContainer/VBoxContainer/PanelContainer/ScrollContainer/SellGridContainer" to="." method="_on_sell_grid_container_child_order_changed"]
+[connection signal="pressed" from="SellMenuHBox/SellPanelContainer/VBoxContainer/HBoxContainer/ClearSellBoxButton" to="." method="_on_clear_sell_box_button_pressed"]
+[connection signal="pressed" from="SellMenuHBox/SellPanelContainer/VBoxContainer/HBoxContainer/SellItemButton" to="." method="_on_sell_item_button_pressed"]
+[connection signal="pressed" from="SellMenuHBox/Spacing/ExitSellMenuButton" to="." method="_on_exit_sell_menu_button_pressed"]

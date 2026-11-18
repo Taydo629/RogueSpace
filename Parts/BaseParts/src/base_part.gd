@@ -4,6 +4,7 @@ class_name BasePart extends RigidBody2D
 @onready var polygon_2d: Polygon2D = $Polygon2D
 @onready var collider: CollisionShape2D = $Collider
 @onready var smoke_particles: CPUParticles2D = $SmokeParticles
+const EXPLOSION_PARTICLE = preload("res://Effects/explosion_particle.tscn")
 
 var max_health: int:
 	set(value):
@@ -14,6 +15,10 @@ var dict_key: String
 var is_detached: bool = false
 var parent: RigidBody2D
 var sprite: Texture2D
+
+@export var damage_camera_shake_mag: float = 0.1
+@export var destruction_camera_shake_mag: float = 0.25
+@export var destruction_impulse_magnitude: float = 750.0
 
 signal part_destroyed
 signal part_detached
@@ -28,10 +33,17 @@ func take_damage(damage: int) -> void:
 	hit_sound.play()
 	
 	if new_health <= 0:
+		CameraManager.apply_camera_shake(destruction_camera_shake_mag)
 		part_destroyed.emit(dict_key)
+		if parent != null:
+			var explosion_effect:CPUParticles2D = EXPLOSION_PARTICLE.instantiate()
+			explosion_effect.finished.connect(explosion_effect.queue_free)
+			parent.add_child(explosion_effect)
+			explosion_effect.emitting = true
 		collider.queue_free()
 		queue_free()
 	else:
+		CameraManager.apply_camera_shake(damage_camera_shake_mag)
 		health = new_health
 		var frac_hp = float(new_health)/float(max_health)
 		var part_color: Color = polygon_2d.color
@@ -75,3 +87,5 @@ func detached() -> void:
 	is_detached = true
 	part_detached.emit()
 	freeze = false
+	var random_impulse: Vector2 = Vector2(randf_range(-1,1),randf_range(-1,1))
+	apply_central_impulse(random_impulse.normalized() * destruction_impulse_magnitude)

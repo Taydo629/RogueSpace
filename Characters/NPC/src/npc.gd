@@ -9,12 +9,19 @@ class_name npc extends RigidBody2D
 @onready var energy_component: EnergyComponent = $EnergyComponent
 @onready var shield_component: ShieldComponent = $ShieldComponent
 
+const PICKUPS = preload("res://Pickups/scene/pickups.tscn")
+
 var ship_graph: Dictionary
-		
 var grid_dim: float = 5
 var grid_size: float = 64
+
 @export var detection_range: int = 1500
 @export var wander_range: int = 4000
+@export var ammo: int = 1000
+@export var ammo_drop_count: int = 100
+@export var credit_drop_count: int = 75
+@export var explosive_drop_count: int = 0
+@export var pick_up_init_impulse: float = 1000
 
 func _ready() -> void:
 	collision_shape_2d.shape.radius = detection_range
@@ -44,8 +51,6 @@ func create_ship():
 		part_scene.position = node.grid_pos * Vector2(grid_size,grid_size) - off_set
 		part_component.add_child(part_scene)
 		part_scene.attach(key)
-	
-	
 	init_ship()
 
 func init_ship() -> void:
@@ -59,8 +64,39 @@ func reinitialise_components() -> void:
 	movement_component.initalise_movement(ship_graph)
 	weapon_component.initalise_weapons(ship_graph)
 
+func _drop_pickups() -> void:
+	if ammo_drop_count != 0:
+		var pickups_to_drop: int = ammo_drop_count / 5
+		for i in pickups_to_drop:
+			var new_pick_up: Pickups = PICKUPS.instantiate()
+			new_pick_up.amount_in_pickup = 5
+			new_pick_up.position = position
+			get_parent().add_child(new_pick_up)
+			new_pick_up.pick_up_type = Pickups.PICKUP_TYPE.AMMO
+			new_pick_up.apply_impulse(Vector2(randf_range(-1,1),randf_range(-1,1)) * pick_up_init_impulse)
+	if credit_drop_count != 0:
+		var pickups_to_drop: int = credit_drop_count / 5
+		for i in pickups_to_drop:
+			var new_pick_up: Pickups = PICKUPS.instantiate()
+			new_pick_up.amount_in_pickup = 5
+			new_pick_up.position = position
+			get_parent().add_child(new_pick_up)
+			new_pick_up.pick_up_type = Pickups.PICKUP_TYPE.CREDIT
+			new_pick_up.apply_impulse(Vector2(randf_range(-1,1),randf_range(-1,1)) * pick_up_init_impulse)
+	if explosive_drop_count != 0:
+		var pickups_to_drop: int = explosive_drop_count / 5
+		for i in pickups_to_drop:
+			var new_pick_up: Pickups = PICKUPS.instantiate()
+			new_pick_up.amount_in_pickup = 5
+			new_pick_up.position = position
+			get_parent().add_child(new_pick_up)
+			new_pick_up.pick_up_type = Pickups.PICKUP_TYPE.EXPLOSIVE
+			new_pick_up.apply_impulse(Vector2(randf_range(-1,1),randf_range(-1,1)) * pick_up_init_impulse)
+
 func destroy_ship() -> void:
 	print("Destroying ship")
+	print_debug("Drop pickups")
+	_drop_pickups()
 	for node in part_component.get_children():
 		# Reparent to node above i.e. Level generator
 		node.reparent(get_parent())

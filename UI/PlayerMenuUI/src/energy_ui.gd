@@ -38,7 +38,6 @@ func init_energy_ui() -> void:
 			weapon_energy_bar.value = energy_percent
 
 func update_energy_ui() -> void:
-	print("updating_energy_ui")
 	var energy_dict: Dictionary = energy_component.energy_pips
 	current_energy_dict = energy_dict
 	for key in energy_dict:
@@ -82,5 +81,5 @@ func update_energy_ui() -> void:
 						pips[i].queue_free()
 			weapon_energy_bar.value = energy_percent
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	update_energy_ui()
