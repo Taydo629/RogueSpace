@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="SimpleGame"
+config/name="RogueSpace"
 run/main_scene="uid://g7i7nqney7q"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
