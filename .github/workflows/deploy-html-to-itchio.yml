@@ -35,11 +35,35 @@ jobs:
       
       - name: Check butler
         run: butler -V
+      
+      - name: Read Godot version from project.godot
+        run: |
+          GODOT_VERSION=$(grep -oP '^config/features=PackedStringArray\("\K[0-9]+\.[0-9]+(\.[0-9]+)?' project.godot)
+          if [ -z "$GODOT_VERSION" ]; then
+            echo "::error::Couldn't read the Godot version from project.godot"
+            exit 1
+          fi
+          echo "GODOT_VERSION=$GODOT_VERSION" >> "$GITHUB_ENV"
+          echo "Using Godot $GODOT_VERSION"
+      
+      - name: Install Godot and export templates
+        run: |
+          curl -fsSL -o godot.zip https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip
+          unzip -q godot.zip -d "$RUNNER_TEMP/godot"
+          mv "$RUNNER_TEMP/godot/Godot_v${GODOT_VERSION}-stable_linux.x86_64" "$RUNNER_TEMP/godot/godot"
+          echo "$RUNNER_TEMP/godot" >> "$GITHUB_PATH"
 
-      - name: Login to butler
+          curl -fsSL -o templates.tpz https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_export_templates.tpz
+          mkdir -p ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+          unzip -q templates.tpz -d "$RUNNER_TEMP/templates"
+          mv "$RUNNER_TEMP"/templates/templates/* ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable/
+
+      - name: Export web build
+        run: |
+          mkdir -p build/web
+          godot --headless --export-release "Web" build/web/index.html
+
+      - name: Push to itch.io
         env:
           BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
-        run: butler login
-
-      - name: Logout from butler
-        run: butler logout
+        run: butler push build/web tadtamgames/rougespace:html5 --userversion "${{ github.sha }}"
