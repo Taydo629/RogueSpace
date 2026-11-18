@@ -11,8 +11,8 @@ I have programmed and created assets for this game without assistance of AI agen
 
 ## Bugs/Feature requests
 
-Im aware of some issues within the game that I already have plans to fix and these should be listed on the [itch.io page](https://tadtamgames.itch.io/rougespace). But if you encounter something new feel free to mention this through itch or here through the [Issues](https://github.com/Taydo629/RogueSpace/issues) on this repo.
-The same goes for feature request, although I have a relative solid idea where I want RogueSpace to go I always welcome feedback from others and would be delighted to hear what may make it better for you!
+I'm aware of some issues within the game that I already have plans to fix and these should be listed on the [itch.io page](https://tadtamgames.itch.io/rougespace). But if you encounter something new feel free to mention this through itch or here through the [Issues](https://github.com/Taydo629/RogueSpace/issues) on this repo.
+The same goes for feature request, although I have a good idea where I want RogueSpace to go but I always welcome feedback from others and would be delighted to hear what may make it better for you!
 
 ## Screenshots
 <img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/54c21ce4-f239-44c3-ac54-25e0c1762661" />
